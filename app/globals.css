@@ -1,8 +1,131 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-gradient: linear-gradient(45deg, rgba(8, 225, 174, 1) 30%, rgba(152, 222, 91, 1) 100%);
+  --primary-accent-color: #08e1ae;
+  --primary-font-color: white;
+}
+
 .mainContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  color: var(--primary-font-color);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  width: 13%;
+  height: 100%;
+  background: var(--background-gradient);
+  border-radius: 0 25px 25px 0;
+  padding: 40px 0;
+}
+
+.navbar .homeSelect {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+.navbar .homeSelect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  background: var(--background-gradient);
+  opacity: .5;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.navbar .homeSelectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.navbar .homeSelectHeader svg {
+  height: 30px;
+  margin-left: 15px;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul a {
+  color: var(--primary-font-color);
+  text-decoration: none;
+  font-size: 25px;
+  padding: 10px 5px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.navbar ul a.active {
+  background: var(--primary-font-color);
+  padding: 10px;
+  width: 110%;
+}
+
+
+.navbar ul a.active li {
+  font-weight: 600;
+  background: var(--background-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar ul a.active svg {
+  color: var(--primary-accent-color);
+}
+
+.navbar ul li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 100%;
+}
+
+.navbar ul a:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.navbar ul li svg {
+  height: 28px;
+  margin-right: 20px;
 }
