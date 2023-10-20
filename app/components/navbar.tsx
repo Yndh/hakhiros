@@ -11,7 +11,11 @@ import {
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const NavBar = () => {
+
+interface NavBarProps {
+  active: string;
+}
+export const NavBar = (props: NavBarProps) => {
   return (
     <div className="navbar">
       <div className="homeSelect">
@@ -22,31 +26,31 @@ export const NavBar = () => {
       </div>
 
       <ul>
-        <a href="" className="active">
+        <a href="/app" className={props.active == 'dashboard' ? "active": ""}>
           <li>
             <FontAwesomeIcon icon={faHome} />
             Dashboard
           </li>
         </a>
-        <a href="">
+        <a href="/app/callendar" className={props.active == 'callendar' ? "active": ""}>
           <li>
             <FontAwesomeIcon icon={faCalendarDays} />
             Kalendarz
           </li>
         </a>
-        <a href="">
+        <a href="/app/notes" className={props.active == 'notes' ? "active": ""}>
           <li>
-            <FontAwesomeIcon icon={faPenToSquare} />
+            <FontAwesomeIcon icon={faPenToSquare}/>
             Notatki
           </li>
         </a>
-        <a href="">
+        <a href="/app/duties" className={props.active == 'duties' ? "active": ""}>
           <li>
             <FontAwesomeIcon icon={faBell} />
             Obowiązki
           </li>
         </a>
-        <a href="">
+        <a href="/app/plan" className={props.active == 'plan' ? "active": ""}>
           <li>
             <FontAwesomeIcon icon={faCalendarPlus} />
             Plan Dnia
@@ -55,13 +59,13 @@ export const NavBar = () => {
       </ul>
 
       <ul>
-        <a href="">
+        <a href="/app/settings" className={props.active == 'settings' ? "active": ""}>
           <li>
             <FontAwesomeIcon icon={faCog} />
             Ustawienia
           </li>
         </a>
-        <a href="">
+        <a href="/app/user" className={props.active == 'user' ? "active": ""}>
           <li>
             <FontAwesomeIcon icon={faUser} />
             Użytkownik

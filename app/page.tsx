@@ -4,7 +4,7 @@ import { NavBar } from "./components/navbar";
 export default function Home() {
   return (
     <main className="mainContainer">
-      <NavBar />
+      <a href="/app">Hakhiros Apka</a>
     </main>
   );
 }
