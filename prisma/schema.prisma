@@ -10,10 +10,99 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+model user {
+  id           Int       @id @default(autoincrement())
+  name         String
+  email        String    @unique
+  password     String
+  createdAt    DateTime  @default(now())
+  profiles     profile[]
+  owned_houses house[]
+}
+
+model profile {
+  id          Int          @id @default(autoincrement())
+  user_id     Int
+  duties      dutie[]
+  notes       note[]
+  user_houses user_house[]
+  schedules   schedule[]
+  calendars   calendar[]
+  user        user         @relation(fields: [user_id], references: [id])
+}
+
+model house {
+  id          Int          @id @default(autoincrement())
+  owner       Int
+  name        String
+  created_at  DateTime     @default(now())
+  code        String       @unique
+  duties      dutie[]
+  notes       note[]
+  user_houses user_house[]
+  schedules   schedule[]
+  calendars   calendar[]
+  user        user         @relation(fields: [owner], references: [id])
+}
+
+model dutie {
+  id         Int      @id @default(autoincrement())
+  profile_id Int
+  house_id   Int
+  title      String
+  is_done    Boolean
+  created_at DateTime @default(now())
+  profile    profile  @relation(fields: [profile_id], references: [id])
+  house      house    @relation(fields: [house_id], references: [id])
+}
+
+model note {
+  id         Int      @id @default(autoincrement())
+  profile_id Int
+  house_id   Int
+  title      String
+  content    String
+  created_at DateTime @default(now())
+  profile    profile  @relation(fields: [profile_id], references: [id])
+  house      house    @relation(fields: [house_id], references: [id])
+}
+
+model user_house {
+  id         Int      @id @default(autoincrement())
+  profile_id Int
+  house_id   Int
+  join_date  DateTime @default(now())
+  profile    profile  @relation(fields: [house_id], references: [id])
+  house      house    @relation(fields: [house_id], references: [id])
+}
+
+model event {
+  id        Int        @id @default(autoincrement())
+  calendars calendar[]
+  schedules schedule[]
+}
+
+model schedule {
+  id           Int      @id @default(autoincrement())
+  profile_id   Int
+  house_id     Int
+  event_id     Int
+  date_start   DateTime
+  day_of_week  Int?
+  day_of_month Int?
+  month        Int?
+  event        event    @relation(fields: [event_id], references: [id])
+  profile      profile  @relation(fields: [profile_id], references: [id])
+  house        house    @relation(fields: [house_id], references: [id])
+}
+
+model calendar {
+  id         Int     @id @default(autoincrement())
+  profile_id Int
+  house_id   Int
+  event_id   Int
+  day        Int
+  event      event   @relation(fields: [event_id], references: [id])
+  profile    profile @relation(fields: [profile_id], references: [id])
+  house      house   @relation(fields: [house_id], references: [id])
 }
