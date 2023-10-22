@@ -6,7 +6,7 @@ export default function Dashboard() {
   return (
     <AppLayout active="dashboard">
       <div className="header">
-        <div className="tile third transparent">
+        <div className="collumn">
           <span>Witaj Ponownie,</span>
           <h1>Użytkownik</h1>
         </div>

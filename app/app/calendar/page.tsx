@@ -34,20 +34,17 @@ export default function CalendarPage() {
   return (
     <AppLayout active="calendar">
       <div className="header">
-        <div className="tile third transparent">
-          <h1>Kalendarz</h1>
-        </div>
+        <h2>Kalendarz</h2>
       </div>
-      <div className="tile third">
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          defaultDate={defaultDate}
-          defaultView="week"
-        />
-      </div>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        defaultDate={defaultDate}
+        defaultView="week"
+        toolbar={false}
+      />
     </AppLayout>
   );
 }

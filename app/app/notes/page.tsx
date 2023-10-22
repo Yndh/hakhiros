@@ -6,14 +6,12 @@ export default function Notes() {
   return (
     <AppLayout active="notes">
       <div className="header">
-        <div className="tile first transparent">
-          <h1>Notatki</h1>
-        </div>
-        <div className="tile second transparent row end">
-          <button className="shadow icon">
+        <h1>Notatki</h1>
+        <div className="row">
+          <button className="box">
             <FontAwesomeIcon icon={faFilter} />
           </button>
-          <button className="shadow">Utwórz</button>
+          <button>Utwórz</button>
           <label className="searchBar" htmlFor="search">
             <FontAwesomeIcon icon={faSearch} />
             <input type="text" placeholder="Szukaj..." id="search" />
@@ -21,9 +19,9 @@ export default function Notes() {
         </div>
       </div>
 
-      <div className="appComponents">
-        <div className="tile first">
-          <p className="title">Notatka</p>
+      <div className="cardRow">
+        <div className="card">
+          <h2 className="title">Notatka</h2>
         </div>
       </div>
     </AppLayout>
