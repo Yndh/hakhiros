@@ -1,0 +1,28 @@
+/*mainContainer*/
+.mainContainer{
+    overflow-y: hidden;
+}
+
+/*header*/
+.rbc-calendar{
+    display: unset;
+    height: auto;
+}
+
+.rbc-time-header{
+    background-image: linear-gradient(to right top, #08e1ae, #43e19a, #63e185, #7ee070, #98de5b);
+}
+
+.rbc-time-header-content{
+    border:none;
+}
+
+.rbc-allday-cell{
+    display: none;
+}
+
+/*body*/
+.rbc-time-view{
+    height: 60%;
+    flex: none;
+}

@@ -4,6 +4,7 @@ import { AppLayout } from "@/app/components/appLayout";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./style.css";
 import { useMemo } from "react";
 
 const localizer = momentLocalizer(moment);
@@ -44,6 +45,7 @@ export default function CalendarPage() {
         defaultDate={defaultDate}
         defaultView="week"
         toolbar={false}
+
       />
     </AppLayout>
   );
