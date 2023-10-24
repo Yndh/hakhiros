@@ -106,13 +106,10 @@ button:hover {
   opacity: .7;
 }
 
-button svg {
-  height: 20px;
-}
-
 button.box {
   width: 40px;
   height: 40px;
+  padding: 15px;
 }
 
 .textThin {
@@ -226,8 +223,7 @@ button.box {
 .mainContainer {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  padding-top: 20px;
+  padding: 20px 10px 0 10px;
   overflow-y: auto;
 }
 
@@ -266,7 +262,7 @@ button.box {
 
 .cardRow {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 33% 33% 33%;
 }
 
 .cardRow.dashboard {
@@ -274,6 +270,7 @@ button.box {
 }
 
 .card {
+  position: relative;
   background: var(--background-secondary);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
@@ -289,6 +286,22 @@ button.box {
 .card .title {
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
+}
+.card .pin{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px 15px 0 0;
+  height: 20px;
+  opacity: .3;
+  transition: .3s ease;
+}
+.card .pin:hover{
+  opacity: .5;
+}
+.card .pin.pinned{
+  opacity: .7;
 }
 
 .card .title::before {
@@ -341,8 +354,4 @@ ol.duties li input[type="checkbox"] {
 
 ol.duties li input[type="checkbox"]:checked~span {
   text-decoration: line-through;
-}
-
-.rbc-calendar {
-  height: 100vh !important;
 }

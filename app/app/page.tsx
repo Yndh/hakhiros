@@ -34,24 +34,6 @@ export default function Dashboard() {
                 <span>Umyć kibel</span>
               </label>
             </li>
-            <li>
-              <label htmlFor="check3">
-                <input type="checkbox" id="check3" />
-                <span>Umyć kibel</span>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="check3">
-                <input type="checkbox" id="check3" />
-                <span>Umyć kibel</span>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="check3">
-                <input type="checkbox" id="check3" />
-                <span>Umyć kibel</span>
-              </label>
-            </li>
           </ol>
         </div>
         <div className="card">
