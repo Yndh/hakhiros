@@ -233,6 +233,7 @@ button.box {
   justify-content: space-between;
   align-items: center;
   height: 100px;
+  padding-bottom: 10px;
 }
 
 .header .collumn {
@@ -263,6 +264,7 @@ button.box {
 .cardRow {
   display: grid;
   grid-template-columns: 33% 33% 33%;
+  overflow-y: scroll;
 }
 
 .cardRow.dashboard {
