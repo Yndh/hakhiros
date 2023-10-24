@@ -38,8 +38,10 @@ export const authOptions: NextAuthOptions = {
 
                 return {
                     id: user.id.toString(),
+                    user_id: user.id,
                     name: user.name,
                     email: user.email,
+
                 }
             }
         }),
@@ -84,6 +86,7 @@ export const authOptions: NextAuthOptions = {
                 ...session,
                 user: {
                     ...session.user,
+                    id: parseInt(token.id)
                 }
             }
         },
@@ -91,8 +94,8 @@ export const authOptions: NextAuthOptions = {
             if (user) {
                 const u = user as unknown as any
                 return {
-                    id: u.id,
                     ...token,
+                    id: u.id
                 }
             }
             return token

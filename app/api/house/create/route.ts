@@ -31,9 +31,10 @@ export async function POST(req: Request, res: NextApiResponse) {
             status: 400
         })
     }
+    console.log(session)
     const created_by = await prisma.user.findUnique({
         where: {
-            email: session.user.email
+            id: session.user.id
         }
     })
 
@@ -45,7 +46,7 @@ export async function POST(req: Request, res: NextApiResponse) {
 
     const house = await prisma.house.create({
         data: {
-            owner: created_by.id,
+            owner: session.user.id,
             name: body.house_name,
             code: await generateUniqueCode(HOUSE_CODE_LENGHT),
         }
