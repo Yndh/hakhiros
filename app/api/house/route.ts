@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from './../../auth/[...nextauth]/route'
+import { authOptions } from '../auth/[...nextauth]/route'
 import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
 import { prisma } from '@/lib/prisma'
@@ -31,7 +31,6 @@ export async function POST(req: Request, res: NextApiResponse) {
             status: 400
         })
     }
-    console.log(session)
     const created_by = await prisma.user.findUnique({
         where: {
             id: session.user.id
@@ -49,6 +48,19 @@ export async function POST(req: Request, res: NextApiResponse) {
             owner: session.user.id,
             name: body.house_name,
             code: await generateUniqueCode(HOUSE_CODE_LENGHT),
+        }
+    })
+
+    const user_profile = await prisma.profile.create({
+        data: {
+            user_id: session.user.id,
+        }
+    })
+
+    const user_house = await prisma.user_house.create({
+        data: {
+            profile_id: user_profile.id,
+            house_id: house.id
         }
     })
 
