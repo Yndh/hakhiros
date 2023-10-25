@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { type NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import { hash, compare } from 'bcrypt'
@@ -38,8 +38,10 @@ export const authOptions: NextAuthOptions = {
 
                 return {
                     id: user.id.toString(),
+                    user_id: user.id,
                     name: user.name,
                     email: user.email,
+
                 }
             }
         }),
@@ -77,7 +79,28 @@ export const authOptions: NextAuthOptions = {
                 return { id: user.id.toString(), name: user.name, email: user.email }
             }
         }),
-    ]
+    ],
+    callbacks: {
+        session: ({ session, token }) => {
+            return {
+                ...session,
+                user: {
+                    ...session.user,
+                    id: parseInt(token.id)
+                }
+            }
+        },
+        jwt: ({ token, user }) => {
+            if (user) {
+                const u = user as unknown as any
+                return {
+                    ...token,
+                    id: u.id
+                }
+            }
+            return token
+        }
+    }
 }
 
 const handler = NextAuth(authOptions)
