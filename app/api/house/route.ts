@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
 import { post } from './POST'
+import { get } from './GET'
 
-async function GET(req: Request, res: NextApiResponse) {
-    return new NextResponse(JSON.stringify({ error: 'only POST request allowed' }), {
-        status: 405
-    })
+export function GET(req: Request, res: NextApiResponse) {
+    return get(req, res)
 }
 
 export function POST(req: Request, res: NextApiResponse) {
