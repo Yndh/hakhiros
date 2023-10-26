@@ -22,6 +22,7 @@ export default function Notes() {
   const [selectOpen, setIsSelectOpen] = useState(false);
   const [colorValue, setColorValue] = useState("#FFF9DB");
   const [noteSort, setNoteSort] = useState("title");
+  const [searchValue, setSearchValue] = useState("");
   const [notes, setNotes] = useState([
     {
       title: "Hakhiros apka wtf",
@@ -50,8 +51,9 @@ export default function Notes() {
   const colors = ["#fff", "#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
   const getSortedNotes = () => {
-    const pinnedNotes = notes.filter((note) => note.isPinned);
-    const unpinnedNotes = notes.filter((note) => !note.isPinned);
+    const filteredNotes = searchNotes();
+    const pinnedNotes = filteredNotes.filter((note) => note.isPinned);
+    const unpinnedNotes = filteredNotes.filter((note) => !note.isPinned);
   
     let sortedUnpinnedNotes = [];
   
@@ -117,6 +119,18 @@ export default function Notes() {
     setFilterOpen(false);
   };
 
+  const searchHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  }
+
+  const searchNotes = () => {
+    return notes.filter((note) => {
+      const titleMatch = note.title.toLowerCase().includes(searchValue.toLowerCase());
+      const contentMatch = note.description.toLowerCase().includes(searchValue.toLowerCase());
+      return titleMatch || contentMatch;
+    });
+  };
+
   return (
     <AppLayout active="notes">
       <div className="header">
@@ -134,7 +148,7 @@ export default function Notes() {
           <button onClick={toggleModal}>Utwórz</button>
           <label className="searchBar" htmlFor="search">
             <FontAwesomeIcon icon={faSearch} />
-            <input type="text" placeholder="Szukaj..." id="search" />
+            <input type="text" placeholder="Szukaj..." id="search" value={searchValue} onChange={searchHandle}/>
           </label>
         </div>
       </div>

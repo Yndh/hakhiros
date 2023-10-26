@@ -301,6 +301,7 @@ button.box {
   padding: 10px 15px;
   margin: 0 5px;
   gap: 15px;
+  height: auto;
   background: var(--background-secondary);
   border-radius: var(--radius-primary);
   box-shadow: var(--box-shadow);
