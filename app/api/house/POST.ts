@@ -1,10 +1,11 @@
 import { prisma } from '@/lib/prisma'
-import { generateCode } from '@/lib/generateCode'
 import { generateUniqueCode } from '@/lib/generateUniqueCode'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]/route'
 import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
+import { createProfile } from '@/lib/createProfile'
+import { joinHouse } from '@/lib/joinHouse'
 
 interface req_body {
     house_name: String
@@ -45,18 +46,7 @@ export async function post(req: Request, res: NextApiResponse) {
         }
     })
 
-    const user_profile = await prisma.profile.create({
-        data: {
-            user_id: session.user.id,
-        }
-    })
-
-    const user_house = await prisma.user_house.create({
-        data: {
-            profile_id: user_profile.id,
-            house_id: house.id
-        }
-    })
+    joinHouse(session.user.id, house.id)
 
     return new NextResponse(JSON.stringify({ title: body.house_name }), {
         status: 200
