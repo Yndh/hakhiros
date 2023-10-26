@@ -74,7 +74,7 @@ model user_house {
   house_id   Int
   join_date  DateTime @default(now())
   profile    profile  @relation(fields: [profile_id], references: [id])
-  house      house    @relation(fields: [house_id], references: [id])
+  house      house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
 model event {

@@ -12,3 +12,6 @@ export function POST(req: Request, res: NextApiResponse) {
     return mPOST(req, res)
 }
 
+export function DELETE(req: Request, res: NextApiResponse) {
+    return mDELETE(req, res)
+}
