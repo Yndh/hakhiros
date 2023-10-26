@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]/route'
 
 
-export async function get(req: Request, res: NextApiResponse) {
+export async function mGET(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session) {
         return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {

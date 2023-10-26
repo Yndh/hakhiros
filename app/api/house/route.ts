@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
-import { post } from './POST'
-import { get } from './GET'
+import { mPOST } from './POST'
+import { mGET } from './GET'
+import { mDELETE } from './DELETE'
 
 export function GET(req: Request, res: NextApiResponse) {
-    return get(req, res)
+    return mGET(req, res)
 }
 
 export function POST(req: Request, res: NextApiResponse) {
-    return post(req, res)
+    return mPOST(req, res)
 }
+

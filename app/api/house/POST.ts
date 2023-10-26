@@ -13,7 +13,7 @@ interface req_body {
 
 const HOUSE_CODE_LENGHT = 8;
 
-export async function post(req: Request, res: NextApiResponse) {
+export async function mPOST(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {
