@@ -5,14 +5,15 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 
-export default function Duties() {
+export default function CalendarPage() {
     return(
-        <AppLayout active="duties">
-        <FullCalendar
-          plugins={[
-            dayGridPlugin,
-          ]}
-        />
+        <AppLayout active="calendar">
+          <FullCalendar
+            plugins={[
+              dayGridPlugin,
+            ]}
+            locale = 'pl'
+          />
         </AppLayout>
     )
 }

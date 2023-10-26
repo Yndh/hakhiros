@@ -26,7 +26,7 @@
 
 /*header*/
 
-.header{
+.head{
     background-image: linear-gradient(to right top, #08e1ae, #43e19a, #63e185, #7ee070, #98de5b);
     width: 100%;
     padding: 5%;
@@ -35,7 +35,7 @@
     align-items: center;
 }
 
-.header h1{
+.head h1{
     margin: 0;
 }
 

@@ -14,7 +14,7 @@ export default function Plan() {
     return (
         <AppLayout active="plan">
             <div className="main">
-                <div className="header">
+                <div className="head">
                     <h1>{days[day]}</h1>
                 </div>
                 <div className="content">
