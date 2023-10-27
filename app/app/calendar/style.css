@@ -56,3 +56,7 @@
 .fc-theme-standard th{
     border: none ;
 }
+
+.fc-toolbar-title{
+    text-transform: capitalize;
+}
