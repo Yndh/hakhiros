@@ -49,12 +49,12 @@ export const authOptions: NextAuthOptions = {
             id: "register",
             name: 'rejstracja',
             credentials: {
-                name: { label: "Nazwa", type: "string", placeholder: "sigma" },
+                username: { label: "Nazwa", type: "string", placeholder: "sigma" },
                 email: { label: "Email", type: "email", placeholder: "sigma@basedeparment.com" },
                 password: { label: "Hasło", type: "password" }
             },
             async authorize(credentials, req) {
-                if (!credentials?.name || !credentials?.email || !credentials?.password) {
+                if (!credentials?.username || !credentials?.email || !credentials?.password) {
                     return null
                 }
 
@@ -70,13 +70,13 @@ export const authOptions: NextAuthOptions = {
                 const password: string = (await hash(credentials.password, 12)).toString()
                 const user = await prisma.user.create({
                     data: {
-                        name: credentials.name,
+                        name: credentials.username,
                         email: credentials.email,
                         password
                     },
                 });
 
-                return { id: user.id.toString(), name: user.name, email: user.email }
+                return { id: user.id.toString(), username: user.name, email: user.email }
             }
         }),
     ],
