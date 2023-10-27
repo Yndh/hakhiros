@@ -1,10 +1,11 @@
+import { prisma } from '@/lib/prisma'
+import { generateUniqueCode } from '@/lib/generateUniqueCode'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from './../../auth/[...nextauth]/route'
+import { authOptions } from '../auth/[...nextauth]/route'
 import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
-import { prisma } from '@/lib/prisma'
-import { generateCode } from '@/lib/generateCode'
-import { generateUniqueCode } from '@/lib/generateUniqueCode'
+import { createProfile } from '@/lib/createProfile'
+import { joinHouse } from '@/lib/joinHouse'
 
 interface req_body {
     house_name: String
@@ -12,13 +13,7 @@ interface req_body {
 
 const HOUSE_CODE_LENGHT = 8;
 
-export async function GET(req: Request, res: NextApiResponse) {
-    return new NextResponse(JSON.stringify({ error: 'only POST request allowed' }), {
-        status: 405
-    })
-}
-
-export async function POST(req: Request, res: NextApiResponse) {
+export async function mPOST(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {
@@ -31,7 +26,6 @@ export async function POST(req: Request, res: NextApiResponse) {
             status: 400
         })
     }
-    console.log(session)
     const created_by = await prisma.user.findUnique({
         where: {
             id: session.user.id
@@ -51,6 +45,8 @@ export async function POST(req: Request, res: NextApiResponse) {
             code: await generateUniqueCode(HOUSE_CODE_LENGHT),
         }
     })
+
+    joinHouse(session.user.id, house.id)
 
     return new NextResponse(JSON.stringify({ title: body.house_name }), {
         status: 200

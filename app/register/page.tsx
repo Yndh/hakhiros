@@ -1,0 +1,107 @@
+"use client";
+
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useState } from "react";
+
+export default function RegisterPage() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const result = await signIn("register", {
+      username,
+      email,
+      password,
+      redirect: false
+    })
+    if (result?.error) {
+      setError(result.error);
+      return
+    }
+  };
+
+  const googleButtonHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    throw new Error("Function not implemented.");
+  };
+
+  return (
+    <div className="loginContainer">
+      <div className="absoluteCircle"></div>
+      <form onSubmit={submitHandler} className="formContainer">
+        <div className="formRow">
+          <h2>Witaj użytkowniku!</h2>
+          <span className="loginDesc">
+            Zarejestruj się do aplikacji Hakhiros
+          </span>
+        </div>
+
+        <div className="formRow">
+          <div className="inputContainer">
+            <FontAwesomeIcon icon={faUser} />
+            <input
+              type="name"
+              id="usernameInput"
+              placeholder="Wprowadz nazwę użytkownika..."
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="inputContainer">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <input
+              type="name"
+              id="emailInput"
+              placeholder="Wprowadz e-mail..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="inputContainer">
+            <FontAwesomeIcon icon={faLock} />
+            <input
+              type="password"
+              name="password"
+              id="passwordInput"
+              placeholder="Wprowadz haslo..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {error && <div className="error">{error}</div>}
+
+        <div className="formRow">
+          <button className="login" type="submit">
+            Zarejestruj się
+          </button>
+          <span className="or">lub</span>
+
+          <button
+            type="button"
+            className="googleLogin"
+            onClick={googleButtonHandler}
+          >
+            <span className="googleIcon">G</span>
+            <span>Zarejestruj się przez Google</span>
+          </button>
+        </div>
+      </form>
+      <span className="loginOption">
+        <span>Masz konto? </span>
+        <Link href={"/login"} className="coloredLink">
+          Zaloguj się
+        </Link>
+      </span>
+      <div className="absoluteCircle"></div>
+    </div>
+  );
+}

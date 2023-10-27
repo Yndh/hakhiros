@@ -7,14 +7,14 @@ export async function generateUniqueCode(lenght: number) {
     }
 
     let code: string;
-    let codeExists: boolean;
+    let codeExists;
     for (let i = 0; i <= lenght; i++) {
         code = generateCode(lenght)
         codeExists = await prisma.house.findUnique({
             where: {
                 code
             }
-        }).then(Boolean)
+        })
         if (!codeExists) {
             return code
         }

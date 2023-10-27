@@ -21,14 +21,15 @@ model user {
 }
 
 model profile {
-  id          Int          @id @default(autoincrement())
-  user_id     Int
-  duties      dutie[]
-  notes       note[]
-  user_houses user_house[]
-  schedules   schedule[]
-  calendars   calendar[]
-  user        user         @relation(fields: [user_id], references: [id])
+  id           Int          @id @default(autoincrement())
+  user_id      Int
+  display_name String?
+  duties       dutie[]
+  notes        note[]
+  user_houses  user_house[]
+  schedules    schedule[]
+  calendars    calendar[]
+  user         user         @relation(fields: [user_id], references: [id])
 }
 
 model house {
@@ -72,8 +73,8 @@ model user_house {
   profile_id Int
   house_id   Int
   join_date  DateTime @default(now())
-  profile    profile  @relation(fields: [house_id], references: [id])
-  house      house    @relation(fields: [house_id], references: [id])
+  profile    profile  @relation(fields: [profile_id], references: [id])
+  house      house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
 model event {
