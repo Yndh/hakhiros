@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
                 })
 
                 if (!user) {
-                    return null
+                    throw new Error("Upewnij się że podałeś poprawnego maila i hasło");
                 }
 
                 const isPasswordValid = await compare(
@@ -33,7 +33,7 @@ export const authOptions: NextAuthOptions = {
                 )
 
                 if (!isPasswordValid) {
-                    return null
+                    throw new Error("Upewnij się że podałeś poprawnego maila i hasło");
                 }
 
                 return {
@@ -100,6 +100,9 @@ export const authOptions: NextAuthOptions = {
             }
             return token
         }
+    },
+    pages: {
+        "signIn": "/login"
     }
 }
 

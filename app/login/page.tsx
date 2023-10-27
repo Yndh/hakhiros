@@ -2,6 +2,7 @@
 
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -10,8 +11,17 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    throw new Error("Function not implemented.");
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const result = await signIn("login", {
+      email,
+      password,
+      redirect: false
+    })
+    if (result?.error) {
+      setError(result.error);
+      return
+    }
   };
 
   const googleButtonHandler = (
