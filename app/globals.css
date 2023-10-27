@@ -107,6 +107,7 @@ button {
   font-size: 16px;
   z-index: 1;
   height: 40px;
+  cursor: pointer;
   transition: .3s;
 }
 
@@ -137,7 +138,7 @@ button.box {
   color: var(--color-warning);
 }
 
-.selectAbsolute{
+.selectAbsolute {
   position: absolute;
   top: 50px;
   left: 0;
@@ -151,7 +152,7 @@ button.box {
   pointer-events: none;
 }
 
-.selectAbsolute.open{
+.selectAbsolute.open {
   opacity: 1;
   pointer-events: all;
 }
@@ -174,7 +175,8 @@ button.box {
   width: 100%;
   border-bottom: 1px solid var(--accent-secondary);
 }
-.selectAbsolute li:hover{
+
+.selectAbsolute li:hover {
   opacity: .7;
 }
 
@@ -332,6 +334,21 @@ button.box {
   color: var(--color-primary);
 }
 
+.card.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card.center h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 200px;
+}
+
 .card:not(:last-child) {
   margin-right: 20px;
 }
@@ -354,7 +371,7 @@ button.box {
   opacity: .7;
 }
 
-.card span{
+.card span {
   word-wrap: break-word;
 }
 
@@ -395,6 +412,8 @@ ol.duties {
 }
 
 ol.duties li {
+  display: flex;
+  align-items: center;
   font-size: 18px;
   user-select: none;
   -moz-user-select: none;
@@ -414,6 +433,30 @@ ol.duties li input[type="checkbox"] {
 
 ol.duties li input[type="checkbox"]:checked~span {
   text-decoration: line-through;
+}
+
+ol.duties li.addDuty {
+  margin-top: 5px;
+  opacity: .7;
+  transition: .3s;
+}
+
+ol.duties li.addDuty svg {
+  margin-right: 12px;
+  opacity: .5;
+}
+
+.dutyRow {
+  display: flex;
+  align-items: flex-start;
+  /* ^ rozne wysokosci */
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.dutyRow .card {
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
 .modal {
@@ -571,7 +614,7 @@ button.modalOption {
 
 
 /* Login Page */
-.loginContainer{
+.loginContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,7 +624,7 @@ button.modalOption {
   background: var(--background-primary);
 }
 
-.formContainer{
+.formContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -596,7 +639,7 @@ button.modalOption {
   border-radius: var(--radius-secondary);
 }
 
-.formRow{
+.formRow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -604,7 +647,7 @@ button.modalOption {
   width: 100%;
 }
 
-.inputContainer{
+.inputContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -627,15 +670,15 @@ button.modalOption {
   width: 100%;
 }
 
-.inputContainer svg{
+.inputContainer svg {
   color: var(--accent-primary);
 }
 
-.formContainer button{
+.formContainer button {
   width: 100%;
 }
 
-.formContainer button.googleLogin{
+.formContainer button.googleLogin {
   background: var(--background-primary);
   color: var(--color-primary);
   box-shadow: var(--box-shadow);
@@ -702,10 +745,11 @@ button.modalOption {
   bottom: -200px;
 }
 
-.loginOption .coloredLink{
+.loginOption .coloredLink {
   font-weight: bold;
 
 }
-.loginOption .coloredLink:hover{
+
+.loginOption .coloredLink:hover {
   text-decoration: underline;
 }
