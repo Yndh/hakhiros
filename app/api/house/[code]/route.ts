@@ -5,7 +5,7 @@ import { authOptions } from '../../auth/[...nextauth]/route'
 import { prisma } from '@/lib/prisma'
 import { joinHouse } from '@/lib/joinHouse'
 
-export async function GET(req: Request, res: NextApiResponse) {
+export async function POST(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session) {
         return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {
