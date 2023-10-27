@@ -28,7 +28,7 @@ export default function Notes() {
       title: "Hakhiros apka wtf",
       description: "aplkacja hakhiros czyli centrum domowe",
       color: "#fff",
-      createdAt: new Date('10/25/2023 13:11:53'),
+      createdAt: new Date("10/25/2023 13:11:53"),
       isPinned: true,
     },
     {
@@ -36,14 +36,15 @@ export default function Notes() {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis magna vitae tempor convallis. Nam consectetur, risus id tincidunt tempus, risus enim ornare elit, vitae ullamcorper lorem tellus quis metus. Praesent at dolor risus. Sed eu cursus nisl, ac maximus enim. Suspendisse quis sagittis tellus. Vivamus vel eros hendrerit, vulputate enim vel, luctus nulla. Vivamus porta ex ligula, at porta ex aliquet ut.",
       color: "#fff",
-      createdAt: new Date('10/25/2023 12:54:00'),
+      createdAt: new Date("10/25/2023 12:54:00"),
       isPinned: false,
     },
     {
       title: "Notatka",
-      description: "SEKSOOOOOO SEKSOOOOOO SEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOO",
+      description:
+        "SEKSOOOOOO SEKSOOOOOO SEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOOSEKSOOOOOO",
       color: "#fff",
-      createdAt: new Date('10/25/2023 13:21:00'),
+      createdAt: new Date("10/25/2023 13:21:00"),
       isPinned: false,
     },
   ]);
@@ -54,20 +55,24 @@ export default function Notes() {
     const filteredNotes = searchNotes();
     const pinnedNotes = filteredNotes.filter((note) => note.isPinned);
     const unpinnedNotes = filteredNotes.filter((note) => !note.isPinned);
-  
+
     let sortedUnpinnedNotes = [];
-  
+
     switch (noteSort) {
       case "title":
-        sortedUnpinnedNotes = unpinnedNotes.sort((a, b) => a.title.localeCompare(b.title));
+        sortedUnpinnedNotes = unpinnedNotes.sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
         break;
       case "date":
-        sortedUnpinnedNotes = unpinnedNotes.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+        sortedUnpinnedNotes = unpinnedNotes.sort(
+          (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+        );
         break;
       default:
         sortedUnpinnedNotes = [...unpinnedNotes];
     }
-  
+
     return [...pinnedNotes, ...sortedUnpinnedNotes];
   };
 
@@ -121,12 +126,16 @@ export default function Notes() {
 
   const searchHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-  }
+  };
 
   const searchNotes = () => {
     return notes.filter((note) => {
-      const titleMatch = note.title.toLowerCase().includes(searchValue.toLowerCase());
-      const contentMatch = note.description.toLowerCase().includes(searchValue.toLowerCase());
+      const titleMatch = note.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
+      const contentMatch = note.description
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
       return titleMatch || contentMatch;
     });
   };
@@ -136,19 +145,26 @@ export default function Notes() {
       <div className="header">
         <h1>Notatki</h1>
         <div className="row">
-          <div style={{position: "relative"}}>
+          <div style={{ position: "relative" }}>
             <button className="box" onClick={filterToggle}>
               <FontAwesomeIcon icon={faFilter} />
             </button>
             <DropDown isOpen={filterOpen}>
               <li onClick={() => handleFilterChange("date")}>Od najnowszych</li>
               <li onClick={() => handleFilterChange("title")}>Po tytule</li>
-              </DropDown>
+            </DropDown>
           </div>
           <button onClick={toggleModal}>Utwórz</button>
           <label className="searchBar" htmlFor="search">
             <FontAwesomeIcon icon={faSearch} />
-            <input type="text" placeholder="Szukaj..." id="search" value={searchValue} onChange={searchHandle}/>
+            <input
+              type="text"
+              placeholder="Szukaj..."
+              className="noteInput"
+              id="search"
+              value={searchValue}
+              onChange={searchHandle}
+            />
           </label>
         </div>
       </div>

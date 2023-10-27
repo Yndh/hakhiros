@@ -439,6 +439,11 @@ ol.duties li.addDuty {
   margin-top: 5px;
   opacity: .7;
   transition: .3s;
+  padding: 5px;
+}
+
+ol.duties li.addDuty:hover {
+  background: var(--background-primary);
 }
 
 ol.duties li.addDuty svg {
@@ -470,6 +475,7 @@ ol.duties li.addDuty svg {
   width: 100vw;
   height: 100vh;
   opacity: 0;
+  z-index: 3;
   transition: .3s ease;
   backdrop-filter: blur(2px);
   pointer-events: none;
@@ -513,12 +519,19 @@ ol.duties li.addDuty svg {
   width: 100%;
 }
 
+.modalCard input {
+  padding: 10px 15px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-primary);
+  opacity: .5;
+}
+
 .card.newNote {
   min-height: 200px;
   background: var(--card-secondary);
 }
 
-.card.newNote input {
+.card.newNote input.noteInput {
   border-bottom: 1px dotted var(--color-primary);
   background: transparent;
   padding-bottom: 5px;
