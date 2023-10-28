@@ -64,6 +64,8 @@ model note {
   title      String
   content    String
   created_at DateTime @default(now())
+  pinned     Boolean
+  color      String
   profile    profile  @relation(fields: [profile_id], references: [id])
   house      house    @relation(fields: [house_id], references: [id])
 }
