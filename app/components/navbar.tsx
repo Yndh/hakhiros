@@ -1,3 +1,5 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -10,20 +12,53 @@ import {
   faUser,
   faChevronDown,
   faClose,
+  faAdd,
+  faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 interface NavBarProps {
   active: string;
 }
 export const NavBar = (props: NavBarProps) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleModal = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    setModalOpen(!modalOpen);
+    setDropdownOpen(false);
+  };
+
   return (
     <div className="navbar">
       <div className="top">
         <div className="homeSelect">
-          <h2>Nazwa Domu</h2>
-        </div>
-        <div className="close">
-          <FontAwesomeIcon icon={faClose} />
+          <div className="homeSelectHeader" onClick={dropdownToggle}>
+            <h2>Nazwa Domu</h2>
+            <FontAwesomeIcon
+              icon={dropdownOpen ? faChevronUp : faChevronDown}
+            />
+          </div>
+          <div className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}>
+            <ol>
+              <li>
+                <FontAwesomeIcon icon={faHome} />
+                Dom1
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faHome} />
+                Dom2
+              </li>
+              <li className="addHome" onClick={toggleModal}>
+                <FontAwesomeIcon icon={faAdd} />
+                Dołącz do domu
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
 
@@ -102,6 +137,21 @@ export const NavBar = (props: NavBarProps) => {
             </li>
           </a>
         </ul>
+      </div>
+
+      <div className={`modal ${modalOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleModal}
+          />
+          <h2 className="title">Dołącz do Domu</h2>
+
+          <input type="text" placeholder="8 znakowy kod" />
+
+          <button>Dołącz</button>
+        </div>
       </div>
     </div>
   );
