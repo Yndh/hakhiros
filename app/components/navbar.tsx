@@ -31,7 +31,7 @@ export const NavBar = (props: NavBarProps) => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const toggleModal = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  const toggleModal = (e: React.MouseEvent<SVGSVGElement, MouseEvent> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
     setDropdownOpen(false);
   };
