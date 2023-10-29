@@ -194,6 +194,7 @@ export default function Notes() {
                 type="text"
                 placeholder="Tytuł"
                 value={title}
+                className="noteInput"
                 onChange={setTitleValue}
               />
             </h3>

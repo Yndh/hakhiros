@@ -13,6 +13,9 @@ import { useState } from "react";
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("");
+  const [dutyTitle, setDutyTitle] = useState("");
+  const [selectedDay, setSelectedDay] = useState(0);
 
   const weekDaysNames = [
     "Niedziela",
@@ -24,7 +27,9 @@ export default function Duties() {
     "Sobota",
   ];
 
-  const duties = [
+  const users = ["user", "teo", "rzechy"];
+
+  const [duties, setDuties] = useState([
     {
       id: 1,
       user: "uzytkownik5",
@@ -40,48 +45,7 @@ export default function Duties() {
       ],
       weekDay: 4,
     },
-    {
-      id: 2,
-      user: "uzytkownik6",
-      duties: [
-        {
-          title: "guwno",
-          isCompleted: true,
-        },
-        {
-          title: "sranie",
-          isCompleted: false,
-        },
-      ],
-      weekDay: 5,
-    },
-    {
-      id: 3,
-      user: "uzytkownik3",
-      duties: [
-        {
-          title: "inne",
-          isCompleted: true,
-        },
-        {
-          title: "spacer",
-          isCompleted: true,
-        },
-      ],
-      weekDay: 5,
-    },
-    {
-      id: 4,
-      user: "uzytkownik7",
-      duties: [
-        {
-          title: "praca",
-          isCompleted: false,
-        },
-      ],
-      weekDay: 6,
-    },
-  ];
+  ]);
 
   const handlePrevDay = () => {
     const newWeekDay = (weekDay + 6) % 7;
@@ -95,10 +59,28 @@ export default function Duties() {
 
   const filteredDuties = duties.filter((duty) => duty.weekDay === weekDay);
 
-  const id = 1;
-
-  const toggleModal = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const toggleModal = () => {
     setModalOpen(!modalOpen);
+  };
+
+  const handleCreateDuty = () => {
+    const newDuty = {
+      id: duties.length + 1,
+      user: selectedUser,
+      duties: [
+        {
+          title: dutyTitle,
+          isCompleted: false,
+        },
+      ],
+      weekDay: selectedDay,
+    };
+
+    setDuties([...duties, newDuty]);
+    setSelectedUser("");
+    setDutyTitle("");
+    setSelectedDay(new Date().getDay());
+    toggleModal();
   };
 
   return (
@@ -150,39 +132,52 @@ export default function Duties() {
 
           <p className="thin">Wybierz użytkownika</p>
           <div className="choiceRow">
-            {/* Tutaj trzeba pokazac uzytkonikow domu */}
-            <input type="radio" name={`users${id}`} id={`userId${id}`} />
-            <label htmlFor={`userId${id}`}>@user</label>
+            {users.map((user, index) => (
+              <>
+                <input
+                  type="radio"
+                  name="selectedUser"
+                  id={`selectedUser${user}`}
+                  onChange={() => setSelectedUser(user)}
+                />
+                <label htmlFor={`selectedUser${user}`}>@{user}</label>
+              </>
+            ))}
           </div>
 
           <p className="thin">Wpisz obowiazek</p>
-          <input type="text" placeholder="Wpisz obowiązek..." />
+          <input
+            type="text"
+            placeholder="Wpisz obowiązek..."
+            value={dutyTitle}
+            onChange={(e) => setDutyTitle(e.target.value)}
+          />
 
           <p className="thin">Wybierz dzień tygodnia</p>
           <div className="choiceRow">
-            <input type="radio" name={`days${id}`} id={`ponId${id}`} />
-            <label htmlFor={`ponId${id}`}>Pon</label>
-
-            <input type="radio" name={`days${id}`} id={`wtId${id}`} />
-            <label htmlFor={`wtId${id}`}>Wt</label>
-
-            <input type="radio" name={`days${id}`} id={`srId${id}`} />
-            <label htmlFor={`srId${id}`}>Śr</label>
-
-            <input type="radio" name={`days${id}`} id={`czwId${id}`} />
-            <label htmlFor={`czwId${id}`}>Czw</label>
-
-            <input type="radio" name={`days${id}`} id={`ptId${id}`} />
-            <label htmlFor={`ptId${id}`}>Pt</label>
-
-            <input type="radio" name={`days${id}`} id={`sbId${id}`} />
-            <label htmlFor={`sbId${id}`}>Sb</label>
-
-            <input type="radio" name={`days${id}`} id={`ndzId${id}`} />
-            <label htmlFor={`ndzId${id}`}>Ndz</label>
+            {[...weekDaysNames.slice(1), weekDaysNames[0]].map(
+              (dayName, index) => {
+                const dayIndex = (index + 1) % 7;
+                return (
+                  <div key={index}>
+                    <input
+                      type="radio"
+                      name="selectedDay"
+                      id={`selectedDay${dayIndex}`}
+                      value={dayIndex}
+                      onChange={() => setSelectedDay(dayIndex)}
+                      checked={selectedDay === dayIndex}
+                    />
+                    <label htmlFor={`selectedDay${dayIndex}`}>
+                      {dayName.slice(0, 3)}
+                    </label>
+                  </div>
+                );
+              }
+            )}
           </div>
 
-          <button>Dodaj</button>
+          <button onClick={handleCreateDuty}>Dodaj</button>
         </div>
       </div>
     </AppLayout>

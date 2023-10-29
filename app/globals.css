@@ -81,6 +81,10 @@ h5 {
   font-size: 12px;
 }
 
+h2.center {
+  text-align: center;
+}
+
 small {
   font-size: 11px;
 }
@@ -124,6 +128,16 @@ button.border {
   background: var(--background-secondary);
   border: 1px solid var(--accent-primary);
   color: var(--accent-primary);
+}
+
+button.border.red {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+button.danger {
+  background: var(--color-danger);
+  color: var(--color-secondary);
 }
 
 .textThin {
@@ -432,6 +446,27 @@ button.border {
   word-wrap: break-word;
 }
 
+.card .delete {
+  position: absolute;
+  top: -2px;
+  right: 25px;
+  margin: 15px 15px 0 0;
+  height: 20px;
+  opacity: 0;
+  transition: .3s ease;
+  pointer-events: none;
+}
+
+.card .delete:hover {
+  color: var(--color-danger);
+  opacity: 1 !important;
+}
+
+.card:hover .delete {
+  opacity: .5;
+  pointer-events: all;
+}
+
 .title {
   display: flex;
   align-items: center;
@@ -471,6 +506,7 @@ ol.duties {
 ol.duties li {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 18px;
   user-select: none;
   -moz-user-select: none;
@@ -490,6 +526,22 @@ ol.duties li input[type="checkbox"] {
 
 ol.duties li input[type="checkbox"]:checked~span {
   text-decoration: line-through;
+}
+
+ol.duties li svg {
+  opacity: 0;
+  transition: .3s;
+  pointer-events: none;
+}
+
+ol.duties li:hover svg {
+  opacity: .5;
+  pointer-events: all;
+}
+
+ol.duties svg:hover {
+  color: var(--color-danger);
+  opacity: 1 !important;
 }
 
 ol.duties li.addDuty {
@@ -535,7 +587,7 @@ ol.duties li.addDuty svg {
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-primary);
   padding: 5px;
-  width: 50px;
+  min-width: 50px;
   transition: .3s ease;
 }
 
@@ -620,6 +672,7 @@ ol.duties li.addDuty svg {
 }
 
 .card.newNote input.noteInput {
+  all: unset;
   border-bottom: 1px dotted var(--color-primary);
   background: transparent;
   padding-bottom: 5px;

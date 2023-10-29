@@ -1,8 +1,9 @@
 "use client";
 
-import { faAdd, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import DeleteModal from "./deleteModal";
 
 interface DutyProps {
   id: number;
@@ -27,8 +28,9 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
     console.table(dutyList);
   };
 
-  const toggleModal = () => {
+  const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
+    console.log(`duty = ${modalOpen}`);
   };
 
   return (
@@ -47,62 +49,25 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
                 />
                 <span>{duty.title}</span>
               </label>
+              <FontAwesomeIcon icon={faTrash} onClick={toggleModal} />
             </li>
           ))}
-          <li className="addDuty" onClick={toggleModal}>
-            <FontAwesomeIcon icon={faAdd} />
-            <span>Dodaj</span>
-          </li>
         </ol>
       </div>
-      {modalOpen && (
-        <div className={`modal ${modalOpen ? "shown" : ""}`}>
-          <div className="modalCard">
-            <FontAwesomeIcon
-              icon={faClose}
-              className="close"
-              onClick={toggleModal}
-            />
-            <h2 className="title">Dodaj Obowiazek</h2>
 
-            <p className="thin">Wybierz użytkownika</p>
-            <div className="choiceRow">
-              {/* Tutaj trzeba pokazac uzytkonikow domu */}
-              <input type="radio" name={`users${id}`} id={`userId${id}`} />
-              <label htmlFor={`userId${id}`}>@user</label>
-            </div>
-
-            <p className="thin">Wpisz obowiazek</p>
-            <input type="text" placeholder="Wpisz obowiązek..." />
-
-            <p className="thin">Wybierz dzień tygodnia</p>
-            <div className="choiceRow">
-              <input type="radio" name={`days${id}`} id={`ponId${id}`} />
-              <label htmlFor={`ponId${id}`}>Pon</label>
-
-              <input type="radio" name={`days${id}`} id={`wtId${id}`} />
-              <label htmlFor={`wtId${id}`}>Wt</label>
-
-              <input type="radio" name={`days${id}`} id={`srId${id}`} />
-              <label htmlFor={`srId${id}`}>Śr</label>
-
-              <input type="radio" name={`days${id}`} id={`czwId${id}`} />
-              <label htmlFor={`czwId${id}`}>Czw</label>
-
-              <input type="radio" name={`days${id}`} id={`ptId${id}`} />
-              <label htmlFor={`ptId${id}`}>Pt</label>
-
-              <input type="radio" name={`days${id}`} id={`sbId${id}`} />
-              <label htmlFor={`sbId${id}`}>Sb</label>
-
-              <input type="radio" name={`days${id}`} id={`ndzId${id}`} />
-              <label htmlFor={`ndzId${id}`}>Ndz</label>
-            </div>
-
-            <button>Dodaj</button>
+      <div className={`modal ${modalOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <h2 className="center">Czy napewno chcesz usunąć ten element</h2>
+          <div className="rowContainer">
+            <button className="border red" onClick={toggleModal}>
+              Anuluj
+            </button>
+            <button className="danger" onClick={toggleModal}>
+              Usuń
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
