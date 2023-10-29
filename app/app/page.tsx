@@ -1,5 +1,4 @@
 import "../globals.css";
-import { NavBar } from "../components/navbar";
 import { AppLayout } from "../components/appLayout";
 
 export default function Dashboard() {

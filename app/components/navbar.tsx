@@ -23,6 +23,9 @@ interface NavBarProps {
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("join");
+  const [code, setCode] = useState("");
+  const [houseName, setHouseName] = useState("");
 
   const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setDropdownOpen(!dropdownOpen);
@@ -31,6 +34,18 @@ export const NavBar = (props: NavBarProps) => {
   const toggleModal = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
     setDropdownOpen(false);
+  };
+
+  const changeModalType = (value: string) => {
+    setModalType(value);
+  };
+
+  const codeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCode(e.target.value);
+  };
+
+  const houseNameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHouseName(e.target.value);
   };
 
   return (
@@ -146,11 +161,51 @@ export const NavBar = (props: NavBarProps) => {
             className="close"
             onClick={toggleModal}
           />
-          <h2 className="title">Dołącz do Domu</h2>
+          {modalType === "join" ? (
+            <>
+              <h2 className="title">Dołącz do Domu</h2>
 
-          <input type="text" placeholder="8 znakowy kod" />
+              <p className="thin">Zaproszenie do domu</p>
+              <input
+                type="text"
+                placeholder="8 znakowy kod"
+                onChange={codeChangeHandler}
+                value={code}
+              />
 
-          <button>Dołącz</button>
+              <div className="rowContainer">
+                <button
+                  className="border"
+                  onClick={() => changeModalType("create")}
+                >
+                  Utwórz dom
+                </button>
+                <button>Dołącz</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="title">Utwórz Dom</h2>
+
+              <p className="thin">Nazwa domu</p>
+              <input
+                type="text"
+                placeholder="np. Epicki Dom"
+                onChange={houseNameChangeHandler}
+                value={houseName}
+              />
+
+              <div className="rowContainer">
+                <button
+                  className="border"
+                  onClick={() => changeModalType("join")}
+                >
+                  Dołącz do domu
+                </button>
+                <button>Utwórz</button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

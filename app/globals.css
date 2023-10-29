@@ -120,6 +120,12 @@ button.box {
   padding: 15px;
 }
 
+button.border {
+  background: var(--background-secondary);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+}
+
 .textThin {
   color: var(--color-primary);
   opacity: .5;
