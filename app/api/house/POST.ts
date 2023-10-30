@@ -8,7 +8,7 @@ import { createProfile } from '@/lib/createProfile'
 import { joinHouse } from '@/lib/joinHouse'
 
 interface req_body {
-    house_name: String
+    house_name: string
 }
 
 const HOUSE_CODE_LENGHT = 8;
