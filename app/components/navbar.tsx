@@ -30,14 +30,14 @@ export const NavBar = (props: NavBarProps) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const [houses, setHouses] = useState<Houses>({})
-  const [userHouseId, setUserHouseId] = useState<string>("0")
+  const [userHouseId, setUserHouseId] = useState<string>(localStorage.getItem("user_house_id") || "0")
 
   useEffect(() => {
     fetch('/api/house')
       .then((res) => res.json())
       .then((data: Houses) => {
         setHouses(data)
-        setUserHouseId(Object.keys(data)[0])
+        setUserHouseId(localStorage.getItem("user_house_id") || Object.keys(data)[0])
       })
   }, [])
 
@@ -82,9 +82,10 @@ export const NavBar = (props: NavBarProps) => {
     setUserOpen(!userOpen);
   };
 
-  const chooseHouse = (userHouseId: string) => {
-    setUserHouseId(userHouseId)
+  const chooseHouse = (user_house_id: string) => {
+    setUserHouseId(user_house_id)
     dropdownToggle(null)
+    localStorage.setItem("user_house_id", user_house_id)
   }
 
   return (
