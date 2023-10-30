@@ -3,7 +3,6 @@
 import { faAdd, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import DeleteModal from "./deleteModal";
 
 interface DutyProps {
   id: number;
