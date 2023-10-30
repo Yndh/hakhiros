@@ -15,12 +15,16 @@ import {
   faAdd,
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface NavBarProps {
   active: string;
+  userHouses: UserHouse[]
+  userHouseId: number
+  setUserHouseId: Dispatch<SetStateAction<number>>
 }
 export const NavBar = (props: NavBarProps) => {
+  console.log(props.userHouses)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("join");
@@ -53,21 +57,19 @@ export const NavBar = (props: NavBarProps) => {
       <div className="top">
         <div className="homeSelect">
           <div className="homeSelectHeader" onClick={dropdownToggle}>
-            <h2>Nazwa Domu</h2>
+            <h2>{props.userHouses.length > 0 ? props.userHouses[props.userHouseId]["house"]["name"] : "ładowanie"}</h2>
             <FontAwesomeIcon
               icon={dropdownOpen ? faChevronUp : faChevronDown}
             />
           </div>
           <div className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}>
             <ol>
-              <li>
-                <FontAwesomeIcon icon={faHome} />
-                Dom1
-              </li>
-              <li>
-                <FontAwesomeIcon icon={faHome} />
-                Dom2
-              </li>
+              {props.userHouses.map((user_house) => {
+                return <li key={user_house["id"]}>
+                  <FontAwesomeIcon icon={faHome} />
+                  {user_house["house"]["name"]}
+                </li>
+              })}
               <li className="addHome" onClick={toggleModal}>
                 <FontAwesomeIcon icon={faAdd} />
                 Dołącz do domu
