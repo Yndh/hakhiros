@@ -9,21 +9,21 @@ interface AppLayoutProps {
 }
 
 export const AppLayout = ({ children, active }: AppLayoutProps) => {
-  const [userHouses, setUserHouses] = useState<UserHouse[]>([])
-  const [userHouseId, setUserHouseId] = useState<number>(0)
+  const [houses, setHouses] = useState<{ [key: string]: House }>({})
+  const [userHouseId, setUserHouseId] = useState<string>("0")
 
   useEffect(() => {
     fetch('/api/house')
       .then((res) => res.json())
-      .then((data: UserHouse[]) => {
-        setUserHouses(data)
-        setUserHouseId(data[0]["id"])
+      .then((data: { [key: number]: House }) => {
+        setHouses(data)
+        setUserHouseId(Object.keys(data)[0])
       })
   }, [])
 
   return (
     <main className="appContainer">
-      <NavBar active={active} userHouses={userHouses} userHouseId={userHouseId} setUserHouseId={setUserHouseId} />
+      <NavBar active={active} houses={houses} userHouseId={userHouseId} setUserHouseId={setUserHouseId} />
       <div className="mainContainer">{children}</div>
     </main>
   );

@@ -12,10 +12,9 @@ export async function mGET(req: Request, res: NextApiResponse) {
             status: 401
         })
     }
-    const houses = await prisma.user_house.findMany({
+    const user_house = await prisma.user_house.findMany({
         select: {
             id: true,
-            join_date: true,
             house: {
                 select: {
                     id: true,
@@ -29,6 +28,16 @@ export async function mGET(req: Request, res: NextApiResponse) {
             }
         }
     })
+
+    const houses: { [key: string]: { id: number, name: string } } = {};
+
+    user_house.forEach(user_house => {
+        houses[user_house.id] = {
+            id: user_house.house.id,
+            name: user_house.house.name,
+        };
+    });
+
     return new NextResponse(JSON.stringify(houses), {
         status: 200
     })
