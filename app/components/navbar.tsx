@@ -14,11 +14,15 @@ import {
   faClose,
   faAdd,
   faChevronUp,
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface NavBarProps {
   active: string;
+  houses: { [key: string]: House }
+  userHouseId: string
+  setUserHouseId: Dispatch<SetStateAction<string>>
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -26,12 +30,18 @@ export const NavBar = (props: NavBarProps) => {
   const [modalType, setModalType] = useState("join");
   const [code, setCode] = useState("");
   const [houseName, setHouseName] = useState("");
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [userOpen, setUserOpen] = useState(false);
 
-  const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | null) => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const toggleModal = (e: React.MouseEvent<SVGSVGElement, MouseEvent> | React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const toggleModal = (
+    e:
+      | React.MouseEvent<SVGSVGElement, MouseEvent>
+      | React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     setModalOpen(!modalOpen);
     setDropdownOpen(false);
   };
@@ -48,26 +58,43 @@ export const NavBar = (props: NavBarProps) => {
     setHouseName(e.target.value);
   };
 
+  const toggleSettings = (
+    e:
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      | React.MouseEvent<HTMLOrSVGElement, MouseEvent>
+  ) => {
+    setSettingsOpen(!settingsOpen);
+  };
+
+  const toggleUser = (
+    e:
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      | React.MouseEvent<HTMLOrSVGElement, MouseEvent>
+  ) => {
+    setUserOpen(!userOpen);
+  };
+
   return (
     <div className="navbar">
       <div className="top">
         <div className="homeSelect">
           <div className="homeSelectHeader" onClick={dropdownToggle}>
-            <h2>Nazwa Domu</h2>
+            <h2>{Object.keys(props.houses).length > 0 ? props.houses[props.userHouseId]["name"] : "ładowanie"}</h2>
             <FontAwesomeIcon
               icon={dropdownOpen ? faChevronUp : faChevronDown}
             />
           </div>
           <div className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}>
             <ol>
-              <li>
+              {Object.keys(props.houses).map((key) => (<li key={key} onClick={() => {
+                props.setUserHouseId(key)
+                dropdownToggle(null)
+              }}>
                 <FontAwesomeIcon icon={faHome} />
-                Dom1
+                {props.houses[key]["name"]}
               </li>
-              <li>
-                <FontAwesomeIcon icon={faHome} />
-                Dom2
-              </li>
+              ))
+              }
               <li className="addHome" onClick={toggleModal}>
                 <FontAwesomeIcon icon={faAdd} />
                 Dołącz do domu
@@ -124,12 +151,21 @@ export const NavBar = (props: NavBarProps) => {
               Plan Dnia
             </li>
           </a>
+          <a
+            href="/app/recepies"
+            className={props.active == "recepies" ? "active" : ""}
+          >
+            <li>
+              <FontAwesomeIcon icon={faUtensils} />
+              Przepisy
+            </li>
+          </a>
         </ul>
 
         <ul>
           <a
-            href="/app/settings"
             className={props.active == "settings" ? "active" : ""}
+            onClick={toggleSettings}
           >
             <li>
               <FontAwesomeIcon icon={faCog} />
@@ -137,7 +173,7 @@ export const NavBar = (props: NavBarProps) => {
             </li>
           </a>
           <a
-            href="/app/user"
+            onClick={toggleUser}
             className={props.active == "user" ? "active" : ""}
           >
             <li>
@@ -152,6 +188,28 @@ export const NavBar = (props: NavBarProps) => {
             </li>
           </a>
         </ul>
+      </div>
+
+      <div className={`modal ${settingsOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <h2 className="title">Ustawienia</h2>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleSettings}
+          />
+        </div>
+      </div>
+
+      <div className={`modal ${userOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <h2 className="title">Użytkownik</h2>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleUser}
+          />
+        </div>
       </div>
 
       <div className={`modal ${modalOpen ? "shown" : ""}`}>

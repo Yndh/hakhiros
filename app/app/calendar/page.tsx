@@ -4,33 +4,34 @@ import { AppLayout } from "@/app/components/appLayout";
 import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from '@fullcalendar/interaction'; 
+import interactionPlugin from "@fullcalendar/interaction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import "./style.css"
+import "./style.css";
 
 export default function CalendarPage() {
   const [selectOpen, setIsSelectOpen] = useState(false);
   const [openColor, setOpenColor] = useState(false)
-  const [openAdd, setOpenAdd] = useState(false)
-  const [openEdit, setOpenEdit] = useState(false)
+  const [openAdd, setOpenAdd] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
-  const [eventTitle, setEventTitle] = useState("")
+  const [eventTitle, setEventTitle] = useState("");
   const [eventsList, setEventsList] = useState([]);
   const [eventChoosed, setEventChoosed] = useState({})
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  const setDate = (info) =>{
-    setSelectedStartDate(info.startStr)
-    setSelectedEndDate(info.endStr)
-  }
 
-  const createEvent = (e) =>{
-    e.preventDefault()
-    setOpenAdd(!openAdd)
+  const setDate = (info) => {
+    setSelectedStartDate(info.startStr);
+    setSelectedEndDate(info.endStr);
+  };
 
-    const newEvent ={
+  const createEvent = (e) => {
+    e.preventDefault();
+    setOpenAdd(!openAdd);
+
+    const newEvent = {
       id: Math.random(),
       title: eventTitle,
       start: selectedStartDate.toLocaleString(),
@@ -39,23 +40,27 @@ export default function CalendarPage() {
       color: colorValue,
     }
 
-    setEventTitle("")
+    setEventTitle("");
 
     const updatedEventsList = [...eventsList, newEvent];
     setEventsList(updatedEventsList);
-  }
+  };
 
-  const editEvent = (event) =>{
+  const editEvent = (event) => {
     //console.log(event)
-    const startDate = event.el.fcSeg.eventRange.range.start
-    const startDateStr = `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, '0')}-${String(startDate.getDate()).padStart(2, '0')}`
-    const endDate = event.el.fcSeg.eventRange.range.end
-    const endDateStr = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`
+    const startDate = event.el.fcSeg.eventRange.range.start;
+    const startDateStr = `${startDate.getFullYear()}-${String(
+      startDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`;
+    const endDate = event.el.fcSeg.eventRange.range.end;
+    const endDateStr = `${endDate.getFullYear()}-${String(
+      endDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
 
-    setEventTitle(event.el.fcSeg.eventRange.def.title)
-    setSelectedStartDate(startDateStr)
-    setSelectedEndDate(endDateStr)
-  }
+    setEventTitle(event.el.fcSeg.eventRange.def.title);
+    setSelectedStartDate(startDateStr);
+    setSelectedEndDate(endDateStr);
+  };
 
   const saveEditEvent = () => {
     const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
@@ -187,4 +192,3 @@ export default function CalendarPage() {
       </AppLayout>
   )
 }
-

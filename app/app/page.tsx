@@ -1,5 +1,7 @@
 import "../globals.css";
 import { AppLayout } from "../components/appLayout";
+import Note from "../components/note";
+import Duty from "../components/duty";
 
 export default function Dashboard() {
   return (
@@ -12,32 +14,28 @@ export default function Dashboard() {
       </div>
 
       <div className="cardRow dashboard">
-        <div className="card">
-          <h2 className="title">Twoje Obowiązki</h2>
-          <ol className="duties">
-            <li>
-              <label htmlFor="check1">
-                <input type="checkbox" id="check1" />
-                <span>Zrobić zakupy</span>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="check2">
-                <input type="checkbox" id="check2" />
-                <span>Posprzątać dom</span>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="check3">
-                <input type="checkbox" id="check3" />
-                <span>Umyć kibel</span>
-              </label>
-            </li>
-          </ol>
-        </div>
-        <div className="card">
-          <h2 className="title">Notatka</h2>
-          <span>Test123</span>
+        <div className="cardRow two">
+          <Duty
+            id={1}
+            user={"Użytkownik"}
+            duties={[
+              {
+                title: "spotkanie",
+                isCompleted: false,
+              },
+              {
+                title: "zakupy",
+                isCompleted: true,
+              },
+            ]}
+            weekDay={5}
+          />
+
+          <Note
+            isPinned={true}
+            title={"Tytuł"}
+            description={"To jest przykladowa notatka"}
+          />
         </div>
         <div className="card online">
           <h2 className="title">Online</h2>
@@ -48,33 +46,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-
-      {/* <div className="tile first">
-        <p className="title">Twoje obowiązki</p>
-        <ol className="duties">
-          <li>
-            <label htmlFor="check1">
-              <input type="checkbox" id="check1" />
-              <span>Zrobić zakupy</span>
-            </label>
-          </li>
-          <li>
-            <label htmlFor="check2">
-              <input type="checkbox" id="check2" />
-              <span>Posprzątać dom</span>
-            </label>
-          </li>
-          <li>
-            <label htmlFor="check3">
-              <input type="checkbox" id="check3" />
-              <span>Umyć kibel</span>
-            </label>
-          </li>
-        </ol>
-      </div>
-      <div className="tile first">
-        <p className="title">Tile 2</p>
-      </div> */}
     </AppLayout>
   );
 }
