@@ -26,7 +26,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
         !content || typeof content !== 'string' ||
         !color || typeof color !== 'string' ||
         !body.house_id || (typeof body.house_id !== 'string' && typeof body.house_id !== 'number')) {
-        return new NextResponse(JSON.stringify({ error: 'złe typ danych lub nie wszystkie podane' }), {
+        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie wszystkie podane' }), {
             status: 400
         })
     }
