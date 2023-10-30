@@ -26,12 +26,18 @@ export const NavBar = (props: NavBarProps) => {
   const [modalType, setModalType] = useState("join");
   const [code, setCode] = useState("");
   const [houseName, setHouseName] = useState("");
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [userOpen, setUserOpen] = useState(false);
 
   const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const toggleModal = (e: React.MouseEvent<SVGSVGElement, MouseEvent> | React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const toggleModal = (
+    e:
+      | React.MouseEvent<SVGSVGElement, MouseEvent>
+      | React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     setModalOpen(!modalOpen);
     setDropdownOpen(false);
   };
@@ -46,6 +52,22 @@ export const NavBar = (props: NavBarProps) => {
 
   const houseNameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHouseName(e.target.value);
+  };
+
+  const toggleSettings = (
+    e:
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      | React.MouseEvent<HTMLOrSVGElement, MouseEvent>
+  ) => {
+    setSettingsOpen(!settingsOpen);
+  };
+
+  const toggleUser = (
+    e:
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      | React.MouseEvent<HTMLOrSVGElement, MouseEvent>
+  ) => {
+    setUserOpen(!userOpen);
   };
 
   return (
@@ -128,8 +150,8 @@ export const NavBar = (props: NavBarProps) => {
 
         <ul>
           <a
-            href="/app/settings"
             className={props.active == "settings" ? "active" : ""}
+            onClick={toggleSettings}
           >
             <li>
               <FontAwesomeIcon icon={faCog} />
@@ -137,7 +159,7 @@ export const NavBar = (props: NavBarProps) => {
             </li>
           </a>
           <a
-            href="/app/user"
+            onClick={toggleUser}
             className={props.active == "user" ? "active" : ""}
           >
             <li>
@@ -152,6 +174,28 @@ export const NavBar = (props: NavBarProps) => {
             </li>
           </a>
         </ul>
+      </div>
+
+      <div className={`modal ${settingsOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <h2 className="title">Ustawienia</h2>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleSettings}
+          />
+        </div>
+      </div>
+
+      <div className={`modal ${userOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <h2 className="title">Użytkownik</h2>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleUser}
+          />
+        </div>
       </div>
 
       <div className={`modal ${modalOpen ? "shown" : ""}`}>
