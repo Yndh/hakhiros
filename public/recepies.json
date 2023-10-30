@@ -1,0 +1,1200 @@
+[
+  {
+    "tytul": "Rosół",
+    "krotki_opis": "Klasyczny rosół z kurczaka z warzywami.",
+    "dlugi_opis": "Rosół to tradycyjna zupa przygotowywana na wywarze z kurczaka lub indyka, z dodatkiem marchewki, selera i pietruszki.",
+    "skladniki": [
+      {
+        "nazwa": "Kurczak",
+        "ilosc": "1 cały kurczak"
+      },
+      {
+        "nazwa": "Marchewka",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Seler",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Pietruszka",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj kurczaka w garnku z wodą, aż mięso będzie gotowe.",
+      "Dodaj pokrojone warzywa i gotuj na wolnym ogniu do miękkości.",
+      "Przecedź rosół i podawaj gorący."
+    ],
+    "czas_przygotowania": "Około 2 godziny",
+    "poziom_trudnosci": "Łatwe",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa pomidorowa",
+    "krotki_opis": "Pyszna zupa pomidorowa z kremowym dodatkiem śmietany.",
+    "dlugi_opis": "Zupa pomidorowa to aromatyczna zupa na bazie pomidorów, z dodatkiem śmietany, cebuli i czosnku.",
+    "skladniki": [
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "500g pomidorów"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Czosnek",
+        "ilosc": "2 ząbki"
+      },
+      {
+        "nazwa": "Śmietana",
+        "ilosc": "200ml"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Cebulę i czosnek podsmaż w garnku.",
+      "Dodaj pomidory i gotuj aż zmiękną.",
+      "Dolej śmietanę, zmiksuj zupę i podawaj."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa ogórkowa",
+    "krotki_opis": "Klasyczna zupa ogórkowa z ziemniakami i koperkiem.",
+    "dlugi_opis": "Zupa ogórkowa to tradycyjna zupa przygotowywana na bulionie z ogórków kiszonych, ziemniaków i kopru.",
+    "skladniki": [
+      {
+        "nazwa": "Ogórki kiszone",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "3 sztuki"
+      },
+      {
+        "nazwa": "Koper",
+        "ilosc": "1 pęczek"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój ogórki i ziemniaki w kostkę.",
+      "Gotuj warzywa na bulionie z koperkiem.",
+      "Podawaj z kawałkami ogórków."
+    ],
+    "czas_przygotowania": "Około 45 minut",
+    "poziom_trudnosci": "Łatwe",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa krem z brokułów",
+    "krotki_opis": "Delikatna zupa krem z puree z brokułów.",
+    "dlugi_opis": "Zupa krem z brokułów to gładka zupa przygotowana z puree z gotowanych brokułów, śmietany i przypraw.",
+    "skladniki": [
+      {
+        "nazwa": "Brokuły",
+        "ilosc": "1 główka"
+      },
+      {
+        "nazwa": "Śmietana",
+        "ilosc": "200ml"
+      },
+      {
+        "nazwa": "Bulion warzywny",
+        "ilosc": "500ml"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj brokuły na bulionie do miękkości.",
+      "Zmiksuj je na gładki krem z dodatkiem śmietany.",
+      "Podawaj z grzankami."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa cebulowa",
+    "krotki_opis": "Francuska zupa cebulowa z podsmażanymi cebulami i serem gratiné.",
+    "dlugi_opis": "Zupa cebulowa to klasyczna francuska zupa przygotowywana z podsmażonych cebul, bulionu wołowego i zapiekanego sera na wierzchu.",
+    "skladniki": [
+      {
+        "nazwa": "Cebula",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Bulion wołowy",
+        "ilosc": "1litr"
+      },
+      {
+        "nazwa": "Ser gruyère",
+        "ilosc": "100g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż cebulę na maśle, aż stanie się złocista.",
+      "Dodaj bulion wołowy i gotuj na wolnym ogniu.",
+      "Podawaj z gratinowanym serem."
+    ],
+    "czas_przygotowania": "Około 1,5 godziny",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa grzybowa",
+    "krotki_opis": "Zupa na bazie suszonych lub świeżych grzybów.",
+    "dlugi_opis": "Zupa grzybowa to aromatyczna zupa przygotowywana na bazie suszonych lub świeżych grzybów, cebuli, marchewki i ziemniaków.",
+    "skladniki": [
+      {
+        "nazwa": "Grzyby suszone",
+        "ilosc": "50g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "2 sztuki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Namocz grzyby suszone i pokrój na kawałki.",
+      "Zeszklij cebulę, dodaj grzyby i gotuj z ziemniakami.",
+      "Podawaj z koperkiem."
+    ],
+    "czas_przygotowania": "Około 1 godziny",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa z dyni",
+    "krotki_opis": "Kremowa zupa z dyni z dodatkiem mleka kokosowego.",
+    "dlugi_opis": "Zupa z dyni to kremowa zupa przygotowana z puree z dyni, mleka kokosowego i aromatycznych przypraw.",
+    "skladniki": [
+      {
+        "nazwa": "Dynia",
+        "ilosc": "1 mała dynia"
+      },
+      {
+        "nazwa": "Mleko kokosowe",
+        "ilosc": "400ml"
+      },
+      {
+        "nazwa": "Kurkuma",
+        "ilosc": "1 łyżeczka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Upiecz dynię, a następnie zmiksuj na puree.",
+      "Gotuj z puree mleko kokosowe i kurkumę.",
+      "Podawaj z gałką muszkatołową."
+    ],
+    "czas_przygotowania": "Około 45 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa minestrone",
+    "krotki_opis": "Włoska zupa warzywna z makaronem i fasolą.",
+    "dlugi_opis": "Zupa minestrone to włoska zupa warzywna, bogata w różne warzywa, makaron i fasolę.",
+    "skladniki": [
+      {
+        "nazwa": "Makaron",
+        "ilosc": "100g"
+      },
+      {
+        "nazwa": "Fasola biała",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "3 sztuki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj makaron i fasolę na osobnych garnkach.",
+      "Dodaj pokrojone pomidory i gotuj razem z warzywami.",
+      "Podawaj z parmezanem."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa gulaszowa",
+    "krotki_opis": "Pikantna zupa z mięsem, papryką i ziemniakami.",
+    "dlugi_opis": "Zupa gulaszowa to pikantna zupa przygotowana z mięsa (np. wołowiny), papryki i ziemniaków, doprawiona przyprawami gulaszowymi.",
+    "skladniki": [
+      {
+        "nazwa": "Mięso wołowe",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "3 sztuki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż mięso na patelni, aż się zarumieni.",
+      "Dodaj pokrojoną paprykę i ziemniaki, a następnie dusz na wolnym ogniu.",
+      "Podawaj z kawałkami chleba."
+    ],
+    "czas_przygotowania": "Około 1,5 godziny",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa krewetkowa",
+    "krotki_opis": "Kremowa zupa z krewetek, kokosa i aromatycznych przypraw.",
+    "dlugi_opis": "Zupa krewetkowa to aromatyczna zupa przygotowana z krewetek, mleka kokosowego, czerwonej pasty curry i przypraw.",
+    "skladniki": [
+      {
+        "nazwa": "Krewetki",
+        "ilosc": "400g"
+      },
+      {
+        "nazwa": "Mleko kokosowe",
+        "ilosc": "400ml"
+      },
+      {
+        "nazwa": "Pasta curry czerwona",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż krewetki na maśle, aż się zrumienią.",
+      "Dodaj pastę curry i mleko kokosowe, gotuj na wolnym ogniu.",
+      "Podawaj z posiekaną natką pietruszki."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa fasolowa",
+    "krotki_opis": "Gęsta zupa z fasoli, często z dodatkiem boczku.",
+    "dlugi_opis": "Zupa fasolowa to sycąca zupa przygotowana z fasoli, często z dodatkiem boczku, cebuli i pomidorów.",
+    "skladniki": [
+      {
+        "nazwa": "Fasola czerwona",
+        "ilosc": "250g"
+      },
+      {
+        "nazwa": "Boczek",
+        "ilosc": "100g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj fasolę zgodnie z instrukcją na opakowaniu.",
+      "Smaż boczek i cebulę, aż staną się miękkie.",
+      "Dopraw fasolę, dodaj boczek z cebulą i podawaj gorąco."
+    ],
+    "czas_przygotowania": "Około 1 godziny",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa z soczewicy",
+    "krotki_opis": "Zupa na bazie soczewicy z różnymi dodatkami.",
+    "dlugi_opis": "Zupa z soczewicy to zupa przygotowywana na bazie soczewicy, często z dodatkiem warzyw, przypraw i kiełbasy lub boczku.",
+    "skladniki": [
+      {
+        "nazwa": "Soczewica",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Marchewka",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Kiełbasa",
+        "ilosc": "100g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj soczewicę z pokrojonymi warzywami i kiełbasą.",
+      "Dopraw zupę przyprawami i gotuj do miękkości warzyw i soczewicy.",
+      "Podawaj z chlebem."
+    ],
+    "czas_przygotowania": "Około 45 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa ziemniaczana",
+    "krotki_opis": "Gęsta zupa z puree ziemniaczanym i chrupiącym boczkiem.",
+    "dlugi_opis": "Zupa ziemniaczana to gęsta zupa przygotowana z puree ziemniaczanym, boczku, cebuli i śmietany.",
+    "skladniki": [
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Boczek",
+        "ilosc": "100g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj ziemniaki, a następnie zmiksuj na puree.",
+      "Smaż boczek i cebulę, aż staną się chrupiące.",
+      "Podawaj z puree ziemniaczanym i śmietaną."
+    ],
+    "czas_przygotowania": "Około 45 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa azjatycka",
+    "krotki_opis": "Różne rodzaje azjatyckich zup, takie jak pho, ramen i laksa.",
+    "dlugi_opis": "Zupa azjatycka to zróżnicowana grupa zup, w tym pho, ramen i laksa, przygotowywana z makaronu, aromatycznych bulionów i różnych dodatków.",
+    "skladniki": [
+      {
+        "nazwa": "Makaron ryżowy",
+        "ilosc": "100g"
+      },
+      {
+        "nazwa": "Mięso (według preferencji)",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Warzywa (według preferencji)",
+        "ilosc": "na wybór"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj makaron i mięso na bulionie z dodatkami.",
+      "Podawaj z aromatycznymi przyprawami i zielonymi cebulkami."
+    ],
+    "czas_przygotowania": "Około 30-45 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa chrzanowa",
+    "krotki_opis": "Zupa na bazie chrzanu z jajkami i kiełbasą.",
+    "dlugi_opis": "Zupa chrzanowa to tradycyjna zupa przygotowana na bazie chrzanu, z jajkami, kiełbasą i ziemniakami.",
+    "skladniki": [
+      {
+        "nazwa": "Chrzan",
+        "ilosc": "2 łyżki"
+      },
+      {
+        "nazwa": "Jajka",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Kiełbasa",
+        "ilosc": "200g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Rozprowadź chrzan w bulionie i gotuj na wolnym ogniu.",
+      "Dodawaj jajka i kiełbasę, mieszaj do ścięcia jajek.",
+      "Podawaj z koperkiem."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa gulaszowa węgierska",
+    "krotki_opis": "Węgierska zupa gulaszowa z mięsem i papryką.",
+    "dlugi_opis": "Zupa gulaszowa węgierska to klasyczna węgierska zupa przygotowywana z mięsa, papryki i ziemniaków, doprawiona papryką i przyprawami.",
+    "skladniki": [
+      {
+        "nazwa": "Mięso wołowe",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "3 sztuki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż mięso na patelni, aż się zarumieni.",
+      "Dodaj pokrojoną paprykę i ziemniaki, a następnie dusz na wolnym ogniu.",
+      "Podawaj z chlebem."
+    ],
+    "czas_przygotowania": "Około 1,5 godziny",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa minestra",
+    "krotki_opis": "Włoska zupa z makaronem, fasolą i warzywami.",
+    "dlugi_opis": "Zupa minestra to włoska zupa warzywna z makaronem, fasolą i aromatycznymi ziołami.",
+    "skladniki": [
+      {
+        "nazwa": "Makaron",
+        "ilosc": "100g"
+      },
+      {
+        "nazwa": "Fasola czerwona",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "3 sztuki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj makaron i fasolę na osobnych garnkach.",
+      "Dodaj pokrojone pomidory i gotuj razem z warzywami.",
+      "Podawaj z parmezanem."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Zupa koperkowa",
+    "krotki_opis": "Zupa na bazie świeżego koperku z ziemniakami i kiełbasą.",
+    "dlugi_opis": "Zupa koperkowa to tradycyjna zupa przygotowana na bazie świeżego koperku, ziemniaków, kiełbasy i przypraw.",
+    "skladniki": [
+      {
+        "nazwa": "Koper",
+        "ilosc": "1 pęczek"
+      },
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Kiełbasa",
+        "ilosc": "200g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj ziemniaki w bulionie, aż staną się miękkie.",
+      "Dodaj posiekany koperek i kiełbasę, gotuj jeszcze przez chwilę.",
+      "Podawaj z chrupiącym chlebem."
+    ],
+    "czas_przygotowania": "Około 45 minut",
+    "poziom_trudnosci": "Średnie",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Stek z antrykotu",
+    "krotki_opis": "Klasyczny stek z antrykotu z sosem pieprzowym.",
+    "dlugi_opis": "Stek z antrykotu to soczysty kawałek mięsa smażony na grillu lub patelni, podawany z aromatycznym sosem pieprzowym.",
+    "skladniki": [
+      {
+        "nazwa": "Antrykot wołowy",
+        "ilosc": "1 kawałek"
+      },
+      {
+        "nazwa": "Sól i pieprz",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Posól i posyp pieprzem antrykot.",
+      "Smaż na grillu lub patelni przez kilka minut z każdej strony, aż osiągnie pożądany stopień przypieczenia.",
+      "Podawaj z sosem pieprzowym."
+    ],
+    "czas_przygotowania": "Około 15 minut",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kotlet schabowy",
+    "krotki_opis": "Tradycyjny kotlet schabowy z ziemniakami i surówką.",
+    "dlugi_opis": "Kotlet schabowy to kawałek schabu panierowany i usmażony na złocisto, podawany z ziemniakami i surówką.",
+    "skladniki": [
+      {
+        "nazwa": "Schab wieprzowy",
+        "ilosc": "1 kawałek"
+      },
+      {
+        "nazwa": "Jajko",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Bułka tarta",
+        "ilosc": "100g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Okręć schab w jajku, a następnie obtocz w bułce tartej.",
+      "Smaż na głębokim oleju do złocistego koloru.",
+      "Podawaj z ziemniakami i surówką."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Karkówka z grilla",
+    "krotki_opis": "Soczysta karkówka z grilla z przyprawami.",
+    "dlugi_opis": "Karkówka z grilla to soczysty kawałek mięsa wieprzowego, przygotowany z aromatycznymi przyprawami i grillowany do doskonałego smaku.",
+    "skladniki": [
+      {
+        "nazwa": "Karkówka wieprzowa",
+        "ilosc": "1 kawałek"
+      },
+      {
+        "nazwa": "Przyprawy do grilla",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Natrzyj karkówkę przyprawami do grilla i odstaw na chwilę, by się przegryzła.",
+      "Grilluj na rozgrzanym grillu przez kilka minut z każdej strony, aż mięso będzie soczyste i dobrze wypieczone."
+    ],
+    "czas_przygotowania": "Około 20 minut",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kaczka pieczona z sosem pomarańczowym",
+    "krotki_opis": "Kaczka pieczona w aromatycznym sosie pomarańczowym.",
+    "dlugi_opis": "Kaczka pieczona z sosem pomarańczowym to wykwintne danie, w którym soczyste mięso kaczki jest pieczone z aromatycznym sosem na bazie pomarańczy i przypraw.",
+    "skladniki": [
+      {
+        "nazwa": "Kaczka",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Pomarańcze",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Przyprawy do kaczki",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Nacieraj kaczkę przyprawami i skrop sokiem z jednej pomarańczy.",
+      "Piecz w piekarniku, co jakiś czas polewając sosem z drugiej pomarańczy, aż mięso będzie miękkie i soczyste."
+    ],
+    "czas_przygotowania": "Około 2 godzin",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Gulasz wołowy",
+    "krotki_opis": "Klasyczny gulasz wołowy z warzywami i cebulą.",
+    "dlugi_opis": "Gulasz wołowy to tradycyjne danie węgierskie przygotowywane z mięsa wołowego, warzyw i aromatycznych przypraw, duszone w sosie pomidorowym.",
+    "skladniki": [
+      {
+        "nazwa": "Mięso wołowe",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż mięso na patelni, aż się zarumieni.",
+      "Dodaj pokrojoną cebulę i paprykę, a następnie dusz na wolnym ogniu w sosie pomidorowym."
+    ],
+    "czas_przygotowania": "Około 2 godzin",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kotlet mielony",
+    "krotki_opis": "Tradycyjny kotlet mielony podawany z ziemniakami i sosem grzybowym.",
+    "dlugi_opis": "Kotlet mielony to mielone mięso wołowe i wieprzowe, formowane w kotlety i smażone na patelni, podawane z ziemniakami i sosem grzybowym.",
+    "skladniki": [
+      {
+        "nazwa": "Mielone mięso wołowe i wieprzowe",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Sól i pieprz",
+        "ilosc": "według uznania"
+      },
+      {
+        "nazwa": "Pieczarki",
+        "ilosc": "200g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Wymieszaj mielone mięso z solą i pieprzem, a następnie formuj kotlety.",
+      "Smaż kotlety na patelni, aż staną się złociste, a potem podawaj z sosem grzybowym i ziemniakami."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Schab zapiekany z serem",
+    "krotki_opis": "Schab wieprzowy zapiekany z serem i pieczarkami.",
+    "dlugi_opis": "Schab wieprzowy zapiekany z serem to pyszne danie, w którym schab jest smażony, a następnie zapiekany z serem i pieczarkami.",
+    "skladniki": [
+      {
+        "nazwa": "Schab wieprzowy",
+        "ilosc": "1 kawałek"
+      },
+      {
+        "nazwa": "Ser żółty",
+        "ilosc": "100g"
+      },
+      {
+        "nazwa": "Pieczarki",
+        "ilosc": "200g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż schab na patelni, aż stanie się złocisty.",
+      "Posyp serem żółtym i pokrojonymi pieczarkami, a następnie zapiekaj w piekarniku do zarumienienia."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kiełbasa grillowana",
+    "krotki_opis": "Kiełbasa grillowana podawana z musztardą i kiszoną kapustą.",
+    "dlugi_opis": "Kiełbasa grillowana to proste danie, w którym kiełbasa jest grillowana na ruszcie lub patelni, a potem podawana z musztardą i kiszoną kapustą.",
+    "skladniki": [
+      {
+        "nazwa": "Kiełbasa wieprzowa lub kabanosy",
+        "ilosc": "według uznania"
+      },
+      {
+        "nazwa": "Musztarda",
+        "ilosc": "według uznania"
+      },
+      {
+        "nazwa": "Kiszona kapusta",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Grilluj kiełbasę na ruszcie lub patelni przez kilka minut, aż będzie chrupiąca i dobrze podsmażona.",
+      "Podawaj z musztardą i kiszoną kapustą."
+    ],
+    "czas_przygotowania": "Około 15 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kotlety mielone w sosie pieczarkowym",
+    "krotki_opis": "Kotlety mielone w aromatycznym sosie pieczarkowym.",
+    "dlugi_opis": "Kotlety mielone w sosie pieczarkowym to klasyczne danie mięsne, w którym kotlety mielone są podawane w kremowym sosie z pieczarkami i cebulą.",
+    "skladniki": [
+      {
+        "nazwa": "Kotlety mielone",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Pieczarki",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Usmaż kotlety mielone na patelni, aż staną się złociste.",
+      "W osobnym garnku przygotuj sos pieczarkowy z pokrojonych pieczarek i cebuli, a potem podawaj go razem z kotletami."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudności": "Łatwy",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kurczak na ostro",
+    "krotki_opis": "Kurczak na ostro z papryką i chili.",
+    "dlugi_opis": "Kurczak na ostro to danie kuchni azjatyckiej, w którym kawałki kurczaka są smażone z pikantnym sosem na bazie papryki i chili.",
+    "skladniki": [
+      {
+        "nazwa": "Piersi z kurczaka",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Pasta chili",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż kawałki kurczaka na patelni, aż się zrumienią.",
+      "Dodaj pokrojoną paprykę i pastę chili, a następnie dusz na wolnym ogniu."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Karkówka w marynacie ziołowej",
+    "krotki_opis": "Karkówka wieprzowa marynowana w ziołach i czosnku.",
+    "dlugi_opis": "Karkówka wieprzowa w marynacie ziołowej to soczysty kawałek mięsa, który jest marynowany w mieszance ziół, czosnku i oliwy, a następnie pieczony na grillu lub w piekarniku.",
+    "skladniki": [
+      {
+        "nazwa": "Karkówka wieprzowa",
+        "ilosc": "1 kawałek"
+      },
+      {
+        "nazwa": "Czosnek",
+        "ilosc": "4 ząbki"
+      },
+      {
+        "nazwa": "Oliwa z oliwek",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Przygotuj marynatę z ziół, czosnku i oliwy.",
+      "Natrzyj karkówkę tą marynatą i pozostaw na kilka godzin lub przez noc.",
+      "Piecz na grillu lub w piekarniku do uzyskania pożądanego stopnia przypieczenia."
+    ],
+    "czas_przygotowania": "Około 2-3 godzin",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kotlety jagnięce",
+    "krotki_opis": "Kotlety jagnięce z ziołami i czosnkiem.",
+    "dlugi_opis": "Kotlety jagnięce to wyjątkowe danie mięsne, w którym kotlety z mięsa jagnięcego są marynowane w ziołach i czosnku, a potem grillowane lub smażone.",
+    "skladniki": [
+      {
+        "nazwa": "Kotlety jagnięce",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Czosnek",
+        "ilosc": "4 ząbki"
+      },
+      {
+        "nazwa": "Zioła (np. rozmaryn, tymianek)",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Przygotuj marynatę z czosnku, ziół i oliwy.",
+      "Natrzyj kotlety jagnięce tą marynatą i pozostaw na kilka godzin lub przez noc.",
+      "Grilluj lub smaż kotlety na złocisty kolor."
+    ],
+    "czas_przygotowania": "Około 30 minut (plus czas marynowania)",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Filet z dorsza pieczony z ziołami",
+    "krotki_opis": "Filet z dorsza pieczony z mieszanką ziół i cytryny.",
+    "dlugi_opis": "Filet z dorsza pieczony z ziołami to lekkie danie rybne, w którym filet z dorsza jest pieczony z mieszanką ziół i cytryny.",
+    "skladniki": [
+      {
+        "nazwa": "Filet z dorsza",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Zioła (np. koperek, pietruszka)",
+        "ilosc": "według uznania"
+      },
+      {
+        "nazwa": "Cytryna",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Posyp filety z dorsza ziołami i skrop sokiem z cytryny.",
+      "Piecz w piekarniku do uzyskania miękkiego mięsa i złocistego koloru."
+    ],
+    "czas_przygotowania": "Około 20 minut",
+    "poziom_trudności": "Łatwy",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kurczak z brokułami w sosie czosnkowym",
+    "krotki_opis": "Kurczak z brokułami w kremowym sosie czosnkowym.",
+    "dlugi_opis": "Kurczak z brokułami w sosie czosnkowym to danie, w którym kawałki kurczaka i brokułów są gotowane w kremowym sosie czosnkowym z dodatkiem parmezanu.",
+    "skladniki": [
+      {
+        "nazwa": "Piersi z kurczaka",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Brokuły",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Czosnek",
+        "ilosc": "4 ząbki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż kawałki kurczaka na patelni, aż się zrumienią.",
+      "Dodaj brokuły i czosnek, a następnie gotuj w kremowym sosie czosnkowym."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Szaszłyki z mięsa wieprzowego",
+    "krotki_opis": "Szaszłyki z kawałków mięsa wieprzowego i warzyw na grillu.",
+    "dlugi_opis": "Szaszłyki z mięsa wieprzowego to danie grillowane, w którym kawałki mięsa wieprzowego są nadziewane warzywami i grillowane na ruszcie.",
+    "skladniki": [
+      {
+        "nazwa": "Mięso wieprzowe (np. łopatka)",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Warzywa (np. papryka, cebula, pomidory)",
+        "ilosc": "według uznania"
+      },
+      {
+        "nazwa": "Przyprawy grillowe",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Kroj mięso na kawałki i warzywa na większe kawałki.",
+      "Nadziewaj kawałki mięsa i warzyw na patyczki do szaszłyków, posyp przyprawami grillowymi.",
+      "Grilluj na rozgrzanym grillu aż mięso będzie dobrze wypieczone."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Karkówka zapiekana w sosie pieczarkowym",
+    "krotki_opis": "Karkówka wieprzowa zapiekana w aromatycznym sosie pieczarkowym.",
+    "dlugi_opis": "Karkówka wieprzowa zapiekana w sosie pieczarkowym to danie mięsne, w którym mięso jest zapiekane w kremowym sosie z pieczarkami, cebulą i ziołami.",
+    "skladniki": [
+      {
+        "nazwa": "Karkówka wieprzowa",
+        "ilosc": "1 kawałek"
+      },
+      {
+        "nazwa": "Pieczarki",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż karkówkę na patelni, aż będzie dobrze wypieczona.",
+      "Przygotuj sos pieczarkowy z pokrojonych pieczarek, cebuli i ziół.",
+      "Zalej karkówkę sosem i zapiekaj w piekarniku do zarumienienia."
+    ],
+    "czas_przygotowania": "Około 1 godziny",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kaczka w pomarańczowym sosie",
+    "krotki_opis": "Kaczka pieczona w pomarańczowym sosie z miodem i imbirem.",
+    "dlugi_opis": "Kaczka w pomarańczowym sosie to wykwintne danie, w którym kaczka jest pieczona z aromatycznym sosem na bazie pomarańczy, miodu i imbiru.",
+    "skladniki": [
+      {
+        "nazwa": "Kaczka",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Pomarańcze",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Miód",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Nacieraj kaczkę sokiem z pomarańczy, miodem i imbirem.",
+      "Piecz w piekarniku aż mięso będzie miękkie, polewając sosem co jakiś czas."
+    ],
+    "czas_przygotowania": "Około 2 godzin",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Smażone schabowe z ziemniakami",
+    "krotki_opis": "Smażone kotlety schabowe podawane z ziemniakami i mizerią.",
+    "dlugi_opis": "Smażone schabowe z ziemniakami to tradycyjne danie kuchni polskiej, w którym kotlety schabowe są smażone i podawane z ziemniakami i mizerią.",
+    "skladniki": [
+      {
+        "nazwa": "Schab wieprzowy",
+        "ilosc": "4 plastry"
+      },
+      {
+        "nazwa": "Ziemniaki",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Ogórek kiszony",
+        "ilosc": "2 sztuki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Usmaż kotlety schabowe na patelni, aż staną się złociste i chrupiące.",
+      "Podawaj z ugotowanymi ziemniakami i mizerią."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kotlety wieprzowe w sosie marchewkowym",
+    "krotki_opis": "Kotlety wieprzowe podawane w kremowym sosie marchewkowym.",
+    "dlugi_opis": "Kotlety wieprzowe w sosie marchewkowym to danie mięsne, w którym kotlety są podawane w kremowym sosie z puree z marchewek i ziół.",
+    "skladniki": [
+      {
+        "nazwa": "Kotlety wieprzowe",
+        "ilosc": "4 plastry"
+      },
+      {
+        "nazwa": "Marchewki",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Koper",
+        "ilosc": "1 pęczek"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Usmaż kotlety wieprzowe na patelni, aż staną się złociste i chrupiące.",
+      "Przygotuj sos marchewkowy z ugotowanych marchewek i koperku, a potem podawaj go razem z kotletami."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudności": "Średni",
+    "kategorie": ["Dania Mięsne"]
+  },
+  {
+    "tytul": "Kasza jaglana z warzywami",
+    "krotki_opis": "Kasza jaglana z kolorowymi warzywami i ziołami.",
+    "dlugi_opis": "Kasza jaglana z warzywami to proste danie, w którym kasza jest gotowana z mieszanką warzyw, takich jak marchew, brokuły, papryka, i przyprawiana świeżymi ziołami.",
+    "skladniki": [
+      {
+        "nazwa": "Kasza jaglana",
+        "ilosc": "1 filiżanka"
+      },
+      {
+        "nazwa": "Marchew",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Brokuły",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj kaszę jaglaną zgodnie z instrukcją na opakowaniu.",
+      "Podsmaż warzywa na patelni, a następnie dodaj je do ugotowanej kaszy jaglanej.",
+      "Posyp danie świeżymi ziołami, takimi jak natka pietruszki."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Kurkuma i ciecierzyca",
+    "krotki_opis": "Kurkuma i ciecierzyca z kremowym sosem pomidorowym.",
+    "dlugi_opis": "Kurkuma i ciecierzyca to wegetariańskie danie inspirowane kuchnią indyjską, w którym ciecierzyca jest gotowana w kremowym sosie pomidorowym z dodatkiem kurkumy i przypraw.",
+    "skladniki": [
+      {
+        "nazwa": "Ciecierzyca (puszka lub suszona)",
+        "ilosc": "400g"
+      },
+      {
+        "nazwa": "Pomidory w puszce",
+        "ilosc": "1 puszka"
+      },
+      {
+        "nazwa": "Kurkuma",
+        "ilosc": "1 łyżeczka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Jeśli używasz suszonej ciecierzycy, namocz ją przez noc, a następnie ugotuj do miękkości. Jeśli używasz ciecierzycy z puszki, odcedź ją.",
+      "Podgrzej sos pomidorowy w garnku i dodaj kurkumę.",
+      "Dodaj ciecierzycę do sosu i gotuj przez kilka minut."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Klasyczna sałatka grecka",
+    "krotki_opis": "Klasyczna sałatka grecka z pomidorami, ogórkiem i feta.",
+    "dlugi_opis": "Klasyczna sałatka grecka to świeże danie składające się z pomidorów, ogórka, cebuli, fety i oliwek, skropionej sosem z oliwy z oliwek i cytryny.",
+    "skladniki": [
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Ogórek",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Feta",
+        "ilosc": "200g"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój pomidory, ogórka i cebulę w kostkę.",
+      "Wymieszaj warzywa z pokrojoną fetą i oliwkami.",
+      "Skrop sałatkę sosem z oliwy z oliwek i soku z cytryny."
+    ],
+    "czas_przygotowania": "Około 20 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Spaghetti pomidorowe",
+    "krotki_opis": "Spaghetti z sosem pomidorowym, czosnkiem i bazylią.",
+    "dlugi_opis": "Spaghetti pomidorowe to klasyczne danie włoskie, w którym makaron spaghetti jest podawany z sosem pomidorowym, czosnkiem, bazylią i parmezanem.",
+    "skladniki": [
+      {
+        "nazwa": "Spaghetti",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Pomidory świeże lub w puszce",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Czosnek",
+        "ilosc": "4 ząbki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj makaron spaghetti zgodnie z instrukcją na opakowaniu.",
+      "W garnku podsmaż czosnek, a następnie dodaj pomidory i bazylię.",
+      "Podawaj makaron z sosem pomidorowym i posyp parmezanem."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Ratatouille",
+    "krotki_opis": "Ratatouille - duszone warzywa z ziołami i oliwą z oliwek.",
+    "dlugi_opis": "Ratatouille to tradycyjne danie kuchni francuskiej, w którym mieszanka warzyw, takich jak bakłażan, cukinia, papryka i pomidory, jest duszona w sosie z ziół i oliwy z oliwek.",
+    "skladniki": [
+      {
+        "nazwa": "Bakłażan",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Cukinia",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój warzywa w kostkę i podsmaż je na oliwie z oliwek.",
+      "Dodaj do warzyw zioła, pomidory i dusz przez kilka minut."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Krem z dyni",
+    "krotki_opis": "Krem z dyni z prażonymi pestkami dyni.",
+    "dlugi_opis": "Krem z dyni to aromatyczne danie, w którym dynia jest gotowana i miksowana na gładki krem, a następnie podawana z prażonymi pestkami dyni i śmietanką.",
+    "skladniki": [
+      {
+        "nazwa": "Dynia",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Pestki dyni",
+        "ilosc": "według uznania"
+      },
+      {
+        "nazwa": "Śmietanka kremówka",
+        "ilosc": "1/2 szklanki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Oczyść i pokrój dynię na kawałki, a następnie ugotuj na miękkość.",
+      "Zmiksuj dynię na gładki krem i podawaj z prażonymi pestkami dyni i łyżką śmietanki kremówki."
+    ],
+    "czas_przygotowania": "Około 40 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Pizza wegetariańska",
+    "krotki_opis": "Pizza z warzywami, sosem pomidorowym i serem mozzarella.",
+    "dlugi_opis": "Pizza wegetariańska to ulubione danie, w którym cienkie ciasto jest smarowane sosem pomidorowym i obficie posypane mieszanką warzyw, takich jak papryka, cebula, pieczarki i serem mozzarella.",
+    "skladniki": [
+      {
+        "nazwa": "Ciasto do pizzy (gotowe lub domowe)",
+        "ilosc": "1 opakowanie"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Rozwałkuj ciasto na placek i posmaruj sosem pomidorowym.",
+      "Posyp pokrojonymi warzywami i serem mozzarella.",
+      "Piecz pizzę w piekarniku według instrukcji na opakowaniu ciasta."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Leczo z cukinii",
+    "krotki_opis": "Leczo z cukinii, papryki i cebuli w aromatycznym sosie pomidorowym.",
+    "dlugi_opis": "Leczo z cukinii to danie kuchni węgierskiej, w którym warzywa, takie jak cukinia, papryka i cebula, są gotowane w sosie pomidorowym z dodatkiem papryki w proszku.",
+    "skladniki": [
+      {
+        "nazwa": "Cukinia",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Papryka czerwona",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój warzywa w kostkę i podsmaż na oliwie z oliwek.",
+      "Dodaj pomidory w puszce i paprykę w proszku, a następnie dusz przez kilka minut."
+    ],
+    "czas_przygotowania": "Około 30 minut",
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania Wegetariańskie"]
+  }
+]

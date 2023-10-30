@@ -8,7 +8,7 @@ interface NoteProps {
   isPinned: boolean;
   title: string;
   description: string;
-  color: string;
+  color?: string;
 }
 
 export default function Note({
@@ -26,7 +26,7 @@ export default function Note({
 
   return (
     <>
-      <div className="card" style={{ background: color }}>
+      <div className="card" style={color ? { background: color } : {}}>
         <h2 className="title">{title}</h2>
         <FontAwesomeIcon
           icon={faThumbTack}

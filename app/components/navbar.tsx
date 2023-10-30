@@ -14,6 +14,7 @@ import {
   faClose,
   faAdd,
   faChevronUp,
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
@@ -144,6 +145,15 @@ export const NavBar = (props: NavBarProps) => {
             <li>
               <FontAwesomeIcon icon={faCalendarPlus} />
               Plan Dnia
+            </li>
+          </a>
+          <a
+            href="/app/recepies"
+            className={props.active == "recepies" ? "active" : ""}
+          >
+            <li>
+              <FontAwesomeIcon icon={faUtensils} />
+              Przepisy
             </li>
           </a>
         </ul>
