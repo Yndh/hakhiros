@@ -44,7 +44,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
             content: true,
             color: true,
             created_at: true,
-            pinned: true,
+            isPinned: true,
         },
         where: {
             profile_id,
