@@ -16,13 +16,10 @@ import {
   faChevronUp,
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface NavBarProps {
   active: string;
-  houses: { [key: string]: House }
-  userHouseId: string
-  setUserHouseId: Dispatch<SetStateAction<string>>
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -32,6 +29,17 @@ export const NavBar = (props: NavBarProps) => {
   const [houseName, setHouseName] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
+  const [houses, setHouses] = useState<Houses>({})
+  const [userHouseId, setUserHouseId] = useState<string>("0")
+
+  useEffect(() => {
+    fetch('/api/house')
+      .then((res) => res.json())
+      .then((data: Houses) => {
+        setHouses(data)
+        setUserHouseId(Object.keys(data)[0])
+      })
+  }, [])
 
   const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | null) => {
     setDropdownOpen(!dropdownOpen);
@@ -74,24 +82,28 @@ export const NavBar = (props: NavBarProps) => {
     setUserOpen(!userOpen);
   };
 
+  const chooseHouse = (userHouseId: string) => {
+    setUserHouseId(userHouseId)
+    dropdownToggle(null)
+  }
+
   return (
     <div className="navbar">
       <div className="top">
         <div className="homeSelect">
           <div className="homeSelectHeader" onClick={dropdownToggle}>
-            <h2>{Object.keys(props.houses).length > 0 ? props.houses[props.userHouseId]["name"] : "ładowanie"}</h2>
+            <h2>{Object.keys(houses).length > 0 ? houses[userHouseId] : "ładowanie"}</h2>
             <FontAwesomeIcon
               icon={dropdownOpen ? faChevronUp : faChevronDown}
             />
           </div>
           <div className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}>
             <ol>
-              {Object.keys(props.houses).map((key) => (<li key={key} onClick={() => {
-                props.setUserHouseId(key)
-                dropdownToggle(null)
+              {Object.keys(houses).map((key) => (<li key={key} onClick={() => {
+                chooseHouse(key)
               }}>
                 <FontAwesomeIcon icon={faHome} />
-                {props.houses[key]["name"]}
+                {houses[key]}
               </li>
               ))
               }

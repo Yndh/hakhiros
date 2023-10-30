@@ -1,4 +1,1 @@
-interface House {
-    id: number
-    name: string
-}
+interface Houses { [key: string]: string }
