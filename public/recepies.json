@@ -717,7 +717,7 @@
       "W osobnym garnku przygotuj sos pieczarkowy z pokrojonych pieczarek i cebuli, a potem podawaj go razem z kotletami."
     ],
     "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Łatwy",
+    "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -743,7 +743,7 @@
       "Dodaj pokrojoną paprykę i pastę chili, a następnie dusz na wolnym ogniu."
     ],
     "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -770,7 +770,7 @@
       "Piecz na grillu lub w piekarniku do uzyskania pożądanego stopnia przypieczenia."
     ],
     "czas_przygotowania": "Około 2-3 godzin",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -797,7 +797,7 @@
       "Grilluj lub smaż kotlety na złocisty kolor."
     ],
     "czas_przygotowania": "Około 30 minut (plus czas marynowania)",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -823,7 +823,7 @@
       "Piecz w piekarniku do uzyskania miękkiego mięsa i złocistego koloru."
     ],
     "czas_przygotowania": "Około 20 minut",
-    "poziom_trudności": "Łatwy",
+    "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -849,7 +849,7 @@
       "Dodaj brokuły i czosnek, a następnie gotuj w kremowym sosie czosnkowym."
     ],
     "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -876,7 +876,7 @@
       "Grilluj na rozgrzanym grillu aż mięso będzie dobrze wypieczone."
     ],
     "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -903,7 +903,7 @@
       "Zalej karkówkę sosem i zapiekaj w piekarniku do zarumienienia."
     ],
     "czas_przygotowania": "Około 1 godziny",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -929,7 +929,7 @@
       "Piecz w piekarniku aż mięso będzie miękkie, polewając sosem co jakiś czas."
     ],
     "czas_przygotowania": "Około 2 godzin",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -955,7 +955,7 @@
       "Podawaj z ugotowanymi ziemniakami i mizerią."
     ],
     "czas_przygotowania": "Około 40 minut",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -981,7 +981,7 @@
       "Przygotuj sos marchewkowy z ugotowanych marchewek i koperku, a potem podawaj go razem z kotletami."
     ],
     "czas_przygotowania": "Około 40 minut",
-    "poziom_trudności": "Średni",
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {

@@ -400,6 +400,8 @@ button.danger {
 
 .cardRow.recepies {
   grid-template-columns: auto auto auto auto;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .card {
@@ -778,7 +780,7 @@ button.modalOption {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
+  padding: 20px 10px;
   margin-bottom: 20px;
   background: var(--background-secondary);
   box-shadow: var(--box-shadow);
@@ -805,6 +807,23 @@ button.modalOption {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.card.recepieEl {
+  min-height: 150px;
+  max-height: 230px;
+}
+
+.card.recepieEl p.desc {
+  font-size: 18px;
+  margin-bottom: 10px;
+  opacity: .7;
+
+}
+
+.modalCard p.desc {
+  font-size: 18px;
+  opacity: .7;
 }
 
 
