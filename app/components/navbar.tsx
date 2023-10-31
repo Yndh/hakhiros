@@ -230,6 +230,22 @@ export const NavBar = (props: NavBarProps) => {
             Opuść dom</button>
         </div>
       </div>
+      {/* Do opuszczenia potwierdzenie to napiszcie */}
+      {/* 
+        <div className={`modal ${modalOpen ? "shown" : ""}`}>
+        <div className="modalCard">
+          <h2 className="center">Czy napewno chcesz opuścić ten dom</h2>
+          <div className="rowContainer">
+            <button className="border red" onClick={toggleModal}>
+              Anuluj
+            </button>
+            <button className="danger" onClick={toggleModal}>
+              Opuść dom
+            </button>
+          </div>
+        </div>
+      </div>
+      */}
 
       <div className={`modal ${userOpen ? "shown" : ""}`}>
         <div className="modalCard">
