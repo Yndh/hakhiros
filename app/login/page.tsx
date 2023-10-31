@@ -5,22 +5,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     const result = await signIn("login", {
       email,
       password,
       redirect: false
-    })
+    });
     if (result?.error) {
       setError(result.error);
-      return
+    } else {
+      router.push("/app");
     }
   };
 
