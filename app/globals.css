@@ -190,13 +190,24 @@ button.danger {
 .selectAbsolute li {
   display: flex;
   transition: .3s;
-  padding-bottom: 5px;
+  padding: 5px 2px;
   width: 100%;
+
+}
+.selectAbsolute li:not(:last-child){
   border-bottom: 1px solid var(--accent-secondary);
 }
 
 .selectAbsolute li:hover {
   opacity: .7;
+}
+
+.selectAbsolute li.active{
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
 }
 
 
@@ -283,6 +294,35 @@ button.danger {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+table.users{
+  border-collapse: collapse;
+  /* border: 1px solid var(--accent-secondary); */
+}
+table.users td,
+table.users th{
+  text-align: center;
+  padding: 5px;
+  /* border: 2px solid red; */
+}
+table.users th{
+  background: var(--background-primary);
+}
+
+table.users tr:not(:last-child){
+  border-bottom: 1px solid var(--accent-secondary);
+}
+
+table.users .kick{
+  
+  opacity: .5;
+  transition: .3s ease;
+}
+
+table.users .kick:hover{
+  color: var(--color-danger);
+  opacity: 1;
 }
 
 .homeSelectHeader {
@@ -810,8 +850,9 @@ button.modalOption {
 }
 
 .card.recepieEl {
-  min-height: 150px;
-  max-height: 230px;
+  display: flex;
+  justify-content: space-between !important;
+  flex-direction: column;
 }
 
 .card.recepieEl p.desc {
@@ -821,11 +862,33 @@ button.modalOption {
 
 }
 
+.info{
+  font-weight: 600;
+}
+
+.info.easy{
+  color: var(--color-success);
+}
+.info.medium{
+  color: var(--color-warning);
+}
+.info.hard{
+  color: var(--color-danger);
+}
+
+.info.time{
+  opacity: .7;
+}
+
 .modalCard p.desc {
   font-size: 18px;
   opacity: .7;
 }
 
+.modalCard ul,
+.modalCard ol{
+  margin-left: 15px;
+}
 
 /* Login Page */
 .loginContainer {
