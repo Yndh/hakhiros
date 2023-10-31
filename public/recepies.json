@@ -26,8 +26,11 @@
       "Dodaj pokrojone warzywa i gotuj na wolnym ogniu do miękkości.",
       "Przecedź rosół i podawaj gorący."
     ],
-    "czas_przygotowania": "Około 2 godziny",
-    "poziom_trudnosci": "Łatwe",
+    "czas_przygotowania": {
+      "liczba": 2,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Łatwy",
     "kategorie": ["Zupy"]
   },
   {
@@ -57,8 +60,11 @@
       "Dodaj pomidory i gotuj aż zmiękną.",
       "Dolej śmietanę, zmiksuj zupę i podawaj."
     ],
-    "czas_przygotowania": "Około 40 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -84,8 +90,11 @@
       "Gotuj warzywa na bulionie z koperkiem.",
       "Podawaj z kawałkami ogórków."
     ],
-    "czas_przygotowania": "Około 45 minut",
-    "poziom_trudnosci": "Łatwe",
+    "czas_przygotowania": {
+      "liczba": 45,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
     "kategorie": ["Zupy"]
   },
   {
@@ -111,8 +120,11 @@
       "Zmiksuj je na gładki krem z dodatkiem śmietany.",
       "Podawaj z grzankami."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -138,8 +150,11 @@
       "Dodaj bulion wołowy i gotuj na wolnym ogniu.",
       "Podawaj z gratinowanym serem."
     ],
-    "czas_przygotowania": "Około 1,5 godziny",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 1.5,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -165,8 +180,11 @@
       "Zeszklij cebulę, dodaj grzyby i gotuj z ziemniakami.",
       "Podawaj z koperkiem."
     ],
-    "czas_przygotowania": "Około 1 godziny",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 1,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -192,8 +210,11 @@
       "Gotuj z puree mleko kokosowe i kurkumę.",
       "Podawaj z gałką muszkatołową."
     ],
-    "czas_przygotowania": "Około 45 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 45,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -219,8 +240,11 @@
       "Dodaj pokrojone pomidory i gotuj razem z warzywami.",
       "Podawaj z parmezanem."
     ],
-    "czas_przygotowania": "Około 40 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -246,8 +270,11 @@
       "Dodaj pokrojoną paprykę i ziemniaki, a następnie dusz na wolnym ogniu.",
       "Podawaj z kawałkami chleba."
     ],
-    "czas_przygotowania": "Około 1,5 godziny",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 1.5,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -273,8 +300,11 @@
       "Dodaj pastę curry i mleko kokosowe, gotuj na wolnym ogniu.",
       "Podawaj z posiekaną natką pietruszki."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min" 
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -300,8 +330,11 @@
       "Smaż boczek i cebulę, aż staną się miękkie.",
       "Dopraw fasolę, dodaj boczek z cebulą i podawaj gorąco."
     ],
-    "czas_przygotowania": "Około 1 godziny",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 1,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -327,8 +360,11 @@
       "Dopraw zupę przyprawami i gotuj do miękkości warzyw i soczewicy.",
       "Podawaj z chlebem."
     ],
-    "czas_przygotowania": "Około 45 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 45,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -354,8 +390,11 @@
       "Smaż boczek i cebulę, aż staną się chrupiące.",
       "Podawaj z puree ziemniaczanym i śmietaną."
     ],
-    "czas_przygotowania": "Około 45 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 45,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -380,8 +419,11 @@
       "Gotuj makaron i mięso na bulionie z dodatkami.",
       "Podawaj z aromatycznymi przyprawami i zielonymi cebulkami."
     ],
-    "czas_przygotowania": "Około 30-45 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 35,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -407,8 +449,11 @@
       "Dodawaj jajka i kiełbasę, mieszaj do ścięcia jajek.",
       "Podawaj z koperkiem."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -434,8 +479,11 @@
       "Dodaj pokrojoną paprykę i ziemniaki, a następnie dusz na wolnym ogniu.",
       "Podawaj z chlebem."
     ],
-    "czas_przygotowania": "Około 1,5 godziny",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 1.5,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -461,8 +509,11 @@
       "Dodaj pokrojone pomidory i gotuj razem z warzywami.",
       "Podawaj z parmezanem."
     ],
-    "czas_przygotowania": "Około 40 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -488,8 +539,11 @@
       "Dodaj posiekany koperek i kiełbasę, gotuj jeszcze przez chwilę.",
       "Podawaj z chrupiącym chlebem."
     ],
-    "czas_przygotowania": "Około 45 minut",
-    "poziom_trudnosci": "Średnie",
+    "czas_przygotowania": {
+      "liczba": 45,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
   },
   {
@@ -508,10 +562,13 @@
     ],
     "kroki_przygotowania": [
       "Posól i posyp pieprzem antrykot.",
-      "Smaż na grillu lub patelni przez kilka minut z każdej strony, aż osiągnie pożądany stopień przypieczenia.",
+      "Smaż na grillu lub patelni przez kilka min z każdej strony, aż osiągnie pożądany stopień przypieczenia.",
       "Podawaj z sosem pieprzowym."
     ],
-    "czas_przygotowania": "Około 15 minut",
+    "czas_przygotowania": {
+      "liczba": 15,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
@@ -538,7 +595,10 @@
       "Smaż na głębokim oleju do złocistego koloru.",
       "Podawaj z ziemniakami i surówką."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
@@ -558,9 +618,12 @@
     ],
     "kroki_przygotowania": [
       "Natrzyj karkówkę przyprawami do grilla i odstaw na chwilę, by się przegryzła.",
-      "Grilluj na rozgrzanym grillu przez kilka minut z każdej strony, aż mięso będzie soczyste i dobrze wypieczone."
+      "Grilluj na rozgrzanym grillu przez kilka min z każdej strony, aż mięso będzie soczyste i dobrze wypieczone."
     ],
-    "czas_przygotowania": "Około 20 minut",
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
@@ -586,7 +649,10 @@
       "Nacieraj kaczkę przyprawami i skrop sokiem z jednej pomarańczy.",
       "Piecz w piekarniku, co jakiś czas polewając sosem z drugiej pomarańczy, aż mięso będzie miękkie i soczyste."
     ],
-    "czas_przygotowania": "Około 2 godzin",
+    "czas_przygotowania": {
+      "liczba": 2,
+      "jednostka": "h"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
@@ -612,7 +678,10 @@
       "Smaż mięso na patelni, aż się zarumieni.",
       "Dodaj pokrojoną cebulę i paprykę, a następnie dusz na wolnym ogniu w sosie pomidorowym."
     ],
-    "czas_przygotowania": "Około 2 godzin",
+    "czas_przygotowania": {
+      "liczba": 2,
+      "jednostka": "h"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
@@ -638,7 +707,10 @@
       "Wymieszaj mielone mięso z solą i pieprzem, a następnie formuj kotlety.",
       "Smaż kotlety na patelni, aż staną się złociste, a potem podawaj z sosem grzybowym i ziemniakami."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
@@ -664,7 +736,10 @@
       "Smaż schab na patelni, aż stanie się złocisty.",
       "Posyp serem żółtym i pokrojonymi pieczarkami, a następnie zapiekaj w piekarniku do zarumienienia."
     ],
-    "czas_przygotowania": "Około 40 minut",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
@@ -687,10 +762,13 @@
       }
     ],
     "kroki_przygotowania": [
-      "Grilluj kiełbasę na ruszcie lub patelni przez kilka minut, aż będzie chrupiąca i dobrze podsmażona.",
+      "Grilluj kiełbasę na ruszcie lub patelni przez kilka min, aż będzie chrupiąca i dobrze podsmażona.",
       "Podawaj z musztardą i kiszoną kapustą."
     ],
-    "czas_przygotowania": "Około 15 minut",
+    "czas_przygotowania": {
+      "liczba": 15,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
@@ -716,8 +794,11 @@
       "Usmaż kotlety mielone na patelni, aż staną się złociste.",
       "W osobnym garnku przygotuj sos pieczarkowy z pokrojonych pieczarek i cebuli, a potem podawaj go razem z kotletami."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Łatwy",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -742,8 +823,11 @@
       "Smaż kawałki kurczaka na patelni, aż się zrumienią.",
       "Dodaj pokrojoną paprykę i pastę chili, a następnie dusz na wolnym ogniu."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -769,8 +853,11 @@
       "Natrzyj karkówkę tą marynatą i pozostaw na kilka godzin lub przez noc.",
       "Piecz na grillu lub w piekarniku do uzyskania pożądanego stopnia przypieczenia."
     ],
-    "czas_przygotowania": "Około 2-3 godzin",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 2.5,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -796,8 +883,11 @@
       "Natrzyj kotlety jagnięce tą marynatą i pozostaw na kilka godzin lub przez noc.",
       "Grilluj lub smaż kotlety na złocisty kolor."
     ],
-    "czas_przygotowania": "Około 30 minut (plus czas marynowania)",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -822,8 +912,11 @@
       "Posyp filety z dorsza ziołami i skrop sokiem z cytryny.",
       "Piecz w piekarniku do uzyskania miękkiego mięsa i złocistego koloru."
     ],
-    "czas_przygotowania": "Około 20 minut",
-    "poziom_trudności": "Łatwy",
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -848,8 +941,11 @@
       "Smaż kawałki kurczaka na patelni, aż się zrumienią.",
       "Dodaj brokuły i czosnek, a następnie gotuj w kremowym sosie czosnkowym."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -875,8 +971,11 @@
       "Nadziewaj kawałki mięsa i warzyw na patyczki do szaszłyków, posyp przyprawami grillowymi.",
       "Grilluj na rozgrzanym grillu aż mięso będzie dobrze wypieczone."
     ],
-    "czas_przygotowania": "Około 30 minut",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -902,8 +1001,11 @@
       "Przygotuj sos pieczarkowy z pokrojonych pieczarek, cebuli i ziół.",
       "Zalej karkówkę sosem i zapiekaj w piekarniku do zarumienienia."
     ],
-    "czas_przygotowania": "Około 1 godziny",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 1,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -928,8 +1030,11 @@
       "Nacieraj kaczkę sokiem z pomarańczy, miodem i imbirem.",
       "Piecz w piekarniku aż mięso będzie miękkie, polewając sosem co jakiś czas."
     ],
-    "czas_przygotowania": "Około 2 godzin",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 2,
+      "jednostka": "h"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -954,8 +1059,11 @@
       "Usmaż kotlety schabowe na patelni, aż staną się złociste i chrupiące.",
       "Podawaj z ugotowanymi ziemniakami i mizerią."
     ],
-    "czas_przygotowania": "Około 40 minut",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -980,8 +1088,11 @@
       "Usmaż kotlety wieprzowe na patelni, aż staną się złociste i chrupiące.",
       "Przygotuj sos marchewkowy z ugotowanych marchewek i koperku, a potem podawaj go razem z kotletami."
     ],
-    "czas_przygotowania": "Około 40 minut",
-    "poziom_trudności": "Średni",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Mięsne"]
   },
   {
@@ -1007,7 +1118,10 @@
       "Podsmaż warzywa na patelni, a następnie dodaj je do ugotowanej kaszy jaglanej.",
       "Posyp danie świeżymi ziołami, takimi jak natka pietruszki."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1032,9 +1146,12 @@
     "kroki_przygotowania": [
       "Jeśli używasz suszonej ciecierzycy, namocz ją przez noc, a następnie ugotuj do miękkości. Jeśli używasz ciecierzycy z puszki, odcedź ją.",
       "Podgrzej sos pomidorowy w garnku i dodaj kurkumę.",
-      "Dodaj ciecierzycę do sosu i gotuj przez kilka minut."
+      "Dodaj ciecierzycę do sosu i gotuj przez kilka min."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1061,7 +1178,10 @@
       "Wymieszaj warzywa z pokrojoną fetą i oliwkami.",
       "Skrop sałatkę sosem z oliwy z oliwek i soku z cytryny."
     ],
-    "czas_przygotowania": "Około 20 minut",
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1088,7 +1208,10 @@
       "W garnku podsmaż czosnek, a następnie dodaj pomidory i bazylię.",
       "Podawaj makaron z sosem pomidorowym i posyp parmezanem."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1112,9 +1235,12 @@
     ],
     "kroki_przygotowania": [
       "Pokrój warzywa w kostkę i podsmaż je na oliwie z oliwek.",
-      "Dodaj do warzyw zioła, pomidory i dusz przez kilka minut."
+      "Dodaj do warzyw zioła, pomidory i dusz przez kilka min."
     ],
-    "czas_przygotowania": "Około 40 minut",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1140,7 +1266,10 @@
       "Oczyść i pokrój dynię na kawałki, a następnie ugotuj na miękkość.",
       "Zmiksuj dynię na gładki krem i podawaj z prażonymi pestkami dyni i łyżką śmietanki kremówki."
     ],
-    "czas_przygotowania": "Około 40 minut",
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1167,7 +1296,10 @@
       "Posyp pokrojonymi warzywami i serem mozzarella.",
       "Piecz pizzę w piekarniku według instrukcji na opakowaniu ciasta."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Dania Wegetariańskie"]
   },
@@ -1191,9 +1323,12 @@
     ],
     "kroki_przygotowania": [
       "Pokrój warzywa w kostkę i podsmaż na oliwie z oliwek.",
-      "Dodaj pomidory w puszce i paprykę w proszku, a następnie dusz przez kilka minut."
+      "Dodaj pomidory w puszce i paprykę w proszku, a następnie dusz przez kilka min."
     ],
-    "czas_przygotowania": "Około 30 minut",
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Wegetariańskie"]
   }

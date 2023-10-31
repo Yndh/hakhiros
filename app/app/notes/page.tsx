@@ -155,8 +155,18 @@ export default function Notes() {
               <FontAwesomeIcon icon={faFilter} />
             </button>
             <DropDown isOpen={filterOpen}>
-              <li onClick={() => handleFilterChange("date")}>Od najnowszych</li>
-              <li onClick={() => handleFilterChange("title")}>Po tytule</li>
+              <li
+                onClick={() => handleFilterChange("title")}
+                className={noteSort == "title" ? "active" : ""}
+              >
+                Po tytule
+              </li>
+              <li
+                onClick={() => handleFilterChange("date")}
+                className={noteSort == "date" ? "active" : ""}
+              >
+                Od najnowszych
+              </li>
             </DropDown>
           </div>
           <button onClick={toggleModal}>Utwórz</button>

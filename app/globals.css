@@ -190,13 +190,24 @@ button.danger {
 .selectAbsolute li {
   display: flex;
   transition: .3s;
-  padding-bottom: 5px;
+  padding: 5px 2px;
   width: 100%;
+
+}
+.selectAbsolute li:not(:last-child){
   border-bottom: 1px solid var(--accent-secondary);
 }
 
 .selectAbsolute li:hover {
   opacity: .7;
+}
+
+.selectAbsolute li.active{
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
 }
 
 
@@ -283,6 +294,35 @@ button.danger {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+table.users{
+  border-collapse: collapse;
+  /* border: 1px solid var(--accent-secondary); */
+}
+table.users td,
+table.users th{
+  text-align: center;
+  padding: 5px;
+  /* border: 2px solid red; */
+}
+table.users th{
+  background: var(--background-primary);
+}
+
+table.users tr:not(:last-child){
+  border-bottom: 1px solid var(--accent-secondary);
+}
+
+table.users .kick{
+  
+  opacity: .5;
+  transition: .3s ease;
+}
+
+table.users .kick:hover{
+  color: var(--color-danger);
+  opacity: 1;
 }
 
 .homeSelectHeader {
@@ -400,6 +440,8 @@ button.danger {
 
 .cardRow.recepies {
   grid-template-columns: auto auto auto auto;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .card {
@@ -778,7 +820,7 @@ button.modalOption {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
+  padding: 20px 10px;
   margin-bottom: 20px;
   background: var(--background-secondary);
   box-shadow: var(--box-shadow);
@@ -807,6 +849,46 @@ button.modalOption {
   -webkit-text-fill-color: transparent;
 }
 
+.card.recepieEl {
+  display: flex;
+  justify-content: space-between !important;
+  flex-direction: column;
+}
+
+.card.recepieEl p.desc {
+  font-size: 18px;
+  margin-bottom: 10px;
+  opacity: .7;
+
+}
+
+.info{
+  font-weight: 600;
+}
+
+.info.easy{
+  color: var(--color-success);
+}
+.info.medium{
+  color: var(--color-warning);
+}
+.info.hard{
+  color: var(--color-danger);
+}
+
+.info.time{
+  opacity: .7;
+}
+
+.modalCard p.desc {
+  font-size: 18px;
+  opacity: .7;
+}
+
+.modalCard ul,
+.modalCard ol{
+  margin-left: 15px;
+}
 
 /* Login Page */
 .loginContainer {
