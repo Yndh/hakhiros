@@ -22,7 +22,10 @@ interface Recepie {
     ilosc: string;
   }[];
   kroki_przygotowania: string[];
-  czas_przygotowania: string;
+  czas_przygotowania: {
+    liczba: number;
+    jednostka: string;
+  };
   poziom_trudnosci: string;
   kategorie: string[];
 }
@@ -33,6 +36,7 @@ export default function Recepies() {
   const [searchValue, setSearchValue] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRecepie, setSelectedRecepie] = useState<Recepie>();
+  const [recepieSort, setRecepieSort] = useState("title");
   const categoryCounts: { [key: string]: number } = {};
 
   recepies.forEach((recepie: Recepie) => {
@@ -45,14 +49,15 @@ export default function Recepies() {
     });
   });
 
-  const categories: string[] = ["Wszystkie", ...Object.keys(categoryCounts)]; // Add "All" to the categories array
+  const categories: string[] = ["Wszystkie", ...Object.keys(categoryCounts)];
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
   };
 
-  const filteredRecepies = recepies.filter((recepie: Recepie) => {
-    const lowercaseSearchValue = searchValue.toLowerCase(); // Konwertujemy searchValue na małe litery
+  const filteredRecepies = recepies
+  .filter((recepie: Recepie) => {
+    const lowercaseSearchValue = searchValue.toLowerCase();
 
     if (
       selectedCategory === "Wszystkie" &&
@@ -68,7 +73,22 @@ export default function Recepies() {
       return true;
     }
     return false;
+  })
+  .sort((a, b) => {
+    if (recepieSort === "time") {
+      const aTimeInMinutes = a.czas_przygotowania.jednostka === "h" ? a.czas_przygotowania.liczba * 60 : a.czas_przygotowania.liczba;
+      const bTimeInMinutes = b.czas_przygotowania.jednostka === "h" ? b.czas_przygotowania.liczba * 60 : b.czas_przygotowania.liczba;
+      
+      return aTimeInMinutes - bTimeInMinutes;
+    } else if (recepieSort === "title") {
+      return a.tytul.localeCompare(b.tytul);
+    } else if (recepieSort === "difficulty") {
+      return a.poziom_trudnosci.localeCompare(b.poziom_trudnosci);
+    } else {
+      return a.tytul.localeCompare(b.tytul);
+    }
   });
+
 
   console.table(categoryCounts);
 
@@ -92,6 +112,11 @@ export default function Recepies() {
     setSelectedRecepie(recepie);
   };
 
+  const handleFilterChange = (val: string) => {
+    setRecepieSort(val);
+    setFilterOpen(false);
+  }
+
   return (
     <AppLayout active="recepies">
       <div className="header">
@@ -102,9 +127,9 @@ export default function Recepies() {
               <FontAwesomeIcon icon={faFilter} />
             </button>
             <DropDown isOpen={filterOpen}>
-              <li>Po tytule</li>
-              <li>Po Trudności</li>
-              <li>Po czasie wykonania</li>
+              <li onClick={() => {handleFilterChange("title")}} className={recepieSort == "title" ? "active" : ""}>Po tytule</li>
+              <li onClick={() => {handleFilterChange("difficulty")}} className={recepieSort == "difficulty" ? "active" : ""}>Po Trudności</li>
+              <li onClick={() => {handleFilterChange("time")}} className={recepieSort == "time" ? "active" : ""}>Po czasie wykonania</li>
             </DropDown>
           </div>
           <label className="searchBar" htmlFor="search">
@@ -148,14 +173,14 @@ export default function Recepies() {
           >
             <h2 className="title">{recepie.tytul}</h2>
             <p className="desc">{recepie.krotki_opis}</p>
-            <div className="rowContainer">
-              <div>
+            <div className="rowContainer info">
+              <div className={`info ${recepie.poziom_trudnosci == "Łatwy" ? "easy" : recepie.poziom_trudnosci === "Średni" ? "medium" : "hard"}`}>
                 <FontAwesomeIcon icon={faExclamation} />
                 {recepie.poziom_trudnosci}
               </div>
-              <div>
+              <div className="info time">
                 <FontAwesomeIcon icon={faClock} />
-                {recepie.czas_przygotowania}
+                {`${recepie.czas_przygotowania.liczba} ${recepie.czas_przygotowania.jednostka}`}
               </div>
             </div>
           </div>
@@ -180,11 +205,13 @@ export default function Recepies() {
           </ul>
 
           <p className="thin">Kroki</p>
-          <ul>
+          <ol>
             {selectedRecepie?.kroki_przygotowania.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
-          </ul>
+          </ol>
+
+          <button onClick={toggleModal}>Zamknij</button>
         </div>
       </div>
     </AppLayout>
