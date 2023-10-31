@@ -34,7 +34,7 @@ export default function Notes() {
         .then((res) => res.json())
         .then((data: NoteFetch[]) => {
           prev_house_id.current = house_id
-          let datetime_data = data.map(note => ({
+          const datetime_data = data.map(note => ({
             ...note,
             createdAt: new Date(note.createdAt)
           }));
@@ -90,22 +90,35 @@ export default function Notes() {
     setContent(e.target.value);
   };
 
-  const addNote = () => {
-    if (title.trim() !== "" && content.trim() !== "") {
-      const newNote = {
-        title: title,
-        description: content,
-        color: colorValue,
-        isPinned: false,
-        createdAt: new Date(),
-      };
-
-      setNotes((notes) => [...notes, newNote]);
-
-      setTitle("");
-      setContent("");
-      toggleModal();
+  const addNote = async () => {
+    if (title.trim() === "" && content.trim() === "") {
+      return
     }
+    const newNote = {
+      title: title,
+      description: content,
+      color: colorValue,
+      house_id: house_id
+    };
+    const options = {
+      method: "POST",
+      body: JSON.stringify(newNote)
+    }
+    const note = await fetch('/api/note', options)
+      .then((res) => res.json())
+      .then((data: NoteFetch) => {
+        const datetime_node: Note = { ...data, createdAt: new Date(data["createdAt"]) };
+        return datetime_node
+      })
+    if ("error" in note) {
+      console.log(note.error)
+      return
+    }
+    setNotes((notes) => [...notes, note]);
+
+    setTitle("");
+    setContent("");
+    toggleModal();
   };
 
   const filterToggle = () => {
