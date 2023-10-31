@@ -12,7 +12,6 @@ import {
 import Note from "@/app/components/note";
 import { useState } from "react";
 import DropDown from "@/app/components/dropdown";
-import { relative } from "path";
 
 export default function Notes() {
   const [modalOpen, setModalOpen] = useState(false);

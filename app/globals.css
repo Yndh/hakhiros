@@ -296,6 +296,35 @@ button.danger {
   gap: 16px;
 }
 
+table.users{
+  border-collapse: collapse;
+  /* border: 1px solid var(--accent-secondary); */
+}
+table.users td,
+table.users th{
+  text-align: center;
+  padding: 5px;
+  /* border: 2px solid red; */
+}
+table.users th{
+  background: var(--background-primary);
+}
+
+table.users tr:not(:last-child){
+  border-bottom: 1px solid var(--accent-secondary);
+}
+
+table.users .kick{
+  
+  opacity: .5;
+  transition: .3s ease;
+}
+
+table.users .kick:hover{
+  color: var(--color-danger);
+  opacity: 1;
+}
+
 .homeSelectHeader {
   position: relative;
   display: flex;
