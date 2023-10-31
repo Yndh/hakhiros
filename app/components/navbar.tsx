@@ -20,6 +20,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface NavBarProps {
   active: string;
+  setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -37,7 +38,12 @@ export const NavBar = (props: NavBarProps) => {
       .then((res) => res.json())
       .then((data: Houses) => {
         setHouses(data)
-        setUserHouseId(localStorage.getItem("user_house_id") || Object.keys(data)[0])
+        const id = localStorage.getItem("user_house_id") || Object.keys(data)[0]
+        setUserHouseId(id)
+        localStorage.setItem("user_house_id", id)
+        if (props.setTriggerRerender) {
+          props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender)
+        }
       })
   }, [])
 
@@ -86,6 +92,9 @@ export const NavBar = (props: NavBarProps) => {
     setUserHouseId(user_house_id)
     dropdownToggle(null)
     localStorage.setItem("user_house_id", user_house_id)
+    if (props.setTriggerRerender) {
+      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender)
+    }
   }
 
   return (

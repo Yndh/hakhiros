@@ -58,16 +58,16 @@ model dutie {
 }
 
 model note {
-  id         Int      @id @default(autoincrement())
-  profile_id Int
-  house_id   Int
-  title      String
-  content    String
-  created_at DateTime @default(now())
-  isPinned   Boolean  @default(false)
-  color      String
-  profile    profile  @relation(fields: [profile_id], references: [id])
-  house      house    @relation(fields: [house_id], references: [id])
+  id          Int      @id @default(autoincrement())
+  profile_id  Int
+  house_id    Int
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  isPinned    Boolean  @default(false)
+  color       String
+  profile     profile  @relation(fields: [profile_id], references: [id])
+  house       house    @relation(fields: [house_id], references: [id])
 }
 
 model user_house {

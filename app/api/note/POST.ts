@@ -7,7 +7,7 @@ import { isValidColor } from '@/lib/isValidColor'
 
 interface req_body {
     title: string
-    content: string
+    description: string
     color: string
     house_id: string | number
 }
@@ -21,9 +21,9 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     }
 
     const body: req_body = await req.json()
-    const { title, content, color } = body
+    const { title, description, color } = body
     if (!title || typeof title !== 'string' ||
-        !content || typeof content !== 'string' ||
+        !description || typeof description !== 'string' ||
         !color || typeof color !== 'string' ||
         !body.house_id || (typeof body.house_id !== 'string' && typeof body.house_id !== 'number')) {
         return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie wszystkie podane' }), {
@@ -58,7 +58,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
             profile_id,
             house_id,
             title,
-            content,
+            description,
             color
         }
     })

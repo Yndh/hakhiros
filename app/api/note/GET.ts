@@ -41,9 +41,9 @@ export async function mGET(req: Request, res: NextApiResponse) {
         select: {
             id: true,
             title: true,
-            content: true,
+            description: true,
             color: true,
-            created_at: true,
+            createdAt: true,
             isPinned: true,
         },
         where: {
