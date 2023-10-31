@@ -10,13 +10,14 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 export default function CalendarPage() {
+  const [triggerRerender, setTriggerRerender] = useState(false);
   //Popupy wszystkie
   const [selectOpen, setIsSelectOpen] = useState(false);
   const [openColor, setOpenColor] = useState(false)
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  //const [selectedStartDate, setSelectedStartDate] = useState("");
-  //const [selectedEndDate, setSelectedEndDate] = useState("");
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState("");
 
   //tu mamy naszą liste eventów
   const [eventsList, setEventsList] = useState([]);
@@ -26,11 +27,11 @@ export default function CalendarPage() {
   const [eventChoosed, setEventChoosed] = useState({})
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  /*
+  
   const setDate = (info) => {
     setSelectedStartDate(info.startStr);
     setSelectedEndDate(info.endStr);
-  };*/
+  };
 
   //tworzenie eventu
   const createEvent = (e) => {
@@ -103,7 +104,7 @@ export default function CalendarPage() {
   const colors = ["#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
   return(
-      <AppLayout active="calendar">
+      <AppLayout setTriggerRerender={setTriggerRerender} active="calendar">
         <div className="calendarBox">
           <FullCalendar
             plugins={[
@@ -181,7 +182,7 @@ export default function CalendarPage() {
               </div>
             </div>
           )}
-      </AppLayout>
+    </AppLayout>
   )
 }
 /*

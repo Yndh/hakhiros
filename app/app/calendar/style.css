@@ -66,5 +66,5 @@
 }
 
 .fc-theme-standard th{
-    border: none ;
+    border: none !important;
 }
