@@ -1,7 +1,7 @@
 "use client";
 
 import { AppLayout } from "@/app/components/appLayout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -21,7 +21,7 @@ export default function CalendarPage() {
   const [eventChoosed, setEventChoosed] = useState({})
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-
+  
   const setDate = (info) => {
     setSelectedStartDate(info.startStr);
     setSelectedEndDate(info.endStr);
@@ -44,10 +44,10 @@ export default function CalendarPage() {
 
     const updatedEventsList = [...eventsList, newEvent];
     setEventsList(updatedEventsList);
+    console.log(eventsList)
   };
-
+  /*
   const editEvent = (event) => {
-    //console.log(event)
     const startDate = event.el.fcSeg.eventRange.range.start;
     const startDateStr = `${startDate.getFullYear()}-${String(
       startDate.getMonth() + 1
@@ -62,7 +62,8 @@ export default function CalendarPage() {
     setSelectedEndDate(endDateStr);
   };
 
-  const saveEditEvent = () => {
+  const saveEditEvent = async (e) => {
+    e.preventDefault();
     const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
     const selectedEvent = eventsList.filter(item => item.id == eventChoosed.el.fcSeg.eventRange.def.publicId);
 
@@ -75,7 +76,7 @@ export default function CalendarPage() {
     const updatedEvents = [...filteredEvents, selectedEvent[0]];
 
     setEventsList(updatedEvents)
-  }
+  }*/
 
   const deleteEvent = () =>{
     const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
@@ -91,7 +92,7 @@ export default function CalendarPage() {
     setIsSelectOpen(false);
   };
 
-  const colors = ["#fff", "#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
+  const colors = ["#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
   return(
       <AppLayout active="calendar">
@@ -106,7 +107,7 @@ export default function CalendarPage() {
             locale = 'pl'
             selectable = {true}
             select={(info) => setDate(info)}
-            eventClick={(event) => {editEvent(event); setOpenEdit(!openEdit); setEventChoosed(event)}}
+            eventClick={(event) => {setEventChoosed(event); setOpenEdit(!openEdit)}}
             eventTextColor ={"black"}
           />
         </div>
@@ -128,67 +129,103 @@ export default function CalendarPage() {
                     value={selectedEndDate || ""}
                     onChange={(e) => setSelectedEndDate(e.target.value)}
                   />
-                  <div className="modalOption">
-              <p>Kolor</p>
-              <div
-                className={`colorContainer ${selectOpen ? "open" : ""}`}
-                onClick={toggleDropdown}
-                style={{ background: colorValue }}
-              >
-                <div className="colorSelectAbsolute">
-                  <ul className="select-items">
-                    {colors.map((option, index) => (
-                    <li
-                      key={index}
-                      onClick={() => handleOptionChange(option)}
-                      >
-                      <span
-                        className="colorSelectValue"
-                        style={{ background: option }}
-                        ></span>
+              <div className="modalOption">
+                <p>Kolor</p>
+                <div
+                  className={`colorContainer ${selectOpen ? "open" : ""}`}
+                  onClick={toggleDropdown}
+                  style={{ background: colorValue }}
+                >
+                  <div className="colorSelectAbsolute">
+                    <ul className="select-items">
+                      {colors.map((option, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleOptionChange(option)}
+                        >
+                        <span
+                          className="colorSelectValue"
+                          style={{ background: option }}
+                          ></span>
                         </li>
                         ))}
-                        </ul>
-                      </div>
-                    </div>
+                    </ul>
                   </div>
-                  <button onClick={(e) => createEvent(e)}>Dodaj</button>
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    className="close"
-                    onClick={() => {setOpenAdd(!openAdd); setEventTitle("")}}
-                  />
+                </div>
+              </div>
+              <button onClick={(e) => createEvent(e)}>Dodaj</button>
+              <FontAwesomeIcon
+                icon={faClose}
+                className="close"
+                onClick={() => {setOpenAdd(!openAdd); setEventTitle("")}}
+              />
               </div>
             </div>
           )}
           {openEdit &&(
             <div className="modal shown">
               <div className="modalCard">
-                  <h2 className="title">Edytuj</h2>
-                  <label className="thin">tytuł</label>
-                  <input type="text" value={eventTitle} onChange={(e) => setEventTitle(e.target.value)}/>
-                  <label className="thin">Data Początkowa</label>
-                  <input 
-                    type="date" 
-                    value={selectedStartDate || ""}
-                    onChange={(e) => setSelectedStartDate(e.target.value)}
-                  />
-                  <label className="thin">Data Końcowa</label>
-                  <input 
-                    type="date" 
-                    value={selectedEndDate || ""}
-                    onChange={(e) => setSelectedEndDate(e.target.value)}
-                  />
-                  <button onClick={() => {deleteEvent(); setOpenEdit(!openEdit); setEventTitle("")}}>usuń</button>
-                  <button onClick={() => {saveEditEvent(); setOpenEdit(!openEdit); setEventTitle("")}}>edytuj</button>
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    className="close"
-                    onClick={() => {setOpenEdit(!openEdit); setEventTitle("")}}
-                  />
+                <h2 className="center">Czy napewno chcesz usunąć wydarzenie</h2>
+                <div className="rowContainer">
+                  <button className="border red" onClick={() => {setOpenEdit(!openEdit); setEventTitle("")}}>anuluj</button>
+                  <button className="danger" onClick={() => {deleteEvent(); setOpenEdit(!openEdit); setEventTitle("")}}>usuń</button>
+                </div>
               </div>
             </div>
           )}
       </AppLayout>
   )
 }
+/*
+{openEdit &&(
+  <div className="modal shown">
+    <div className="modalCard">
+        <h2 className="title">Edytuj</h2>
+        <label className="thin">tytuł</label>
+        <input type="text" value={eventTitle} onChange={(e) => setEventTitle(e.target.value)}/>
+        <label className="thin">Data Początkowa</label>
+        <input 
+          type="date" 
+          value={selectedStartDate || ""}
+          onChange={(e) => setSelectedStartDate(e.target.value)}
+        />
+        <label className="thin">Data Końcowa</label>
+        <input 
+          type="date" 
+          value={selectedEndDate || ""}
+          onChange={(e) => setSelectedEndDate(e.target.value)}
+        />
+        <div className="modalOption">
+          <p>Kolor</p>
+          <div
+            className={`colorContainer ${selectOpen ? "open" : ""}`}
+            onClick={toggleDropdown}
+            style={{ background: colorValue }}
+          >
+            <div className="colorSelectAbsolute">
+              <ul className="select-items">
+                {colors.map((option, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleOptionChange(option)}
+                  >
+                  <span
+                    className="colorSelectValue"
+                    style={{ background: option }}
+                    ></span>
+                  </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button onClick={() => {deleteEvent(); setOpenEdit(!openEdit); setEventTitle("")}}>usuń</button>
+        <button onClick={(e) => {saveEditEvent(e); setOpenEdit(!openEdit); setEventTitle("")}}>edytuj</button>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={() => {setOpenEdit(!openEdit); setEventTitle("")}}
+        />
+    </div>
+  </div>
+)}*/
