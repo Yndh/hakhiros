@@ -10,27 +10,34 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 export default function CalendarPage() {
+  //Popupy wszystkie
   const [selectOpen, setIsSelectOpen] = useState(false);
   const [openColor, setOpenColor] = useState(false)
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const [selectedStartDate, setSelectedStartDate] = useState("");
-  const [selectedEndDate, setSelectedEndDate] = useState("");
-  const [eventTitle, setEventTitle] = useState("");
+  //const [selectedStartDate, setSelectedStartDate] = useState("");
+  //const [selectedEndDate, setSelectedEndDate] = useState("");
+
+  //tu mamy naszą liste eventów
   const [eventsList, setEventsList] = useState([]);
+
+  //tu są do zarządzanie eventem
+  const [eventTitle, setEventTitle] = useState("");
   const [eventChoosed, setEventChoosed] = useState({})
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  
+  /*
   const setDate = (info) => {
     setSelectedStartDate(info.startStr);
     setSelectedEndDate(info.endStr);
-  };
+  };*/
 
+  //tworzenie eventu
   const createEvent = (e) => {
     e.preventDefault();
     setOpenAdd(!openAdd);
 
+    //tu tworzymy nowy event
     const newEvent = {
       id: Math.random(),
       title: eventTitle,
@@ -42,9 +49,9 @@ export default function CalendarPage() {
 
     setEventTitle("");
 
+    //tu ustawiamy liste eventuw na liste z nawym elementem
     const updatedEventsList = [...eventsList, newEvent];
     setEventsList(updatedEventsList);
-    console.log(eventsList)
   };
   /*
   const editEvent = (event) => {
@@ -78,6 +85,7 @@ export default function CalendarPage() {
     setEventsList(updatedEvents)
   }*/
 
+  //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
   const deleteEvent = () =>{
     const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
     setEventsList(filteredEvents)
