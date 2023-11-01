@@ -38,7 +38,6 @@ export default function Notes() {
             ...note,
             createdAt: new Date(note.createdAt)
           }));
-          console.log("test")
           setNotes(datetime_data)
         })
     }
@@ -188,10 +187,12 @@ export default function Notes() {
         {getSortedNotes().map((note) => (
           <Note
             key={note.id}
+            id={note.id}
             title={note.title}
             description={note.description}
             color={note.color}
             isPinned={note.isPinned}
+            setNotes={setNotes}
           />
         ))}
       </div>
