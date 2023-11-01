@@ -20,7 +20,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface NavBarProps {
   active: string;
-  setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined
+  setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined;
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -30,24 +30,33 @@ export const NavBar = (props: NavBarProps) => {
   const [houseName, setHouseName] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
-  const [houses, setHouses] = useState<Houses>({})
-  const [userHouseId, setUserHouseId] = useState<string>(localStorage.getItem("user_house_id") || "0")
+  const [houses, setHouses] = useState<Houses>({});
+  const [userHouseId, setUserHouseId] = useState<string>(
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("user_house_id") || "0"
+      : "0"
+  );
 
   useEffect(() => {
-    fetch('/api/house')
+    fetch("/api/house")
       .then((res) => res.json())
       .then((data: Houses) => {
-        setHouses(data)
-        const id = localStorage.getItem("user_house_id") || Object.keys(data)[0]
-        setUserHouseId(id)
-        localStorage.setItem("user_house_id", id)
+        setHouses(data);
+        const id =
+          localStorage.getItem("user_house_id") || Object.keys(data)[0];
+        setUserHouseId(id);
+        localStorage.setItem("user_house_id", id);
         if (props.setTriggerRerender) {
-          props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender)
+          props.setTriggerRerender(
+            (triggerRerender: boolean) => !triggerRerender
+          );
         }
-      })
-  }, [])
+      });
+  }, []);
 
-  const dropdownToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | null) => {
+  const dropdownToggle = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent> | null
+  ) => {
     setDropdownOpen(!dropdownOpen);
   };
 
@@ -89,34 +98,41 @@ export const NavBar = (props: NavBarProps) => {
   };
 
   const chooseHouse = (user_house_id: string) => {
-    setUserHouseId(user_house_id)
-    dropdownToggle(null)
-    localStorage.setItem("user_house_id", user_house_id)
+    setUserHouseId(user_house_id);
+    dropdownToggle(null);
+    localStorage.setItem("user_house_id", user_house_id);
     if (props.setTriggerRerender) {
-      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender)
+      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
     }
-  }
+  };
 
   return (
     <div className="navbar">
       <div className="top">
         <div className="homeSelect">
           <div className="homeSelectHeader" onClick={dropdownToggle}>
-            <h2>{Object.keys(houses).length > 0 ? houses[userHouseId] : "ładowanie"}</h2>
+            <h2>
+              {Object.keys(houses).length > 0
+                ? houses[userHouseId]
+                : "ładowanie"}
+            </h2>
             <FontAwesomeIcon
               icon={dropdownOpen ? faChevronUp : faChevronDown}
             />
           </div>
           <div className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}>
             <ol>
-              {Object.keys(houses).map((key) => (<li key={key} onClick={() => {
-                chooseHouse(key)
-              }}>
-                <FontAwesomeIcon icon={faHome} />
-                {houses[key]}
-              </li>
-              ))
-              }
+              {Object.keys(houses).map((key) => (
+                <li
+                  key={key}
+                  onClick={() => {
+                    chooseHouse(key);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faHome} />
+                  {houses[key]}
+                </li>
+              ))}
               <li className="addHome" onClick={toggleModal}>
                 <FontAwesomeIcon icon={faAdd} />
                 Dołącz do domu
@@ -233,23 +249,22 @@ export const NavBar = (props: NavBarProps) => {
               <td>@user2137</td>
               <td>31.10.2023</td>
               <td>
-                <FontAwesomeIcon icon={faRightFromBracket} className="kick"/>
+                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
               </td>
             </tr>
             <tr>
               <td>@user2</td>
               <td>31.10.2023</td>
               <td>
-                <FontAwesomeIcon icon={faRightFromBracket} className="kick"/>
+                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
               </td>
             </tr>
           </table>
 
-          
-          
           <button className="danger">
-            <FontAwesomeIcon icon={faRightFromBracket}/>
-            Opuść dom</button>
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            Opuść dom
+          </button>
         </div>
       </div>
       {/* Do opuszczenia potwierdzenie to napiszcie */}

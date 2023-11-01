@@ -9,32 +9,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
+interface eventListInterface {
+  id: number;
+  title: string;
+  start: string;
+  end: string;
+  allDay: boolean;
+  color: string;
+}
+
 export default function CalendarPage() {
   const [triggerRerender, setTriggerRerender] = useState(false);
   //Popupy wszystkie
   const [selectOpen, setIsSelectOpen] = useState(false);
-  const [openColor, setOpenColor] = useState(false)
+  const [openColor, setOpenColor] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
 
   //tu mamy naszą liste eventów
-  const [eventsList, setEventsList] = useState([]);
+  const [eventsList, setEventsList] = useState<eventListInterface[]>([]);
 
   //tu są do zarządzanie eventem
   const [eventTitle, setEventTitle] = useState("");
-  const [eventChoosed, setEventChoosed] = useState({})
+  const [eventChoosed, setEventChoosed] = useState<any>({});
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  
-  const setDate = (info) => {
+  const setDate = (info: any) => {
     setSelectedStartDate(info.startStr);
     setSelectedEndDate(info.endStr);
   };
 
   //tworzenie eventu
-  const createEvent = (e) => {
+  const createEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setOpenAdd(!openAdd);
 
@@ -46,13 +54,14 @@ export default function CalendarPage() {
       end: selectedEndDate.toLocaleString(),
       allDay: true,
       color: colorValue,
-    }
+    };
 
     setEventTitle("");
 
     //tu ustawiamy liste eventuw na liste z nawym elementem
     const updatedEventsList = [...eventsList, newEvent];
     setEventsList(updatedEventsList);
+    console.log(eventsList);
   };
   /*
   const editEvent = (event) => {
@@ -87,10 +96,15 @@ export default function CalendarPage() {
   }*/
 
   //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
-  const deleteEvent = () =>{
-    const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
-    setEventsList(filteredEvents)
-  }
+  const deleteEvent = () => {
+    console.log("========");
+    console.log(eventChoosed);
+
+    const filteredEvents = eventsList.filter(
+      (item) => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId
+    );
+    setEventsList(filteredEvents);
+  };
 
   const toggleDropdown = () => {
     setIsSelectOpen(!selectOpen);
@@ -103,87 +117,111 @@ export default function CalendarPage() {
 
   const colors = ["#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
-  return(
-      <AppLayout setTriggerRerender={setTriggerRerender} active="calendar">
-        <div className="calendarBox">
-          <FullCalendar
-            plugins={[
-              dayGridPlugin,
-              interactionPlugin,
-            ]}
-            events={eventsList}
-            dateClick={()=> setOpenAdd(!openAdd)}
-            locale = 'pl'
-            selectable = {true}
-            select={(info) => setDate(info)}
-            eventClick={(event) => {setEventChoosed(event); setOpenEdit(!openEdit)}}
-            eventTextColor ={"black"}
-          />
-        </div>
-        {openAdd &&(
-            <div className="modal shown">
-              <div className="modalCard">
-                  <h2 className="title">Dodaj</h2>
-                  <label className="thin">tytuł</label>
-                  <input type="text" value={eventTitle} onChange={(e) => setEventTitle(e.target.value)}/>
-                  <label className="thin">Data Początkowa</label>
-                  <input 
-                    type="date" 
-                    value={selectedStartDate || ""}
-                    onChange={(e) => setSelectedStartDate(e.target.value)}
-                  />
-                  <label className="thin">Data Końcowa</label>
-                  <input 
-                    type="date" 
-                    value={selectedEndDate || ""}
-                    onChange={(e) => setSelectedEndDate(e.target.value)}
-                  />
-              <div className="modalOption">
-                <p>Kolor</p>
-                <div
-                  className={`colorContainer ${selectOpen ? "open" : ""}`}
-                  onClick={toggleDropdown}
-                  style={{ background: colorValue }}
-                >
-                  <div className="colorSelectAbsolute">
-                    <ul className="select-items">
-                      {colors.map((option, index) => (
+  return (
+    <AppLayout setTriggerRerender={setTriggerRerender} active="calendar">
+      <div className="calendarBox">
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          events={eventsList}
+          dateClick={() => setOpenAdd(!openAdd)}
+          locale="pl"
+          selectable={true}
+          select={(info) => setDate(info)}
+          eventClick={(event) => {
+            setEventChoosed(event);
+            setOpenEdit(!openEdit);
+          }}
+          eventTextColor={"black"}
+        />
+      </div>
+      {openAdd && (
+        <div className="modal shown">
+          <div className="modalCard">
+            <h2 className="title">Dodaj</h2>
+            <label className="thin">Tytuł</label>
+            <input
+              type="text"
+              value={eventTitle}
+              onChange={(e) => setEventTitle(e.target.value)}
+            />
+            <label className="thin">Data Początkowa</label>
+            <input
+              type="date"
+              value={selectedStartDate || ""}
+              onChange={(e) => setSelectedStartDate(e.target.value)}
+            />
+            <label className="thin">Data Końcowa</label>
+            <input
+              type="date"
+              value={selectedEndDate || ""}
+              onChange={(e) => setSelectedEndDate(e.target.value)}
+            />
+            <div className="modalOption">
+              <p>Kolor</p>
+              <div
+                className={`colorContainer ${selectOpen ? "open" : ""}`}
+                onClick={toggleDropdown}
+                style={{ background: colorValue }}
+              >
+                <div className="colorSelectAbsolute">
+                  <ul className="select-items">
+                    {colors.map((option, index) => (
                       <li
                         key={index}
                         onClick={() => handleOptionChange(option)}
-                        >
+                      >
                         <span
                           className="colorSelectValue"
                           style={{ background: option }}
-                          ></span>
-                        </li>
-                        ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <button onClick={(e) => createEvent(e)}>Dodaj</button>
-              <FontAwesomeIcon
-                icon={faClose}
-                className="close"
-                onClick={() => {setOpenAdd(!openAdd); setEventTitle("")}}
-              />
-              </div>
-            </div>
-          )}
-          {openEdit &&(
-            <div className="modal shown">
-              <div className="modalCard">
-                <h2 className="center">Czy napewno chcesz usunąć wydarzenie</h2>
-                <div className="rowContainer">
-                  <button className="border red" onClick={() => {setOpenEdit(!openEdit); setEventTitle("")}}>anuluj</button>
-                  <button className="danger" onClick={() => {deleteEvent(); setOpenEdit(!openEdit); setEventTitle("")}}>usuń</button>
+                        ></span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
-          )}
+            <button onClick={(e) => createEvent(e)}>Dodaj</button>
+            <FontAwesomeIcon
+              icon={faClose}
+              className="close"
+              onClick={() => {
+                setOpenAdd(!openAdd);
+                setEventTitle("");
+              }}
+            />
+          </div>
+        </div>
+      )}
+      {openEdit && (
+        <div className="modal shown">
+          <div className="modalCard">
+            <h2 className="center">Czy napewno chcesz usunąć wydarzenie</h2>
+            <div className="rowContainer">
+              <button
+                className="border red"
+                onClick={() => {
+                  setOpenEdit(!openEdit);
+                  setEventTitle("");
+                }}
+              >
+                Anuluj
+              </button>
+              <button
+                className="danger"
+                onClick={() => {
+                  deleteEvent();
+                  setOpenEdit(!openEdit);
+                  setEventTitle("");
+                }}
+              >
+                Usuń
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </AppLayout>
-  )
+  );
 }
 /*
 {openEdit &&(

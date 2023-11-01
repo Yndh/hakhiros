@@ -56,39 +56,44 @@ export default function Recepies() {
   };
 
   const filteredRecepies = recepies
-  .filter((recepie: Recepie) => {
-    const lowercaseSearchValue = searchValue.toLowerCase();
+    .filter((recepie: Recepie) => {
+      const lowercaseSearchValue = searchValue.toLowerCase();
 
-    if (
-      selectedCategory === "Wszystkie" &&
-      (recepie.tytul.toLowerCase().includes(lowercaseSearchValue) ||
-        recepie.krotki_opis.toLowerCase().includes(lowercaseSearchValue))
-    ) {
-      return true;
-    } else if (
-      recepie.kategorie.includes(selectedCategory) &&
-      (recepie.tytul.toLowerCase().includes(lowercaseSearchValue) ||
-        recepie.krotki_opis.toLowerCase().includes(lowercaseSearchValue))
-    ) {
-      return true;
-    }
-    return false;
-  })
-  .sort((a, b) => {
-    if (recepieSort === "time") {
-      const aTimeInMinutes = a.czas_przygotowania.jednostka === "h" ? a.czas_przygotowania.liczba * 60 : a.czas_przygotowania.liczba;
-      const bTimeInMinutes = b.czas_przygotowania.jednostka === "h" ? b.czas_przygotowania.liczba * 60 : b.czas_przygotowania.liczba;
-      
-      return aTimeInMinutes - bTimeInMinutes;
-    } else if (recepieSort === "title") {
-      return a.tytul.localeCompare(b.tytul);
-    } else if (recepieSort === "difficulty") {
-      return a.poziom_trudnosci.localeCompare(b.poziom_trudnosci);
-    } else {
-      return a.tytul.localeCompare(b.tytul);
-    }
-  });
+      if (
+        selectedCategory === "Wszystkie" &&
+        (recepie.tytul.toLowerCase().includes(lowercaseSearchValue) ||
+          recepie.krotki_opis.toLowerCase().includes(lowercaseSearchValue))
+      ) {
+        return true;
+      } else if (
+        recepie.kategorie.includes(selectedCategory) &&
+        (recepie.tytul.toLowerCase().includes(lowercaseSearchValue) ||
+          recepie.krotki_opis.toLowerCase().includes(lowercaseSearchValue))
+      ) {
+        return true;
+      }
+      return false;
+    })
+    .sort((a, b) => {
+      if (recepieSort === "time") {
+        const aTimeInMinutes =
+          a.czas_przygotowania.jednostka === "h"
+            ? a.czas_przygotowania.liczba * 60
+            : a.czas_przygotowania.liczba;
+        const bTimeInMinutes =
+          b.czas_przygotowania.jednostka === "h"
+            ? b.czas_przygotowania.liczba * 60
+            : b.czas_przygotowania.liczba;
 
+        return aTimeInMinutes - bTimeInMinutes;
+      } else if (recepieSort === "title") {
+        return a.tytul.localeCompare(b.tytul);
+      } else if (recepieSort === "difficulty") {
+        return a.poziom_trudnosci.localeCompare(b.poziom_trudnosci);
+      } else {
+        return a.tytul.localeCompare(b.tytul);
+      }
+    });
 
   console.table(categoryCounts);
 
@@ -115,7 +120,7 @@ export default function Recepies() {
   const handleFilterChange = (val: string) => {
     setRecepieSort(val);
     setFilterOpen(false);
-  }
+  };
 
   return (
     <AppLayout active="recepies">
@@ -127,9 +132,30 @@ export default function Recepies() {
               <FontAwesomeIcon icon={faFilter} />
             </button>
             <DropDown isOpen={filterOpen}>
-              <li onClick={() => {handleFilterChange("title")}} className={recepieSort == "title" ? "active" : ""}>Po tytule</li>
-              <li onClick={() => {handleFilterChange("difficulty")}} className={recepieSort == "difficulty" ? "active" : ""}>Po Trudności</li>
-              <li onClick={() => {handleFilterChange("time")}} className={recepieSort == "time" ? "active" : ""}>Po czasie wykonania</li>
+              <li
+                onClick={() => {
+                  handleFilterChange("title");
+                }}
+                className={recepieSort == "title" ? "active" : ""}
+              >
+                Po tytule
+              </li>
+              <li
+                onClick={() => {
+                  handleFilterChange("difficulty");
+                }}
+                className={recepieSort == "difficulty" ? "active" : ""}
+              >
+                Po Trudności
+              </li>
+              <li
+                onClick={() => {
+                  handleFilterChange("time");
+                }}
+                className={recepieSort == "time" ? "active" : ""}
+              >
+                Po czasie wykonania
+              </li>
             </DropDown>
           </div>
           <label className="searchBar" htmlFor="search">
@@ -174,7 +200,15 @@ export default function Recepies() {
             <h2 className="title">{recepie.tytul}</h2>
             <p className="desc">{recepie.krotki_opis}</p>
             <div className="rowContainer info">
-              <div className={`info ${recepie.poziom_trudnosci == "Łatwy" ? "easy" : recepie.poziom_trudnosci === "Średni" ? "medium" : "hard"}`}>
+              <div
+                className={`info ${
+                  recepie.poziom_trudnosci == "Łatwy"
+                    ? "easy"
+                    : recepie.poziom_trudnosci === "Średni"
+                    ? "medium"
+                    : "hard"
+                }`}
+              >
                 <FontAwesomeIcon icon={faExclamation} />
                 {recepie.poziom_trudnosci}
               </div>
