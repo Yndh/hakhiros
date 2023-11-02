@@ -1,0 +1,48 @@
+import { prisma } from '@/lib/prisma'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '../auth/[...nextauth]/route'
+import { NextResponse } from 'next/server'
+import type { NextApiResponse } from 'next'
+
+interface req_body {
+    note_id: string | number
+}
+
+export async function mDELETE(req: Request, res: NextApiResponse) {
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+        return new NextResponse(JSON.stringify({ error: 'nie zautoryzowano' }), {
+            status: 401
+        })
+    }
+    const body: req_body = await req.json()
+    if (!body || !body.note_id) {
+        return new NextResponse(JSON.stringify({ error: 'nie podano id notatki' }), {
+            status: 400
+        })
+    }
+
+    const note = await prisma.note.findFirst({
+        where: {
+            id: parseInt(body.note_id as string),
+            profile: {
+                user_id: session.user.id
+            }
+        }
+    })
+    if (!note) {
+        return new NextResponse(JSON.stringify({ error: 'nie znaleziono notatki' }), {
+            status: 400
+        })
+    }
+
+    await prisma.note.delete({
+        where: {
+            id: note.id
+        }
+    })
+
+    return new NextResponse(JSON.stringify(note), {
+        status: 200
+    })
+}

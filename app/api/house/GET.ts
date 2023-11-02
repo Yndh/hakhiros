@@ -29,13 +29,10 @@ export async function mGET(req: Request, res: NextApiResponse) {
         }
     })
 
-    const houses: { [key: string]: { id: number, name: string } } = {};
+    const houses: { [key: string]: string } = {};
 
     user_house.forEach(user_house => {
-        houses[user_house.id] = {
-            id: user_house.house.id,
-            name: user_house.house.name,
-        };
+        houses[user_house.id] = user_house.house.name
     });
 
     return new NextResponse(JSON.stringify(houses), {

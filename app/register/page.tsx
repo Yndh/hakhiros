@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +24,8 @@ export default function RegisterPage() {
     })
     if (result?.error) {
       setError(result.error);
-      return
+    } else{
+      router.push("/app");
     }
   };
 

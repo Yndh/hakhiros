@@ -21,29 +21,29 @@ model user {
 }
 
 model profile {
-  id           Int          @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   user_id      Int
   display_name String?
   duties       dutie[]
   notes        note[]
   user_houses  user_house[]
-  schedules    schedule[]
+  plan_of_day  plan_of_day[]
   calendars    calendar[]
-  user         user         @relation(fields: [user_id], references: [id])
+  user         user          @relation(fields: [user_id], references: [id])
 }
 
 model house {
-  id          Int          @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   owner       Int
   name        String
-  created_at  DateTime     @default(now())
-  code        String       @unique
+  created_at  DateTime      @default(now())
+  code        String        @unique
   duties      dutie[]
   notes       note[]
   user_houses user_house[]
-  schedules   schedule[]
+  plan_of_day plan_of_day[]
   calendars   calendar[]
-  user        user         @relation(fields: [owner], references: [id])
+  user        user          @relation(fields: [owner], references: [id])
 }
 
 model dutie {
@@ -58,16 +58,16 @@ model dutie {
 }
 
 model note {
-  id         Int      @id @default(autoincrement())
-  profile_id Int
-  house_id   Int
-  title      String
-  content    String
-  created_at DateTime @default(now())
-  pinned     Boolean
-  color      String
-  profile    profile  @relation(fields: [profile_id], references: [id])
-  house      house    @relation(fields: [house_id], references: [id])
+  id          Int      @id @default(autoincrement())
+  profile_id  Int
+  house_id    Int
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  isPinned    Boolean  @default(false)
+  color       String
+  profile     profile  @relation(fields: [profile_id], references: [id])
+  house       house    @relation(fields: [house_id], references: [id])
 }
 
 model user_house {
@@ -79,33 +79,25 @@ model user_house {
   house      house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
-model event {
-  id        Int        @id @default(autoincrement())
-  calendars calendar[]
-  schedules schedule[]
-}
-
-model schedule {
-  id           Int      @id @default(autoincrement())
-  profile_id   Int
-  house_id     Int
-  event_id     Int
-  date_start   DateTime
-  day_of_week  Int?
-  day_of_month Int?
-  month        Int?
-  event        event    @relation(fields: [event_id], references: [id])
-  profile      profile  @relation(fields: [profile_id], references: [id])
-  house        house    @relation(fields: [house_id], references: [id])
-}
-
-model calendar {
+model plan_of_day {
   id         Int     @id @default(autoincrement())
   profile_id Int
   house_id   Int
-  event_id   Int
-  day        Int
-  event      event   @relation(fields: [event_id], references: [id])
+  title      String
+  start      String
+  end        String
   profile    profile @relation(fields: [profile_id], references: [id])
   house      house   @relation(fields: [house_id], references: [id])
+}
+
+model calendar {
+  id         Int      @id @default(autoincrement())
+  profile_id Int
+  house_id   Int
+  title      String
+  start      DateTime
+  end        DateTime
+  color      String
+  profile    profile  @relation(fields: [profile_id], references: [id])
+  house      house    @relation(fields: [house_id], references: [id])
 }

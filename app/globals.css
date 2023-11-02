@@ -911,7 +911,7 @@ button.modalOption {
   gap: 10px;
   padding: 20px;
   margin-bottom: 15px;
-  height: 45%;
+  height: 50%;
   width: 25%;
   border-radius: var(--radius-secondary);
 }
