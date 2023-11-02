@@ -98,6 +98,7 @@ model calendar {
   start      DateTime
   end        DateTime
   color      String
+  createdAt  DateTime @default(now())
   profile    profile  @relation(fields: [profile_id], references: [id])
   house      house    @relation(fields: [house_id], references: [id])
 }
