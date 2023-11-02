@@ -31,11 +31,11 @@ export async function POST(req: Request, res: NextApiResponse) {
             house_id:house.id
         }
     })
-    if(isUserLogin.length>=2){
-        return new NextResponse(JSON.stringify({error:"nie mozesz byc 2 razy w tym samym domu"}),{
-            status: 400
-        })
-    }
+    // if(isUserLogin.length>=2){
+    //     return new NextResponse(JSON.stringify({error:"nie mozesz byc 2 razy w tym samym domu"}),{
+    //         status: 400
+    //     })
+    // }
 
     joinHouse(session.user.id, house.id)
 
