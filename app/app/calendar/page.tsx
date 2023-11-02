@@ -55,31 +55,25 @@ export default function CalendarPage() {
 
     //tu tworzymy nowy event
     const newEvent = {
-      id: Math.random(),
       title: eventTitle,
-      start: selectedStartDate.toLocaleString(),
-      end: selectedEndDate.toLocaleString(),
-      allDay: true,
+      start: selectedStartDate,
+      end: selectedEndDate,
       color: colorValue,
     };
+
     const options = {
       method: "POST",
       body: JSON.stringify(newEvent)
     }
-    const event = await fetch('/api/calender', options)
+    const event = await fetch('/api/calendar', options)
       .then((res) => res.json())
-      .then((data: EventList) => {
-        const event_data: EventCalender = { ...data };
-        return event_data
-      })
     if ("error" in event) {
       console.log(event.error)
       return
     }
     
     //tu ustawiamy liste eventuw na liste z nawym elementem
-    const updatedEventsList = [...eventsList, event];
-    setEventsList(updatedEventsList);
+    setEventsList([...eventsList, createdEvent]);
     setEventTitle("");
     //console.log(eventsList);
   };
@@ -87,13 +81,20 @@ export default function CalendarPage() {
 
   //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
   const deleteEvent = async () => {
-    console.log("========");
-    console.log(eventChoosed);
+    const options = {
+      method: "DELETE",
+      body: JSON.stringify({ eventId: eventChoosed.el.fcSeg.eventRange.def.publicId }),
+    };
+  
+    await fetch('/api/calendar', options);
 
     const filteredEvents = eventsList.filter(
       (item) => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId
     );
     setEventsList(filteredEvents);
+
+    //console.log("========");
+    //console.log(eventChoosed);
   };
 
   const toggleDropdown = () => {
