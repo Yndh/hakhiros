@@ -1,22 +1,13 @@
 "use client";
 
 import { AppLayout } from "@/app/components/appLayout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
-
-interface eventListInterface {
-  id: number;
-  title: string;
-  start: string;
-  end: string;
-  allDay: boolean;
-  color: string;
-}
 
 export default function CalendarPage() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -29,12 +20,28 @@ export default function CalendarPage() {
   const [selectedEndDate, setSelectedEndDate] = useState("");
 
   //tu mamy naszą liste eventów
-  const [eventsList, setEventsList] = useState<eventListInterface[]>([]);
+  const [eventsList, setEventsList] = useState<EventList[]>([]);
 
   //tu są do zarządzanie eventem
   const [eventTitle, setEventTitle] = useState("");
   const [eventChoosed, setEventChoosed] = useState<any>({});
   const [colorValue, setColorValue] = useState("#FFF9DB");
+
+  const house_id = localStorage.getItem("user_house_id") || "-1"
+  let prev_house_id = useRef("-1")
+  useEffect(() => {
+    if (prev_house_id.current !== house_id) {
+      fetch(`/api/note?house_id=${house_id}`)
+        .then((res) => res.json())
+        .then((data: EventList[]) => {
+          prev_house_id.current = house_id
+          const event_data = data.map(event => ({
+            ...event,
+          }));
+          setEventsList(event_data)
+        })
+    }
+  })
 
   const setDate = (info: any) => {
     setSelectedStartDate(info.startStr);
@@ -42,68 +49,52 @@ export default function CalendarPage() {
   };
 
   //tworzenie eventu
-  const createEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const createEvent = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     setOpenAdd(!openAdd);
 
     //tu tworzymy nowy event
     const newEvent = {
-      id: Math.random(),
       title: eventTitle,
-      start: selectedStartDate.toLocaleString(),
-      end: selectedEndDate.toLocaleString(),
-      allDay: true,
+      start: selectedStartDate,
+      end: selectedEndDate,
       color: colorValue,
     };
 
-    setEventTitle("");
-
+    const options = {
+      method: "POST",
+      body: JSON.stringify(newEvent)
+    }
+    const event = await fetch('/api/calendar', options)
+      .then((res) => res.json())
+    if ("error" in event) {
+      console.log(event.error)
+      return
+    }
+    
     //tu ustawiamy liste eventuw na liste z nawym elementem
-    const updatedEventsList = [...eventsList, newEvent];
-    setEventsList(updatedEventsList);
-    console.log(eventsList);
+    setEventsList([...eventsList, createdEvent]);
+    setEventTitle("");
+    //console.log(eventsList);
   };
-  /*
-  const editEvent = (event) => {
-    const startDate = event.el.fcSeg.eventRange.range.start;
-    const startDateStr = `${startDate.getFullYear()}-${String(
-      startDate.getMonth() + 1
-    ).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`;
-    const endDate = event.el.fcSeg.eventRange.range.end;
-    const endDateStr = `${endDate.getFullYear()}-${String(
-      endDate.getMonth() + 1
-    ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
-
-    setEventTitle(event.el.fcSeg.eventRange.def.title);
-    setSelectedStartDate(startDateStr);
-    setSelectedEndDate(endDateStr);
-  };
-
-  const saveEditEvent = async (e) => {
-    e.preventDefault();
-    const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
-    const selectedEvent = eventsList.filter(item => item.id == eventChoosed.el.fcSeg.eventRange.def.publicId);
-
-    selectedEvent[0].title = eventTitle
-    selectedEvent[0].start = selectedStartDate.toLocaleString()
-    selectedEvent[0].end = selectedEndDate.toLocaleString()
-    selectedEvent[0].allDay = true
-    selectedEvent[0].color = colorValue
-
-    const updatedEvents = [...filteredEvents, selectedEvent[0]];
-
-    setEventsList(updatedEvents)
-  }*/
+  
 
   //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
-  const deleteEvent = () => {
-    console.log("========");
-    console.log(eventChoosed);
+  const deleteEvent = async () => {
+    const options = {
+      method: "DELETE",
+      body: JSON.stringify({ eventId: eventChoosed.el.fcSeg.eventRange.def.publicId }),
+    };
+  
+    await fetch('/api/calendar', options);
 
     const filteredEvents = eventsList.filter(
       (item) => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId
     );
     setEventsList(filteredEvents);
+
+    //console.log("========");
+    //console.log(eventChoosed);
   };
 
   const toggleDropdown = () => {
@@ -223,6 +214,39 @@ export default function CalendarPage() {
     </AppLayout>
   );
 }
+/*
+  const editEvent = (event) => {
+    const startDate = event.el.fcSeg.eventRange.range.start;
+    const startDateStr = `${startDate.getFullYear()}-${String(
+      startDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`;
+    const endDate = event.el.fcSeg.eventRange.range.end;
+    const endDateStr = `${endDate.getFullYear()}-${String(
+      endDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
+
+    setEventTitle(event.el.fcSeg.eventRange.def.title);
+    setSelectedStartDate(startDateStr);
+    setSelectedEndDate(endDateStr);
+  };
+
+  const saveEditEvent = async (e) => {
+    e.preventDefault();
+    const filteredEvents = eventsList.filter(item => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId);
+    const selectedEvent = eventsList.filter(item => item.id == eventChoosed.el.fcSeg.eventRange.def.publicId);
+
+    selectedEvent[0].title = eventTitle
+    selectedEvent[0].start = selectedStartDate.toLocaleString()
+    selectedEvent[0].end = selectedEndDate.toLocaleString()
+    selectedEvent[0].allDay = true
+    selectedEvent[0].color = colorValue
+
+    const updatedEvents = [...filteredEvents, selectedEvent[0]];
+
+    setEventsList(updatedEvents)
+  }*/
+
+
 /*
 {openEdit &&(
   <div className="modal shown">

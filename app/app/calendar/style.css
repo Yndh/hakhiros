@@ -32,7 +32,7 @@
 /*przyciski*/
 
 .fc .fc-button-primary {
-    border: none;
+    border: none !important;
 }
 
 .fc-button-group {
