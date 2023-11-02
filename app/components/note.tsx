@@ -2,7 +2,7 @@
 
 import { faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, MouseEventHandler, SetStateAction, useState } from "react";
 
 interface NoteProps {
   id: number;
@@ -48,6 +48,19 @@ export default function Note({
     toggleModal(e)
   };
 
+  const pinNote = async (e: React.MouseEvent<any, MouseEvent>) => {
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify({ "note_id": id })
+    }
+    const note = await fetch('/api/note', options)
+      .then((res) => res.json())
+      .then((data: NoteFetch) => {
+        return data
+      })
+    setPinned(note.isPinned)
+  }
+
   return (
     <>
       <div className="card" style={color ? { background: color } : {}}>
@@ -55,9 +68,7 @@ export default function Note({
         <FontAwesomeIcon
           icon={faThumbTack}
           className={`pin ${pinned ? "pinned" : ""}`}
-          onClick={(e) => {
-            setPinned(!pinned);
-          }}
+          onClick={pinNote}
         />
         <FontAwesomeIcon
           icon={faTrash}
