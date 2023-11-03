@@ -12,6 +12,7 @@ import {
 import Note from "@/app/components/note";
 import { useEffect, useRef, useState } from "react";
 import DropDown from "@/app/components/dropdown";
+import Modal from "@/app/components/modal";
 
 export default function Notes() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -26,22 +27,22 @@ export default function Notes() {
   const [notes, setNotes] = useState<Note[]>([]);
   const colors = ["#fff", "#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
-  const house_id = localStorage.getItem("user_house_id") || "-1"
-  let prev_house_id = useRef("-1")
+  const house_id = localStorage.getItem("user_house_id") || "-1";
+  let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== house_id) {
       fetch(`/api/note?house_id=${house_id}`)
         .then((res) => res.json())
         .then((data: NoteFetch[]) => {
-          prev_house_id.current = house_id
-          const datetime_data = data.map(note => ({
+          prev_house_id.current = house_id;
+          const datetime_data = data.map((note) => ({
             ...note,
-            createdAt: new Date(note.createdAt)
+            createdAt: new Date(note.createdAt),
           }));
-          setNotes(datetime_data)
-        })
+          setNotes(datetime_data);
+        });
     }
-  })
+  });
 
   const getSortedNotes = () => {
     const filteredNotes = searchNotes();
@@ -91,27 +92,30 @@ export default function Notes() {
 
   const addNote = async () => {
     if (title.trim() === "" && content.trim() === "") {
-      return
+      return;
     }
     const newNote = {
       title: title,
       description: content,
       color: colorValue,
-      house_id: house_id
+      house_id: house_id,
     };
     const options = {
       method: "POST",
-      body: JSON.stringify(newNote)
-    }
-    const note = await fetch('/api/note', options)
+      body: JSON.stringify(newNote),
+    };
+    const note = await fetch("/api/note", options)
       .then((res) => res.json())
       .then((data: NoteFetch) => {
-        const datetime_node: Note = { ...data, createdAt: new Date(data["createdAt"]) };
-        return datetime_node
-      })
+        const datetime_node: Note = {
+          ...data,
+          createdAt: new Date(data["createdAt"]),
+        };
+        return datetime_node;
+      });
     if ("error" in note) {
-      console.log(note.error)
-      return
+      console.log(note.error);
+      return;
     }
     setNotes((notes) => [...notes, note]);
 
@@ -197,63 +201,58 @@ export default function Notes() {
         ))}
       </div>
 
-      <div className={`modal ${modalOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <FontAwesomeIcon
-            icon={faClose}
-            className="close"
-            onClick={toggleModal}
-          />
-          <h2 className="title">Utwórz notatke</h2>
-          <div className="card newNote" style={{ background: colorValue }}>
-            <h3 className="title">
-              <input
-                type="text"
-                placeholder="Tytuł"
-                value={title}
-                className="noteInput"
-                onChange={setTitleValue}
-              />
-            </h3>
-            <textarea
-              placeholder="Wpisz notatkę..."
-              value={content}
-              onChange={setNoteContent}
+      <Modal isOpen={modalOpen}>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={toggleModal}
+        />
+        <h2 className="title">Utwórz notatke</h2>
+        <div className="card newNote" style={{ background: colorValue }}>
+          <h3 className="title">
+            <input
+              type="text"
+              placeholder="Tytuł"
+              value={title}
+              className="noteInput"
+              onChange={setTitleValue}
             />
-          </div>
-          <div className="rowContainer">
-            <div className="modalOption">
-              <p>Kolor</p>
-              <div
-                className={`colorContainer ${selectOpen ? "open" : ""}`}
-                onClick={toggleDropdown}
-                style={{ background: colorValue }}
-              >
-                <div className="colorSelectAbsolute">
-                  <ul className="select-items">
-                    {colors.map((option, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleOptionChange(option)}
-                      >
-                        <span
-                          className="colorSelectValue"
-                          style={{ background: option }}
-                        ></span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+          </h3>
+          <textarea
+            placeholder="Wpisz notatkę..."
+            value={content}
+            onChange={setNoteContent}
+          />
+        </div>
+        <div className="rowContainer">
+          <div className="modalOption">
+            <p>Kolor</p>
+            <div
+              className={`colorContainer ${selectOpen ? "open" : ""}`}
+              onClick={toggleDropdown}
+              style={{ background: colorValue }}
+            >
+              <div className="colorSelectAbsolute">
+                <ul className="select-items">
+                  {colors.map((option, index) => (
+                    <li key={index} onClick={() => handleOptionChange(option)}>
+                      <span
+                        className="colorSelectValue"
+                        style={{ background: option }}
+                      ></span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-            <button className="modalOption">
-              <p>Lista</p>
-              <FontAwesomeIcon icon={faAdd} />
-            </button>
           </div>
-          <button onClick={addNote}>Utwórz</button>
+          <button className="modalOption">
+            <p>Lista</p>
+            <FontAwesomeIcon icon={faAdd} />
+          </button>
         </div>
-      </div>
+        <button onClick={addNote}>Utwórz</button>
+      </Modal>
     </AppLayout>
   );
 }

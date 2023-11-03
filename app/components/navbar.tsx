@@ -17,6 +17,7 @@ import {
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import Modal from "./modal";
 
 interface NavBarProps {
   active: string;
@@ -233,142 +234,133 @@ export const NavBar = (props: NavBarProps) => {
         </ul>
       </div>
 
-      <div className={`modal ${settingsOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <h2 className="title">Ustawienia</h2>
-          <FontAwesomeIcon
-            icon={faClose}
-            className="close"
-            onClick={toggleSettings}
-          />
+      <Modal isOpen={settingsOpen}>
+        <h2 className="title">Ustawienia</h2>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={toggleSettings}
+        />
 
-          {/* Dla ownera */}
-          <p className="thin">Użytkownicy</p>
-          <table className="users">
-            <tr>
-              <th>Użytkownik</th>
-              <th>Data dolączenia</th>
-              <th>Akcje</th>
-            </tr>
+        {/* Dla ownera */}
+        <p className="thin">Użytkownicy</p>
+        <table className="users">
+          <tr>
+            <th>Użytkownik</th>
+            <th>Data dolączenia</th>
+            <th>Akcje</th>
+          </tr>
 
-            <tr>
-              <td>@user2137</td>
-              <td>31.10.2023</td>
-              <td>
-                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-              </td>
-            </tr>
+          <tr>
+            <td>@user2137</td>
+            <td>31.10.2023</td>
+            <td>
+              <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
+            </td>
+          </tr>
 
-            <tr>
-              <td>@user2</td>
-              <td>31.10.2023</td>
-              <td>
-                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-              </td>
-            </tr>
-          </table>
+          <tr>
+            <td>@user2</td>
+            <td>31.10.2023</td>
+            <td>
+              <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
+            </td>
+          </tr>
+        </table>
 
-          <button className="danger">
-            <FontAwesomeIcon icon={faRightFromBracket} />
+        <button className="danger">
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          Opuść dom
+        </button>
+      </Modal>
+
+      {/* Do opuszczenia potwierdzenie to napiszcie */}
+      {/* <Modal isOpen={"zmienna"}>
+        <h2 className="center">Czy napewno chcesz opuścić ten dom</h2>
+        <div className="rowContainer">
+          <button className="border red" onClick={toggleModal}>
+            Anuluj
+          </button>
+          <button className="danger" onClick={toggleModal}>
             Opuść dom
           </button>
         </div>
-      </div>
-      {/* Do opuszczenia potwierdzenie to napiszcie */}
-      {/* 
-        <div className={`modal ${modalOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <h2 className="center">Czy napewno chcesz opuścić ten dom</h2>
-          <div className="rowContainer">
-            <button className="border red" onClick={toggleModal}>
-              Anuluj
-            </button>
-            <button className="danger" onClick={toggleModal}>
-              Opuść dom
-            </button>
-          </div>
-        </div>
-      </div>
-      */}
+      </Modal> */}
 
-      <div className={`modal ${userOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <h2 className="title">Użytkownik</h2>
-          <FontAwesomeIcon
-            icon={faClose}
-            className="close"
-            onClick={toggleUser}
-          />
+      <Modal isOpen={userOpen}>
+        <h2 className="title">Użytkownik</h2>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={toggleUser}
+        />
 
-          <p className="thin">Nazwa użytkownika</p>
-          <input type="text" value={"@uzytkownik"} disabled />
+        <p className="thin">Nazwa użytkownika</p>
+        <input type="text" value={"@uzytkownik"} disabled />
 
-          <p className="thin">Pseudonim</p>
-          <input
-            type="text"
-            placeholder="Wpisz pseudonim..."
-            value={userHouseName}
-            onChange={userNameHandler}
-          />
+        <p className="thin">Pseudonim</p>
+        <input
+          type="text"
+          placeholder="Wpisz pseudonim..."
+          value={userHouseName}
+          onChange={userNameHandler}
+        />
 
-          <button>Zapisz</button>
-        </div>
-      </div>
+        <button>Zapisz</button>
+      </Modal>
 
-      <div className={`modal ${modalOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <FontAwesomeIcon
-            icon={faClose}
-            className="close"
-            onClick={toggleModal}
-          />
-          {modalType === "join" ? (
-            <>
-              <h2 className="title">Dołącz do Domu</h2>
+      <Modal isOpen={modalOpen}>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={toggleModal}
+        />
+        {modalType === "join" ? (
+          <>
+            <h2 className="title">Dołącz do Domu</h2>
 
-              <p className="thin">Zaproszenie do domu</p>
-              <input
-                type="text"
-                placeholder="8 znakowy kod"
-                onChange={codeChangeHandler}
-                value={code}
-              />
+            <p className="thin">Zaproszenie do domu</p>
+            <input
+              type="text"
+              placeholder="8 znakowy kod"
+              onChange={codeChangeHandler}
+              value={code}
+            />
 
-              <div className="rowContainer">
-                <button
-                  className="border"
-                  onClick={() => changeModalType("create")}
-                >
-                  Utwórz dom
-                </button>
-                <button>Dołącz</button>
-              </div>
-            </>
-          ) : (
-            <>
-              <h2 className="title">Utwórz Dom</h2>
+            <div className="rowContainer">
+              <button
+                className="border"
+                onClick={() => changeModalType("create")}
+              >
+                Utwórz dom
+              </button>
+              <button>Dołącz</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="title">Utwórz Dom</h2>
 
-              <p className="thin">Nazwa domu</p>
-              <input
-                type="text"
-                placeholder="np. Epicki Dom"
-                onChange={houseNameChangeHandler}
-                value={houseName}
-              />
+            <p className="thin">Nazwa domu</p>
+            <input
+              type="text"
+              placeholder="np. Epicki Dom"
+              onChange={houseNameChangeHandler}
+              value={houseName}
+            />
 
-              <div className="rowContainer">
-                <button
-                  className="border"
-                  onClick={() => changeModalType("join")}
-                >
-                  Dołącz do domu
-                </button>
-                <button>Utwórz</button>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+            <div className="rowContainer">
+              <button
+                className="border"
+                onClick={() => changeModalType("join")}
+              >
+                Dołącz do domu
+              </button>
+              <button>Utwórz</button>
+            </div>
+          </>
+        )}
+      </Modal>
     </div>
   );
 };

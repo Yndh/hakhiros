@@ -2,6 +2,7 @@
 
 import { AppLayout } from "@/app/components/appLayout";
 import Duty from "@/app/components/duty";
+import Modal from "@/app/components/modal";
 import {
   faArrowLeft,
   faArrowRight,
@@ -121,65 +122,63 @@ export default function Duties() {
         )}
       </div>
 
-      <div className={`modal ${modalOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <FontAwesomeIcon
-            icon={faClose}
-            className="close"
-            onClick={toggleModal}
-          />
-          <h2 className="title">Dodaj Obowiazek</h2>
+      <Modal isOpen={modalOpen}>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={toggleModal}
+        />
+        <h2 className="title">Dodaj Obowiazek</h2>
 
-          <p className="thin">Wybierz użytkownika</p>
-          <div className="choiceRow">
-            {users.map((user, index) => (
-              <>
-                <input
-                  type="radio"
-                  name="selectedUser"
-                  id={`selectedUser${user}`}
-                  onChange={() => setSelectedUser(user)}
-                />
-                <label htmlFor={`selectedUser${user}`}>@{user}</label>
-              </>
-            ))}
-          </div>
-
-          <p className="thin">Wpisz obowiazek</p>
-          <input
-            type="text"
-            placeholder="Wpisz obowiązek..."
-            value={dutyTitle}
-            onChange={(e) => setDutyTitle(e.target.value)}
-          />
-
-          <p className="thin">Wybierz dzień tygodnia</p>
-          <div className="choiceRow">
-            {[...weekDaysNames.slice(1), weekDaysNames[0]].map(
-              (dayName, index) => {
-                const dayIndex = (index + 1) % 7;
-                return (
-                  <div key={index}>
-                    <input
-                      type="radio"
-                      name="selectedDay"
-                      id={`selectedDay${dayIndex}`}
-                      value={dayIndex}
-                      onChange={() => setSelectedDay(dayIndex)}
-                      checked={selectedDay === dayIndex}
-                    />
-                    <label htmlFor={`selectedDay${dayIndex}`}>
-                      {dayName.slice(0, 3)}
-                    </label>
-                  </div>
-                );
-              }
-            )}
-          </div>
-
-          <button onClick={handleCreateDuty}>Dodaj</button>
+        <p className="thin">Wybierz użytkownika</p>
+        <div className="choiceRow">
+          {users.map((user, index) => (
+            <>
+              <input
+                type="radio"
+                name="selectedUser"
+                id={`selectedUser${user}`}
+                onChange={() => setSelectedUser(user)}
+              />
+              <label htmlFor={`selectedUser${user}`}>@{user}</label>
+            </>
+          ))}
         </div>
-      </div>
+
+        <p className="thin">Wpisz obowiazek</p>
+        <input
+          type="text"
+          placeholder="Wpisz obowiązek..."
+          value={dutyTitle}
+          onChange={(e) => setDutyTitle(e.target.value)}
+        />
+
+        <p className="thin">Wybierz dzień tygodnia</p>
+        <div className="choiceRow">
+          {[...weekDaysNames.slice(1), weekDaysNames[0]].map(
+            (dayName, index) => {
+              const dayIndex = (index + 1) % 7;
+              return (
+                <div key={index}>
+                  <input
+                    type="radio"
+                    name="selectedDay"
+                    id={`selectedDay${dayIndex}`}
+                    value={dayIndex}
+                    onChange={() => setSelectedDay(dayIndex)}
+                    checked={selectedDay === dayIndex}
+                  />
+                  <label htmlFor={`selectedDay${dayIndex}`}>
+                    {dayName.slice(0, 3)}
+                  </label>
+                </div>
+              );
+            }
+          )}
+        </div>
+
+        <button onClick={handleCreateDuty}>Dodaj</button>
+      </Modal>
     </AppLayout>
   );
 }

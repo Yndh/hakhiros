@@ -3,6 +3,7 @@
 import { faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from "react";
+import Modal from "./modal";
 
 interface NoteProps {
   id: number;
@@ -10,7 +11,7 @@ interface NoteProps {
   title: string;
   description: string;
   color?: string;
-  setNotes: Dispatch<SetStateAction<Note[]>>
+  setNotes: Dispatch<SetStateAction<Note[]>>;
 }
 
 export default function Note({
@@ -19,7 +20,7 @@ export default function Note({
   title,
   description,
   color,
-  setNotes
+  setNotes,
 }: NoteProps) {
   const [pinned, setPinned] = useState(isPinned);
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,37 +30,40 @@ export default function Note({
   };
 
   const deleteNode = async (e: React.MouseEvent<any, MouseEvent>) => {
-    console.log(id)
+    console.log(id);
     const options = {
       method: "DELETE",
-      body: JSON.stringify({ "note_id": id })
-    }
-    const note = await fetch('/api/note', options)
+      body: JSON.stringify({ note_id: id }),
+    };
+    const note = await fetch("/api/note", options)
       .then((res) => res.json())
       .then((data: NoteFetch) => {
-        const datetime_node: Note = { ...data, createdAt: new Date(data["createdAt"]) };
-        return datetime_node
-      })
+        const datetime_node: Note = {
+          ...data,
+          createdAt: new Date(data["createdAt"]),
+        };
+        return datetime_node;
+      });
     if ("error" in note) {
-      console.log(note.error)
-      return
+      console.log(note.error);
+      return;
     }
-    setNotes((note) => note.filter(note => note.id !== id));
-    toggleModal(e)
+    setNotes((note) => note.filter((note) => note.id !== id));
+    toggleModal(e);
   };
 
   const pinNote = async (e: React.MouseEvent<any, MouseEvent>) => {
     const options = {
       method: "PATCH",
-      body: JSON.stringify({ "note_id": id })
-    }
-    const note = await fetch('/api/note', options)
+      body: JSON.stringify({ note_id: id }),
+    };
+    const note = await fetch("/api/note", options)
       .then((res) => res.json())
       .then((data: NoteFetch) => {
-        return data
-      })
-    setPinned(note.isPinned)
-  }
+        return data;
+      });
+    setPinned(note.isPinned);
+  };
 
   return (
     <>
@@ -78,19 +82,17 @@ export default function Note({
         <span>{description}</span>
       </div>
 
-      <div className={`modal ${modalOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <h2 className="center">Czy napewno chcesz usunąć ten element</h2>
-          <div className="rowContainer">
-            <button className="border red" onClick={toggleModal}>
-              Anuluj
-            </button>
-            <button className="danger" onClick={deleteNode}>
-              Usuń
-            </button>
-          </div>
+      <Modal isOpen={modalOpen}>
+        <h2 className="center">Czy napewno chcesz usunąć ten element</h2>
+        <div className="rowContainer">
+          <button className="border red" onClick={toggleModal}>
+            Anuluj
+          </button>
+          <button className="danger" onClick={deleteNode}>
+            Usuń
+          </button>
         </div>
-      </div>
+      </Modal>
     </>
   );
 }

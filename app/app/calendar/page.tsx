@@ -8,6 +8,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
+import Modal from "@/app/components/modal";
 
 export default function CalendarPage() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -27,21 +28,21 @@ export default function CalendarPage() {
   const [eventChoosed, setEventChoosed] = useState<any>({});
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  const house_id = localStorage.getItem("user_house_id") || "-1"
-  let prev_house_id = useRef("-1")
+  const house_id = localStorage.getItem("user_house_id") || "-1";
+  let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== house_id) {
       fetch(`/api/note?house_id=${house_id}`)
         .then((res) => res.json())
         .then((data: EventList[]) => {
-          prev_house_id.current = house_id
-          const event_data = data.map(event => ({
+          prev_house_id.current = house_id;
+          const event_data = data.map((event) => ({
             ...event,
           }));
-          setEventsList(event_data)
-        })
+          setEventsList(event_data);
+        });
     }
-  })
+  });
 
   const setDate = (info: any) => {
     setSelectedStartDate(info.startStr);
@@ -49,7 +50,9 @@ export default function CalendarPage() {
   };
 
   //tworzenie eventu
-  const createEvent = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const createEvent = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     setOpenAdd(!openAdd);
 
@@ -63,30 +66,32 @@ export default function CalendarPage() {
 
     const options = {
       method: "POST",
-      body: JSON.stringify(newEvent)
-    }
-    const event = await fetch('/api/calendar', options)
-      .then((res) => res.json())
+      body: JSON.stringify(newEvent),
+    };
+    const event = await fetch("/api/calendar", options).then((res) =>
+      res.json()
+    );
     if ("error" in event) {
-      console.log(event.error)
-      return
+      console.log(event.error);
+      return;
     }
-    
+
     //tu ustawiamy liste eventuw na liste z nawym elementem
     setEventsList([...eventsList, createdEvent]);
     setEventTitle("");
     //console.log(eventsList);
   };
-  
 
   //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
   const deleteEvent = async () => {
     const options = {
       method: "DELETE",
-      body: JSON.stringify({ eventId: eventChoosed.el.fcSeg.eventRange.def.publicId }),
+      body: JSON.stringify({
+        eventId: eventChoosed.el.fcSeg.eventRange.def.publicId,
+      }),
     };
-  
-    await fetch('/api/calendar', options);
+
+    await fetch("/api/calendar", options);
 
     const filteredEvents = eventsList.filter(
       (item) => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId
@@ -125,92 +130,82 @@ export default function CalendarPage() {
           eventTextColor={"black"}
         />
       </div>
-      {openAdd && (
-        <div className="modal shown">
-          <div className="modalCard">
-            <h2 className="title">Dodaj</h2>
-            <label className="thin">Tytuł</label>
-            <input
-              type="text"
-              value={eventTitle}
-              onChange={(e) => setEventTitle(e.target.value)}
-            />
-            <label className="thin">Data Początkowa</label>
-            <input
-              type="date"
-              value={selectedStartDate || ""}
-              onChange={(e) => setSelectedStartDate(e.target.value)}
-            />
-            <label className="thin">Data Końcowa</label>
-            <input
-              type="date"
-              value={selectedEndDate || ""}
-              onChange={(e) => setSelectedEndDate(e.target.value)}
-            />
-            <div className="modalOption">
-              <p>Kolor</p>
-              <div
-                className={`colorContainer ${selectOpen ? "open" : ""}`}
-                onClick={toggleDropdown}
-                style={{ background: colorValue }}
-              >
-                <div className="colorSelectAbsolute">
-                  <ul className="select-items">
-                    {colors.map((option, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleOptionChange(option)}
-                      >
-                        <span
-                          className="colorSelectValue"
-                          style={{ background: option }}
-                        ></span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <button onClick={(e) => createEvent(e)}>Dodaj</button>
-            <FontAwesomeIcon
-              icon={faClose}
-              className="close"
-              onClick={() => {
-                setOpenAdd(!openAdd);
-                setEventTitle("");
-              }}
-            />
-          </div>
-        </div>
-      )}
-      {openEdit && (
-        <div className="modal shown">
-          <div className="modalCard">
-            <h2 className="center">Czy napewno chcesz usunąć wydarzenie</h2>
-            <div className="rowContainer">
-              <button
-                className="border red"
-                onClick={() => {
-                  setOpenEdit(!openEdit);
-                  setEventTitle("");
-                }}
-              >
-                Anuluj
-              </button>
-              <button
-                className="danger"
-                onClick={() => {
-                  deleteEvent();
-                  setOpenEdit(!openEdit);
-                  setEventTitle("");
-                }}
-              >
-                Usuń
-              </button>
+      <Modal isOpen={openAdd}>
+        <h2 className="title">Dodaj</h2>
+        <label className="thin">Tytuł</label>
+        <input
+          type="text"
+          value={eventTitle}
+          onChange={(e) => setEventTitle(e.target.value)}
+        />
+        <label className="thin">Data Początkowa</label>
+        <input
+          type="date"
+          value={selectedStartDate || ""}
+          onChange={(e) => setSelectedStartDate(e.target.value)}
+        />
+        <label className="thin">Data Końcowa</label>
+        <input
+          type="date"
+          value={selectedEndDate || ""}
+          onChange={(e) => setSelectedEndDate(e.target.value)}
+        />
+        <div className="modalOption">
+          <p>Kolor</p>
+          <div
+            className={`colorContainer ${selectOpen ? "open" : ""}`}
+            onClick={toggleDropdown}
+            style={{ background: colorValue }}
+          >
+            <div className="colorSelectAbsolute">
+              <ul className="select-items">
+                {colors.map((option, index) => (
+                  <li key={index} onClick={() => handleOptionChange(option)}>
+                    <span
+                      className="colorSelectValue"
+                      style={{ background: option }}
+                    ></span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
-      )}
+        <button onClick={(e) => createEvent(e)}>Dodaj</button>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={() => {
+            setOpenAdd(!openAdd);
+            setEventTitle("");
+          }}
+        />
+      </Modal>
+
+      <Modal isOpen={openEdit}>
+        <h2 className="center">Czy napewno chcesz usunąć wydarzenie</h2>
+        <div className="rowContainer">
+          <button
+            className="border red"
+            onClick={() => {
+              setOpenEdit(!openEdit);
+              setEventTitle("");
+            }}
+          >
+            Anuluj
+          </button>
+          <button
+            className="danger"
+            onClick={() => {
+              deleteEvent();
+              setOpenEdit(!openEdit);
+              setEventTitle("");
+            }}
+          >
+            Usuń
+          </button>
+        </div>
+      </Modal>
     </AppLayout>
   );
 }
@@ -245,7 +240,6 @@ export default function CalendarPage() {
 
     setEventsList(updatedEvents)
   }*/
-
 
 /*
 {openEdit &&(

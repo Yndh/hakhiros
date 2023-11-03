@@ -2,6 +2,7 @@
 
 import { AppLayout } from "@/app/components/appLayout";
 import DropDown from "@/app/components/dropdown";
+import Modal from "@/app/components/modal";
 import recepies from "@/public/recepies.json";
 import {
   faClock,
@@ -221,33 +222,31 @@ export default function Recepies() {
         ))}
       </div>
 
-      <div className={`modal ${modalOpen ? "shown" : ""}`}>
-        <div className="modalCard">
-          <h2 className="title">{selectedRecepie?.tytul}</h2>
-          <FontAwesomeIcon
-            icon={faClose}
-            className="close"
-            onClick={toggleModal}
-          />
-          <p className="desc">{selectedRecepie?.dlugi_opis}</p>
+      <Modal isOpen={modalOpen}>
+        <h2 className="title">{selectedRecepie?.tytul}</h2>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="close"
+          onClick={toggleModal}
+        />
+        <p className="desc">{selectedRecepie?.dlugi_opis}</p>
 
-          <p className="thin">Składniki</p>
-          <ul>
-            {selectedRecepie?.skladniki.map((item, index) => (
-              <li key={index}>{item.nazwa}</li>
-            ))}
-          </ul>
+        <p className="thin">Składniki</p>
+        <ul>
+          {selectedRecepie?.skladniki.map((item, index) => (
+            <li key={index}>{item.nazwa}</li>
+          ))}
+        </ul>
 
-          <p className="thin">Kroki</p>
-          <ol>
-            {selectedRecepie?.kroki_przygotowania.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ol>
+        <p className="thin">Kroki</p>
+        <ol>
+          {selectedRecepie?.kroki_przygotowania.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ol>
 
-          <button onClick={toggleModal}>Zamknij</button>
-        </div>
-      </div>
+        <button onClick={toggleModal}>Zamknij</button>
+      </Modal>
     </AppLayout>
   );
 }
