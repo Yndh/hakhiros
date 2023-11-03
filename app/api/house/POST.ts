@@ -45,10 +45,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
             code: await generateUniqueCode(HOUSE_CODE_LENGHT),
         }
     })
-
-    joinHouse(session.user.id, house.id)
-
-    return new NextResponse(JSON.stringify({ title: body.house_name }), {
+    return new NextResponse(JSON.stringify(await joinHouse(session.user.id, house.id)), {
         status: 200
     })
 }

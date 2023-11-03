@@ -108,6 +108,35 @@ export const NavBar = (props: NavBarProps) => {
     }
   };
 
+  const createHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (houseName.trim() === "") {
+      return;
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify({ "house_name": houseName }),
+    };
+    const house = await fetch("/api/house", options)
+      .then((res) => res.json())
+      .then((data) => {
+        return data
+      });
+    if ("error" in house) {
+      console.log(house.error);
+      return;
+    }
+    setHouses((houses) => ({ ...houses, ...house }))
+    const houseId = Object.keys(house)[0]
+    setUserHouseId(houseId)
+    localStorage.setItem("user_house_id", houseId)
+    toggleModal(e)
+    if (props.setTriggerRerender) {
+      props.setTriggerRerender(
+        (triggerRerender: boolean) => !triggerRerender
+      );
+    }
+  }
+
   const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserHouseName(e.target.value);
   };
@@ -356,7 +385,7 @@ export const NavBar = (props: NavBarProps) => {
               >
                 Dołącz do domu
               </button>
-              <button>Utwórz</button>
+              <button onClick={createHouse}>Utwórz</button>
             </div>
           </>
         )}

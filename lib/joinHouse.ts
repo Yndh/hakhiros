@@ -21,5 +21,5 @@ export async function joinHouse(user_id: number, house_id: number) {
             profile_id
         }
     })
-    return house.name
+    return { [user_house.id]: house.name }
 }
