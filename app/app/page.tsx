@@ -2,8 +2,22 @@ import "../globals.css";
 import { AppLayout } from "../components/appLayout";
 import Note from "../components/note";
 import Duty from "../components/duty";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy, faCrown, faShare } from "@fortawesome/free-solid-svg-icons";
+import QRCode from "react-qr-code";
 
 export default function Dashboard() {
+  const duties = [
+    {
+      title: "spotkanie",
+      isCompleted: false,
+    },
+    {
+      title: "zakupy",
+      isCompleted: true,
+    },
+  ];
+
   return (
     <AppLayout active="dashboard">
       <div className="header">
@@ -13,36 +27,81 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="cardRow dashboard">
-        <div className="cardRow two">
-          <Duty
-            id={1}
-            user={"Użytkownik"}
-            duties={[
-              {
-                title: "spotkanie",
-                isCompleted: false,
-              },
-              {
-                title: "zakupy",
-                isCompleted: true,
-              },
-            ]}
-            weekDay={5}
-          />
+      <div className="dashboard">
+        <div className="collumn two">
+          <div className="card full">
+            <h2 className="title">Witaj</h2>
+            <p className="desc">
+              Witaj w Dashboardzie swojego domu. Tutaj wszystkie rzeczy masz pod
+              ręką - przypięte notatki, obowiazki na dziś i najbliższe
+              wydarzenia
+            </p>
+          </div>
 
-          <Note
-            isPinned={true}
-            title={"Tytuł"}
-            description={"To jest przykladowa notatka"}
-          />
+          <div className="card">
+            <h2 className="title">Obowiazki na dziś</h2>
+            <div className="dutyRow">
+              <ol className="duties">
+                {duties.map((duty, index) => (
+                  <li key={index}>
+                    <label htmlFor={`checkMe${index}`}>
+                      <input
+                        type="checkbox"
+                        id={`checkMe${index}`}
+                        // checked={duty.isCompleted}
+                        // onChange={() => handleCheckboxChange(index)}
+                      />
+                      <span>{duty.title}</span>
+                    </label>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          <div className="card">
+            <h2 className="title">Najbliższe Wydarzenia</h2>
+          </div>
         </div>
-        <div className="card online">
-          <h2 className="title">Online</h2>
-          <div className="avatarRow">
-            <img src="Avatar.svg" alt="Avatar" className="profilePhoto" />
-            <img src="Avatar.svg" alt="Avatar" className="profilePhoto" />
-            <img src="Avatar.svg" alt="Avatar" className="profilePhoto" />
+
+        <div className="collumn one">
+          <div className="card">
+            <h2 className="title">Zaproszenie</h2>
+            <div className="qrCode">
+              <QRCode value="dupa12" width={256} style={{ height: "auto" }} />
+              <span className="or">lub</span>
+              <button className="box">
+                <FontAwesomeIcon icon={faShare} />
+              </button>
+            </div>
+            <button>
+              <FontAwesomeIcon icon={faCopy} />
+              Kopiuj Zaproszenie
+            </button>
+          </div>
+
+          <div className="card">
+            <h2 className="title">Użytkownicy</h2>
+            <ul className="userList">
+              <li>
+                <span className="username">
+                  Bogdan <FontAwesomeIcon icon={faCrown} />
+                </span>
+                <span className="handle">Owner</span>
+              </li>
+              <li>
+                <span className="username">Maria</span>
+                <span className="handle">uzytkownik1</span>
+              </li>
+              <li>
+                <span className="username">Maciuś</span>
+                <span className="handle">Mordziaty2137</span>
+              </li>
+              <li>
+                <span className="username">Tadek</span>
+                <span className="handle">TeoRzechy</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
