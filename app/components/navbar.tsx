@@ -36,6 +36,7 @@ export const NavBar = (props: NavBarProps) => {
       ? window.localStorage.getItem("user_house_id") || "0"
       : "0"
   );
+  const [userHouseName, setUserHouseName] = useState<string>("");
 
   useEffect(() => {
     fetch("/api/house")
@@ -104,6 +105,10 @@ export const NavBar = (props: NavBarProps) => {
     if (props.setTriggerRerender) {
       props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
     }
+  };
+
+  const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserHouseName(e.target.value);
   };
 
   return (
@@ -245,6 +250,7 @@ export const NavBar = (props: NavBarProps) => {
               <th>Data dolączenia</th>
               <th>Akcje</th>
             </tr>
+
             <tr>
               <td>@user2137</td>
               <td>31.10.2023</td>
@@ -252,6 +258,7 @@ export const NavBar = (props: NavBarProps) => {
                 <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
               </td>
             </tr>
+
             <tr>
               <td>@user2</td>
               <td>31.10.2023</td>
@@ -292,6 +299,19 @@ export const NavBar = (props: NavBarProps) => {
             className="close"
             onClick={toggleUser}
           />
+
+          <p className="thin">Nazwa użytkownika</p>
+          <input type="text" value={"@uzytkownik"} disabled />
+
+          <p className="thin">Pseudonim</p>
+          <input
+            type="text"
+            placeholder="Wpisz pseudonim..."
+            value={userHouseName}
+            onChange={userNameHandler}
+          />
+
+          <button>Zapisz</button>
         </div>
       </div>
 
