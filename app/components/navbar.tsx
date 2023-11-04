@@ -314,27 +314,30 @@ export const NavBar = (props: NavBarProps) => {
           {/* Dla ownera */}
           <p className="thin">Użytkownicy</p>
           <table className="users">
-            <tr>
-              <th>Użytkownik</th>
-              <th>Data dolączenia</th>
-              <th>Akcje</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>Użytkownik</th>
+                <th>Data dolączenia</th>
+                <th>Akcje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@user2137</td>
+                <td>31.10.2023</td>
+                <td>
+                  <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
+                </td>
+              </tr>
 
-            <tr>
-              <td>@user2137</td>
-              <td>31.10.2023</td>
-              <td>
-                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-              </td>
-            </tr>
-
-            <tr>
-              <td>@user2</td>
-              <td>31.10.2023</td>
-              <td>
-                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-              </td>
-            </tr>
+              <tr>
+                <td>@user2</td>
+                <td>31.10.2023</td>
+                <td>
+                  <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
+                </td>
+              </tr>
+            </tbody>
           </table>
 
           <button className="danger">
