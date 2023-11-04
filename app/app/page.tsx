@@ -5,6 +5,7 @@ import Duty from "../components/duty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faCrown, faShare } from "@fortawesome/free-solid-svg-icons";
 import QRCode from "react-qr-code";
+import Card from "../components/card";
 
 export default function Dashboard() {
   const duties = [
@@ -29,16 +30,16 @@ export default function Dashboard() {
 
       <div className="dashboard">
         <div className="collumn two">
-          <div className="card full">
+          <Card classes="full">
             <h2 className="title">Witaj</h2>
             <p className="desc">
               Witaj w Dashboardzie swojego domu. Tutaj wszystkie rzeczy masz pod
               ręką - przypięte notatki, obowiazki na dziś i najbliższe
               wydarzenia
             </p>
-          </div>
+          </Card>
 
-          <div className="card">
+          <Card>
             <h2 className="title">Obowiazki na dziś</h2>
             <div className="dutyRow">
               <ol className="duties">
@@ -57,18 +58,18 @@ export default function Dashboard() {
                 ))}
               </ol>
             </div>
-          </div>
+          </Card>
 
-          <div className="card">
+          <Card>
             <h2 className="title">Najbliższe Wydarzenia</h2>
-          </div>
+          </Card>
         </div>
 
         <div className="collumn one">
-          <div className="card">
+          <Card>
             <h2 className="title">Zaproszenie</h2>
             <div className="qrCode">
-              <QRCode value="dupa12" width={256} style={{ height: "auto" }} />
+              <QRCode value={"dupa12"} width={256} style={{ height: "auto" }} />
               <span className="or">lub</span>
               <button className="box">
                 <FontAwesomeIcon icon={faShare} />
@@ -78,9 +79,9 @@ export default function Dashboard() {
               <FontAwesomeIcon icon={faCopy} />
               Kopiuj Zaproszenie
             </button>
-          </div>
+          </Card>
 
-          <div className="card">
+          <Card>
             <h2 className="title">Użytkownicy</h2>
             <ul className="userList">
               <li>
@@ -102,7 +103,7 @@ export default function Dashboard() {
                 <span className="handle">TeoRzechy</span>
               </li>
             </ul>
-          </div>
+          </Card>
         </div>
       </div>
     </AppLayout>

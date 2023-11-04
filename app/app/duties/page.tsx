@@ -1,6 +1,7 @@
 "use client";
 
 import { AppLayout } from "@/app/components/appLayout";
+import Card from "@/app/components/card";
 import Duty from "@/app/components/duty";
 import Modal from "@/app/components/modal";
 import {
@@ -94,7 +95,7 @@ export default function Duties() {
       </div>
 
       <div className="dutyRow">
-        <div className="card center">
+        <Card classes="center">
           <button className="box" onClick={handlePrevDay}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
@@ -102,7 +103,7 @@ export default function Duties() {
           <button className="box" onClick={handleNextDay}>
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
-        </div>
+        </Card>
       </div>
 
       <div className="dutyRow">
@@ -116,9 +117,9 @@ export default function Duties() {
             />
           ))
         ) : (
-          <div className="card center">
+          <Card classes="center">
             <h3 className="thin">Nie ma żadnych obowiazków na ten dzien</h3>
-          </div>
+          </Card>
         )}
       </div>
 

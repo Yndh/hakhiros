@@ -13,6 +13,7 @@ import Note from "@/app/components/note";
 import { useEffect, useRef, useState } from "react";
 import DropDown from "@/app/components/dropdown";
 import Modal from "@/app/components/modal";
+import Card from "@/app/components/card";
 
 export default function Notes() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -208,7 +209,7 @@ export default function Notes() {
           onClick={toggleModal}
         />
         <h2 className="title">Utwórz notatke</h2>
-        <div className="card newNote" style={{ background: colorValue }}>
+        <Card classes="newNote" color={colorValue}>
           <h3 className="title">
             <input
               type="text"
@@ -223,7 +224,7 @@ export default function Notes() {
             value={content}
             onChange={setNoteContent}
           />
-        </div>
+        </Card>
         <div className="rowContainer">
           <div className="modalOption">
             <p>Kolor</p>

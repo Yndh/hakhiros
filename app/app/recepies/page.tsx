@@ -1,6 +1,7 @@
 "use client";
 
 import { AppLayout } from "@/app/components/appLayout";
+import CardLoader from "@/app/components/cardLoader";
 import DropDown from "@/app/components/dropdown";
 import Modal from "@/app/components/modal";
 import recepies from "@/public/recepies.json";
@@ -12,7 +13,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 interface Recepie {
   tytul: string;
@@ -190,35 +191,36 @@ export default function Recepies() {
 
       <div className="cardRow recepies">
         {filteredRecepies.map((recepie: Recepie, index) => (
-          <div
-            className="card recepieEl"
-            key={index}
-            onClick={(e) => {
-              toggleModal(e);
-              changeSelectedRecepie(recepie);
-            }}
-          >
-            <h2 className="title">{recepie.tytul}</h2>
-            <p className="desc">{recepie.krotki_opis}</p>
-            <div className="rowContainer info">
-              <div
-                className={`info ${
-                  recepie.poziom_trudnosci == "Łatwy"
-                    ? "easy"
-                    : recepie.poziom_trudnosci === "Średni"
-                    ? "medium"
-                    : "hard"
-                }`}
-              >
-                <FontAwesomeIcon icon={faExclamation} />
-                {recepie.poziom_trudnosci}
-              </div>
-              <div className="info time">
-                <FontAwesomeIcon icon={faClock} />
-                {`${recepie.czas_przygotowania.liczba} ${recepie.czas_przygotowania.jednostka}`}
+          <Suspense fallback={<CardLoader />}>
+            <div
+              className="card recepieEl"
+              onClick={(e) => {
+                toggleModal(e);
+                changeSelectedRecepie(recepie);
+              }}
+            >
+              <h2 className="title">{recepie.tytul}</h2>
+              <p className="desc">{recepie.krotki_opis}</p>
+              <div className="rowContainer info">
+                <div
+                  className={`info ${
+                    recepie.poziom_trudnosci == "Łatwy"
+                      ? "easy"
+                      : recepie.poziom_trudnosci === "Średni"
+                      ? "medium"
+                      : "hard"
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faExclamation} />
+                  {recepie.poziom_trudnosci}
+                </div>
+                <div className="info time">
+                  <FontAwesomeIcon icon={faClock} />
+                  {`${recepie.czas_przygotowania.liczba} ${recepie.czas_przygotowania.jednostka}`}
+                </div>
               </div>
             </div>
-          </div>
+          </Suspense>
         ))}
       </div>
 

@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, Suspense } from "react";
 import { NavBar } from "./navbar";
+import AppLoader from "./appLoader";
 
 interface AppLayoutProps {
   active: string;
@@ -14,8 +15,10 @@ export const AppLayout = ({
 }: AppLayoutProps) => {
   return (
     <main className="appContainer">
-      <NavBar active={active} setTriggerRerender={setTriggerRerender} />
-      <div className="mainContainer">{children}</div>
+      <Suspense fallback={<AppLoader />}>
+        <NavBar active={active} setTriggerRerender={setTriggerRerender} />
+        <div className="mainContainer">{children}</div>
+      </Suspense>
     </main>
   );
 };
