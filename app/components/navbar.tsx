@@ -15,6 +15,7 @@ import {
   faAdd,
   faChevronUp,
   faUtensils,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Modal from "./modal";
@@ -38,6 +39,7 @@ export const NavBar = (props: NavBarProps) => {
       : "0"
   );
   const [userHouseName, setUserHouseName] = useState<string>("");
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/house")
@@ -114,227 +116,235 @@ export const NavBar = (props: NavBarProps) => {
     }
     const options = {
       method: "POST",
-      body: JSON.stringify({ "house_name": houseName }),
+      body: JSON.stringify({ house_name: houseName }),
     };
     const house = await fetch("/api/house", options)
       .then((res) => res.json())
       .then((data) => {
-        return data
+        return data;
       });
     if ("error" in house) {
       console.log(house.error);
       return;
     }
-    setHouses((houses) => ({ ...houses, ...house }))
-    const houseId = Object.keys(house)[0]
-    setUserHouseId(houseId)
-    localStorage.setItem("user_house_id", houseId)
-    toggleModal(e)
-    setHouseName("")
+    setHouses((houses) => ({ ...houses, ...house }));
+    const houseId = Object.keys(house)[0];
+    setUserHouseId(houseId);
+    localStorage.setItem("user_house_id", houseId);
+    toggleModal(e);
+    setHouseName("");
     if (props.setTriggerRerender) {
-      props.setTriggerRerender(
-        (triggerRerender: boolean) => !triggerRerender
-      );
+      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
     }
-  }
+  };
 
   const joinHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (code.trim() === "") {
       return;
     }
     const options = {
-      method: "POST"
-    }
+      method: "POST",
+    };
     const house = await fetch(`/api/house/${code}`, options)
       .then((res) => res.json())
       .then((data) => {
-        return data
+        return data;
       });
     if ("error" in house) {
       console.log(house.error);
       return;
     }
-    setHouses((houses) => ({ ...houses, ...house }))
-    const houseId = Object.keys(house)[0]
-    setUserHouseId(houseId)
-    localStorage.setItem("user_house_id", houseId)
-    toggleModal(e)
-    setCode("")
+    setHouses((houses) => ({ ...houses, ...house }));
+    const houseId = Object.keys(house)[0];
+    setUserHouseId(houseId);
+    localStorage.setItem("user_house_id", houseId);
+    toggleModal(e);
+    setCode("");
     if (props.setTriggerRerender) {
-      props.setTriggerRerender(
-        (triggerRerender: boolean) => !triggerRerender
-      );
+      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
     }
-  }
+  };
 
   const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserHouseName(e.target.value);
   };
 
+  const toggleNavbar = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setNavbarOpen(!navbarOpen);
+  };
+
   return (
-    <div className="navbar">
-      <div className="top">
-        <div className="homeSelect">
-          <div className="homeSelectHeader" onClick={dropdownToggle}>
-            <h2>
-              {Object.keys(houses).length > 0
-                ? houses[userHouseId]
-                : "ładowanie"}
-            </h2>
-            <FontAwesomeIcon
-              icon={dropdownOpen ? faChevronUp : faChevronDown}
-            />
-          </div>
-          <div className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}>
-            <ol>
-              {Object.keys(houses).map((key) => (
-                <li
-                  key={key}
-                  onClick={() => {
-                    chooseHouse(key);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faHome} />
-                  {houses[key]}
+    <>
+      <div className="openButton">
+        <button onClick={toggleNavbar}>
+          <FontAwesomeIcon icon={navbarOpen ? faClose : faBars} />
+        </button>
+      </div>
+      <div className={`navbar ${navbarOpen ? "mobileOpen" : ""}`}>
+        <div className="top">
+          <div className="homeSelect">
+            <div className="homeSelectHeader" onClick={dropdownToggle}>
+              <h2>
+                {Object.keys(houses).length > 0
+                  ? houses[userHouseId]
+                  : "ładowanie"}
+              </h2>
+              <FontAwesomeIcon
+                icon={dropdownOpen ? faChevronUp : faChevronDown}
+              />
+            </div>
+            <div
+              className={`homeSelectOptions ${dropdownOpen ? "active" : ""}`}
+            >
+              <ol>
+                {Object.keys(houses).map((key) => (
+                  <li
+                    key={key}
+                    onClick={() => {
+                      chooseHouse(key);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faHome} />
+                    {houses[key]}
+                  </li>
+                ))}
+                <li className="addHome" onClick={toggleModal}>
+                  <FontAwesomeIcon icon={faAdd} />
+                  Dołącz do domu
                 </li>
-              ))}
-              <li className="addHome" onClick={toggleModal}>
-                <FontAwesomeIcon icon={faAdd} />
-                Dołącz do domu
-              </li>
-            </ol>
+              </ol>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="nav">
-        <ul>
-          <a
-            href="/app"
-            className={props.active == "dashboard" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faHome} />
-              Dashboard
-            </li>
-          </a>
-          <a
-            href="/app/calendar"
-            className={props.active == "calendar" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faCalendarDays} />
-              Kalendarz
-            </li>
-          </a>
-          <a
-            href="/app/notes"
-            className={props.active == "notes" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faPenToSquare} />
-              Notatki
-            </li>
-          </a>
-          <a
-            href="/app/duties"
-            className={props.active == "duties" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faBell} />
-              Obowiązki
-            </li>
-          </a>
-          <a
-            href="/app/plan"
-            className={props.active == "plan" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faCalendarPlus} />
-              Plan Dnia
-            </li>
-          </a>
-          <a
-            href="/app/recepies"
-            className={props.active == "recepies" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faUtensils} />
-              Przepisy
-            </li>
-          </a>
-        </ul>
+        <div className="nav">
+          <ul>
+            <a
+              href="/app"
+              className={props.active == "dashboard" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faHome} />
+                Dashboard
+              </li>
+            </a>
+            <a
+              href="/app/calendar"
+              className={props.active == "calendar" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faCalendarDays} />
+                Kalendarz
+              </li>
+            </a>
+            <a
+              href="/app/notes"
+              className={props.active == "notes" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faPenToSquare} />
+                Notatki
+              </li>
+            </a>
+            <a
+              href="/app/duties"
+              className={props.active == "duties" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faBell} />
+                Obowiązki
+              </li>
+            </a>
+            <a
+              href="/app/plan"
+              className={props.active == "plan" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faCalendarPlus} />
+                Plan Dnia
+              </li>
+            </a>
+            <a
+              href="/app/recepies"
+              className={props.active == "recepies" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faUtensils} />
+                Przepisy
+              </li>
+            </a>
+          </ul>
 
-        <ul>
-          <a
-            className={props.active == "settings" ? "active" : ""}
+          <ul>
+            <a
+              className={props.active == "settings" ? "active" : ""}
+              onClick={toggleSettings}
+            >
+              <li>
+                <FontAwesomeIcon icon={faCog} />
+                Ustawienia
+              </li>
+            </a>
+            <a
+              onClick={toggleUser}
+              className={props.active == "user" ? "active" : ""}
+            >
+              <li>
+                <FontAwesomeIcon icon={faUser} />
+                Użytkownik
+              </li>
+            </a>
+            <a href="">
+              <li>
+                <FontAwesomeIcon icon={faRightFromBracket} />
+                Wyloguj się
+              </li>
+            </a>
+          </ul>
+        </div>
+
+        <Modal isOpen={settingsOpen}>
+          <h2 className="title">Ustawienia</h2>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
             onClick={toggleSettings}
-          >
-            <li>
-              <FontAwesomeIcon icon={faCog} />
-              Ustawienia
-            </li>
-          </a>
-          <a
-            onClick={toggleUser}
-            className={props.active == "user" ? "active" : ""}
-          >
-            <li>
-              <FontAwesomeIcon icon={faUser} />
-              Użytkownik
-            </li>
-          </a>
-          <a href="">
-            <li>
-              <FontAwesomeIcon icon={faRightFromBracket} />
-              Wyloguj się
-            </li>
-          </a>
-        </ul>
-      </div>
+          />
 
-      <Modal isOpen={settingsOpen}>
-        <h2 className="title">Ustawienia</h2>
-        <FontAwesomeIcon
-          icon={faClose}
-          className="close"
-          onClick={toggleSettings}
-        />
+          {/* Dla ownera */}
+          <p className="thin">Użytkownicy</p>
+          <table className="users">
+            <tr>
+              <th>Użytkownik</th>
+              <th>Data dolączenia</th>
+              <th>Akcje</th>
+            </tr>
 
-        {/* Dla ownera */}
-        <p className="thin">Użytkownicy</p>
-        <table className="users">
-          <tr>
-            <th>Użytkownik</th>
-            <th>Data dolączenia</th>
-            <th>Akcje</th>
-          </tr>
+            <tr>
+              <td>@user2137</td>
+              <td>31.10.2023</td>
+              <td>
+                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
+              </td>
+            </tr>
 
-          <tr>
-            <td>@user2137</td>
-            <td>31.10.2023</td>
-            <td>
-              <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-            </td>
-          </tr>
+            <tr>
+              <td>@user2</td>
+              <td>31.10.2023</td>
+              <td>
+                <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
+              </td>
+            </tr>
+          </table>
 
-          <tr>
-            <td>@user2</td>
-            <td>31.10.2023</td>
-            <td>
-              <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-            </td>
-          </tr>
-        </table>
+          <button className="danger">
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            Opuść dom
+          </button>
+        </Modal>
 
-        <button className="danger">
-          <FontAwesomeIcon icon={faRightFromBracket} />
-          Opuść dom
-        </button>
-      </Modal>
-
-      {/* Do opuszczenia potwierdzenie to napiszcie */}
-      {/* <Modal isOpen={"zmienna"}>
+        {/* Do opuszczenia potwierdzenie to napiszcie */}
+        {/* <Modal isOpen={"zmienna"}>
         <h2 className="center">Czy napewno chcesz opuścić ten dom</h2>
         <div className="rowContainer">
           <button className="border red" onClick={toggleModal}>
@@ -346,80 +356,81 @@ export const NavBar = (props: NavBarProps) => {
         </div>
       </Modal> */}
 
-      <Modal isOpen={userOpen}>
-        <h2 className="title">Użytkownik</h2>
-        <FontAwesomeIcon
-          icon={faClose}
-          className="close"
-          onClick={toggleUser}
-        />
+        <Modal isOpen={userOpen}>
+          <h2 className="title">Użytkownik</h2>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleUser}
+          />
 
-        <p className="thin">Nazwa użytkownika</p>
-        <input type="text" value={"@uzytkownik"} disabled />
+          <p className="thin">Nazwa użytkownika</p>
+          <input type="text" value={"@uzytkownik"} disabled />
 
-        <p className="thin">Pseudonim</p>
-        <input
-          type="text"
-          placeholder="Wpisz pseudonim..."
-          value={userHouseName}
-          onChange={userNameHandler}
-        />
+          <p className="thin">Pseudonim</p>
+          <input
+            type="text"
+            placeholder="Wpisz pseudonim..."
+            value={userHouseName}
+            onChange={userNameHandler}
+          />
 
-        <button>Zapisz</button>
-      </Modal>
+          <button>Zapisz</button>
+        </Modal>
 
-      <Modal isOpen={modalOpen}>
-        <FontAwesomeIcon
-          icon={faClose}
-          className="close"
-          onClick={toggleModal}
-        />
-        {modalType === "join" ? (
-          <>
-            <h2 className="title">Dołącz do Domu</h2>
+        <Modal isOpen={modalOpen}>
+          <FontAwesomeIcon
+            icon={faClose}
+            className="close"
+            onClick={toggleModal}
+          />
+          {modalType === "join" ? (
+            <>
+              <h2 className="title">Dołącz do Domu</h2>
 
-            <p className="thin">Zaproszenie do domu</p>
-            <input
-              type="text"
-              placeholder="8 znakowy kod"
-              onChange={codeChangeHandler}
-              value={code}
-            />
+              <p className="thin">Zaproszenie do domu</p>
+              <input
+                type="text"
+                placeholder="8 znakowy kod"
+                onChange={codeChangeHandler}
+                value={code}
+              />
 
-            <div className="rowContainer">
-              <button
-                className="border"
-                onClick={() => changeModalType("create")}
-              >
-                Utwórz dom
-              </button>
-              <button onClick={joinHouse}>Dołącz</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <h2 className="title">Utwórz Dom</h2>
+              <div className="rowContainer">
+                <button
+                  className="border"
+                  onClick={() => changeModalType("create")}
+                >
+                  Utwórz dom
+                </button>
+                <button onClick={joinHouse}>Dołącz</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="title">Utwórz Dom</h2>
 
-            <p className="thin">Nazwa domu</p>
-            <input
-              type="text"
-              placeholder="np. Epicki Dom"
-              onChange={houseNameChangeHandler}
-              value={houseName}
-            />
+              <p className="thin">Nazwa domu</p>
+              <input
+                type="text"
+                placeholder="np. Epicki Dom"
+                onChange={houseNameChangeHandler}
+                value={houseName}
+              />
 
-            <div className="rowContainer">
-              <button
-                className="border"
-                onClick={() => changeModalType("join")}
-              >
-                Dołącz do domu
-              </button>
-              <button onClick={createHouse}>Utwórz</button>
-            </div>
-          </>
-        )}
-      </Modal>
-    </div>
+              <div className="rowContainer">
+                <button
+                  className="border"
+                  onClick={() => changeModalType("join")}
+                >
+                  Dołącz do domu
+                </button>
+                <button onClick={createHouse}>Utwórz</button>
+              </div>
+            </>
+          )}
+        </Modal>
+      </div>
+    </>
   );
 };

@@ -4,6 +4,7 @@ import { faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from "react";
 import Modal from "./modal";
+import Card from "./card";
 
 interface NoteProps {
   id: number;
@@ -67,7 +68,7 @@ export default function Note({
 
   return (
     <>
-      <div className="card" style={color ? { background: color } : {}}>
+      <Card color={color}>
         <h2 className="title">{title}</h2>
         <FontAwesomeIcon
           icon={faThumbTack}
@@ -80,7 +81,7 @@ export default function Note({
           onClick={toggleModal}
         />
         <span>{description}</span>
-      </div>
+      </Card>
 
       <Modal isOpen={modalOpen}>
         <h2 className="center">Czy napewno chcesz usunąć ten element</h2>
