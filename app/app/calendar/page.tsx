@@ -36,6 +36,10 @@ export default function CalendarPage() {
         .then((res) => res.json())
         .then((data: EventList[]) => {
           prev_house_id.current = house_id;
+          if ("error" in data) {
+            console.log(data["error"])
+            return
+          }
           const event_data = data.map((event) => ({
             ...event,
           }));
