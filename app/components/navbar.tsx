@@ -130,6 +130,36 @@ export const NavBar = (props: NavBarProps) => {
     setUserHouseId(houseId)
     localStorage.setItem("user_house_id", houseId)
     toggleModal(e)
+    setHouseName("")
+    if (props.setTriggerRerender) {
+      props.setTriggerRerender(
+        (triggerRerender: boolean) => !triggerRerender
+      );
+    }
+  }
+
+  const joinHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (code.trim() === "") {
+      return;
+    }
+    const options = {
+      method: "POST"
+    }
+    const house = await fetch(`/api/house/${code}`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        return data
+      });
+    if ("error" in house) {
+      console.log(house.error);
+      return;
+    }
+    setHouses((houses) => ({ ...houses, ...house }))
+    const houseId = Object.keys(house)[0]
+    setUserHouseId(houseId)
+    localStorage.setItem("user_house_id", houseId)
+    toggleModal(e)
+    setCode("")
     if (props.setTriggerRerender) {
       props.setTriggerRerender(
         (triggerRerender: boolean) => !triggerRerender
@@ -363,7 +393,7 @@ export const NavBar = (props: NavBarProps) => {
               >
                 Utwórz dom
               </button>
-              <button>Dołącz</button>
+              <button onClick={joinHouse}>Dołącz</button>
             </div>
           </>
         ) : (

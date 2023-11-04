@@ -21,25 +21,29 @@ export async function POST(req: Request, res: NextApiResponse) {
     })
 
     if (!house) {
-        return new NextResponse(JSON.stringify({ error: 'wronge code' }), {
+        return new NextResponse(JSON.stringify({ error: 'zły kod' }), {
             status: 400
         })
     }
-    
-    const isUserLogin = await prisma.user_house.findMany({
-        where:{
-            house_id:house.id
+
+    const isUserLogin = await prisma.user_house.aggregate({
+        _count: {
+            profile_id: true
+        },
+        where: {
+            house_id: house.id,
+            profile: {
+                user_id: session.user.id
+            }
         }
     })
-    // if(isUserLogin.length>=2){
-    //     return new NextResponse(JSON.stringify({error:"nie mozesz byc 2 razy w tym samym domu"}),{
-    //         status: 400
-    //     })
-    // }
+    if (isUserLogin._count.profile_id == 1) {
+        return new NextResponse(JSON.stringify({ error: "nie mozesz byc 2 razy w tym samym domu" }), {
+            status: 400
+        })
+    }
 
-    joinHouse(session.user.id, house.id)
-
-    return new NextResponse(JSON.stringify({ code, name: house.name }), {
+    return new NextResponse(JSON.stringify(await joinHouse(session.user.id, house.id)), {
         status: 200
     })
 }
