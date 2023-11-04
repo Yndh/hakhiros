@@ -10,7 +10,7 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
@@ -110,6 +110,7 @@ export default function Duties() {
         {filteredDuties.length > 0 ? (
           filteredDuties.map((duty) => (
             <Duty
+              key={duty.id}
               id={duty.id}
               user={duty.user}
               duties={duty.duties}
@@ -134,7 +135,7 @@ export default function Duties() {
         <p className="thin">Wybierz użytkownika</p>
         <div className="choiceRow">
           {users.map((user, index) => (
-            <>
+            <Fragment key={index}>
               <input
                 type="radio"
                 name="selectedUser"
@@ -142,7 +143,7 @@ export default function Duties() {
                 onChange={() => setSelectedUser(user)}
               />
               <label htmlFor={`selectedUser${user}`}>@{user}</label>
-            </>
+            </Fragment>
           ))}
         </div>
 
