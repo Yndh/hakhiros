@@ -18,6 +18,7 @@
 .mainContainer {
     overflow-y: hidden;
     align-items: center;
+    justify-content: center;
 }
 
 .calendarBox {
@@ -67,4 +68,32 @@
 
 .fc-theme-standard th{
     border: none !important;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .calendarBox {
+        margin-top: 50px;
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+    }
+    .mainContainer {
+        overflow-y: hidden;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .fc .fc-scrollgrid-section-footer>*,
+    .fc .fc-scrollgrid-section-header>* {
+        font-size: 1em;
+    }
+    .modalCard{
+        width: unset;
+    }
+    .fc .fc-scrollgrid-liquid {
+        height: 290% !important;
+    }
+    
+
+    /* Add any other mobile-specific styles here */
 }
