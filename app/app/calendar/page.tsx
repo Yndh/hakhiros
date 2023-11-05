@@ -132,6 +132,8 @@ export default function CalendarPage() {
             setOpenEdit(!openEdit);
           }}
           eventTextColor={"black"}
+          longPressDelay={1}
+          selectLongPressDelay={1}
         />
       </div>
       <Modal isOpen={openAdd}>
