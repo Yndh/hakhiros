@@ -40,7 +40,7 @@ export default function Dashboard() {
           </Card>
 
           <Card>
-            <h2 className="title">Obowiazki na dziś</h2>
+            <h2 className="title">Obowiązki na dziś</h2>
             <div className="dutyRow">
               <ol className="duties">
                 {duties.map((duty, index) => (
@@ -62,6 +62,10 @@ export default function Dashboard() {
 
           <Card>
             <h2 className="title">Najbliższe Wydarzenia</h2>
+          </Card>
+
+          <Card>
+            <h2 className="title">Przypięte notatki</h2>
           </Card>
         </div>
 

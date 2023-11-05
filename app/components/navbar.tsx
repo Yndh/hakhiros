@@ -256,15 +256,6 @@ export const NavBar = (props: NavBarProps) => {
               </li>
             </a>
             <a
-              href="/app/plan"
-              className={props.active == "plan" ? "active" : ""}
-            >
-              <li>
-                <FontAwesomeIcon icon={faCalendarPlus} />
-                Plan Dnia
-              </li>
-            </a>
-            <a
               href="/app/recepies"
               className={props.active == "recepies" ? "active" : ""}
             >

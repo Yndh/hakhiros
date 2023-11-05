@@ -301,6 +301,7 @@ button.danger {
 }
 
 .openButton {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -1311,6 +1312,10 @@ button.modalOption {
     right: 0;
   }
 
+  .openButton {
+    display: block;
+  }
+
 
   .appContainer {
     grid-template-columns: auto;
@@ -1318,7 +1323,7 @@ button.modalOption {
   }
 
   .categoryChoice ul li {
-    font-size: 14px;
+    font-size: 16px;
 
   }
 }
