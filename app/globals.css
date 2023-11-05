@@ -413,7 +413,9 @@ table.users .kick:hover {
   display: flex;
   flex-direction: column;
   padding: 20px 10px 0 10px;
+
   overflow-y: auto;
+  /* flex-wrap: wrap; */
 }
 
 .header {
@@ -422,6 +424,7 @@ table.users .kick:hover {
   justify-content: space-between;
   align-items: center;
   height: 100px;
+  width: 100%;
   padding-bottom: 10px;
 }
 
@@ -452,25 +455,33 @@ table.users .kick:hover {
 }
 
 .dashboard {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  height: 100%;
 }
 
 .collumn {
   display: flex;
   height: 100%;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .collumn.two {
   flex: 2;
+  order: 1;
 }
 
 .collumn.one {
   flex-direction: column;
-  flex: 1;
+  order: 2;
+}
+
+.newCardRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
 }
 
 .cardRow {
@@ -498,10 +509,12 @@ table.users .kick:hover {
   padding: 20px;
   margin-bottom: 20px;
   color: var(--color-primary);
+  flex: 1;
+  overflow: hidden;
 }
 
 .card.full {
-  width: 100%;
+  flex: 0 0 100%;
 }
 
 .card.center {
@@ -545,8 +558,21 @@ table.users .kick:hover {
   opacity: .7;
 }
 
-.card span {
+.card span.noteDesc {
   word-wrap: break-word;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.card .welcome {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card .info {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 10px;
 }
 
 .card .delete {
@@ -568,6 +594,29 @@ table.users .kick:hover {
 .card:hover .delete {
   opacity: .5;
   pointer-events: all;
+}
+
+.card .datesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 5px 0;
+  max-height: 300px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.card .dateText .date {
+  padding: 5px;
+  background: var(--gradient);
+  color: var(--color-secondary);
+  font-weight: 600;
+  border-radius: var(--radius-primary);
+  margin-right: 5px;
+}
+
+.card .dateText .dateDesc {
+  font-size: 16px;
 }
 
 .title {
@@ -683,10 +732,12 @@ ul.userList li svg {
 
 ol.duties {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   list-style-type: none;
-  padding: 10px 0 0 15px;
+  padding: 15px 0 0 15px;
+  max-height: 300px;
+  overflow-y: scroll;
+  width: 100%;
 }
 
 ol.duties li {

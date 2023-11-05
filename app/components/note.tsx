@@ -80,7 +80,7 @@ export default function Note({
           className="delete"
           onClick={toggleModal}
         />
-        <span>{description}</span>
+        <span className="noteDesc">{description}</span>
       </Card>
 
       <Modal isOpen={modalOpen}>
