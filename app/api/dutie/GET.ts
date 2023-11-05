@@ -45,6 +45,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
         select: {
             id: true,
             title: true,
+            profile_id: true,
             is_done: true,
         },
         where: {
