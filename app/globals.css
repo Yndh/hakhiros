@@ -40,6 +40,7 @@
 
 html {
   font-size: 14px;
+  overflow-x: hidden;
 }
 
 body {
@@ -418,6 +419,10 @@ table.users .kick:hover {
   /* flex-wrap: wrap; */
 }
 
+.mainContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -462,14 +467,13 @@ table.users .kick:hover {
 
 .collumn {
   display: flex;
-  height: 100%;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
 .collumn.two {
   flex: 2;
   order: 1;
+  align-items: flex-start;
 }
 
 .collumn.one {
@@ -482,6 +486,7 @@ table.users .kick:hover {
   flex-wrap: wrap;
   gap: 10px;
   padding: 10px;
+  align-content: flex-start;
 }
 
 .cardRow {
@@ -558,10 +563,15 @@ table.users .kick:hover {
   opacity: .7;
 }
 
-.card span.noteDesc {
+.noteDesc {
+  display: block;
   word-wrap: break-word;
   max-height: 300px;
   overflow-y: scroll;
+}
+
+.noteDesc::-webkit-scrollbar {
+  display: none;
 }
 
 .card .welcome {
@@ -734,7 +744,7 @@ ol.duties {
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  padding: 15px 0 0 15px;
+  padding: 15px 0 10px 15px;
   max-height: 300px;
   overflow-y: scroll;
   width: 100%;
@@ -809,14 +819,11 @@ ol.duties li.addDuty svg {
   width: 100%;
 }
 
-.dutyRow .card {
-  flex-grow: 1;
-  flex-basis: 0;
-}
 
 .choiceRow {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
@@ -871,7 +878,8 @@ ol.duties li.addDuty svg {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  width: 30%;
+  min-width: 30%;
+  max-width: 70%;
   /* height: 50%; */
   background: var(--background-secondary);
   box-shadow: var(--box-shadow);
@@ -963,7 +971,9 @@ button.modalOption {
 
 .rowContainer {
   display: flex;
+  flex-direction: row;
   width: 100%;
+  min-height: 50px;
   gap: 10px;
 }
 
@@ -1043,8 +1053,10 @@ button.modalOption {
 
 .card.recepieEl {
   display: flex;
-  justify-content: space-between !important;
+  justify-content: space-between;
   flex-direction: column;
+  min-height: 200px;
+  max-height: 300px;
 }
 
 .card.recepieEl p.desc {
@@ -1105,7 +1117,7 @@ button.modalOption {
   gap: 10px;
   padding: 20px;
   margin-bottom: 15px;
-  height: 50%;
+  min-height: 50%;
   width: 25%;
   border-radius: var(--radius-secondary);
 }
@@ -1378,7 +1390,65 @@ button.modalOption {
   }
 
   .categoryChoice ul li {
-    font-size: 16px;
+    text-align: center;
+    font-size: 14px;
 
+  }
+
+  .formContainer {
+    width: 80%;
+  }
+
+  .card .welcomeInfo {
+    display: none;
+  }
+
+  .newCardRow {
+    flex-direction: column;
+  }
+
+  .newCardRow .card {
+    width: 100%;
+  }
+
+  .collumn.one .card {
+    width: 100%;
+  }
+
+  .cardRow {
+    grid-template-columns: auto;
+  }
+
+  .card .delete {
+    opacity: .3;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardRow.recepies {
+    grid-template-columns: auto;
+    height: auto;
+  }
+
+  .card.recepieEl {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  .dutyRow {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .dutyRow .card {
+    width: 100%;
+  }
+
+  ol.duties li svg {
+    opacity: .5;
   }
 }

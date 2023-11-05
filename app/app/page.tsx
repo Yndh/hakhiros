@@ -1,3 +1,5 @@
+"use client";
+
 import "../globals.css";
 import { AppLayout } from "../components/appLayout";
 import Note from "../components/note";
@@ -43,6 +45,20 @@ export default function Dashboard() {
     },
   ];
 
+  const shareHandler = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    try {
+      await navigator.share({
+        title: "Zaprosznie do domu",
+        text: "Dołącz do mojego domu",
+        url: "https://www.google.com",
+      });
+    } catch (err) {
+      alert(`Nie można udostępnić: ${err}`);
+    }
+  };
+
   return (
     <AppLayout active="dashboard">
       <div className="header">
@@ -63,19 +79,19 @@ export default function Dashboard() {
                 niezbędne narzędzia do efektywnego zarządzania życiem w swoim
                 domu.
               </p>
-              <p className="info">
+              <p className="welcomeInfo">
                 Przypięte notatki są jak osobisty korkowy kalendarz na drzwiach
                 lodówki, ale w wersji cyfrowej. Zapisz tu swoje przemyślenia,
                 ważne informacje czy ulubione cytaty. To miejsce, w którym każdy
                 członek rodziny może podzielić się swoimi myślami i pomysłami.
               </p>
-              <p className="info">
+              <p className="welcomeInfo">
                 Obowiązki na dziś to lista zadań, które czekają na ciebie i
                 innych mieszkańców domu. Dzięki temu możesz być pewien, że żadne
                 obowiązki nie zostaną pominięte. Wspólnie ustalcie, kto robi co
                 w danym dniu, a życie stanie się zorganizowane i efektywne.
               </p>
-              <p className="info">
+              <p className="welcomeInfo">
                 Najbliższe wydarzenia to twój kalendarz, który pomoże ci śledzić
                 plany i zobowiązania. Od ważnych spotkań po urodziny, wszystko
                 jest tu widoczne, dzięki czemu nigdy nic nie umknie twojej
@@ -122,7 +138,7 @@ export default function Dashboard() {
               title="Notatka"
               description="balsbalsbalsbals"
             /> */}
-            <Card>
+            <Card classes="center">
               <h2>Brak przypiętych notatek</h2>
             </Card>
           </div>
@@ -134,7 +150,7 @@ export default function Dashboard() {
             <div className="qrCode">
               <QRCode value={"dupa12"} width={256} style={{ height: "auto" }} />
               <span className="or">lub</span>
-              <button className="box">
+              <button className="box" onClick={shareHandler}>
                 <FontAwesomeIcon icon={faShare} />
               </button>
             </div>

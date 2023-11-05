@@ -11,7 +11,7 @@ export default function Card({ children, classes, color }: CardInterface) {
   return (
     <Suspense fallback={<CardLoader />}>
       <div
-        className={`card ${classes}`}
+        className={`card ${classes ? classes : ""}`}
         style={color ? { background: color } : {}}
       >
         {children}

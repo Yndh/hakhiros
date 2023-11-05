@@ -201,7 +201,7 @@ export default function Recepies() {
             >
               <h2 className="title">{recepie.tytul}</h2>
               <p className="desc">{recepie.krotki_opis}</p>
-              <div className="rowContainer info">
+              <div className="rowContainer">
                 <div
                   className={`info ${
                     recepie.poziom_trudnosci == "Łatwy"

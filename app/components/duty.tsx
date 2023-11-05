@@ -3,6 +3,7 @@
 import { faAdd, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import Card from "./card";
 
 interface DutyProps {
   id: number;
@@ -34,7 +35,7 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
 
   return (
     <>
-      <div className="card">
+      <Card>
         <h2 className="title">@{user}</h2>
         <ol className="duties">
           {dutyList.map((duty, index) => (
@@ -52,7 +53,7 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
             </li>
           ))}
         </ol>
-      </div>
+      </Card>
 
       <div className={`modal ${modalOpen ? "shown" : ""}`}>
         <div className="modalCard">
