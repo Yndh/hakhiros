@@ -49,6 +49,10 @@ export default function Duties() {
     },
   ]);
 
+  const getFilteredDuties = () => {
+    return duties.filter((duty) => duty.weekDay === weekDay);
+  };
+
   const handlePrevDay = () => {
     const newWeekDay = (weekDay + 6) % 7;
     setWeekDay(newWeekDay);
@@ -59,30 +63,49 @@ export default function Duties() {
     setWeekDay(newWeekDay);
   };
 
-  const filteredDuties = duties.filter((duty) => duty.weekDay === weekDay);
-
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
 
   const handleCreateDuty = () => {
-    const newDuty = {
-      id: duties.length + 1,
-      user: selectedUser,
-      duties: [
-        {
-          title: dutyTitle,
-          isCompleted: false,
-        },
-      ],
-      weekDay: selectedDay,
-    };
+    if (!selectedUser.trim() || !dutyTitle.trim()) {
+      alert("wypelnij wszystkie pola");
+      return;
+    }
+    const existingUser = duties.find((duty) => duty.user === selectedUser);
 
-    setDuties([...duties, newDuty]);
+    if (existingUser) {
+      const newDuties = existingUser.duties.concat({
+        title: dutyTitle,
+        isCompleted: false,
+      });
+
+      const updatedDuties = duties.map((duty) =>
+        duty.user === selectedUser ? { ...duty, duties: newDuties } : duty
+      );
+
+      setDuties(updatedDuties);
+    } else {
+      const newDuty = {
+        id: duties.length + 1,
+        user: selectedUser,
+        duties: [
+          {
+            title: dutyTitle,
+            isCompleted: false,
+          },
+        ],
+        weekDay: selectedDay,
+      };
+
+      setDuties([...duties, newDuty]);
+    }
+
     setSelectedUser("");
     setDutyTitle("");
     setSelectedDay(new Date().getDay());
     toggleModal();
+    console.table(duties);
   };
 
   return (
@@ -107,8 +130,8 @@ export default function Duties() {
       </div>
 
       <div className="dutyRow">
-        {filteredDuties.length > 0 ? (
-          filteredDuties.map((duty) => (
+        {getFilteredDuties().length > 0 ? (
+          getFilteredDuties().map((duty) => (
             <Duty
               key={duty.id}
               id={duty.id}
@@ -140,6 +163,7 @@ export default function Duties() {
                 type="radio"
                 name="selectedUser"
                 id={`selectedUser${user}`}
+                checked={selectedUser === user}
                 onChange={() => setSelectedUser(user)}
               />
               <label htmlFor={`selectedUser${user}`}>@{user}</label>

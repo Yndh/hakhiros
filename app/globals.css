@@ -740,6 +740,10 @@ ol.duties {
   width: 100%;
 }
 
+ol.duties::-webkit-scrollbar {
+  display: none;
+}
+
 ol.duties li {
   display: flex;
   align-items: center;
