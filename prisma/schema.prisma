@@ -52,6 +52,7 @@ model dutie {
   house_id   Int
   title      String
   is_done    Boolean
+  week_day   Int
   created_at DateTime @default(now())
   profile    profile  @relation(fields: [profile_id], references: [id])
   house      house    @relation(fields: [house_id], references: [id])

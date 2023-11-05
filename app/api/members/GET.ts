@@ -14,7 +14,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
         })
     }
     const querry_params = getQuerryParameters(req.url)
-    const user_house_id_param = querry_params.house_id
+    const user_house_id_param = querry_params.user_house_id
     if (!user_house_id_param) {
         return new NextResponse(JSON.stringify({ error: 'nie poprawne id domu' }), {
             status: 400

@@ -6,8 +6,9 @@ import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
 
 interface req_body {
-    house_id: number | string
+    user_house_id: number | string
     title: string
+    week_day: string | number
 }
 
 
@@ -26,19 +27,30 @@ export async function mPOST(req: Request, res: NextApiResponse) {
         })
     }
 
-    if (!body.house_id || !(typeof body.house_id === 'string' || typeof body.house_id === 'number')) {
+    if (!body.user_house_id || !(typeof body.user_house_id === 'string' || typeof body.user_house_id === 'number')) {
         return new NextResponse(JSON.stringify({ error: 'złe id domu' }), {
             status: 400
         })
     }
 
-    const house_id = parseInt(body.house_id as string)
+    if (!body.week_day || !(typeof body.week_day === 'string' || typeof body.week_day === 'number')) {
+        return new NextResponse(JSON.stringify({ error: 'zły dzień tygodnia' }), {
+            status: 400
+        })
+    }
+    const week_day = parseInt(body.week_day as string)
+    if (week_day > 6 || week_day < 0) {
+        return new NextResponse(JSON.stringify({ error: 'zły dzień tygodnia' }), {
+            status: 400
+        })
+    }
+    const user_house_id = parseInt(body.user_house_id as string)
     const profile = await prisma.user_house.findFirst({
         select: {
             profile_id: true
         },
         where: {
-            house_id
+            id: user_house_id
         }
     })
     if (!profile) {
@@ -49,10 +61,11 @@ export async function mPOST(req: Request, res: NextApiResponse) {
 
     const dutie = await prisma.dutie.create({
         data: {
-            house_id: house_id,
+            house_id: user_house_id,
             title: body.title,
             is_done: false,
-            profile_id: profile.profile_id
+            profile_id: profile.profile_id,
+            week_day
         },
         select: {
             id: true,

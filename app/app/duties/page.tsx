@@ -10,7 +10,7 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
@@ -48,6 +48,59 @@ export default function Duties() {
       weekDay: 4,
     },
   ]);
+
+  const [members, setMember] = useState<Members>({})
+
+  const user_house_id = localStorage.getItem("user_house_id") || "-1";
+  let prev_house_id = useRef("-1");
+  useEffect(() => {
+    if (prev_house_id.current !== user_house_id) {
+      fetch(`/api/members?user_house_id=${user_house_id}`)
+        .then((res) => res.json())
+        .then((data: Members | ErrorRespone) => {
+          if ("error" in data) {
+            console.log(data["error"]);
+            return;
+          }
+          setMember(data)
+        }).then(() =>
+          fetch(`/api/dutie?user_house_id=${user_house_id}`)
+            .then((res) => res.json())
+            .then((data: DutieFetch[] | ErrorRespone) => {
+              prev_house_id.current = user_house_id;
+              if ("error" in data) {
+                console.log(data["error"]);
+                return;
+              }
+
+              const formated_duties: any[] = []
+              data.forEach(item => {
+                const existingItem = formated_duties.find(outputItem => outputItem.profile_id === item.profile_id && outputItem.weekDay === item.week_day);
+
+                if (existingItem) {
+                  existingItem.duties.push({
+                    title: item.title,
+                    isCompleted: item.is_done
+                  });
+                } else {
+                  formated_duties.push({
+                    id: item.id,
+                    user: members[item.profile_id]["name"],
+                    profile_id: item.profile_id,
+                    duties: [
+                      {
+                        title: item.title,
+                        isCompleted: item.is_done
+                      }
+                    ],
+                    weekDay: item.week_day,
+                  });
+                }
+              });
+              setDuties(formated_duties)
+            }))
+    }
+  });
 
   const getFilteredDuties = () => {
     return duties.filter((duty) => duty.weekDay === weekDay);
