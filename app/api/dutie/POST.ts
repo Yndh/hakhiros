@@ -7,6 +7,7 @@ import type { NextApiResponse } from 'next'
 
 interface req_body {
     user_house_id: number | string
+    profile_id: number | string
     title: string
     week_day: string | number
 }
@@ -33,6 +34,12 @@ export async function mPOST(req: Request, res: NextApiResponse) {
         })
     }
 
+    if (!body.profile_id || !(typeof body.profile_id === 'string' || typeof body.profile_id === 'number')) {
+        return new NextResponse(JSON.stringify({ error: 'złe id profilu' }), {
+            status: 400
+        })
+    }
+
     if (!body.week_day || !(typeof body.week_day === 'string' || typeof body.week_day === 'number')) {
         return new NextResponse(JSON.stringify({ error: 'zły dzień tygodnia' }), {
             status: 400
@@ -44,6 +51,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
             status: 400
         })
     }
+    const profile_id = parseInt(body.profile_id as string)
     const user_house_id = parseInt(body.user_house_id as string)
     const profile = await prisma.user_house.findFirst({
         select: {
@@ -64,7 +72,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
             house_id: user_house_id,
             title: body.title,
             is_done: false,
-            profile_id: profile.profile_id,
+            profile_id,
             week_day
         },
         select: {
