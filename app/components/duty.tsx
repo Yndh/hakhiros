@@ -30,7 +30,6 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
 
   const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
-    console.log(`duty = ${modalOpen}`);
   };
 
   return (

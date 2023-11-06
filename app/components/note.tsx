@@ -31,7 +31,6 @@ export default function Note({
   };
 
   const deleteNode = async (e: React.MouseEvent<any, MouseEvent>) => {
-    console.log(id);
     const options = {
       method: "DELETE",
       body: JSON.stringify({ note_id: id }),

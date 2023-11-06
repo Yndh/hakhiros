@@ -36,7 +36,6 @@ export default function Notes() {
         .then((res) => res.json())
         .then((data: NoteFetch[]) => {
           prev_house_id.current = house_id;
-          console.log(data);
           if ("error" in data) {
             console.log(data["error"]);
             return;
