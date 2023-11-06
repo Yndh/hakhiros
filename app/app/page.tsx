@@ -124,7 +124,7 @@ export default function Dashboard() {
               <h2 className="title">Najbliższe Wydarzenia</h2>
               <div className="datesContainer">
                 {events.map((event, index) => (
-                  <p className="dateText">
+                  <p className="dateText" key={index}>
                     <span className="date">{event.date.toString()}</span>
                     <span className="dateDesc">{event.title}</span>
                   </p>
