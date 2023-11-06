@@ -1,0 +1,119 @@
+:root {
+    --background-primary: #f1f4fc;
+    --background-secondary: #fff;
+
+    --color-primary: #000;
+    --color-secondary: #fff;
+    --color-success: #41f1b6;
+    --color-danger: #ff7782;
+    --color-warning: #ffbb55;
+
+    --accent-primary: #08e1ae;
+    --accent-secondary: #dedede;
+
+    --card-primary: #e5ffdb;
+    --card-secondary: #fff9db;
+    --card-tertiary: #ffc0c0;
+    --card-quaternary: #e5cbff;
+
+    --gradient: linear-gradient(45deg,
+            rgba(8, 225, 174, 1) 30%,
+            rgba(152, 222, 91, 1) 100%);
+
+    --card-border-radius: 25px;
+    --radius-primary: 5px;
+    --radius-secondary: 15px;
+    --radius-tertiary: 20px;
+
+    --box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.25);
+    --loader-gradient: linear-gradient(110deg,
+            #ececec 8%,
+            #f5f5f5 18%,
+            #ececec 33%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: var(--background-primary);
+    user-select: none;
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--color-primary);
+}
+
+
+.landingContainer {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.landingHeader {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.landingHeader .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    gap: 10px;
+}
+
+.landingHeader .logo img {
+    height: 35px;
+    width: 35px;
+}
+
+.landingHeader .logo p {
+    font-size: 20px;
+}
+
+ul.landingNav {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 20px;
+}
+
+ul.landingNav li {
+    cursor: pointer;
+    font-size: 16px;
+    transition: .5s;
+}
+
+ul.landingNav li:hover {
+    opacity: .7;
+}
+
+.heroContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 80vh;
+}
