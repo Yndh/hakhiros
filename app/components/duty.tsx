@@ -26,13 +26,13 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
       method: "PATCH",
       body: JSON.stringify({ dutie_id: id }),
     };
-    const note = await fetch("/api/dutie", options)
+    const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
-      .then((data: NoteFetch) => {
+      .then((data: DutieFetch) => {
         return data;
       });
-    if ("error" in note) {
-      console.log(note["error"])
+    if ("error" in dutie) {
+      console.log(dutie["error"])
       return
     }
     const updatedDutyList = [...dutyList];

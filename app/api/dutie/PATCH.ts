@@ -40,7 +40,7 @@ export async function mPATCH(req: Request, res: NextApiResponse) {
 
     const update_dutie = await prisma.dutie.update({
         where: {
-            id: dutie.id
+            id: dutie.id,
         },
         data: {
             is_done: !dutie.is_done

@@ -15,18 +15,15 @@ import QRCode from "react-qr-code";
 import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
 
+interface Dutie {
+  id: number
+  title: string
+  is_done: boolean
+}
+
 export default function Dashboard() {
   const [triggerRerender, setTriggerRerender] = useState(false);
-  const duties = [
-    {
-      title: "spotkanie",
-      isCompleted: false,
-    },
-    {
-      title: "zakupy",
-      isCompleted: true,
-    },
-  ];
+  const [duties, setDuties] = useState<Dutie[]>([]);
 
   const events = [
     {
@@ -54,6 +51,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (prev_user_house_id.current !== user_house_id) {
+      //members
       fetch(`/api/members?user_house_id=${user_house_id}`)
         .then((res) => res.json())
         .then((data: Members | ErrorRespone) => {
@@ -63,6 +61,7 @@ export default function Dashboard() {
           }
           setMembers(data)
         })
+      //note
       fetch(`/api/note?user_house_id=${user_house_id}&pinned=true`)
         .then((res) => res.json())
         .then((data: Note[] | ErrorRespone) => {
@@ -72,6 +71,17 @@ export default function Dashboard() {
           }
           console.log(data)
           setNotes(data)
+        })
+      //duties
+      const d = new Date();
+      fetch(`/api/dutie?user_house_id=${user_house_id}&week_day=${d.getDay()}`)
+        .then((res) => res.json())
+        .then((data: Dutie[] | ErrorRespone) => {
+          if ("error" in data) {
+            console.log(data["error"]);
+            return;
+          }
+          setDuties(data)
         })
       prev_user_house_id.current = user_house_id;
     }
@@ -89,6 +99,26 @@ export default function Dashboard() {
     } catch (err) {
       alert(`Nie można udostępnić: ${err}`);
     }
+  };
+
+  const handleCheckboxChange = async (index: number) => {
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify({ dutie_id: duties[index].id }),
+    };
+    const dutie = await fetch("/api/dutie", options)
+      .then((res) => res.json())
+      .then((data: DutieFetch) => {
+        return data;
+      });
+    if ("error" in dutie) {
+      console.log(dutie["error"])
+      return
+    }
+    setDuties((duties) => {
+      duties[index].is_done = dutie.is_done
+      return [...duties]
+    });
   };
 
   return (
@@ -136,13 +166,13 @@ export default function Dashboard() {
               <div className="dutyRow">
                 <ol className="duties">
                   {duties.map((duty, index) => (
-                    <li key={index}>
+                    <li key={duty.id}>
                       <label htmlFor={`checkMe${index}`}>
                         <input
                           type="checkbox"
                           id={`checkMe${index}`}
-                        // checked={duty.isCompleted}
-                        // onChange={() => handleCheckboxChange(index)}
+                          checked={duty.is_done}
+                          onChange={() => handleCheckboxChange(index)}
                         />
                         <span>{duty.title}</span>
                       </label>

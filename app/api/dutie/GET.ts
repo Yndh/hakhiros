@@ -39,20 +39,39 @@ export async function mGET(req: Request, res: NextApiResponse) {
             status: 400
         })
     }
-    const profile_id = profile.profile_id
+    const week_day = querry_params.week_day
+    let duties;
+    if (week_day !== undefined) {
+        duties = await prisma.dutie.findMany({
+            select: {
+                id: true,
+                title: true,
+                is_done: true
+            },
+            where: {
+                house_id: profile.house_id,
+                week_day: parseInt(week_day),
+                profile: {
+                    user_id: session.user.id
+                }
+            }
+        })
+    }
+    else {
+        duties = await prisma.dutie.findMany({
+            select: {
+                id: true,
+                title: true,
+                profile_id: true,
+                is_done: true,
+                week_day: true
+            },
+            where: {
+                house_id: profile.house_id
+            }
+        })
+    }
 
-    const duties = await prisma.dutie.findMany({
-        select: {
-            id: true,
-            title: true,
-            profile_id: true,
-            is_done: true,
-            week_day: true
-        },
-        where: {
-            house_id: profile.house_id
-        }
-    })
 
     return new NextResponse(JSON.stringify(duties), {
         status: 200
