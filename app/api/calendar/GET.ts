@@ -14,20 +14,21 @@ export async function mGET(req: Request, res: NextApiResponse) {
         })
     }
     const querry_params = getQuerryParameters(req.url)
-    const house_id_param = querry_params.house_id
-    if (!house_id_param || (typeof house_id_param !== 'string' && typeof house_id_param !== 'number')) {
-        return new NextResponse(JSON.stringify({ error: 'nie poprawne id domu' }), {
+    const user_house_id_param = querry_params.user_house_id
+    if (!user_house_id_param || (typeof user_house_id_param !== 'string' && typeof user_house_id_param !== 'number')) {
+        return new NextResponse(JSON.stringify({ error: 'nie poprawne user_house_id' }), {
             status: 400
         })
     }
-    const house_id = parseInt(house_id_param as string)
+    const user_house_id = parseInt(user_house_id_param as string)
 
     const profile = await prisma.user_house.findFirst({
         select: {
-            profile_id: true
+            profile_id: true,
+            house_id: true
         },
         where: {
-            house_id
+            id: user_house_id
         }
     })
     if (!profile) {
@@ -48,7 +49,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
         },
         where: {
             profile_id,
-            house_id
+            house_id: profile.house_id
         }
     })
 

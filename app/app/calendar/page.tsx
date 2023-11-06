@@ -32,7 +32,7 @@ export default function CalendarPage() {
   let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== house_id) {
-      fetch(`/api/note?house_id=${house_id}`)
+      fetch(`/api/calendar?user_house_id=${house_id}`)
         .then((res) => res.json())
         .then((data: EventList[]) => {
           prev_house_id.current = house_id;
