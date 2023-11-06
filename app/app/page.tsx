@@ -165,19 +165,20 @@ export default function Dashboard() {
               <h2 className="title">Obowiązki na dziś</h2>
               <div className="dutyRow">
                 <ol className="duties">
-                  {duties.map((duty, index) => (
-                    <li key={duty.id}>
-                      <label htmlFor={`checkMe${index}`}>
-                        <input
-                          type="checkbox"
-                          id={`checkMe${index}`}
-                          checked={duty.is_done}
-                          onChange={() => handleCheckboxChange(index)}
-                        />
-                        <span>{duty.title}</span>
-                      </label>
-                    </li>
-                  ))}
+                  {duties.length > 0 ?
+                    duties.map((duty, index) => (
+                      <li key={duty.id}>
+                        <label htmlFor={`checkMe${index}`}>
+                          <input
+                            type="checkbox"
+                            id={`checkMe${index}`}
+                            checked={duty.is_done}
+                            onChange={() => handleCheckboxChange(index)}
+                          />
+                          <span>{duty.title}</span>
+                        </label>
+                      </li>
+                    )) : "nie masz obowiązków na dzisiaj"}
                 </ol>
               </div>
             </Card>
