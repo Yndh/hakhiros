@@ -121,6 +121,29 @@ export default function Dashboard() {
     });
   };
 
+  const renderPinnedNote = () => {
+    {
+      const pinnedNote = notes.find((note) => note.isPinned === true);
+
+      return (
+        pinnedNote ? (
+          <Note
+            key={pinnedNote.id}
+            id={pinnedNote.id}
+            isPinned={true}
+            title={pinnedNote.title}
+            description={pinnedNote.description}
+            setNotes={setNotes}
+          />
+        ) : (
+          <Card classes="center">
+            <h2>Brak przypiętych notatek</h2>
+          </Card>
+        )
+      );
+    }
+  }
+
   return (
     <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender}>
       <div className="header">
@@ -194,19 +217,7 @@ export default function Dashboard() {
                 ))}
               </div>
             </Card>
-            {notes.filter((note) => note.isPinned === true).length > 0 ?
-              notes.filter((note) => note.isPinned === true).map((note) => <Note
-                key={note.id}
-                id={note.id}
-                isPinned={true}
-                title={note.title}
-                description={note.description}
-                setNotes={setNotes}
-              />) :
-              <Card classes="center">
-                <h2>Brak przypiętych notatek</h2>
-              </Card>
-            }
+            {renderPinnedNote()}
           </div>
         </div>
 
