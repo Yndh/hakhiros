@@ -109,8 +109,8 @@ export default function Dashboard() {
                         <input
                           type="checkbox"
                           id={`checkMe${index}`}
-                          // checked={duty.isCompleted}
-                          // onChange={() => handleCheckboxChange(index)}
+                        // checked={duty.isCompleted}
+                        // onChange={() => handleCheckboxChange(index)}
                         />
                         <span>{duty.title}</span>
                       </label>

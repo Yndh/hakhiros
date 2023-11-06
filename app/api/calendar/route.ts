@@ -1,6 +1,7 @@
 import type { NextApiResponse } from 'next'
 import { mPOST } from './POST'
 import { mGET } from './GET'
+import { mDELETE } from './DELETE'
 
 
 export function GET(req: Request, res: NextApiResponse) {
@@ -9,4 +10,8 @@ export function GET(req: Request, res: NextApiResponse) {
 
 export function POST(req: Request, res: NextApiResponse) {
     return mPOST(req, res)
+}
+
+export function DELETE(req: Request, res: NextApiResponse) {
+    return mDELETE(req, res)
 }

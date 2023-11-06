@@ -92,12 +92,11 @@ export default function CalendarPage() {
     const options = {
       method: "DELETE",
       body: JSON.stringify({
-        eventId: eventChoosed.el.fcSeg.eventRange.def.publicId,
+        calendar_event_id: eventChoosed.el.fcSeg.eventRange.def.publicId,
       }),
     };
 
     await fetch("/api/calendar", options);
-
     const filteredEvents = eventsList.filter(
       (item) => item.id != eventChoosed.el.fcSeg.eventRange.def.publicId
     );
@@ -123,7 +122,7 @@ export default function CalendarPage() {
       <div className="calendarBox">
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
-          events={eventsList}
+          events={eventsList as any[]}
           dateClick={() => setOpenAdd(!openAdd)}
           locale="pl"
           selectable={true}
