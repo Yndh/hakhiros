@@ -12,25 +12,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useRef, useState } from "react";
 
-interface DutieFetch {
-  id: number,
-  title: string,
-  profile_id: number
-  is_done: boolean,
-  week_day: number
-}
-
-interface Dutie {
-  id: number,
-  user: string,
-  duties: {
-    title: string,
-    isCompleted: boolean
-  }[]
-  profile_id: number,
-  weekDay: number
-}
-
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
   const [modalOpen, setModalOpen] = useState(false);
@@ -215,6 +196,7 @@ export default function Duties() {
               user={duty.user}
               duties={duty.duties}
               weekDay={duty.weekDay}
+              setDuties={setDuties}
             />
           ))
         ) : (

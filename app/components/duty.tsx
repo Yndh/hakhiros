@@ -2,7 +2,7 @@
 
 import { faAdd, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Card from "./card";
 
 interface DutyProps {
@@ -10,6 +10,7 @@ interface DutyProps {
   user: string;
   duties: Duty[];
   weekDay: number;
+  setDuties: Dispatch<SetStateAction<Dutie[]>>
 }
 
 interface Duty {
@@ -17,7 +18,7 @@ interface Duty {
   isCompleted: boolean;
 }
 
-export default function Duty({ id, user, duties, weekDay }: DutyProps) {
+export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps) {
   const [dutyList, setDutyList] = useState(duties);
   const [modalOpen, setModalOpen] = useState(false);
   const handleCheckboxChange = (index: number) => {
@@ -30,6 +31,28 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
 
   const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
+  };
+
+  const deleteNode = async (e: React.MouseEvent<any, MouseEvent>) => {
+    const options = {
+      method: "DELETE",
+      body: JSON.stringify({ dutie_id: id }),
+    };
+    const dutie = await fetch("/api/dutie", options)
+      .then((res) => res.json())
+      .then((data: NoteFetch) => {
+        const datetime_node: Note = {
+          ...data,
+          createdAt: new Date(data["createdAt"]),
+        };
+        return datetime_node;
+      });
+    if ("error" in dutie) {
+      console.log(dutie.error);
+      return;
+    }
+    setDuties((duties) => duties.filter((dutie: any) => dutie.id !== id));
+    toggleModal(e);
   };
 
   return (
@@ -61,7 +84,7 @@ export default function Duty({ id, user, duties, weekDay }: DutyProps) {
             <button className="border red" onClick={toggleModal}>
               Anuluj
             </button>
-            <button className="danger" onClick={toggleModal}>
+            <button className="danger" onClick={deleteNode}>
               Usuń
             </button>
           </div>
