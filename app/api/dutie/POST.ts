@@ -55,7 +55,8 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     const user_house_id = parseInt(body.user_house_id as string)
     const profile = await prisma.user_house.findFirst({
         select: {
-            profile_id: true
+            profile_id: true,
+            house_id: true
         },
         where: {
             id: user_house_id
@@ -69,7 +70,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
 
     const dutie = await prisma.dutie.create({
         data: {
-            house_id: user_house_id,
+            house_id: profile.house_id,
             title: body.title,
             is_done: false,
             profile_id,

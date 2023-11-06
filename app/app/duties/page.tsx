@@ -12,6 +12,25 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useRef, useState } from "react";
 
+interface DutieFetch {
+  id: number,
+  title: string,
+  profile_id: number
+  is_done: boolean,
+  week_day: number
+}
+
+interface Dutie {
+  id: number,
+  user: string,
+  duties: {
+    title: string,
+    isCompleted: boolean
+  }[]
+  profile_id: number,
+  weekDay: number
+}
+
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,25 +48,9 @@ export default function Duties() {
     "Sobota",
   ];
 
-  const users = ["user", "teo", "rzechy"];
+  let users: string[] = [];
 
-  const [duties, setDuties] = useState([
-    {
-      id: 1,
-      user: "uzytkownik5",
-      duties: [
-        {
-          title: "spotkanie",
-          isCompleted: false,
-        },
-        {
-          title: "zakupy",
-          isCompleted: true,
-        },
-      ],
-      weekDay: 4,
-    },
-  ]);
+  const [duties, setDuties] = useState<Dutie[]>([]);
 
   const [members, setMember] = useState<Members>({})
 
@@ -85,7 +88,7 @@ export default function Duties() {
                 } else {
                   formated_duties.push({
                     id: item.id,
-                    user: members[item.profile_id]["name"],
+                    user: members[item.profile_id] ? members[item.profile_id]["name"] : "",
                     profile_id: item.profile_id,
                     duties: [
                       {
@@ -120,13 +123,35 @@ export default function Duties() {
     setModalOpen(!modalOpen);
   };
 
-  const handleCreateDuty = () => {
+  const handleCreateDuty = async () => {
     if (!selectedUser.trim() || !dutyTitle.trim()) {
       alert("wypelnij wszystkie pola");
       return;
     }
-    const existingUser = duties.find((duty) => duty.user === selectedUser);
-
+    const existingUser = duties.find((duty) => duty.profile_id.toString() === selectedUser && duty.weekDay === selectedDay);
+    const body_dutie = {
+      "user_house_id": user_house_id,
+      "profile_id": selectedUser,
+      "title": dutyTitle,
+      "week_day": selectedDay
+    };
+    const options = {
+      method: "POST",
+      body: JSON.stringify(body_dutie),
+    };
+    const dutie = await fetch("/api/dutie", options)
+      .then((res) => res.json())
+      .then((data: NoteFetch) => {
+        const datetime_node: Note = {
+          ...data,
+          createdAt: new Date(data["createdAt"]),
+        };
+        return datetime_node;
+      });
+    if ("error" in dutie) {
+      console.log(dutie.error);
+      return;
+    }
     if (existingUser) {
       const newDuties = existingUser.duties.concat({
         title: dutyTitle,
@@ -139,9 +164,10 @@ export default function Duties() {
 
       setDuties(updatedDuties);
     } else {
-      const newDuty = {
+      const newDuty: Dutie = {
         id: duties.length + 1,
         user: selectedUser,
+        profile_id: parseInt(selectedUser),
         duties: [
           {
             title: dutyTitle,
@@ -151,14 +177,12 @@ export default function Duties() {
         weekDay: selectedDay,
       };
 
-      setDuties([...duties, newDuty]);
+      setDuties((duties) => [...duties, newDuty]);
     }
-
     setSelectedUser("");
     setDutyTitle("");
     setSelectedDay(new Date().getDay());
     toggleModal();
-    console.table(duties);
   };
 
   return (
@@ -210,16 +234,16 @@ export default function Duties() {
 
         <p className="thin">Wybierz użytkownika</p>
         <div className="choiceRow">
-          {users.map((user, index) => (
-            <Fragment key={index}>
+          {Object.keys(members).map((key) => (
+            <Fragment key={key}>
               <input
                 type="radio"
                 name="selectedUser"
-                id={`selectedUser${user}`}
-                checked={selectedUser === user}
-                onChange={() => setSelectedUser(user)}
+                id={`selectedUser${key}`}
+                checked={selectedUser === key}
+                onChange={() => setSelectedUser(key)}
               />
-              <label htmlFor={`selectedUser${user}`}>@{user}</label>
+              <label htmlFor={`selectedUser${key}`}>@{members[key]["name"]}</label>
             </Fragment>
           ))}
         </div>

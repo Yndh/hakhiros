@@ -39,11 +39,3 @@ interface EventList {
 interface Member { name: string, display_name: string | null }
 interface Members { [key: string | number]: Member }
 interface ErrorRespone { "error": string }
-
-interface DutieFetch {
-    id: number,
-    title: string,
-    profile_id: number
-    is_done: boolean,
-    week_day: number
-}
