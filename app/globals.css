@@ -13,12 +13,16 @@
   --accent-primary: #08e1ae;
   --accent-secondary: #dedede;
 
-  --card-primary: #E5FFDB;
-  --card-secondary: #FFF9DB;
-  --card-tertiary: #FFC0C0;
-  --card-quaternary: #E5CBFF;
+  --card-primary: #e5ffdb;
+  --card-secondary: #fff9db;
+  --card-tertiary: #ffc0c0;
+  --card-quaternary: #e5cbff;
 
-  --gradient: linear-gradient(45deg, rgba(8, 225, 174, 1) 30%, rgba(152, 222, 91, 1) 100%);
+  --gradient: linear-gradient(
+    45deg,
+    rgba(8, 225, 174, 1) 30%,
+    rgba(152, 222, 91, 1) 100%
+  );
 
   --card-border-radius: 25px;
   --radius-primary: 5px;
@@ -26,7 +30,12 @@
   --radius-tertiary: 20px;
 
   --box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.25);
-  --loader-gradient: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  --loader-gradient: linear-gradient(
+    110deg,
+    #ececec 8%,
+    #f5f5f5 18%,
+    #ececec 33%
+  );
 }
 
 * {
@@ -113,11 +122,11 @@ button {
   z-index: 1;
   height: 40px;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 button:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 button.box {
@@ -144,7 +153,7 @@ button.danger {
 
 .textThin {
   color: var(--color-primary);
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .success {
@@ -169,7 +178,7 @@ button.danger {
   border-radius: var(--radius-primary);
   opacity: 0;
   z-index: 3 !important;
-  transition: .2s ease;
+  transition: 0.2s ease;
   pointer-events: none;
 }
 
@@ -191,10 +200,9 @@ button.danger {
 
 .selectAbsolute li {
   display: flex;
-  transition: .3s;
+  transition: 0.3s;
   padding: 5px 2px;
   width: 100%;
-
 }
 
 .selectAbsolute li:not(:last-child) {
@@ -202,7 +210,7 @@ button.danger {
 }
 
 .selectAbsolute li:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .selectAbsolute li.active {
@@ -212,7 +220,6 @@ button.danger {
   -webkit-text-fill-color: transparent;
   font-weight: 600;
 }
-
 
 .appContainer {
   position: relative;
@@ -231,7 +238,7 @@ button.danger {
   color: var(--color-secondary);
   border-radius: var(--radius-secondary);
   box-shadow: var(--box-shadow);
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .navbar .top {
@@ -266,11 +273,11 @@ button.danger {
   font-size: 16px;
   font-weight: 600;
   color: var(--color-secondary);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .navbar .nav a:hover:not(.active) {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .navbar .nav a:not(:last-child) {
@@ -343,9 +350,8 @@ table.users tr:not(:last-child) {
 }
 
 table.users .kick {
-
-  opacity: .5;
-  transition: .3s ease;
+  opacity: 0.5;
+  transition: 0.3s ease;
 }
 
 table.users .kick:hover {
@@ -372,7 +378,7 @@ table.users .kick:hover {
   color: var(--color-primary);
   border-radius: var(--radius-primary);
   box-shadow: var(--box-shadow);
-  transition: .3s ease;
+  transition: 0.3s ease;
   opacity: 0;
   pointer-events: none;
   z-index: 3;
@@ -396,7 +402,7 @@ table.users .kick:hover {
   gap: 5px;
   padding: 10px;
   background: var(--background-secondary);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .homeSelectOptions li.addHome {
@@ -406,9 +412,8 @@ table.users .kick:hover {
 }
 
 .homeSelectOptions li svg {
-  opacity: .5;
+  opacity: 0.5;
 }
-
 
 .mainContainer {
   display: flex;
@@ -456,7 +461,7 @@ table.users .kick:hover {
 }
 
 .searchBar svg {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .dashboard {
@@ -494,7 +499,6 @@ table.users .kick:hover {
   grid-template-columns: 33% 33% 33%;
   padding: 10px 0 0 10px;
 }
-
 
 .cardRow.two {
   grid-template-columns: auto auto;
@@ -551,16 +555,16 @@ table.users .kick:hover {
   right: 0;
   margin: 15px 15px 0 0;
   height: 20px;
-  opacity: .3;
-  transition: .3s ease;
+  opacity: 0.3;
+  transition: 0.3s ease;
 }
 
 .card .pin:hover {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .card .pin.pinned {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .noteDesc {
@@ -592,7 +596,7 @@ table.users .kick:hover {
   margin: 15px 15px 0 0;
   height: 20px;
   opacity: 0;
-  transition: .3s ease;
+  transition: 0.3s ease;
   pointer-events: none;
 }
 
@@ -602,7 +606,7 @@ table.users .kick:hover {
 }
 
 .card:hover .delete {
-  opacity: .5;
+  opacity: 0.5;
   pointer-events: all;
 }
 
@@ -652,7 +656,6 @@ table.users .kick:hover {
   flex-direction: row;
   margin-top: 15px;
 }
-
 
 .card.loader .loaderText {
   width: 50%;
@@ -729,7 +732,7 @@ ul.userList .username {
 }
 
 ul.userList .handle {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 ul.userList .handle::before {
@@ -775,18 +778,18 @@ ol.duties li input[type="checkbox"] {
   color: white;
 }
 
-ol.duties li input[type="checkbox"]:checked~span {
+ol.duties li input[type="checkbox"]:checked ~ span {
   text-decoration: line-through;
 }
 
 ol.duties li svg {
   opacity: 0;
-  transition: .3s;
+  transition: 0.3s;
   pointer-events: none;
 }
 
 ol.duties li:hover svg {
-  opacity: .5;
+  opacity: 0.5;
   pointer-events: all;
 }
 
@@ -797,8 +800,8 @@ ol.duties svg:hover {
 
 ol.duties li.addDuty {
   margin-top: 5px;
-  opacity: .7;
-  transition: .3s;
+  opacity: 0.7;
+  transition: 0.3s;
   padding: 5px;
 }
 
@@ -808,7 +811,7 @@ ol.duties li.addDuty:hover {
 
 ol.duties li.addDuty svg {
   margin-right: 12px;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .dutyRow {
@@ -818,7 +821,6 @@ ol.duties li.addDuty svg {
   flex-wrap: wrap;
   width: 100%;
 }
-
 
 .choiceRow {
   display: flex;
@@ -836,18 +838,18 @@ ol.duties li.addDuty svg {
   border-radius: var(--radius-primary);
   padding: 5px;
   min-width: 50px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .choiceRow label:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .choiceRow input[type="radio"] {
   display: none;
 }
 
-.choiceRow input[type="radio"]:checked+label {
+.choiceRow input[type="radio"]:checked + label {
   border: 2px solid var(--accent-primary);
 }
 
@@ -863,7 +865,7 @@ ol.duties li.addDuty svg {
   height: 100vh;
   opacity: 0;
   z-index: 3;
-  transition: .3s ease;
+  transition: 0.3s ease;
   backdrop-filter: blur(2px);
   pointer-events: none;
 }
@@ -895,12 +897,12 @@ ol.duties li.addDuty svg {
   top: 0;
   margin: 10px 10px 0 0;
   font-size: 16px;
-  transition: .3s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
 .modalCard .close:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .modalCard button {
@@ -912,7 +914,7 @@ ol.duties li.addDuty svg {
   padding: 10px 15px;
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-primary);
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .card.newNote {
@@ -987,7 +989,7 @@ button.modalOption {
   border-radius: var(--radius-primary);
   opacity: 0;
   z-index: 2;
-  transition: .2 ease;
+  transition: 0.2 ease;
   pointer-events: none;
 }
 
@@ -1040,7 +1042,7 @@ button.modalOption {
 .categoryChoice ul li {
   font-size: 18px;
   font-weight: 600;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .categoryChoice ul li.selected {
@@ -1062,8 +1064,7 @@ button.modalOption {
 .card.recepieEl p.desc {
   font-size: 18px;
   margin-bottom: 10px;
-  opacity: .7;
-
+  opacity: 0.7;
 }
 
 .info {
@@ -1083,12 +1084,12 @@ button.modalOption {
 }
 
 .info.time {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .modalCard p.desc {
   font-size: 18px;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .modalCard ul,
@@ -1143,7 +1144,7 @@ button.modalOption {
   border: 1px solid var(--accent-primary);
   border-radius: 5px;
   cursor: text;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .inputContainer input {
@@ -1170,7 +1171,14 @@ button.modalOption {
 .formContainer button.googleLogin .googleIcon {
   font-size: 22px;
   margin-right: 7px;
-  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  background: conic-gradient(
+      from -45deg,
+      #ea4335 110deg,
+      #4285f4 90deg 180deg,
+      #34a853 180deg 270deg,
+      #fbbc05 270deg
+    )
+    73% 55%/150% 150% no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1192,7 +1200,7 @@ button.modalOption {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: .5;
+  opacity: 0.5;
   width: 100%;
   margin: 15px 0;
 }
@@ -1204,8 +1212,7 @@ button.modalOption {
   width: 100%;
   margin: 0 4px;
   background: var(--color-primary);
-  opacity: .5;
-
+  opacity: 0.5;
 }
 
 .loginContainer .absoluteCircle {
@@ -1230,13 +1237,11 @@ button.modalOption {
 
 .loginOption .coloredLink {
   font-weight: bold;
-
 }
 
 .loginOption .coloredLink:hover {
   text-decoration: underline;
 }
-
 
 /* Loader */
 
@@ -1259,8 +1264,7 @@ button.modalOption {
   width: 120px;
   height: 55px;
   background-repeat: no-repeat;
-  background-image:
-    radial-gradient(circle 2.5px, #ff3d00 100%, transparent 0),
+  background-image: radial-gradient(circle 2.5px, #ff3d00 100%, transparent 0),
     radial-gradient(circle 2.5px, #ff3d00 100%, transparent 0),
     linear-gradient(#f0fda3 20px, transparent 0),
     linear-gradient(#333 90px, transparent 0),
@@ -1268,7 +1272,8 @@ button.modalOption {
     linear-gradient(to right, #017a6a 10%, #333 10%, #333 90%, #017a6a 90%);
 
   background-size: 5px 5px, 5px 5px, 30px 5px, 90px 10px, 120px 45px, 100px 15px;
-  background-position: 48px 20px, 60px 20px, 10px 20px, center bottom, center bottom, center 0;
+  background-position: 48px 20px, 60px 20px, 10px 20px, center bottom,
+    center bottom, center 0;
 }
 
 .loader:before {
@@ -1276,7 +1281,7 @@ button.modalOption {
   width: 70px;
   height: 80px;
   background-color: #fff;
-  background-image: linear-gradient(to bottom, #FFF 50%, #f86133 51%),
+  background-image: linear-gradient(to bottom, #fff 50%, #f86133 51%),
     linear-gradient(to bottom, #bbb 50%, #0000 51%);
   background-size: 60px 20px, 60px 10px;
   background-repeat: no-repeat, repeat-y;
@@ -1293,8 +1298,7 @@ button.modalOption {
   content: "";
   width: 70px;
   height: 90px;
-  background-image:
-    linear-gradient(to right, #fff 50%, #0000 51%),
+  background-image: linear-gradient(to right, #fff 50%, #0000 51%),
     linear-gradient(to right, #fff 50%, #0000 51%),
     linear-gradient(to right, #fff 50%, #0000 51%),
     linear-gradient(to right, #fff 50%, #0000 51%),
@@ -1303,14 +1307,43 @@ button.modalOption {
     linear-gradient(to right, #fff 50%, #0000 51%),
     linear-gradient(to right, #fff 50%, #0000 51%);
   background-size: 10px 80px;
-  background-position: 0 0px, 9px 5px, 18px 0px, 27px 7px,
-    36px 10px, 45px 5px, 55px 0px, 64px 8px;
+  background-position: 0 0px, 9px 5px, 18px 0px, 27px 7px, 36px 10px, 45px 5px,
+    55px 0px, 64px 8px;
   background-repeat: no-repeat;
   position: absolute;
   left: 50%;
   transform: translatex(-50%);
   top: calc(100% + 6px);
   animation: disposePaper 2s ease-in infinite;
+}
+
+.fullContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.fullContainer .card.invite {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 30%;
+  flex: none;
+}
+
+.fullContainer .card.invite p.thin {
+  display: flex;
+  align-items: center;
+}
+
+.fullContainer .card.invite p.thin svg {
+  opacity: 0.7;
+  height: 15px;
 }
 
 @keyframes loadPaper {
@@ -1339,13 +1372,12 @@ button.modalOption {
 }
 
 @keyframes disposePaper {
-
   0%,
   60% {
     height: 0px;
     top: calc(100% - 9px);
-    background-position: 0 0px, 9px 0, 18px 0, 27px 0,
-      36px 0, 45px 0, 55px 0, 64px 0;
+    background-position: 0 0px, 9px 0, 18px 0, 27px 0, 36px 0, 45px 0, 55px 0,
+      64px 0;
   }
 
   80% {
@@ -1357,12 +1389,11 @@ button.modalOption {
   100% {
     height: 90px;
     top: calc(100% + 25px);
-    background-position: 0 0px, 9px 5px, 18px 0px, 27px 7px,
-      36px 10px, 45px 5px, 55px 0px, 64px 8px;
+    background-position: 0 0px, 9px 5px, 18px 0px, 27px 7px, 36px 10px, 45px 5px,
+      55px 0px, 64px 8px;
     opacity: 0;
   }
 }
-
 
 /* Responsywnosc */
 @media screen and (max-width: 768px) {
@@ -1383,7 +1414,6 @@ button.modalOption {
     display: block;
   }
 
-
   .appContainer {
     grid-template-columns: auto;
     padding: 10px;
@@ -1392,7 +1422,6 @@ button.modalOption {
   .categoryChoice ul li {
     text-align: center;
     font-size: 14px;
-
   }
 
   .formContainer {
@@ -1420,7 +1449,7 @@ button.modalOption {
   }
 
   .card .delete {
-    opacity: .3;
+    opacity: 0.3;
   }
 
   .header {
@@ -1449,6 +1478,10 @@ button.modalOption {
   }
 
   ol.duties li svg {
-    opacity: .5;
+    opacity: 0.5;
+  }
+
+  .fullContainer .card.invite {
+    width: 80%;
   }
 }
