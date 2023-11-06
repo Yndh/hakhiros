@@ -62,6 +62,7 @@ export default function CalendarPage() {
 
     //tu tworzymy nowy event
     const newEvent = {
+      user_house_id: house_id,
       title: eventTitle,
       start: selectedStartDate,
       end: selectedEndDate,
@@ -81,7 +82,7 @@ export default function CalendarPage() {
     }
 
     //tu ustawiamy liste eventuw na liste z nawym elementem
-    setEventsList([...eventsList, createdEvent]);
+    setEventsList([...eventsList, event]);
     setEventTitle("");
     //console.log(eventsList);
   };

@@ -7,7 +7,7 @@ import { isValidColor } from '@/lib/isValidColor'
 import { dateIsValid } from '@/lib/isDateValid'
 
 interface req_body {
-    house_id: number | string
+    user_house_id: number | string
     title: string
     start: string
     end: string
@@ -23,24 +23,39 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     }
     const body: req_body = await req.json()
     const { title, start, end, color } = body
-    if (
-        !body.house_id || !(typeof body.house_id === 'string' || typeof body.house_id === 'number') ||
-        !title || typeof title !== 'string' ||
-        !start || typeof start !== 'string' ||
-        !end || typeof end !== 'string' ||
-        !color || typeof color !== 'string' || !isValidColor(color)) {
-        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie wszystkie podane' }), {
+    if (!body.user_house_id || !(typeof body.user_house_id === 'string' || typeof body.user_house_id === 'number')) {
+        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie podane user_house_id' }), {
             status: 400
         })
     }
-
-    const house_id = parseInt(body.house_id as string)
+    if (!title || typeof title !== 'string') {
+        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie podane title' }), {
+            status: 400
+        })
+    }
+    if (!start || typeof start !== 'string') {
+        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie podane title' }), {
+            status: 400
+        })
+    }
+    if (!end || typeof end !== 'string') {
+        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie podane title' }), {
+            status: 400
+        })
+    }
+    if (!color || typeof color !== 'string' || !isValidColor(color)) {
+        return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie podane title' }), {
+            status: 400
+        })
+    }
+    const user_house_id = parseInt(body.user_house_id as string)
     const profile = await prisma.user_house.findFirst({
         select: {
-            profile_id: true
+            profile_id: true,
+            house_id: true
         },
         where: {
-            house_id
+            id: user_house_id
         }
     })
     if (!profile) {
@@ -60,7 +75,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     const calendar = await prisma.calendar.create({
         data: {
             profile_id,
-            house_id,
+            house_id: profile.house_id,
             title,
             start: start_date,
             end: end_date,
