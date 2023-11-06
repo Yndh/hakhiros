@@ -58,6 +58,19 @@ export async function mGET(req: Request, res: NextApiResponse) {
         }
     })
 
+    const house = await prisma.house.findFirst({
+        select: {
+            owner: true
+        },
+        where: {
+            id: profile.house_id
+        }
+    })
+    if (!house) {
+        return new NextResponse(JSON.stringify({ error: 'nie znaleziono domu' }), {
+            status: 500
+        })
+    }
     const members_formated: Record<string, any> = {};
 
     members.forEach(member => {
@@ -65,7 +78,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
         const name = member.profile.user.name;
         const display_name = member.profile.display_name;
 
-        members_formated[id] = { name, display_name };
+        members_formated[id] = { name, display_name, is_owner: id === house.owner.toString() };
     });
 
     return new NextResponse(JSON.stringify(members_formated), {

@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import QRCode from "react-qr-code";
 import Card from "../components/card";
+import { useEffect, useRef, useState } from "react";
 
 export default function Dashboard() {
   const duties = [
@@ -44,6 +45,22 @@ export default function Dashboard() {
       title: "Test",
     },
   ];
+
+  const user_house_id = localStorage.getItem("user_house_id") || "-1";
+  let prev_house_id = useRef("-1");
+  const [members, setMembers] = useState<Members>({})
+
+  useEffect(() => {
+    fetch(`/api/members?user_house_id=${user_house_id}`)
+      .then((res) => res.json())
+      .then((data: Members | ErrorRespone) => {
+        if ("error" in data) {
+          console.log(data["error"]);
+          return;
+        }
+        setMembers(data)
+      })
+  })
 
   const shareHandler = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -163,24 +180,13 @@ export default function Dashboard() {
           <Card>
             <h2 className="title">Użytkownicy</h2>
             <ul className="userList">
-              <li>
+              {Object.keys(members).map((key) => <li key={key}>
                 <span className="username">
-                  Bogdan <FontAwesomeIcon icon={faCrown} />
+                  {members[key]["display_name"] ? members[key]["display_name"] : members[key]["name"]}
+                  {members[key]["is_owner"] ? <FontAwesomeIcon icon={faCrown} /> : ""}
                 </span>
-                <span className="handle">Owner</span>
-              </li>
-              <li>
-                <span className="username">Maria</span>
-                <span className="handle">uzytkownik1</span>
-              </li>
-              <li>
-                <span className="username">Maciuś</span>
-                <span className="handle">Mordziaty2137</span>
-              </li>
-              <li>
-                <span className="username">Tadek</span>
-                <span className="handle">TeoRzechy</span>
-              </li>
+                <span className="handle">{members[key]["name"]}</span>
+              </li>)}
             </ul>
           </Card>
         </div>

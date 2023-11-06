@@ -36,7 +36,11 @@ interface EventList {
     color: string;
 }
 
-interface Member { name: string, display_name: string | null }
+interface Member {
+    name: string,
+    display_name: string | null,
+    is_owner: boolean
+}
 interface Members { [key: string | number]: Member }
 interface ErrorRespone { "error": string }
 
