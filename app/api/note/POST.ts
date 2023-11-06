@@ -9,7 +9,7 @@ interface req_body {
     title: string
     description: string
     color: string
-    house_id: string | number
+    user_house_id: string | number
 }
 
 export async function mPOST(req: Request, res: NextApiResponse) {
@@ -25,7 +25,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     if (!title || typeof title !== 'string' ||
         !description || typeof description !== 'string' ||
         !color || typeof color !== 'string' ||
-        !body.house_id || (typeof body.house_id !== 'string' && typeof body.house_id !== 'number')) {
+        !body.user_house_id || (typeof body.user_house_id !== 'string' && typeof body.user_house_id !== 'number')) {
         return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie wszystkie podane' }), {
             status: 400
         })
@@ -37,13 +37,14 @@ export async function mPOST(req: Request, res: NextApiResponse) {
         })
     }
 
-    const house_id = parseInt(body.house_id as string)
+    const user_house_id = parseInt(body.user_house_id as string)
     const profile = await prisma.user_house.findFirst({
         select: {
-            profile_id: true
+            profile_id: true,
+            house_id: true
         },
         where: {
-            house_id
+            id: user_house_id
         }
     })
     if (!profile) {
@@ -56,7 +57,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     const note = await prisma.note.create({
         data: {
             profile_id,
-            house_id,
+            house_id: profile.house_id,
             title,
             description,
             color

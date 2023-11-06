@@ -103,7 +103,7 @@ export default function Notes() {
       title: title,
       description: content,
       color: colorValue,
-      house_id: house_id,
+      user_house_id: house_id,
     };
     const options = {
       method: "POST",
