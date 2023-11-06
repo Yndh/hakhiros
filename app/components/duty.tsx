@@ -21,12 +21,23 @@ interface Duty {
 export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps) {
   const [dutyList, setDutyList] = useState(duties);
   const [modalOpen, setModalOpen] = useState(false);
-  const handleCheckboxChange = (index: number) => {
+  const handleCheckboxChange = async (index: number) => {
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify({ dutie_id: id }),
+    };
+    const note = await fetch("/api/dutie", options)
+      .then((res) => res.json())
+      .then((data: NoteFetch) => {
+        return data;
+      });
+    if ("error" in note) {
+      console.log(note["error"])
+      return
+    }
     const updatedDutyList = [...dutyList];
     updatedDutyList[index].isCompleted = !updatedDutyList[index].isCompleted;
     setDutyList(updatedDutyList);
-
-    console.table(dutyList);
   };
 
   const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
@@ -54,7 +65,6 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
     setDuties((duties) => duties.filter((dutie: any) => dutie.id !== id));
     toggleModal(e);
   };
-
   return (
     <>
       <Card>

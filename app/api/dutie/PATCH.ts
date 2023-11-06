@@ -5,10 +5,10 @@ import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
 
 interface req_body {
-    dutie_id: number
+    dutie_id: number | string
 }
 
-export async function mPATCH(req: Request, res: NextApiResponse){
+export async function mPATCH(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'nie zautoryzowany' }), {
@@ -17,7 +17,7 @@ export async function mPATCH(req: Request, res: NextApiResponse){
     }
 
     const body: req_body = await req.json()
-    if (!body || !body.dutie_id) {
+    if (!body || !body.dutie_id || !(typeof body.dutie_id === 'string' || typeof body.dutie_id === 'number')) {
         return new NextResponse(JSON.stringify({ error: 'nie podano id obowiazku' }), {
             status: 400
         })
@@ -25,11 +25,13 @@ export async function mPATCH(req: Request, res: NextApiResponse){
 
     const dutie = await prisma.dutie.findFirst({
         where: {
-            id: body.dutie_id,
-            profile_id: session.user.id
+            id: parseInt(body.dutie_id as string),
+            profile: {
+                user_id: session.user.id
+            }
         }
     })
-
+    console.log(dutie)
     if (!dutie) {
         return new NextResponse(JSON.stringify({ error: 'nie znaleziono obowiazku' }), {
             status: 400
@@ -41,7 +43,7 @@ export async function mPATCH(req: Request, res: NextApiResponse){
             id: dutie.id
         },
         data: {
-            is_done: true
+            is_done: !dutie.is_done
         }
     })
 
