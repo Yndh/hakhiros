@@ -32,7 +32,7 @@ export default function Notes() {
   let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== house_id) {
-      fetch(`/api/note?house_id=${house_id}`)
+      fetch(`/api/note?user_house_id=${house_id}`)
         .then((res) => res.json())
         .then((data: NoteFetch[]) => {
           prev_house_id.current = house_id;
@@ -193,7 +193,7 @@ export default function Notes() {
       </div>
 
       <div className="cardRow">
-        {getSortedNotes().map((note) => (
+        {getSortedNotes().map((note, index) => (
           <Note
             key={note.id}
             id={note.id}

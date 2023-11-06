@@ -63,6 +63,11 @@ export default function Note({
         return data;
       });
     setPinned(note.isPinned);
+    setNotes((notes) => {
+      const index = notes.findIndex((note2) => note.id === note2.id)
+      notes[index].isPinned = note.isPinned
+      return [...notes]
+    })
   };
 
   return (

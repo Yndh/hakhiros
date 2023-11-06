@@ -14,14 +14,13 @@ export async function mGET(req: Request, res: NextApiResponse) {
         })
     }
     const querry_params = getQuerryParameters(req.url)
-    const user_house_id_param = querry_params.house_id
+    const user_house_id_param = querry_params.user_house_id
     if (!user_house_id_param || (typeof user_house_id_param !== 'string' && typeof user_house_id_param !== 'number')) {
         return new NextResponse(JSON.stringify({ error: 'nie poprawne id domu' }), {
             status: 400
         })
     }
     const user_house_id = parseInt(user_house_id_param as string)
-
     const profile = await prisma.user_house.findFirst({
         select: {
             profile_id: true,
@@ -40,22 +39,41 @@ export async function mGET(req: Request, res: NextApiResponse) {
         })
     }
     const profile_id = profile.profile_id
-
-    const notes = await prisma.note.findMany({
-        select: {
-            id: true,
-            title: true,
-            description: true,
-            color: true,
-            createdAt: true,
-            isPinned: true,
-        },
-        where: {
-            profile_id,
-            house_id: profile.house_id
-        }
-    })
-
+    const pinned = Boolean(querry_params.pinned)
+    let notes;
+    if (pinned) {
+        notes = await prisma.note.findMany({
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                color: true,
+                createdAt: true,
+                isPinned: true,
+            },
+            where: {
+                profile_id,
+                house_id: profile.house_id,
+                isPinned: true
+            }
+        })
+    }
+    else {
+        notes = await prisma.note.findMany({
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                color: true,
+                createdAt: true,
+                isPinned: true,
+            },
+            where: {
+                profile_id,
+                house_id: profile.house_id,
+            }
+        })
+    }
     return new NextResponse(JSON.stringify(notes), {
         status: 200
     })

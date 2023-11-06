@@ -16,6 +16,7 @@ import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
 
 export default function Dashboard() {
+  const [triggerRerender, setTriggerRerender] = useState(false);
   const duties = [
     {
       title: "spotkanie",
@@ -47,19 +48,33 @@ export default function Dashboard() {
   ];
 
   const user_house_id = localStorage.getItem("user_house_id") || "-1";
-  let prev_house_id = useRef("-1");
+  let prev_user_house_id = useRef("-1");
   const [members, setMembers] = useState<Members>({})
+  const [notes, setNotes] = useState<Note[]>([])
 
   useEffect(() => {
-    fetch(`/api/members?user_house_id=${user_house_id}`)
-      .then((res) => res.json())
-      .then((data: Members | ErrorRespone) => {
-        if ("error" in data) {
-          console.log(data["error"]);
-          return;
-        }
-        setMembers(data)
-      })
+    if (prev_user_house_id.current !== user_house_id) {
+      fetch(`/api/members?user_house_id=${user_house_id}`)
+        .then((res) => res.json())
+        .then((data: Members | ErrorRespone) => {
+          if ("error" in data) {
+            console.log(data["error"]);
+            return;
+          }
+          setMembers(data)
+        })
+      fetch(`/api/note?user_house_id=${user_house_id}&pinned=true`)
+        .then((res) => res.json())
+        .then((data: Note[] | ErrorRespone) => {
+          if ("error" in data) {
+            console.log(data["error"]);
+            return;
+          }
+          console.log(data)
+          setNotes(data)
+        })
+      prev_user_house_id.current = user_house_id;
+    }
   })
 
   const shareHandler = async (
@@ -77,7 +92,7 @@ export default function Dashboard() {
   };
 
   return (
-    <AppLayout active="dashboard">
+    <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender}>
       <div className="header">
         <div className="collumn">
           <span>Witaj Ponownie,</span>
@@ -148,16 +163,19 @@ export default function Dashboard() {
                 ))}
               </div>
             </Card>
-
-            {/* <Note
-              id={1}
-              isPinned={true}
-              title="Notatka"
-              description="balsbalsbalsbals"
-            /> */}
-            <Card classes="center">
-              <h2>Brak przypiętych notatek</h2>
-            </Card>
+            {notes.filter((note) => note.isPinned === true).length > 0 ?
+              notes.filter((note) => note.isPinned === true).map((note) => <Note
+                key={note.id}
+                id={note.id}
+                isPinned={true}
+                title={note.title}
+                description={note.description}
+                setNotes={setNotes}
+              />) :
+              <Card classes="center">
+                <h2>Brak przypiętych notatek</h2>
+              </Card>
+            }
           </div>
         </div>
 
