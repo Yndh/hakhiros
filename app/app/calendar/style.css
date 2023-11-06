@@ -54,6 +54,9 @@
     border-radius: 0px 0px 30px 30px;
 }
 
+.fc .fc-daygrid-day-frame:hover{
+    background-color: rgba(255,220,40,.10) !important;
+}
 
 /*naglówek*/
 .fc .fc-scrollgrid-section-footer>*,
@@ -61,7 +64,7 @@
     margin-top: 0;
     background-image: var(--gradient);
     padding: 20px 0;
-    font-size: 1.5em;
+    font-size: 1.5vw;
     border-radius: 30px 30px 0px 0px;
     z-index: 3;
 }
