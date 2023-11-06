@@ -47,6 +47,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
             profile: {
                 select: {
                     id: true,
+                    user_id: true,
                     display_name: true,
                     user: {
                         select: {
@@ -75,10 +76,11 @@ export async function mGET(req: Request, res: NextApiResponse) {
 
     members.forEach(member => {
         const id = member.profile.id.toString();
+        const user_id = member.profile.user_id
         const name = member.profile.user.name;
         const display_name = member.profile.display_name;
 
-        members_formated[id] = { name, display_name, is_owner: id === house.owner.toString() };
+        members_formated[id] = { name, display_name, is_owner: user_id === house.owner };
     });
 
     return new NextResponse(JSON.stringify(members_formated), {
