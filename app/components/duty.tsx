@@ -4,6 +4,7 @@ import { faAdd, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction, useState } from "react";
 import Card from "./card";
+import { toast } from "react-toastify";
 
 interface DutyProps {
   id: number;
@@ -32,7 +33,7 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
         return data;
       });
     if ("error" in dutie) {
-      console.log(dutie["error"])
+      toast.error(`Wystąpił błąd: ${dutie["error"]}`);
       return
     }
     const updatedDutyList = [...dutyList];
@@ -59,11 +60,13 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
         return datetime_node;
       });
     if ("error" in dutie) {
-      console.log(dutie.error);
+      toast.error(`Wystąpił błąd: ${dutie.error}`);
       return;
     }
     setDuties((duties) => duties.filter((dutie: any) => dutie.id !== id));
     toggleModal(e);
+
+    toast.success("Pomyślnie usunięto obowiązek");
   };
   return (
     <>

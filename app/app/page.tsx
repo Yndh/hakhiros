@@ -121,7 +121,7 @@ export default function Dashboard() {
         return data;
       });
     if ("error" in dutie) {
-      console.log(dutie["error"]);
+      toast.error(`Wystąpił błąd: ${dutie["error"]}`);
       return;
     }
     setDuties((duties) => {

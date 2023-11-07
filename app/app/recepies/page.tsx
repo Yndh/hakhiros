@@ -97,8 +97,6 @@ export default function Recepies() {
       }
     });
 
-  console.table(categoryCounts);
-
   const filterToggle = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setFilterOpen(!filterOpen);
   };
