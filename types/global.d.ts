@@ -1,4 +1,5 @@
-interface Houses { [key: string]: string }
+interface House {name:string, code:string}
+interface Houses { [key: string]:House  }
 
 interface Note {
     id: number
