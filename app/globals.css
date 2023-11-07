@@ -359,6 +359,11 @@ table.users .kick:hover {
   opacity: 1;
 }
 
+.homeSelect{
+  display: flex;
+  justify-content: center;
+}
+
 .homeSelectHeader {
   position: relative;
   display: flex;
@@ -366,8 +371,14 @@ table.users .kick:hover {
   align-items: center;
   gap: 5px;
   padding: 10px;
+  width: 80%;
   border-radius: var(--radius-primary);
   box-shadow: var(--box-shadow);
+}
+
+.homeSelectHeader h2{
+  width: 80%;
+
 }
 
 .homeSelectOptions {
