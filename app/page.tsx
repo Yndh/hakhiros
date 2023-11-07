@@ -5,10 +5,12 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import AppFunctions from "./components/appFunctions";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import FAQ from "./components/faq";
 
 export default function Home() {
   return (
-    <main className="landingContainer">
+    <main className="landingContainer" id="start">
       <header className="landingHeader">
         <div className="logo">
           <img src="/logo.svg" alt="logo" />
@@ -16,7 +18,7 @@ export default function Home() {
         </div>
         <ul className="landingNav">
           <li>
-            <a href="">Lorem</a>
+            <a href="/#start">Start</a>
           </li>
           <li>
             <a href="/#about">O nas</a>
@@ -25,7 +27,7 @@ export default function Home() {
             <a href="/#functions">Funkcje</a>
           </li>
           <li>
-            <a href="">Ipsum</a>
+            <a href="/#faq">FAQ</a>
           </li>
           <li>
             <a href="/app">
@@ -37,10 +39,10 @@ export default function Home() {
 
       <div className="heroContainer">
         <h1>Twoje rodzinne centrum organizacji</h1>
+        <a href="/app"><button>Sprawdź FamiLynk</button></a>
         <img src="/houseBaner.svg" alt="" />
-        {/* <a href="/app"><button>FamiLynk</button></a> */}
       </div>
-
+    
       <div className="landingElement" id="about">
         <h1>O nas</h1>
         <div className="aboutUsRow">
@@ -83,6 +85,53 @@ export default function Home() {
         <h1>Funkcje Aplikacji</h1>
         <AppFunctions />
       </div>
+
+      <div className="landingElement" id="faq">
+        <h1>FAQ</h1>
+
+        <FAQ/>
+      </div>
+
+      <footer>
+          <div className="footerRow">
+              <div className="logo">
+                <h1>FamiLynk</h1>
+                <p>Twoje centrum organizacji</p>
+              </div>
+              
+              <div className="links">
+                <p>Strona Główna</p>
+                <a href="/#start">Start</a>
+                <a href="/#about">O nas</a>
+                <a href="/#functions">Funkcje</a>
+                <a href="/#faq">Funkcje</a>
+                
+              </div>
+
+              <div className="links">
+                <p>Ogólne</p>
+                <a href="/login">Zaloguj się</a>
+                <a href="/register">Zarejestruj się</a>
+              </div>
+            
+              <div className="links">
+                <p>Autorzy</p>
+                <a href="https://github.com/Yndh">Yndh</a>
+                <a href="https://github.com/Qlesuga">Qłesuga</a>
+                <a href="https://github.com/MarcinSzablak">JerzTuptus</a>
+                <a href="https://github.com/IB2R5IMarcinSzablak">IB2R5</a>
+              </div>
+            
+
+
+          </div>
+          <div className="footerCol">
+              <div className="socialRow">
+              <a href="https://github.com/Yndh/hakhiros" className="social"><FontAwesomeIcon icon={faGithub} /></a>
+              </div>
+              <p>&copy;Copyright All right reserved</p>
+          </div>
+      </footer>
     </main>
   );
 }

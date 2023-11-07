@@ -132,6 +132,7 @@ ul.landingNav li:hover {
 }
 
 .heroContainer h1 {
+    text-align: center;
     font-size: 60px;
     background: var(--gradient);
     background-clip: text;
@@ -147,7 +148,7 @@ ul.landingNav li:hover {
     /* background: #6bb2aa;
     color: var(--color-secondary); */
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 
 .landingElement#about{
@@ -219,6 +220,8 @@ ul.landingNav li:hover {
 
 .functionSelect ul{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     list-style-type: none;
     gap: 30px;
 }
@@ -241,7 +244,7 @@ ul.landingNav li:hover {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: 600;
+    font-weight: 900;
 }
 
 .functionSelect ul li.active svg{
@@ -292,7 +295,224 @@ ul.landingNav li:hover {
     border-radius: 50%;
 }
 
+.faqColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.expandable{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background: var(--accent-secondary);
+    /* color: var(--card-secondary); */
+    box-shadow: var(--box-shadow);
+    border-radius: var(--radius-secondary);
+    padding: 20px;
+}
+.expandableHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.expandableHeader h2{
+    display: flex;
+    width: 80%;
+    gap: 10px;
+}
+
+
+.expandableContent p{
+    text-align: left;
+    width: 100%;
+}
+
+.expandableContent{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    transition: .3s;
+}
+.expandableContent p{
+    font-size: 16px;
+    opacity: .7;
+}
+
+.expandableContent.active{
+    max-height: 500px;
+    opacity: 1;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 20px;
+}
+
+footer a{
+    color: var(--color-secondary);
+    opacity: .7;
+    transition: .3s;
+}
+footer a:hover{
+    opacity: .5;
+}
+
+.footerRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.footerRow .logo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--color-secondary);
+}
+
+.logo h1{
+    margin-bottom: -10px;
+}
+.logo p{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.links p{
+    font-weight: 600;
+    font-size: 16px;
+}
+.links a{
+    padding-left: 10px;
+}
+
+.footerCol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 0;
+    gap: 10px;
+    width: 90%;
+    border-top: 1px solid var(--accent-secondary);
+}
+
+.socialRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.social{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    transition: .5s;
+}
+.social svg{
+    height: 25px;
+    transition: .5s;
+}
+
+.social:hover{
+    border-color: var(--accent-primary);
+}
+.social:hover svg{
+    color: var(--accent-primary);
+}
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+@media screen and (max-width: 768px){
+    .landingHeader ul{
+        display: none;
+    }
+
+    .aboutUsRow{
+        flex-direction: column;
+        width: 80%;
+    }
+    .aboutUsElement{
+        width: 100%;
+    }
+
+    .expandable{
+        width: 100%;
+    }
+
+    .footerRow .logo{
+        align-items: center;
+    }
+
+    .footerRow .links{
+        display: none;
+    }
+
+    .functionContent{
+        flex-direction: column;
+    }
+
+    .functionContentColumn{
+        justify-content: center !important;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        width: 100% !important;
+        height: auto;
+    }
+
+    .functionContentColumn p{
+        text-align: left !important;
+        width: 80%;
+    }
+
+    .functionContentColumn:first-child{
+        margin-top: 20px;
+    }
+
+    .functionContentColumn:first-child .functionContentColumnElement{
+        flex-direction: row-reverse;
+    }
+
+    .functionContentColumnElement svg{
+        padding: 10px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .functionContentColumn:first-child p{
+        text-align: left !important;
+    }
 }
