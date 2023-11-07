@@ -8,17 +8,17 @@ FamiLynk to aplikacja webowa stworzona w Next.js z TypeScript, która pomaga w o
 - [Technologie i Biblioteki](#technologie-i-biblioteki)
 - [Instalacja](#instalacja)
 - [Użycie](#użycie)
-- [Autorzy](#autorzy)
+- [Autorzy](#autors)
 
 ## Funkcje
 
 Aplikacja FamiLynk oferuje następujące funkcje:
 
-- **Domy**: Dodawaj użytkowników do rodziny.
-- **Kalendarz**: Możesz dodawać wydarzenia i zaplanować ważne daty.
-- **Notatki**: Twórz notatki, które są dostępne dla wszystkich członków rodziny.
-- **Obowiązki**: Przypisywanie obowiązków domowych na konkretny dzień tygodnia dla wybranych użytkowników.
-- **Przepisy**: Lista przepisów kulinarnych z listą składników, krokami przygotowania, poziomem trudności i czasem przygotowania.
+- **Domy**: W FamiLynk to grupy lub przestrzenie organizacyjne, które pozwalają na wspólne zarządzanie życiem rodzinym. Możesz utworzyć swój własny 'Dom' dla swojej rodziny lub dołączyć do istniejącego, aby wspólnie planować, organizować i zarządzać obowiązkami oraz wydarzeniami. Domy pozwalają na spersonalizowanie aplikacji pod potrzeby różnych grup rodzinnych. Chcąc zaprosić innych członków rodziny udostępniając im link do dołączenia do 'Domu' lub podać im kod QR.
+- **Kalendarz**: Możesz dodawać i zaplanować ważne wydarzenia, by każdy członek rodziny nie czuł się zaskoczony.
+- **Notatki**: Twórz notatki, które są dostępne dla wszystkich członków rodziny, żeby dać informacje członkom domu np. (lista zakupów, co zabrać na wyjazd, itd...).
+- **Obowiązki**: Przypisuj obowiązki domowe na konkretny dzień tygodnia dla wybranych użytkowników, aby nikt nie zapomniał o tym co miał zrobić.
+- **Przepisy**: Wybieraj i przygotowuj dania z listy przepisów kulinarnych. Masz tam opisaną listę składników, kroki przygotowania, poziom trudności i czas przygotowania posiłku.
 
 ## Technologie i Biblioteki
 
