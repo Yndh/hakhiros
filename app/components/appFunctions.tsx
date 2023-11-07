@@ -24,6 +24,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const functionOptions = {
   Domy: {
     icon: faHouse,
+    mockup: "/Mockups/Dashboard.png",
     mockupMobile: "/Mockups/DashboardMobile.png",
     content: [
       {
@@ -42,6 +43,7 @@ const functionOptions = {
   },
   Kalendarz: {
     icon: faCalendarDays,
+    mockup: "/Mockups/Kalendarz.png",
     mockupMobile: "/Mockups/KalendarzMobile.png",
     content: [
       {
@@ -56,6 +58,7 @@ const functionOptions = {
   },
   Notatki: {
     icon: faPenToSquare,
+    mockup: "/Mockups/Notatki.png",
     mockupMobile: "/Mockups/NotatkiMobile.png",
     content: [
       {
@@ -74,6 +77,7 @@ const functionOptions = {
   },
   Obowiązki: {
     icon: faBell,
+    mockup: "/Mockups/Obowiazki.png",
     mockupMobile: "/Mockups/ObowiazkiMobile.png",
     content: [
       {
@@ -92,6 +96,7 @@ const functionOptions = {
   },
   Przepisy: {
     icon: faUtensils,
+    mockup: "/Mockups/Przepisy.png",
     mockupMobile: "/Mockups/PrzepisyMobile.png",
     content: [
       {
@@ -153,7 +158,7 @@ export default function AppFunction() {
           ))}
         </div>
 
-        <img src="/pcMockup.png" alt="Desktop Mockup" className="pc"/>
+        <img src={functionOptions[selectedFunction].mockup} alt="Desktop Mockup" className="pc"/>
         <img src={functionOptions[selectedFunction].mockupMobile} alt="Mobile Mockup" className="mobile"/>
 
         <div className="functionContentColumn">
