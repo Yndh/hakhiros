@@ -5,6 +5,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function NewUser() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function NewUser() {
         return data;
       });
     if ("error" in house) {
-      console.log(house.error);
+      toast.error(`Wystąpił błąd z udostępnieniem: ${house.error}`);
       return;
     }
     const houseId = Object.keys(house)[0];

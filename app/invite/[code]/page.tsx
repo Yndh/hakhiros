@@ -5,6 +5,7 @@ import Card from "../../components/card";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
+import { toast } from "react-toastify";
 
 export default function Invite({ params }: { params: { code: string } }) {
   const router = useRouter()
@@ -16,7 +17,7 @@ export default function Invite({ params }: { params: { code: string } }) {
       const response = await fetch(`/api/house/${params.code}`);
       const data = await response.json();
       if ("error" in data) {
-        console.log(data.error)
+        toast.error(`Wystąpił błąd z udostępnieniem: ${data.error}`);
       }
       setHouse(data);
     };
@@ -37,7 +38,7 @@ export default function Invite({ params }: { params: { code: string } }) {
       if (house.error === "nie mozesz byc 2 razy w tym samym domu") {
         router.push("/app");
       }
-      console.log(house.error);
+      toast.error(`Wystąpił błąd z udostępnieniem: ${house.error}`);
       return;
     }
     router.push("/app");
