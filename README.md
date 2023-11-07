@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏠 FamiLynk - Organizer Domowy
 
-## Getting Started
+FamiLynk to aplikacja webowa stworzona w Next.js z TypeScript, która pomaga w organizacji życia rodzinnego. Aplikacja pozwala na dzielenie się z innymi członkami rodziny różnymi informacjami, takimi jak kalendarz, notatki, obowiązki i przepisy.
 
-First, run the development server:
+## Spis Treści
+
+- [Funkcje](#funkcje)
+- [Technologie i Biblioteki](#technologie-i-biblioteki)
+- [Instalacja](#instalacja)
+- [Użycie](#użycie)
+- [Autorzy](#autors)
+
+## Funkcje
+
+Aplikacja FamiLynk oferuje następujące funkcje:
+
+- **Domy**: Dodawaj użytkowników do rodziny.
+- **Kalendarz**: Możesz dodawać wydarzenia i zaplanować ważne daty.
+- **Notatki**: Twórz notatki, które są dostępne dla wszystkich członków rodziny.
+- **Obowiązki**: Przypisywanie obowiązków domowych na konkretny dzień tygodnia dla wybranych użytkowników.
+- **Przepisy**: Lista przepisów kulinarnych z listą składników, krokami przygotowania, poziomem trudności i czasem przygotowania.
+
+## Technologie i Biblioteki
+
+Aplikacja FamiLynk została zbudowana przy użyciu kluczowych technologii i bibliotek:
+
+- [Next.js](https://nextjs.org): Framework React do renderowania na serwerze.
+- [TypeScript](https://www.typescriptlang.org): Rozszerza JavaScript o typy, co pomaga w większej pewności kodu.
+- [Prisma](https://prisma.io): ORM do interakcji z bazą danych.
+- [next-auth](https://next-auth.js.org): Zapewnia mechanizmy autentykacji i zarządzania sesjami.
+
+Ponadto, wykorzystaliśmy również następujące narzędzia i biblioteki:
+
+- [FontAwesome](https://fontawesome.com): Dostarcza ikony do użycia w aplikacji.
+- [FullCalendar](https://fullcalendar.io): Biblioteka do obsługi kalendarza.
+- [bcrypt](https://github.com/kelektiv/node.bcrypt.js): Służy do haszowania haseł użytkowników.
+- [react-qr-code](https://github.com/zpao/qrcode.react): Umożliwia generowanie kodów QR.
+- [react-toastify](https://fkhadra.github.io/react-toastify): Wyświetla powiadomienia w aplikacji.
+
+
+## Instalacja
+
+1. Sklonuj repozytorium:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$ git clone https://github.com/Yndh/hakhiros.git
+$ cd hakhiros
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Zainstaluj zależności
+```bash
+$ npm install
+$ yarn add
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Skonfiguruj środowisko
+Ustal odpowiednie zmienne środowiskowe w plikach .env w celu dostosowania konfiguracji aplikacji do swoich potrzeb.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Skonfiguruj baze danych
+Wykonaj migrację bazy danych
+```bash
+$ npx prisma db push
+```
 
-## Learn More
+5. Uruchom aplikację
+```bash
+$ npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Użycie
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Zarejestruj się lub zaloguj się w aplikacji.
+2. Utwórz nową rodzinę lub dołącz do istniejącej.
+3. Korzystaj z różnych modułów aplikacji, takich jak kalendarz, notatki, obowiązki i przepisy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Autorzy
+[![Yndh](https://github.com/Yndh.png?size=40)](https://github.com/Yndh) 
 
-## Deploy on Vercel
+[![Qlesuga](https://github.com/Qlesuga.png?size=40)](https://github.com/Qlesuga) 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[![MarcinSzablak](https://github.com/MarcinSzablak.png?size=40)](https://github.com/MarcinSzablak) 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![IB2R5](https://github.com/IB2R5I.png?size=40)](https://github.com/IB2R5I)
