@@ -69,7 +69,7 @@ export default function NewUser() {
         return data;
       });
     if ("error" in house) {
-      console.log(house.error);
+      toast.error(`Wystąpił błąd z udostępnieniem: ${house.error}`);
       return;
     }
     const houseId = Object.keys(house)[0];

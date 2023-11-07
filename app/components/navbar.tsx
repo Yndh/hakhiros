@@ -57,8 +57,12 @@ export const NavBar = (props: NavBarProps) => {
           return
         }
         setHouses(data);
-        const id = parseInt(localStorage.getItem("user_house_id")) > 0 ? localStorage.getItem("user_house_id") : Object.keys(data)[0];
-        setUserHouseId(id);
+        const id = parseInt(localStorage.getItem("user_house_id") as string) > 0 ? localStorage.getItem("user_house_id") : Object.keys(data)[0];
+        if (!id) {
+          toast.error(`Wystąpił błąd z id podczas pobierania danych domu`);
+          return
+        }
+        setUserHouseId(id?.toString);
         localStorage.setItem("user_house_id", id);
         if (props.setTriggerRerender) {
           props.setTriggerRerender(
