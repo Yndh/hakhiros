@@ -63,3 +63,9 @@ interface Dutie {
     profile_id: number,
     weekDay: number
 }
+
+interface User{
+    name?: string,
+    dispaly_name?: string | null
+  }
+  

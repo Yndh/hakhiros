@@ -24,6 +24,7 @@ interface NavBarProps {
   active: string;
   setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined;
   setCode: Dispatch<SetStateAction<string>> | undefined
+  setUser:Dispatch<SetStateAction<User>> | undefined
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -41,6 +42,7 @@ export const NavBar = (props: NavBarProps) => {
   );
   const [userHouseName, setUserHouseName] = useState<string>("");
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     fetch("/api/house")
@@ -59,7 +61,23 @@ export const NavBar = (props: NavBarProps) => {
           props.setCode(data[Object.keys(data)[0]]["code"])
         }
         }
-      });
+      }).then(()=>{
+        fetch("/api/house")
+      .then((res) => res.json())
+      .then((data: User | ErrorRespone) => {
+        if("error" in data){
+          console.log(data["error"])
+          return
+        }
+        setUser(data)
+        if(props.setUser){
+          props.setUser(data)
+        }
+      })
+      })
+      if(props.setTriggerRerender){
+        props.setTriggerRerender((triggerRerender)=>!triggerRerender)
+      }
   }, []);
 
   const dropdownToggle = (
@@ -115,6 +133,19 @@ export const NavBar = (props: NavBarProps) => {
     if(props.setCode){
       setCode(houses[user_house_id]["code"])
     }
+    fetch(`/api/user?user_house_id=1`)
+      .then((res) => res.json())
+      .then((data: User | ErrorRespone) => {
+        console.log(data)
+        if ("error" in data) {
+          console.log(data["error"]);
+          return;
+        }
+        setUser(data)
+        if(props.setUser){
+          props.setUser(data)
+        }
+      })
   };
 
   const createHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {

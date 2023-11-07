@@ -49,7 +49,7 @@ export default function Dashboard() {
   let prev_user_house_id = useRef("-1");
   const [members, setMembers] = useState<Members>({})
   const [notes, setNotes] = useState<Note[]>([])
-
+  const [user,setUser]= useState<User>({})
   useEffect(() => {
     if (prev_user_house_id.current !== user_house_id) {
       //members
@@ -122,11 +122,11 @@ export default function Dashboard() {
     });
   };
   return (
-    <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender} setCode={setCode}>
+    <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender} setCode={setCode} setUser={setUser}>
       <div className="header">
         <div className="collumn">
           <span>Witaj Ponownie,</span>
-          <h1>Użytkownik</h1>
+          <h1>{user["name"]}</h1>
         </div>
       </div>
 
