@@ -23,6 +23,7 @@ import Modal from "./modal";
 interface NavBarProps {
   active: string;
   setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined;
+  setCode: Dispatch<SetStateAction<string>> | undefined
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -54,6 +55,9 @@ export const NavBar = (props: NavBarProps) => {
           props.setTriggerRerender(
             (triggerRerender: boolean) => !triggerRerender
           );
+        if(props.setCode){
+          props.setCode(data[Object.keys(data)[0]]["code"])
+        }
         }
       });
   }, []);
@@ -107,6 +111,9 @@ export const NavBar = (props: NavBarProps) => {
     localStorage.setItem("user_house_id", user_house_id);
     if (props.setTriggerRerender) {
       props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
+    }
+    if(props.setCode){
+      setCode(houses[user_house_id]["code"])
     }
   };
 
@@ -186,7 +193,7 @@ export const NavBar = (props: NavBarProps) => {
             <div className="homeSelectHeader" onClick={dropdownToggle}>
               <h2>
                 {Object.keys(houses).length > 0
-                  ? houses[userHouseId]
+                  ? houses[userHouseId]["name"]
                   : "ładowanie"}
               </h2>
               <FontAwesomeIcon
@@ -205,7 +212,7 @@ export const NavBar = (props: NavBarProps) => {
                     }}
                   >
                     <FontAwesomeIcon icon={faHome} />
-                    {houses[key]}
+                    {houses[key]["name"]}
                   </li>
                 ))}
                 <li className="addHome" onClick={toggleModal}>
