@@ -149,7 +149,7 @@ export default function AppFunction() {
         </div>
 
         <img src="/pcMockup.png" alt="Desktop Mockup" className="pc"/>
-        <img src="/mobileMockup.jpg" alt="Mobile Mockup" className="mobile"/>
+        <img src="/mobileMockup.png" alt="Mobile Mockup" className="mobile"/>
 
         <div className="functionContentColumn">
           {secondHalfContent.map((item, index) => (

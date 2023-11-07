@@ -14,10 +14,12 @@ import { Fragment, useEffect, useRef, useState } from "react";
 
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
+  console.log(weekDay);
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState("");
   const [dutyTitle, setDutyTitle] = useState("");
-  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedDay, setSelectedDay] = useState(new Date().getDay());
 
   const weekDaysNames = [
     "Niedziela",
