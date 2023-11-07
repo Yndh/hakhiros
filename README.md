@@ -28,9 +28,6 @@ Aplikacja FamiLynk została zbudowana przy użyciu kluczowych technologii i bibl
 - [TypeScript](https://www.typescriptlang.org): Rozszerza JavaScript o typy, co pomaga w większej pewności kodu.
 - [Prisma](https://prisma.io): ORM do interakcji z bazą danych.
 - [next-auth](https://next-auth.js.org): Zapewnia mechanizmy autentykacji i zarządzania sesjami.
-
-Ponadto, wykorzystaliśmy również następujące narzędzia i biblioteki:
-
 - [FontAwesome](https://fontawesome.com): Dostarcza ikony do użycia w aplikacji.
 - [FullCalendar](https://fullcalendar.io): Biblioteka do obsługi kalendarza.
 - [bcrypt](https://github.com/kelektiv/node.bcrypt.js): Służy do haszowania haseł użytkowników.
