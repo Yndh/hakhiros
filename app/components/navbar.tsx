@@ -81,7 +81,7 @@ export const NavBar = (props: NavBarProps) => {
             if (props.setUser) {
               props.setUser(data)
             }
-            setUserHouseName(data["display_name"])
+            setUserHouseName(data["display_name"] || "")
           })
       }).then(() => {
         if (props.setTriggerRerender) {
@@ -442,7 +442,7 @@ export const NavBar = (props: NavBarProps) => {
           <input
             type="text"
             placeholder="Wpisz pseudonim..."
-            value={userHouseName}
+            value={userHouseName || ""}
             onChange={userNameHandler}
           />
 
