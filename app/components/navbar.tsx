@@ -20,6 +20,7 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Modal from "./modal";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface NavBarProps {
   active: string;
@@ -28,6 +29,7 @@ interface NavBarProps {
   setUser: Dispatch<SetStateAction<User>> | undefined
 }
 export const NavBar = (props: NavBarProps) => {
+  const router = useRouter()
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("join");
@@ -49,6 +51,10 @@ export const NavBar = (props: NavBarProps) => {
     fetch("/api/house")
       .then((res) => res.json())
       .then((data: Houses) => {
+        if (Object.keys(data).length === 0) {
+          router.push("/app/newUser")
+          return
+        }
         setHouses(data);
         const id =
           localStorage.getItem("user_house_id") || Object.keys(data)[0];
