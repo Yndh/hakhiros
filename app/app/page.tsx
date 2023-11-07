@@ -14,6 +14,7 @@ import {
 import QRCode from "react-qr-code";
 import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 interface Dutie {
   id: number;
@@ -45,7 +46,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: Members | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           setMembers(data);
@@ -55,7 +56,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: Note[] | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           console.log(data);
@@ -67,7 +68,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: Dutie[] | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           setDuties(data);
@@ -77,7 +78,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: EventList[]) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           const event_data = data.map((event) => ({
@@ -103,10 +104,10 @@ export default function Dashboard() {
       await navigator.share({
         title: "Zaprosznie do domu",
         text: "Dołącz do mojego domu",
-        url: `${window.location.protocol}//${window.location.hostname}/join/${code}`,
+        url: `${window.location.protocol}//${window.location.hostname}/invite/${code}`,
       });
     } catch (err) {
-      alert(`Nie można udostępnić: ${err}`);
+      toast.error(`Wystąpił błąd z udostępnieniem: ${err}`);
     }
   };
 
@@ -149,6 +150,19 @@ export default function Dashboard() {
       );
     }
   };
+
+  const copyInviteHandler = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    try {
+      await navigator.clipboard.writeText(
+        `${window.location.protocol}//${window.location.hostname}/join/${code}`
+      );
+      toast.success('Zaproszenie zostało skopiowane do schowka!');
+    } catch (err: any) {
+      toast.error(`Wystąpił błąd podczas kopiowania zaproszenia ${err.message}`);
+    }
+  };
+  
+
   return (
     <AppLayout
       active="dashboard"
@@ -249,7 +263,7 @@ export default function Dashboard() {
             <h2 className="title">Zaproszenie</h2>
             <div className="qrCode">
               <QRCode
-                value={`${window.location.protocol}//${window.location.hostname}/join/${code}`}
+                value={`${window.location.protocol}//${window.location.hostname}/invite/${code}`}
                 width={256}
                 style={{ height: "auto" }}
               />
@@ -259,11 +273,7 @@ export default function Dashboard() {
               </button>
             </div>
             <button
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  `${window.location.protocol}//${window.location.hostname}/join/${code}`
-                );
-              }}
+              onClick={copyInviteHandler}
             >
               <FontAwesomeIcon icon={faCopy} />
               Kopiuj Zaproszenie

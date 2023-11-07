@@ -59,6 +59,10 @@
 }
 
 /*naglówek*/
+.fc-toolbar-title{
+    text-transform: capitalize;
+}
+
 .fc .fc-scrollgrid-section-footer>*,
 .fc .fc-scrollgrid-section-header>* {
     margin-top: 0;
