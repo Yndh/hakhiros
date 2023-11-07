@@ -15,8 +15,6 @@ import { toast } from "react-toastify";
 
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
-  console.log(weekDay);
-  
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState("");
   const [dutyTitle, setDutyTitle] = useState("");

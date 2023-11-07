@@ -19,6 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Modal from "./modal";
+import { toast } from "react-toastify";
 
 interface NavBarProps {
   active: string;
@@ -66,7 +67,7 @@ export const NavBar = (props: NavBarProps) => {
           .then((res) => res.json())
           .then((data: User | ErrorRespone) => {
             if ("error" in data) {
-              console.log(data["error"])
+              toast.error(`Wystąpił błąd: ${data["error"]}`);
               return
             }
             setUser(data)
@@ -138,7 +139,7 @@ export const NavBar = (props: NavBarProps) => {
       .then((res) => res.json())
       .then((data: User | ErrorRespone) => {
         if ("error" in data) {
-          console.log(data["error"]);
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
           return;
         }
         setUser(data)
@@ -162,7 +163,7 @@ export const NavBar = (props: NavBarProps) => {
         return data;
       });
     if ("error" in house) {
-      console.log(house.error);
+      toast.error(`Wystąpił błąd: ${house.error}`);
       return;
     }
     setHouses((houses) => ({ ...houses, ...house }));
@@ -189,7 +190,7 @@ export const NavBar = (props: NavBarProps) => {
         return data;
       });
     if ("error" in house) {
-      console.log(house.error);
+      toast.error(`Wystąpił błąd: ${house.error}`);
       return;
     }
     setHouses((houses) => ({ ...houses, ...house }));
@@ -227,8 +228,8 @@ export const NavBar = (props: NavBarProps) => {
     const new_user = await fetch("/api/user", options)
       .then((res) => res.json())
       .then((data: User | ErrorRespone) => {
-        if ("error" in data) {
-          console.log(data.error)
+        if ("error" in data) {        
+          toast.error(`Wystąpił błąd: ${data.error}`);
           return
         }
         setUser(data)
@@ -237,6 +238,8 @@ export const NavBar = (props: NavBarProps) => {
         }
       });
     setUserOpen(false)
+
+    toast.success("Pomyślnie zmieniono pseudonim");
   }
 
   return (
