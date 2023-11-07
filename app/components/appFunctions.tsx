@@ -143,9 +143,9 @@ export default function AppFunction() {
     <>
       <div className="functionSelect">
         <ul>
-          {Object.keys(functionOptions).map((functionName) => (
+          {Object.keys(functionOptions).map((functionName, index) => (
             <li
-              key={functionName}
+              key={`functionName${index}`}
               className={selectedFunction === functionName ? "active" : ""}
               onClick={() => handleFunctionSelect(functionName)}
             >
