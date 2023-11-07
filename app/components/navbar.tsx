@@ -24,7 +24,7 @@ interface NavBarProps {
   active: string;
   setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined;
   setCode: Dispatch<SetStateAction<string>> | undefined
-  setUser:Dispatch<SetStateAction<User>> | undefined
+  setUser: Dispatch<SetStateAction<User>> | undefined
 }
 export const NavBar = (props: NavBarProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -42,7 +42,7 @@ export const NavBar = (props: NavBarProps) => {
   );
   const [userHouseName, setUserHouseName] = useState<string>("");
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState<User>({})
 
   useEffect(() => {
     fetch("/api/house")
@@ -57,27 +57,28 @@ export const NavBar = (props: NavBarProps) => {
           props.setTriggerRerender(
             (triggerRerender: boolean) => !triggerRerender
           );
-        if(props.setCode){
-          props.setCode(data[Object.keys(data)[0]]["code"])
+          if (props.setCode) {
+            props.setCode(data[Object.keys(data)[0]]["code"])
+          }
         }
-        }
-      }).then(()=>{
-        fetch("/api/house")
-      .then((res) => res.json())
-      .then((data: User | ErrorRespone) => {
-        if("error" in data){
-          console.log(data["error"])
-          return
-        }
-        setUser(data)
-        if(props.setUser){
-          props.setUser(data)
+      }).then(() => {
+        fetch(`/api/user?user_house_id=${userHouseId}`)
+          .then((res) => res.json())
+          .then((data: User | ErrorRespone) => {
+            if ("error" in data) {
+              console.log(data["error"])
+              return
+            }
+            setUser(data)
+            if (props.setUser) {
+              props.setUser(data)
+            }
+          })
+      }).then(() => {
+        if (props.setTriggerRerender) {
+          props.setTriggerRerender((triggerRerender) => !triggerRerender)
         }
       })
-      })
-      if(props.setTriggerRerender){
-        props.setTriggerRerender((triggerRerender)=>!triggerRerender)
-      }
   }, []);
 
   const dropdownToggle = (
@@ -130,7 +131,7 @@ export const NavBar = (props: NavBarProps) => {
     if (props.setTriggerRerender) {
       props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
     }
-    if(props.setCode){
+    if (props.setCode) {
       setCode(houses[user_house_id]["code"])
     }
     fetch(`/api/user?user_house_id=1`)
@@ -142,7 +143,7 @@ export const NavBar = (props: NavBarProps) => {
           return;
         }
         setUser(data)
-        if(props.setUser){
+        if (props.setUser) {
           props.setUser(data)
         }
       })
@@ -397,7 +398,7 @@ export const NavBar = (props: NavBarProps) => {
           />
 
           <p className="thin">Nazwa użytkownika</p>
-          <input type="text" value={"@uzytkownik"} disabled />
+          <input type="text" value={`@${user['name']}`} disabled />
 
           <p className="thin">Pseudonim</p>
           <input

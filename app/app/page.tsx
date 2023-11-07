@@ -37,7 +37,7 @@ export default function Dashboard() {
   let prev_user_house_id = useRef("-1");
   const [members, setMembers] = useState<Members>({})
   const [notes, setNotes] = useState<Note[]>([])
-  const [user, setUser] = useState<User>({})
+  const [user, setUser] = useState<User>({ name: "test" })
   useEffect(() => {
     if (prev_user_house_id.current !== user_house_id) {
       //members
@@ -153,6 +153,7 @@ export default function Dashboard() {
         <div className="collumn">
           <span>Witaj Ponownie,</span>
           <h1>{user["name"]}</h1>
+          <h2>{user["dispaly_name"]}</h2>
         </div>
       </div>
 
