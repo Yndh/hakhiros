@@ -30,7 +30,7 @@ export default function Home() {
             <a href="/#faq">FAQ</a>
           </li>
           <li>
-            <a href="/app">
+            <a href="/login">
               <button>Zaloguj sie</button>
             </a>
           </li>
@@ -39,7 +39,7 @@ export default function Home() {
 
       <div className="heroContainer">
         <h1>Twoje rodzinne centrum organizacji</h1>
-        <a href="/app"><button>Sprawdź FamiLynk</button></a>
+        <a href="/login"><button>Sprawdź FamiLynk</button></a>
         <img src="/houseBaner.svg" alt="" />
       </div>
     

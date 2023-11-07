@@ -302,7 +302,7 @@
     ],
     "czas_przygotowania": {
       "liczba": 30,
-      "jednostka": "min" 
+      "jednostka": "min"
     },
     "poziom_trudnosci": "Średni",
     "kategorie": ["Zupy"]
@@ -1331,5 +1331,630 @@
     },
     "poziom_trudnosci": "Łatwy",
     "kategorie": ["Dania Wegetariańskie"]
+  },
+  {
+    "tytul": "Risotto z pieczarkami",
+    "krotki_opis": "Kremowe risotto z aromatycznymi pieczarkami.",
+    "dlugi_opis": "Risotto z pieczarkami to włoskie danie, które łączy delikatne kremowe ryżowe ziarna z pieczarkami i aromatycznym białym winem.",
+    "skladniki": [
+      {
+        "nazwa": "Ryż arborio",
+        "ilosc": "250g"
+      },
+      {
+        "nazwa": "Pieczarki",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Białe wino",
+        "ilosc": "200ml"
+      },
+      {
+        "nazwa": "Bulion warzywny",
+        "ilosc": "1 litr"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż cebulę i pieczarki na maśle.",
+      "Dodaj ryż i smaż chwilę, aż ziarna staną się szkliste.",
+      "Podlej winem i gotuj, aż wino odparuje.",
+      "Stopniowo dodawaj bulion i gotuj, mieszając, aż ryż będzie miękki i kremowy."
+    ],
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Lasagne",
+    "krotki_opis": "Pyszna lasagne z mięsem mielonym i sosem beszamelowym.",
+    "dlugi_opis": "Lasagne to tradycyjne danie kuchni włoskiej, składające się z warstw makaronu, mięsa mielonego, sosu pomidorowego i sosu beszamelowego.",
+    "skladniki": [
+      {
+        "nazwa": "Makaron lasagne",
+        "ilosc": "250g"
+      },
+      {
+        "nazwa": "Mięso mielone (wołowe/wieprzowe)",
+        "ilosc": "400g"
+      },
+      {
+        "nazwa": "Sos pomidorowy",
+        "ilosc": "500ml"
+      },
+      {
+        "nazwa": "Sos beszamelowy",
+        "ilosc": "400ml"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż mięso mielone i dodaj sos pomidorowy.",
+      "Warstwuj makaron lasagne, mięso i sos beszamelowy.",
+      "Piecz w piekarniku, aż makaron będzie miękki i danie dobrze przyrumienione."
+    ],
+    "czas_przygotowania": {
+      "liczba": 60,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Krewetki w sosie czosnkowym",
+    "krotki_opis": "Smażone krewetki w aromatycznym sosie czosnkowym.",
+    "dlugi_opis": "Krewetki w sosie czosnkowym to pyszne danie, które łączy delikatne krewetki z aromatem czosnku i masła.",
+    "skladniki": [
+      {
+        "nazwa": "Krewetki (świeże lub mrożone)",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Czosnek",
+        "ilosc": "4 ząbki"
+      },
+      {
+        "nazwa": "Masło",
+        "ilosc": "2 łyżki"
+      },
+      {
+        "nazwa": "Sok z cytryny",
+        "ilosc": "1 łyżka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż krewetki na maśle z posiekanym czosnkiem.",
+      "Dodaj sok z cytryny i smaż chwilę.",
+      "Podawaj gorące."
+    ],
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Sałatka z kurczakiem i awokado",
+    "krotki_opis": "Zdrowa sałatka z kurczakiem, awokado i pomidorami.",
+    "dlugi_opis": "Sałatka z kurczakiem i awokado to lekka i pełna smaku sałatka, która łączy soczystego kurczaka, awokado, pomidory i sos vinegret.",
+    "skladniki": [
+      {
+        "nazwa": "Pierś z kurczaka",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Awokado",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Sos vinegret",
+        "ilosc": "4 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj pierś z kurczaka i pokrój ją na kawałki.",
+      "Pokrój awokado i pomidory.",
+      "Połącz składniki i polej sosem vinegret."
+    ],
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Smażone pierogi ruskie",
+    "krotki_opis": "Pierogi ruskie smażone na maśle z cebulą.",
+    "dlugi_opis": "Smażone pierogi ruskie to tradycyjne danie kuchni polskiej, które łączy delikatne pierogi nadziewane ziemniakami i serem twarogowym z podsmażoną cebulą.",
+    "skladniki": [
+      {
+        "nazwa": "Pierogi ruskie",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Masło",
+        "ilosc": "3 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj pierogi ruskie według instrukcji na opakowaniu.",
+      "Smaż cebulę na maśle do zrumienienia.",
+      "Podawaj pierogi z podsmażoną cebulą."
+    ],
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Zupa krem z dyni i imbiru",
+    "krotki_opis": "Aromatyczna zupa krem z dyni i imbiru.",
+    "dlugi_opis": "Zupa krem z dyni i imbiru to pyszna zupa, która łączy słodką dynię z ostrym smakiem imbiru i kokosowego mleka.",
+    "skladniki": [
+      {
+        "nazwa": "Dynia",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Imbir",
+        "ilosc": "2 cm kawałek"
+      },
+      {
+        "nazwa": "Kokosowe mleko",
+        "ilosc": "400ml"
+      },
+      {
+        "nazwa": "Bulion warzywny",
+        "ilosc": "1 litr"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój dynię na kawałki i obróbuj ją w piekarniku.",
+      "Przygotuj pastę z imbiru i kokosowego mleka.",
+      "Zmiksuj dynię, pastę z imbiru i bulion warzywny na gładki krem."
+    ],
+    "czas_przygotowania": {
+      "liczba": 45,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Zupy"]
+  },
+  {
+    "tytul": "Curry z kurczakiem",
+    "krotki_opis": "Pikantne curry z soczystym kurczakiem i warzywami.",
+    "dlugi_opis": "Curry z kurczakiem to aromatyczne danie, które łączy soczyste kawałki kurczaka z pikantnym sosem curry i warzywami.",
+    "skladniki": [
+      {
+        "nazwa": "Pierś z kurczaka",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Sos curry",
+        "ilosc": "4 łyżki"
+      },
+      {
+        "nazwa": "Warzywa (papryka, groszek, marchew)",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Mleko kokosowe",
+        "ilosc": "400ml"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż kurczaka na patelni, aż będzie złoty.",
+      "Dodaj warzywa i smaż chwilę.",
+      "Wlej mleko kokosowe i sos curry, gotuj na wolnym ogniu."
+    ],
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Pappardelle z kurczakiem i pesto",
+    "krotki_opis": "Pyszne pappardelle z kurczakiem i sosem pesto.",
+    "dlugi_opis": "Pappardelle z kurczakiem i pesto to danie, które łączy szerokie wstążki makaronu, soczyste kawałki kurczaka i aromatyczny sos pesto.",
+    "skladniki": [
+      {
+        "nazwa": "Pappardelle",
+        "ilosc": "250g"
+      },
+      {
+        "nazwa": "Piersi z kurczaka",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Sos pesto",
+        "ilosc": "4 łyżki"
+      },
+      {
+        "nazwa": "Orzechy włoskie (nasiona dyni)",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj pappardelle według instrukcji na opakowaniu.",
+      "Smaż kurczaka na patelni, aż będzie złoty.",
+      "Połącz makaron, kurczaka i sos pesto. Posyp orzechami."
+    ],
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Sałatka z tuńczykiem i jajkiem",
+    "krotki_opis": "Pyszna sałatka z tuńczykiem, jajkami i warzywami.",
+    "dlugi_opis": "Sałatka z tuńczykiem i jajkiem to lekka i pełna białka sałatka, która łączy tuńczyka, jajka, ogórki i sałatę.",
+    "skladniki": [
+      {
+        "nazwa": "Tuńczyk w puszce",
+        "ilosc": "1 puszka"
+      },
+      {
+        "nazwa": "Jajka",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Ogórki kiszone",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Sałata lodowa",
+        "ilosc": "1 główka"
+      },
+      {
+        "nazwa": "Majonez",
+        "ilosc": "3 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj jajka na twardo, obierz i pokrój na kawałki.",
+      "Odsącz tuńczyka z puszki i pokrój ogórki na kawałki.",
+      "Połącz wszystkie składniki i polej majonezem."
+    ],
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Sałatka z awokado i krewetkami",
+    "krotki_opis": "Sycąca sałatka z awokado, krewetkami i sosem cytrynowym.",
+    "dlugi_opis": "Sałatka z awokado i krewetkami to doskonała propozycja na lekką i smaczną kolację, która łączy awokado, krewetki i aromatyczny sos cytrynowy.",
+    "skladniki": [
+      {
+        "nazwa": "Awokado",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Krewetki gotowane",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Cytryna",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Oliwa z oliwek",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój awokado na kawałki i skrop sokiem z cytryny.",
+      "Połącz awokado, krewetki i oliwę z oliwek. Skrop sokiem z cytryny."
+    ],
+    "czas_przygotowania": {
+      "liczba": 15,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Sałatka Caprese",
+    "krotki_opis": "Klasyczna sałatka Caprese z pomidorami, mozzarellą i bazylią.",
+    "dlugi_opis": "Sałatka Caprese to prosta i smaczna sałatka, która łączy soczyste pomidory, mozzarellę i bazylię, skropioną oliwą z oliwek.",
+    "skladniki": [
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Mozzarella",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Świeża bazylia",
+        "ilosc": "1 pęczek"
+      },
+      {
+        "nazwa": "Oliwa z oliwek",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój pomidory i mozzarellę na plastry.",
+      "Ułóż na talerzu warstwami z bazylią.",
+      "Skrop oliwą z oliwek i posyp solą i pieprzem."
+    ],
+    "czas_przygotowania": {
+      "liczba": 10,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Sałatka z kurczakiem i awokado",
+    "krotki_opis": "Zdrowa sałatka z kurczakiem, awokado i pomidorami.",
+    "dlugi_opis": "Sałatka z kurczakiem i awokado to lekka i pełna smaku sałatka, która łączy soczystego kurczaka, awokado, pomidory i sos vinegret.",
+    "skladniki": [
+      {
+        "nazwa": "Pierś z kurczaka",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Awokado",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Sos vinegret",
+        "ilosc": "4 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj pierś z kurczaka i pokrój ją na kawałki.",
+      "Pokrój awokado i pomidory.",
+      "Połącz składniki i polej sosem vinegret."
+    ],
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Sałatka z selera i jabłek",
+    "krotki_opis": "Orzeźwiająca sałatka z selera, jabłek i orzechów włoskich.",
+    "dlugi_opis": "Sałatka z selera i jabłek to orzeźwiająca sałatka, która łączy chrupiący seler, słodkie jabłka i aromatyczne orzechy włoskie.",
+    "skladniki": [
+      {
+        "nazwa": "Seler naciowy",
+        "ilosc": "4 łodygi"
+      },
+      {
+        "nazwa": "Jabłka",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Orzechy włoskie",
+        "ilosc": "1/2 szklanki"
+      },
+      {
+        "nazwa": "Sok z cytryny",
+        "ilosc": "1 łyżka"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Pokrój selera na cienkie plastry.",
+      "Pokrój jabłka i orzechy włoskie.",
+      "Skrop sokiem z cytryny i delikatnie wymieszaj."
+    ],
+    "czas_przygotowania": {
+      "liczba": 15,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Sałatka z brokułami i suszonymi pomidorami",
+    "krotki_opis": "Zdrowa sałatka z brokułami, suszonymi pomidorami i fetą.",
+    "dlugi_opis": "Sałatka z brokułami i suszonymi pomidorami to zdrowa i smaczna sałatka, która łączy soczyste brokuły, suszone pomidory i ser fetę.",
+    "skladniki": [
+      {
+        "nazwa": "Brokuły",
+        "ilosc": "500g"
+      },
+      {
+        "nazwa": "Suszona pomidory",
+        "ilosc": "1/2 szklanki"
+      },
+      {
+        "nazwa": "Ser feta",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Oliwa z oliwek",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Ugotuj brokuły na parze do chrupkości.",
+      "Pokrój suszone pomidory i ser fetę.",
+      "Połącz wszystkie składniki i polej oliwą z oliwek."
+    ],
+    "czas_przygotowania": {
+      "liczba": 20,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Łatwy",
+    "kategorie": ["Sałatki"]
+  },
+  {
+    "tytul": "Klasyczne spaghetti bolognese",
+    "krotki_opis": "Pyszne spaghetti z sosem bolognese.",
+    "dlugi_opis": "Klasyczne spaghetti bolognese to popularne danie włoskie, które łączy makaron spaghetti z sosem mięsnym i pomidorowym, doprawionym ziołami i przyprawami.",
+    "skladniki": [
+      {
+        "nazwa": "Makaron spaghetti",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Mięso mielone (wołowe lub wieprzowe)",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Pomidor krojony",
+        "ilosc": "1 puszka"
+      },
+      {
+        "nazwa": "Przyprawy (np. oregano, bazylia, sól, pieprz)",
+        "ilosc": "według uznania"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Gotuj makaron spaghetti według instrukcji na opakowaniu.",
+      "Smaż mięso mielone z cebulą, dodaj pomidory i przyprawy, dusz przez pewien czas.",
+      "Podawaj sos bolognese na makaronie."
+    ],
+    "czas_przygotowania": {
+      "liczba": 40,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Krewetki curry z mlekiem kokosowym",
+    "krotki_opis": "Pikantne krewetki curry z mlekiem kokosowym i warzywami.",
+    "dlugi_opis": "Krewetki curry z mlekiem kokosowym to aromatyczne danie, które łączy soczyste krewetki z pikantnym sosem curry i kremowym mlekiem kokosowym.",
+    "skladniki": [
+      {
+        "nazwa": "Krewetki surowe, obrane",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Mleko kokosowe",
+        "ilosc": "400ml"
+      },
+      {
+        "nazwa": "Warzywa (papryka, groszek, marchew)",
+        "ilosc": "300g"
+      },
+      {
+        "nazwa": "Sos curry",
+        "ilosc": "4 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż krewetki na patelni, aż będą różowe.",
+      "Dodaj warzywa, mleko kokosowe i sos curry, gotuj na wolnym ogniu."
+    ],
+    "czas_przygotowania": {
+      "liczba": 25,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Curry z ciecierzycy i warzywami",
+    "krotki_opis": "Wegetariańskie curry z ciecierzycą i kolorowymi warzywami.",
+    "dlugi_opis": "Curry z ciecierzycy i warzywami to aromatyczne danie wegetariańskie, które łączy ciecierzycę, marchew, groszek i soczyste pomidory w kremowym sosie curry.",
+    "skladniki": [
+      {
+        "nazwa": "Ciecierzyca w puszce",
+        "ilosc": "1 puszka"
+      },
+      {
+        "nazwa": "Marchew",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Groszek zielony",
+        "ilosc": "200g"
+      },
+      {
+        "nazwa": "Pomidory krojone",
+        "ilosc": "1 puszka"
+      },
+      {
+        "nazwa": "Sos curry",
+        "ilosc": "4 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Smaż marchewkę, groszek i ciecierzycę na patelni.",
+      "Dodaj pomidory i sos curry, dusz na małym ogniu."
+    ],
+    "czas_przygotowania": {
+      "liczba": 30,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
+  },
+  {
+    "tytul": "Dorsz po grecku",
+    "krotki_opis": "Dorsz pieczony z pomidorami, oliwkami i cebulą.",
+    "dlugi_opis": "Dorsz po grecku to pyszne danie, które łączy delikatny dorsz z pomidorami, oliwkami, cebulą i aromatycznymi przyprawami.",
+    "skladniki": [
+      {
+        "nazwa": "Filet z dorsza",
+        "ilosc": "2 sztuki"
+      },
+      {
+        "nazwa": "Pomidory",
+        "ilosc": "4 sztuki"
+      },
+      {
+        "nazwa": "Cebula",
+        "ilosc": "1 sztuka"
+      },
+      {
+        "nazwa": "Oliwki czarne",
+        "ilosc": "1/2 szklanki"
+      },
+      {
+        "nazwa": "Oliwa z oliwek",
+        "ilosc": "2 łyżki"
+      }
+    ],
+    "kroki_przygotowania": [
+      "Upiecz dorsza z pokrojonymi pomidorami, cebulą i oliwkami.",
+      "Skrop oliwą z oliwek i posyp świeżymi ziołami."
+    ],
+    "czas_przygotowania": {
+      "liczba": 35,
+      "jednostka": "min"
+    },
+    "poziom_trudnosci": "Średni",
+    "kategorie": ["Dania główne"]
   }
 ]
