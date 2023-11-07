@@ -19,6 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Modal from "./modal";
+import { signOut } from "next-auth/react";
 
 interface NavBarProps {
   active: string;
@@ -351,7 +352,7 @@ export const NavBar = (props: NavBarProps) => {
                 Użytkownik
               </li>
             </a>
-            <a href="">
+            <a onClick={() => signOut()}>
               <li>
                 <FontAwesomeIcon icon={faRightFromBracket} />
                 Wyloguj się
