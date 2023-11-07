@@ -4,7 +4,8 @@ import { prisma } from "./prisma";
 export async function joinHouse(user_id: number, house_id: number) {
     const house = await prisma.house.findFirst({
         select: {
-            name: true
+            name: true,
+            code: true
         },
         where: {
             id: house_id
@@ -21,5 +22,5 @@ export async function joinHouse(user_id: number, house_id: number) {
             profile_id
         }
     })
-    return { [user_house.id]: house.name }
+    return { [user_house.id]: { "name": house.name, "code": house.code } }
 }

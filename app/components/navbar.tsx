@@ -175,6 +175,7 @@ export const NavBar = (props: NavBarProps) => {
       return;
     }
     setHouses((houses) => ({ ...houses, ...house }));
+    console.log(houses)
     const houseId = Object.keys(house)[0];
     setUserHouseId(houseId);
     localStorage.setItem("user_house_id", houseId);
