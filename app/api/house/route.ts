@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
 import { mPOST } from './POST'
 import { mGET } from './GET'

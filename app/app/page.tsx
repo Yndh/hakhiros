@@ -102,7 +102,7 @@ export default function Dashboard() {
       await navigator.share({
         title: "Zaprosznie do domu",
         text: "Dołącz do mojego domu",
-        url: `${window.location.protocol}//${window.location.hostname}/join/${code}`,
+        url: getInviteUrl(),
       });
     } catch (err) {
       alert(`Nie można udostępnić: ${err}`);
@@ -148,6 +148,13 @@ export default function Dashboard() {
       );
     }
   };
+  const getInviteUrl = () => {
+    const port = window.location.port;
+    const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
+
+    return port ? `${baseUrl}:${port}/invite/${code}` : `${baseUrl}/invite/${code}`;
+
+  }
   return (
     <AppLayout
       active="dashboard"
@@ -248,7 +255,7 @@ export default function Dashboard() {
             <h2 className="title">Zaproszenie</h2>
             <div className="qrCode">
               <QRCode
-                value={`${window.location.protocol}//${window.location.hostname}/join/${code}`}
+                value={getInviteUrl()}
                 width={256}
                 style={{ height: "auto" }}
               />
@@ -260,7 +267,7 @@ export default function Dashboard() {
             <button
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `${window.location.protocol}//${window.location.hostname}/join/${code}`
+                  getInviteUrl()
                 );
               }}
             >

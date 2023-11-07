@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]/route'
 import { NextResponse } from 'next/server'
-import type {NextApiResponse } from 'next'
+import type { NextApiResponse } from 'next'
 import { getQuerryParameters } from '@/lib/getQuerryParameters'
 
 
@@ -23,12 +23,12 @@ export async function mGET(req: Request, res: NextApiResponse) {
     const user_house_id = parseInt(user_house_id_param as string)
     const user_house = await prisma.user_house.findFirst({
         select: {
-            profile:{
-                select:{
-                    display_name:true,
-                    user:{
-                        select:{
-                            name:true
+            profile: {
+                select: {
+                    display_name: true,
+                    user: {
+                        select: {
+                            name: true
                         }
                     }
                 }
@@ -47,8 +47,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
             status: 400
         })
     }
-    console.log(user_house)
-    return new NextResponse(JSON.stringify({"name":user_house.profile.user.name,"display_name":user_house.profile.display_name}), {
+    return new NextResponse(JSON.stringify({ "name": user_house.profile.user.name, "display_name": user_house.profile.display_name }), {
         status: 200
     })
 }

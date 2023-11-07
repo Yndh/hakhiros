@@ -128,13 +128,10 @@ export const NavBar = (props: NavBarProps) => {
     setUserHouseId(user_house_id);
     dropdownToggle(null);
     localStorage.setItem("user_house_id", user_house_id);
-    if (props.setTriggerRerender) {
-      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
-    }
     if (props.setCode) {
-      setCode(houses[user_house_id]["code"])
+      props.setCode(houses[user_house_id]["code"])
     }
-    fetch(`/api/user?user_house_id=1`)
+    fetch(`/api/user?user_house_id=${userHouseId}`)
       .then((res) => res.json())
       .then((data: User | ErrorRespone) => {
         if ("error" in data) {
@@ -146,6 +143,9 @@ export const NavBar = (props: NavBarProps) => {
           props.setUser(data)
         }
       })
+    if (props.setTriggerRerender) {
+      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
+    }
   };
 
   const createHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
