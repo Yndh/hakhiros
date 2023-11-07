@@ -19,7 +19,7 @@ export const authOptions: NextAuthOptions = {
 
                 const user = await prisma.user.findUnique({
                     where: {
-                        email: credentials.email
+                        email: credentials.email.toLowerCase()
                     }
                 })
 
@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
                     id: user.id.toString(),
                     user_id: user.id,
                     name: user.name,
-                    email: user.email,
+                    email: user.email.toLowerCase(),
 
                 }
             }
@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
 
                 const emailExists = await prisma.user.findUnique({
                     where: {
-                        email: credentials.email
+                        email: credentials.email.toLowerCase()
                     }
                 })
 
@@ -80,7 +80,7 @@ export const authOptions: NextAuthOptions = {
                 const user = await prisma.user.create({
                     data: {
                         name: credentials.username,
-                        email: credentials.email,
+                        email: credentials.email.toLowerCase(),
                         password
                     },
                 });
