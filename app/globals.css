@@ -486,6 +486,10 @@ table.users .kick:hover {
   order: 2;
 }
 
+.collumn.one .card {
+  min-height: 250px;
+}
+
 .newCardRow {
   display: flex;
   flex-wrap: wrap;
@@ -531,6 +535,9 @@ table.users .kick:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+.card.center h2{
+  text-align: center;
 }
 
 .card.center h1 {

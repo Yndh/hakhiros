@@ -16,28 +16,28 @@ import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
 
 interface Dutie {
-  id: number
-  title: string
-  is_done: boolean
+  id: number;
+  title: string;
+  is_done: boolean;
 }
 
 interface Event {
-  date: string
-  title: string
+  date: string;
+  title: string;
 }
 
 export default function Dashboard() {
   const [triggerRerender, setTriggerRerender] = useState(false);
-  const [code, setCode] = useState<string>("")
+  const [code, setCode] = useState<string>("");
   const [duties, setDuties] = useState<Dutie[]>([]);
 
   const [events, setEvents] = useState<Event[]>([]);
 
   const user_house_id = localStorage.getItem("user_house_id") || "-1";
   let prev_user_house_id = useRef("-1");
-  const [members, setMembers] = useState<Members>({})
-  const [notes, setNotes] = useState<Note[]>([])
-  const [user, setUser] = useState<User>({ name: "test" })
+  const [members, setMembers] = useState<Members>({});
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [user, setUser] = useState<User>({ name: "test" });
   useEffect(() => {
     if (prev_user_house_id.current !== user_house_id) {
       //members
@@ -48,8 +48,8 @@ export default function Dashboard() {
             console.log(data["error"]);
             return;
           }
-          setMembers(data)
-        })
+          setMembers(data);
+        });
       //note
       fetch(`/api/note?user_house_id=${user_house_id}&pinned=true`)
         .then((res) => res.json())
@@ -58,9 +58,9 @@ export default function Dashboard() {
             console.log(data["error"]);
             return;
           }
-          console.log(data)
-          setNotes(data)
-        })
+          console.log(data);
+          setNotes(data);
+        });
       //duties
       const d = new Date();
       fetch(`/api/dutie?user_house_id=${user_house_id}&week_day=${d.getDay()}`)
@@ -70,19 +70,23 @@ export default function Dashboard() {
             console.log(data["error"]);
             return;
           }
-          setDuties(data)
-        })
+          setDuties(data);
+        });
       //events
       fetch(`/api/calendar?user_house_id=${user_house_id}&amount=4`)
         .then((res) => res.json())
         .then((data: EventList[]) => {
           if ("error" in data) {
-            console.log(data["error"])
-            return
+            console.log(data["error"]);
+            return;
           }
           const event_data = data.map((event) => ({
-            date: new Date(event.start).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric' }),
-            title: event.title
+            date: new Date(event.start).toLocaleString([], {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+            }),
+            title: event.title,
           }));
           setEvents(event_data);
         });
@@ -90,7 +94,7 @@ export default function Dashboard() {
       //
       prev_user_house_id.current = user_house_id;
     }
-  })
+  });
 
   const shareHandler = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -117,38 +121,41 @@ export default function Dashboard() {
         return data;
       });
     if ("error" in dutie) {
-      console.log(dutie["error"])
-      return
+      console.log(dutie["error"]);
+      return;
     }
     setDuties((duties) => {
-      duties[index].is_done = dutie.is_done
-      return [...duties]
+      duties[index].is_done = dutie.is_done;
+      return [...duties];
     });
   };
   const renderPinnedNote = () => {
     {
       const pinnedNote = notes.find((note) => note.isPinned === true);
 
-      return (
-        pinnedNote ? (
-          <Note
-            key={pinnedNote.id}
-            id={pinnedNote.id}
-            isPinned={true}
-            title={pinnedNote.title}
-            description={pinnedNote.description}
-            setNotes={setNotes}
-          />
-        ) : (
-          <Card classes="center">
-            <h2>Brak przypiętych notatek</h2>
-          </Card>
-        )
+      return pinnedNote ? (
+        <Note
+          key={pinnedNote.id}
+          id={pinnedNote.id}
+          isPinned={true}
+          title={pinnedNote.title}
+          description={pinnedNote.description}
+          setNotes={setNotes}
+        />
+      ) : (
+        <Card classes="center">
+          <h2>Brak przypiętych notatek</h2>
+        </Card>
       );
     }
-  }
+  };
   return (
-    <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender} setCode={setCode} setUser={setUser}>
+    <AppLayout
+      active="dashboard"
+      setTriggerRerender={setTriggerRerender}
+      setCode={setCode}
+      setUser={setUser}
+    >
       <div className="header">
         <div className="collumn">
           <span>Witaj Ponownie,</span>
@@ -188,12 +195,12 @@ export default function Dashboard() {
               </p>
             </Card>
 
-            <Card>
-              <h2 className="title">Obowiązki na dziś</h2>
-              <div className="dutyRow">
-                <ol className="duties">
-                  {duties.length > 0 ?
-                    duties.map((duty, index) => (
+            {duties.length > 0 ? (
+              <Card>
+                <h2 className="title">Obowiązki na dziś</h2>
+                <div className="dutyRow">
+                  <ol className="duties">
+                    {duties.map((duty, index) => (
                       <li key={duty.id}>
                         <label htmlFor={`checkMe${index}`}>
                           <input
@@ -205,22 +212,34 @@ export default function Dashboard() {
                           <span>{duty.title}</span>
                         </label>
                       </li>
-                    )) : "nie masz obowiązków na dzisiaj"}
-                </ol>
-              </div>
-            </Card>
+                    ))}
+                  </ol>
+                </div>
+              </Card>
+            ) : (
+              <Card classes="center">
+                <h2>Nie masz żadnych obowiązków na dziś</h2>
+              </Card>
+            )}
 
-            <Card>
-              <h2 className="title">Najbliższe Wydarzenia</h2>
-              <div className="datesContainer">
-                {events.map((event, index) => (
-                  <p className="dateText" key={index}>
-                    <span className="date">{event.date.toString()}</span>
-                    <span className="dateDesc">{event.title}</span>
-                  </p>
-                ))}
-              </div>
-            </Card>
+            {events.length < 0 ? (
+              <Card>
+                <h2 className="title">Najbliższe Wydarzenia</h2>
+                <div className="datesContainer">
+                  {events.map((event, index) => (
+                    <p className="dateText" key={index}>
+                      <span className="date">{event.date.toString()}</span>
+                      <span className="dateDesc">{event.title}</span>
+                    </p>
+                  ))}
+                </div>
+              </Card>
+            ) : (
+              <Card classes="center">
+                <h2>Nie masz żadnych wydarzeń</h2>
+              </Card>
+            )}
+
             {renderPinnedNote()}
           </div>
         </div>
@@ -229,13 +248,23 @@ export default function Dashboard() {
           <Card>
             <h2 className="title">Zaproszenie</h2>
             <div className="qrCode">
-              <QRCode value={`${window.location.protocol}//${window.location.hostname}/join/${code}`} width={256} style={{ height: "auto" }} />
+              <QRCode
+                value={`${window.location.protocol}//${window.location.hostname}/join/${code}`}
+                width={256}
+                style={{ height: "auto" }}
+              />
               <span className="or">lub</span>
               <button className="box" onClick={shareHandler}>
                 <FontAwesomeIcon icon={faShare} />
               </button>
             </div>
-            <button onClick={() => { navigator.clipboard.writeText(`${window.location.protocol}//${window.location.hostname}/join/${code}`); }}>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `${window.location.protocol}//${window.location.hostname}/join/${code}`
+                );
+              }}
+            >
               <FontAwesomeIcon icon={faCopy} />
               Kopiuj Zaproszenie
             </button>
@@ -244,13 +273,21 @@ export default function Dashboard() {
           <Card>
             <h2 className="title">Użytkownicy</h2>
             <ul className="userList">
-              {Object.keys(members).map((key) => <li key={key}>
-                <span className="username">
-                  {members[key]["display_name"] ? members[key]["display_name"] : members[key]["name"]}
-                  {members[key]["is_owner"] ? <FontAwesomeIcon icon={faCrown} /> : ""}
-                </span>
-                <span className="handle">{members[key]["name"]}</span>
-              </li>)}
+              {Object.keys(members).map((key) => (
+                <li key={key}>
+                  <span className="username">
+                    {members[key]["display_name"]
+                      ? members[key]["display_name"]
+                      : members[key]["name"]}
+                    {members[key]["is_owner"] ? (
+                      <FontAwesomeIcon icon={faCrown} />
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                  <span className="handle">{members[key]["name"]}</span>
+                </li>
+              ))}
             </ul>
           </Card>
         </div>
