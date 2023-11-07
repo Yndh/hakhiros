@@ -59,9 +59,8 @@ export default function Dashboard() {
             toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
-          console.log(data);
-          setNotes(data);
-        });
+          setNotes(data)
+        })
       //duties
       const d = new Date();
       fetch(`/api/dutie?user_house_id=${user_house_id}&week_day=${d.getDay()}`)

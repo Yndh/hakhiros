@@ -49,7 +49,6 @@ export async function mGET(req: Request, res: NextApiResponse) {
                 color: true
             },
             where: {
-                profile_id,
                 house_id: profile.house_id
             },
             take: amount
@@ -65,7 +64,6 @@ export async function mGET(req: Request, res: NextApiResponse) {
                 color: true
             },
             where: {
-                profile_id,
                 house_id: profile.house_id
             }
         })
