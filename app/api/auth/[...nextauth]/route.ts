@@ -65,7 +65,16 @@ export const authOptions: NextAuthOptions = {
                 })
 
                 if (emailExists) {
-                    return null
+                    throw new Error("email jest zajęty");
+                }
+
+                const nameExists = await prisma.user.findFirst({
+                    where: {
+                        name: credentials.username
+                    }
+                })
+                if (nameExists) {
+                    throw new Error("nazwa użytkownika jest zajęta");
                 }
                 const password: string = (await hash(credentials.password, 12)).toString()
                 const user = await prisma.user.create({
