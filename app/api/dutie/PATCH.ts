@@ -31,7 +31,6 @@ export async function mPATCH(req: Request, res: NextApiResponse) {
             }
         }
     })
-    console.log(dutie)
     if (!dutie) {
         return new NextResponse(JSON.stringify({ error: 'nie znaleziono obowiazku' }), {
             status: 400

@@ -137,7 +137,6 @@ export const NavBar = (props: NavBarProps) => {
     fetch(`/api/user?user_house_id=1`)
       .then((res) => res.json())
       .then((data: User | ErrorRespone) => {
-        console.log(data)
         if ("error" in data) {
           console.log(data["error"]);
           return;
@@ -211,6 +210,34 @@ export const NavBar = (props: NavBarProps) => {
   const toggleNavbar = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setNavbarOpen(!navbarOpen);
   };
+
+  const saveUserHandler = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    // TODO: zrobić tak żeby na dashboardzie zmieniała się nazwa użytkownika
+    if (userHouseName === user.dispaly_name) {
+      setUserOpen(false)
+      return
+    }
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify({
+        user_house_id: userHouseId,
+        display_name: userHouseName
+      })
+    }
+    const new_user = await fetch("/api/user", options)
+      .then((res) => res.json())
+      .then((data: User | ErrorRespone) => {
+        if ("error" in data) {
+          console.log(data.error)
+          return
+        }
+        setUser(data)
+        if (props.setUser) {
+          props.setUser(data)
+        }
+      });
+    setUserOpen(false)
+  }
 
   return (
     <>
@@ -408,7 +435,7 @@ export const NavBar = (props: NavBarProps) => {
             onChange={userNameHandler}
           />
 
-          <button>Zapisz</button>
+          <button onClick={saveUserHandler}>Zapisz</button>
         </Modal>
 
         <Modal isOpen={modalOpen}>

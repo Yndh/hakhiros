@@ -58,7 +58,6 @@ export default function Dashboard() {
             console.log(data["error"]);
             return;
           }
-          console.log(data)
           setNotes(data)
         })
       //duties
