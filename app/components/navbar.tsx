@@ -43,7 +43,7 @@ export const NavBar = (props: NavBarProps) => {
       ? window.localStorage.getItem("user_house_id") || "0"
       : "0"
   );
-  const [userHouseName, setUserHouseName] = useState<string>("");
+  const [userHouseName, setUserHouseName] = useState<string | null>("");
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [user, setUser] = useState<User>({})
 
@@ -80,6 +80,7 @@ export const NavBar = (props: NavBarProps) => {
             if (props.setUser) {
               props.setUser(data)
             }
+            setUserHouseName(data["display_name"])
           })
       }).then(() => {
         if (props.setTriggerRerender) {
@@ -220,7 +221,7 @@ export const NavBar = (props: NavBarProps) => {
 
   const saveUserHandler = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     // TODO: zrobić tak żeby na dashboardzie zmieniała się nazwa użytkownika
-    if (userHouseName === user.dispaly_name) {
+    if (userHouseName === user.display_name) {
       setUserOpen(false)
       return
     }
@@ -238,7 +239,7 @@ export const NavBar = (props: NavBarProps) => {
           console.log(data.error)
           return
         }
-        setUser(data)
+        setUser((user) => ({ name: user.name, display_name: data.display_name }))
         if (props.setUser) {
           props.setUser(data)
         }

@@ -1,5 +1,5 @@
-interface House {name:string, code:string}
-interface Houses { [key: string]:House  }
+interface House { name: string, code: string }
+interface Houses { [key: string]: House }
 
 interface Note {
     id: number
@@ -64,8 +64,7 @@ interface Dutie {
     weekDay: number
 }
 
-interface User{
+interface User {
     name?: string,
-    dispaly_name?: string | null
-  }
-  
+    display_name?: string | null
+}

@@ -14,6 +14,7 @@ import {
 import QRCode from "react-qr-code";
 import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
+import React from "react";
 
 interface Dutie {
   id: number;
@@ -166,7 +167,6 @@ export default function Dashboard() {
         <div className="collumn">
           <span>Witaj Ponownie,</span>
           <h1>{user["name"]}</h1>
-          <h2>{user["dispaly_name"]}</h2>
         </div>
       </div>
 
