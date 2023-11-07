@@ -7,7 +7,6 @@ import Card from "./card";
 import { toast } from "react-toastify";
 
 interface DutyProps {
-  id: number;
   user: string;
   duties: Duty[];
   weekDay: number;
@@ -15,17 +14,18 @@ interface DutyProps {
 }
 
 interface Duty {
+  id: number,
   title: string;
   isCompleted: boolean;
 }
 
-export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps) {
+export default function Duty({ user, duties, weekDay, setDuties }: DutyProps) {
   const [dutyList, setDutyList] = useState(duties);
   const [modalOpen, setModalOpen] = useState(false);
   const handleCheckboxChange = async (index: number) => {
     const options = {
       method: "PATCH",
-      body: JSON.stringify({ dutie_id: id }),
+      body: JSON.stringify({ dutie_id: duties[index]["id"] }),
     };
     const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
@@ -45,12 +45,12 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
     setModalOpen(!modalOpen);
   };
 
-  const deleteNode = async (e: React.MouseEvent<any, MouseEvent>) => {
+  const deleteDutie = async (index: number) => {
     const options = {
       method: "DELETE",
-      body: JSON.stringify({ dutie_id: id }),
+      body: JSON.stringify({ dutie_id: duties[index]["id"] }),
     };
-    const dutie = await fetch("/api/dutie", options)
+    /* const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
       .then((data: NoteFetch) => {
         const datetime_node: Note = {
@@ -62,10 +62,14 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
     if ("error" in dutie) {
       toast.error(`Wystąpił błąd: ${dutie.error}`);
       return;
-    }
-    setDuties((duties) => duties.filter((dutie: any) => dutie.id !== id));
-    toggleModal(e);
-
+    } */
+    console.log(duties)
+    let new_duties = duties.filter((dutie) => dutie.id !== duties[index]["id"])
+    setDuties((duties2) => {
+      console.log(duties2[weekDay - 1])
+      duties2[weekDay - 1]["duties"] = new_duties
+      return { ...duties2 }
+    })
     toast.success("Pomyślnie usunięto obowiązek");
   };
   return (
@@ -84,7 +88,7 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
                 />
                 <span>{duty.title}</span>
               </label>
-              <FontAwesomeIcon icon={faTrash} onClick={toggleModal} />
+              <FontAwesomeIcon icon={faTrash} onClick={() => deleteDutie(index)} />
             </li>
           ))}
         </ol>
@@ -97,7 +101,7 @@ export default function Duty({ id, user, duties, weekDay, setDuties }: DutyProps
             <button className="border red" onClick={toggleModal}>
               Anuluj
             </button>
-            <button className="danger" onClick={deleteNode}>
+            <button className="danger" >
               Usuń
             </button>
           </div>

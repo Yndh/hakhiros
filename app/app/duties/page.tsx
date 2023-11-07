@@ -59,9 +59,9 @@ export default function Duties() {
               const formated_duties: any[] = []
               data.forEach(item => {
                 const existingItem = formated_duties.find(outputItem => outputItem.profile_id === item.profile_id && outputItem.weekDay === item.week_day);
-
                 if (existingItem) {
                   existingItem.duties.push({
+                    id: item.id,
                     title: item.title,
                     isCompleted: item.is_done
                   });
@@ -134,6 +134,7 @@ export default function Duties() {
     }
     if (existingUser) {
       const newDuties = existingUser.duties.concat({
+        id: dutie.id,
         title: dutyTitle,
         isCompleted: false,
       });
@@ -150,6 +151,7 @@ export default function Duties() {
         profile_id: parseInt(selectedUser),
         duties: [
           {
+            id: dutie.id,
             title: dutyTitle,
             isCompleted: false,
           },
@@ -189,16 +191,17 @@ export default function Duties() {
 
       <div className="dutyRow">
         {getFilteredDuties().length > 0 ? (
-          getFilteredDuties().map((duty) => (
-            <Duty
-              key={duty.id}
-              id={duty.id}
-              user={duty.user}
-              duties={duty.duties}
-              weekDay={duty.weekDay}
-              setDuties={setDuties}
-            />
-          ))
+          getFilteredDuties().map((duty) => {
+            return (
+              <Duty
+                key={duty.id}
+                user={duty.user}
+                duties={duty.duties}
+                weekDay={duty.weekDay}
+                setDuties={setDuties}
+              />
+            )
+          })
         ) : (
           <Card classes="center">
             <h3 className="thin">Nie ma żadnych obowiazków na ten dzien</h3>

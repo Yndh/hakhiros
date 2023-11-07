@@ -57,6 +57,7 @@ interface Dutie {
     id: number,
     user: string,
     duties: {
+        id: number,
         title: string,
         isCompleted: boolean
     }[]
