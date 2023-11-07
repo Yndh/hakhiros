@@ -132,6 +132,7 @@ ul.landingNav li:hover {
 }
 
 .heroContainer h1 {
+    text-align: center;
     font-size: 60px;
     background: var(--gradient);
     background-clip: text;
@@ -147,7 +148,7 @@ ul.landingNav li:hover {
     /* background: #6bb2aa;
     color: var(--color-secondary); */
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 
 .landingElement#about{
@@ -219,6 +220,8 @@ ul.landingNav li:hover {
 
 .functionSelect ul{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     list-style-type: none;
     gap: 30px;
 }
@@ -450,4 +453,66 @@ footer a:hover{
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+@media screen and (max-width: 768px){
+    .landingHeader ul{
+        display: none;
+    }
+
+    .aboutUsRow{
+        flex-direction: column;
+        width: 80%;
+    }
+    .aboutUsElement{
+        width: 100%;
+    }
+
+    .expandable{
+        width: 100%;
+    }
+
+    .footerRow .logo{
+        align-items: center;
+    }
+
+    .footerRow .links{
+        display: none;
+    }
+
+    .functionContent{
+        flex-direction: column;
+    }
+
+    .functionContentColumn{
+        justify-content: center !important;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        width: 100% !important;
+        height: auto;
+    }
+
+    .functionContentColumn p{
+        text-align: left !important;
+        width: 80%;
+    }
+
+    .functionContentColumn:first-child{
+        margin-top: 20px;
+    }
+
+    .functionContentColumn:first-child .functionContentColumnElement{
+        flex-direction: row-reverse;
+    }
+
+    .functionContentColumnElement svg{
+        padding: 10px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .functionContentColumn:first-child p{
+        text-align: left !important;
+    }
 }
