@@ -255,10 +255,6 @@ export default function Notes() {
               </div>
             </div>
           </div>
-          <button className="modalOption">
-            <p>Lista</p>
-            <FontAwesomeIcon icon={faAdd} />
-          </button>
         </div>
         <button onClick={addNote}>Utwórz</button>
       </Modal>

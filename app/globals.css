@@ -1057,12 +1057,14 @@ button.modalOption {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
   list-style-type: none;
   width: 100%;
 }
 
 .categoryChoice ul li {
   font-size: 18px;
+  padding: 5px 0;
   font-weight: 600;
   transition: 0.3s;
 }
