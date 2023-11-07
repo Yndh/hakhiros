@@ -44,6 +44,7 @@
 html {
     font-size: 14px;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -52,6 +53,7 @@ body {
     background: var(--background-primary);
     user-select: none;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -66,14 +68,20 @@ a {
     flex-direction: column;
     width: 100%;
     height: 100vh;
+    padding-top: 150px;
 }
 
 .landingHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 0 20px 0;
+    background: var(--background-primary);
+    z-index: 3;
 }
 
 .landingHeader .logo {
@@ -111,9 +119,412 @@ ul.landingNav li:hover {
 
 .heroContainer{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
+    gap: 50px;
+}
+
+.heroContainer img{
+    width: 100%;
+}
+
+.heroContainer h1 {
+    text-align: center;
+    font-size: 60px;
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.landingElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background: #6bb2aa;
+    color: var(--color-secondary); */
+    width: 100%;
+    padding: 50px 20px;
+}
+
+.landingElement#about{
+    margin-top: 100px;
+}
+
+.landingElement h1{
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.landingElement p{
+    text-align: center;
+    width: 40%;
+    font-size: 16px;
+}
+
+.landingElement h3{
+    margin: 40px 0 10px 0;
+}
+
+.aboutUsRow{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    width: 55%;
+}
+
+.aboutUsElement{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    background: var(--background-secondary);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--card-border-radius);
+    width: 35%;
+    aspect-ratio: 1/1.1;
+    padding: 25px;
+}
+.aboutUsElement h3{
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.aboutUsElement p{
+    font-size: 14px;
+    opacity: .8;
+    text-align: left;
+    width: 100%;
+}
+
+.aboutUsElement svg{
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border-radius: var(--radius-primary);
+    background: var(--gradient);
+    color: var(--color-secondary);
+    box-shadow: var(--box-shadow);
+}
+
+
+.functionSelect{
+    padding: 10px 20px;
+    background: var(--background-secondary);
+    border-radius: var(--radius-secondary);
+    box-shadow: var(--box-shadow);
+}
+
+.functionSelect ul{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    gap: 30px;
+}
+
+.functionSelect ul li{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 0;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.functionSelect ul li svg{
+    height: 20px;
+}
+
+.functionSelect ul li.active{
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.functionSelect ul li.active svg{
+    color: var(--accent-primary);
+}
+
+.functionContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    /* width: 55%; */
+}
+
+.functionContentColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 200px;
+}
+
+.functionContentColumn p{
+    font-weight: 600;
+    width: 100%;
+}
+
+.functionContentColumn:first-child p{
+    text-align: right !important;
+}
+
+.functionContentColumn:last-child p{
+    text-align: left !important;
+}
+
+.functionContentColumnElement{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.functionContentColumnElement svg{
+    width: 30px;
+    height: 30px;
+    aspect-ratio: 1/1;
+    background: var(--gradient);
+    color: var(--color-secondary);
+    padding: 20px;
+    border-radius: 50%;
+}
+
+.functionContent .mobile{
+    display: none;
+    width: 100%;
+}
+
+.faqColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.expandable{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background: var(--accent-secondary);
+    /* color: var(--card-secondary); */
+    box-shadow: var(--box-shadow);
+    border-radius: var(--radius-secondary);
+    padding: 20px;
+}
+.expandableHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.expandableHeader h2{
+    display: flex;
+    width: 80%;
+    gap: 10px;
+}
+
+
+.expandableContent p{
+    text-align: left;
+    width: 100%;
+}
+
+.expandableContent{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    transition: .3s;
+}
+.expandableContent p{
+    font-size: 16px;
+    opacity: .7;
+}
+
+.expandableContent.active{
+    max-height: 500px;
+    opacity: 1;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 20px;
+}
+
+footer a{
+    color: var(--color-secondary);
+    opacity: .7;
+    transition: .3s;
+}
+footer a:hover{
+    opacity: .5;
+}
+
+.footerRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.footerRow .logo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--color-secondary);
+}
+
+.logo h1{
+    margin-bottom: -10px;
+}
+.logo p{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.links p{
+    font-weight: 600;
+    font-size: 16px;
+}
+.links a{
+    padding-left: 10px;
+}
+
+.footerCol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 0;
+    gap: 10px;
+    width: 90%;
+    border-top: 1px solid var(--accent-secondary);
+}
+
+.socialRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.social{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    transition: .5s;
+}
+.social svg{
+    height: 25px;
+    transition: .5s;
+}
+
+.social:hover{
+    border-color: var(--accent-primary);
+}
+.social:hover svg{
+    color: var(--accent-primary);
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+@media screen and (max-width: 768px){
+    .landingHeader ul{
+        display: none;
+    }
+
+    .aboutUsRow{
+        flex-direction: column;
+        width: 80%;
+    }
+    .aboutUsElement{
+        width: 100%;
+    }
+
+    .expandable{
+        width: 100%;
+    }
+
+    .footerRow .logo{
+        align-items: center;
+    }
+
+    .footerRow .links{
+        display: none;
+    }
+
+    .functionContent{
+        flex-direction: column;
+    }
+
+    .functionContentColumn{
+        justify-content: center !important;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        width: 100% !important;
+        height: auto;
+    }
+
+    .functionContentColumn p{
+        text-align: left !important;
+        width: 80%;
+    }
+
+    .functionContentColumn:first-child{
+        margin-top: 20px;
+    }
+
+    .functionContentColumn:first-child .functionContentColumnElement{
+        flex-direction: row-reverse;
+    }
+
+    .functionContentColumnElement svg{
+        padding: 10px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .functionContentColumn:first-child p{
+        text-align: left !important;
+    }
+
+    .functionContent .pc{
+        display: none;
+    }
+    .functionContent .mobile{
+        display: block;
+    }
 }

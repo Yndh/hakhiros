@@ -28,6 +28,7 @@ interface Event {
 
 export default function Dashboard() {
   const [triggerRerender, setTriggerRerender] = useState(false);
+  const [code, setCode] = useState<string>("")
   const [duties, setDuties] = useState<Dutie[]>([]);
 
   const [events, setEvents] = useState<Event[]>([]);
@@ -36,7 +37,7 @@ export default function Dashboard() {
   let prev_user_house_id = useRef("-1");
   const [members, setMembers] = useState<Members>({})
   const [notes, setNotes] = useState<Note[]>([])
-
+  const [user, setUser] = useState<User>({})
   useEffect(() => {
     if (prev_user_house_id.current !== user_house_id) {
       //members
@@ -98,7 +99,7 @@ export default function Dashboard() {
       await navigator.share({
         title: "Zaprosznie do domu",
         text: "Dołącz do mojego domu",
-        url: "https://www.google.com",
+        url: `${window.location.protocol}//${window.location.hostname}/join/${code}`,
       });
     } catch (err) {
       alert(`Nie można udostępnić: ${err}`);
@@ -124,7 +125,6 @@ export default function Dashboard() {
       return [...duties]
     });
   };
-
   const renderPinnedNote = () => {
     {
       const pinnedNote = notes.find((note) => note.isPinned === true);
@@ -147,13 +147,12 @@ export default function Dashboard() {
       );
     }
   }
-
   return (
-    <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender}>
+    <AppLayout active="dashboard" setTriggerRerender={setTriggerRerender} setCode={setCode} setUser={setUser}>
       <div className="header">
         <div className="collumn">
           <span>Witaj Ponownie,</span>
-          <h1>Użytkownik</h1>
+          <h1>{user["name"]}</h1>
         </div>
       </div>
 
@@ -229,13 +228,13 @@ export default function Dashboard() {
           <Card>
             <h2 className="title">Zaproszenie</h2>
             <div className="qrCode">
-              <QRCode value={"dupa12"} width={256} style={{ height: "auto" }} />
+              <QRCode value={`${window.location.protocol}//${window.location.hostname}/join/${code}`} width={256} style={{ height: "auto" }} />
               <span className="or">lub</span>
               <button className="box" onClick={shareHandler}>
                 <FontAwesomeIcon icon={faShare} />
               </button>
             </div>
-            <button>
+            <button onClick={() => { navigator.clipboard.writeText(`${window.location.protocol}//${window.location.hostname}/join/${code}`); }}>
               <FontAwesomeIcon icon={faCopy} />
               Kopiuj Zaproszenie
             </button>
