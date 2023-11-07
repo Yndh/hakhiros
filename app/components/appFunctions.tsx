@@ -18,10 +18,18 @@ import {
   faThumbTack,
   faUser,
   faUtensils,
+  IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const functionOptions = {
+interface FunctionOption {
+  icon: IconDefinition;
+  mockup: string;
+  mockupMobile: string;
+  content: { content: string; icon: IconDefinition }[];
+}
+
+const functionOptions: Record<string, FunctionOption> = {
   Domy: {
     icon: faHouse,
     mockup: "/Mockups/Dashboard.png",
@@ -51,7 +59,7 @@ const functionOptions = {
         icon: faAdd,
       },
       {
-        content: "Udostepniaj wydarzenia dla całej rodziny",
+        content: "Udostępniaj wydarzenia dla całej rodziny",
         icon: faShare,
       },
     ],
@@ -70,7 +78,7 @@ const functionOptions = {
         icon: faThumbTack,
       },
       {
-        content: "Udostepniaj je dla całej rodziny",
+        content: "Udostępniaj je dla całej rodziny",
         icon: faShare,
       },
     ],
@@ -108,7 +116,7 @@ const functionOptions = {
         icon: faExclamation,
       },
       {
-        content: "Lista składnikow",
+        content: "Lista składników",
         icon: faCarrot,
       },
       {
@@ -120,13 +128,13 @@ const functionOptions = {
 };
 
 export default function AppFunction() {
-  const [selectedFunction, setSelectedFunction] = useState("Domy");
+  const [selectedFunction, setSelectedFunction] = useState<string>("Domy");
 
   const handleFunctionSelect = (functionName: string) => {
     setSelectedFunction(functionName);
   };
 
-  const contentArray = functionOptions[selectedFunction].content;
+  const contentArray = (functionOptions[selectedFunction].content as FunctionOption['content']);
   const halfContentLength = Math.ceil(contentArray.length / 2);
   const firstHalfContent = contentArray.slice(0, halfContentLength);
   const secondHalfContent = contentArray.slice(halfContentLength);
@@ -151,21 +159,21 @@ export default function AppFunction() {
       <div className="functionContent">
         <div className="functionContentColumn">
           {firstHalfContent.map((item, index) => (
-            <div className="functionContentColumnElement">
-              <p key={index}>{item.content}</p>
+            <div key={index} className="functionContentColumnElement">
+              <p>{item.content}</p>
               <FontAwesomeIcon icon={item.icon} />
             </div>
           ))}
         </div>
 
-        <img src={functionOptions[selectedFunction].mockup} alt="Desktop Mockup" className="pc"/>
-        <img src={functionOptions[selectedFunction].mockupMobile} alt="Mobile Mockup" className="mobile"/>
+        <img src={functionOptions[selectedFunction].mockup} alt="Desktop Mockup" className="pc" />
+        <img src={functionOptions[selectedFunction].mockupMobile} alt="Mobile Mockup" className="mobile" />
 
         <div className="functionContentColumn">
           {secondHalfContent.map((item, index) => (
-            <div className="functionContentColumnElement">
+            <div key={index} className="functionContentColumnElement">
               <FontAwesomeIcon icon={item.icon} />
-              <p key={index}>{item.content}</p>
+              <p>{item.content}</p>
             </div>
           ))}
         </div>
