@@ -30,8 +30,6 @@ export default function Duties() {
     "Sobota",
   ];
 
-  let users: string[] = [];
-
   const [duties, setDuties] = useState<Dutie[]>([]);
 
   const [members, setMember] = useState<Members>({})
@@ -148,7 +146,7 @@ export default function Duties() {
     } else {
       const newDuty: Dutie = {
         id: duties.length + 1,
-        user: selectedUser,
+        user: members[selectedUser]["name"],
         profile_id: parseInt(selectedUser),
         duties: [
           {

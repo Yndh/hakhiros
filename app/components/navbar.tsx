@@ -121,6 +121,7 @@ export const NavBar = (props: NavBarProps) => {
       | React.MouseEvent<HTMLAnchorElement, MouseEvent>
       | React.MouseEvent<HTMLOrSVGElement, MouseEvent>
   ) => {
+    toast.error("Ta funkcja nie jest zaimplementowana")
     setSettingsOpen(!settingsOpen);
   };
 
