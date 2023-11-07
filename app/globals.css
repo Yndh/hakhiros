@@ -657,7 +657,11 @@ table.users .kick:hover {
   margin-top: 15px;
 }
 
-.card.loader .loaderText {
+.card.loaderCard{
+  width: 100% !important;
+}
+
+.card.loaderCard .loaderText {
   width: 50%;
   height: 20px;
   background: var(--loader-gradient);
@@ -666,11 +670,11 @@ table.users .kick:hover {
   border-radius: var(--radius-primary);
 }
 
-.card.loader h2.loaderText {
+.card.loaderCard h2.loaderText {
   margin-bottom: 15px;
 }
 
-.card.loader p.loaderText {
+.card.loaderCard p.loaderText {
   height: 16px;
   width: 85%;
   margin-top: 5px;
@@ -1241,6 +1245,39 @@ button.modalOption {
 
 .loginOption .coloredLink:hover {
   text-decoration: underline;
+}
+
+.noHousesContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.noHousesContainer h1{
+  text-align: center;
+    font-size: 60px;
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.noHousesContainer h3{
+  font-size: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+.noHousesContainer .buttonRow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  gap: 20px;
+  width: 70%;
 }
 
 /* Loader */
