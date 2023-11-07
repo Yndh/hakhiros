@@ -37,21 +37,40 @@ export async function mGET(req: Request, res: NextApiResponse) {
         })
     }
     const profile_id = profile.profile_id
+    const amount = parseInt(querry_params.amount)
+    let calendar_events
+    if (amount) {
+        calendar_events = await prisma.calendar.findMany({
+            select: {
+                id: true,
+                title: true,
+                start: true,
+                end: true,
+                color: true
+            },
+            where: {
+                profile_id,
+                house_id: profile.house_id
+            },
+            take: amount
+        })
+    }
+    else {
+        calendar_events = await prisma.calendar.findMany({
+            select: {
+                id: true,
+                title: true,
+                start: true,
+                end: true,
+                color: true
+            },
+            where: {
+                profile_id,
+                house_id: profile.house_id
+            }
+        })
+    }
 
-    const calendar_events = await prisma.calendar.findMany({
-        select: {
-            id: true,
-            title: true,
-            start: true,
-            end: true,
-            color: true,
-            createdAt: true,
-        },
-        where: {
-            profile_id,
-            house_id: profile.house_id
-        }
-    })
 
     return new NextResponse(JSON.stringify(calendar_events), {
         status: 200

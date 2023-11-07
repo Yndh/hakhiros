@@ -21,28 +21,16 @@ interface Dutie {
   is_done: boolean
 }
 
+interface Event {
+  date: string
+  title: string
+}
+
 export default function Dashboard() {
   const [triggerRerender, setTriggerRerender] = useState(false);
   const [duties, setDuties] = useState<Dutie[]>([]);
 
-  const events = [
-    {
-      date: new Date().toLocaleDateString("pl-PL"),
-      title: "Spotkanie",
-    },
-    {
-      date: new Date().toLocaleDateString("pl-PL"),
-      title: "Rodzinny Obiad",
-    },
-    {
-      date: new Date().toLocaleDateString("pl-PL"),
-      title: "Teo",
-    },
-    {
-      date: new Date().toLocaleDateString("pl-PL"),
-      title: "Test",
-    },
-  ];
+  const [events, setEvents] = useState<Event[]>([]);
 
   const user_house_id = localStorage.getItem("user_house_id") || "-1";
   let prev_user_house_id = useRef("-1");
@@ -83,6 +71,22 @@ export default function Dashboard() {
           }
           setDuties(data)
         })
+      //events
+      fetch(`/api/calendar?user_house_id=${user_house_id}&amount=4`)
+        .then((res) => res.json())
+        .then((data: EventList[]) => {
+          if ("error" in data) {
+            console.log(data["error"])
+            return
+          }
+          const event_data = data.map((event) => ({
+            date: new Date(event.start).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric' }),
+            title: event.title
+          }));
+          setEvents(event_data);
+        });
+
+      //
       prev_user_house_id.current = user_house_id;
     }
   })
