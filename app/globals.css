@@ -359,6 +359,11 @@ table.users .kick:hover {
   opacity: 1;
 }
 
+.homeSelect{
+  display: flex;
+  justify-content: center;
+}
+
 .homeSelectHeader {
   position: relative;
   display: flex;
@@ -366,8 +371,14 @@ table.users .kick:hover {
   align-items: center;
   gap: 5px;
   padding: 10px;
+  width: 80%;
   border-radius: var(--radius-primary);
   box-shadow: var(--box-shadow);
+}
+
+.homeSelectHeader h2{
+  width: 80%;
+
 }
 
 .homeSelectOptions {
@@ -486,6 +497,10 @@ table.users .kick:hover {
   order: 2;
 }
 
+.collumn.one .card {
+  min-height: 250px;
+}
+
 .newCardRow {
   display: flex;
   flex-wrap: wrap;
@@ -531,6 +546,9 @@ table.users .kick:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+.card.center h2{
+  text-align: center;
 }
 
 .card.center h1 {
