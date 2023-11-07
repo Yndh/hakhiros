@@ -24,7 +24,7 @@ export default function RegisterPage() {
     })
     if (result?.error) {
       setError(result.error);
-    } else{
+    } else {
       router.push("/app");
     }
   };
@@ -86,6 +86,7 @@ export default function RegisterPage() {
           <button className="login" type="submit">
             Zarejestruj się
           </button>
+          {/* pozostałości po logowaniu google 
           <span className="or">lub</span>
 
           <button
@@ -95,7 +96,7 @@ export default function RegisterPage() {
           >
             <span className="googleIcon">G</span>
             <span>Zarejestruj się przez Google</span>
-          </button>
+          </button> */}
         </div>
       </form>
       <span className="loginOption">

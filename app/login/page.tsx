@@ -72,7 +72,8 @@ export default function LoginPage() {
           <button className="login" type="submit">
             Zaloguj się
           </button>
-          <span className="or">lub</span>
+          {/* pozostałości po logowaniu google
+           <span className="or">lub</span>
 
           <button
             type="button"
@@ -81,7 +82,7 @@ export default function LoginPage() {
           >
             <span className="googleIcon">G</span>
             <span>Zaloguj się przez Google</span>
-          </button>
+          </button> */}
         </div>
       </form>
       <span className="loginOption">
