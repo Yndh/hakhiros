@@ -8,7 +8,7 @@ FamiLynk to aplikacja webowa stworzona w Next.js z TypeScript, która pomaga w o
 - [Technologie i Biblioteki](#technologie-i-biblioteki)
 - [Instalacja](#instalacja)
 - [Użycie](#użycie)
-- [Autorzy](#autors)
+- [Autorzy](#autorzy)
 
 ## Funkcje
 
