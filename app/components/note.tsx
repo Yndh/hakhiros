@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from "react";
 import Modal from "./modal";
 import Card from "./card";
+import { toast } from "react-toastify";
 
 interface NoteProps {
   id: number;
@@ -45,11 +46,12 @@ export default function Note({
         return datetime_node;
       });
     if ("error" in note) {
-      console.log(note.error);
+      toast.error(`Wystąpił błąd: ${note.error}`);
       return;
     }
     setNotes((note) => note.filter((note) => note.id !== id));
     toggleModal(e);
+    toast.success("Notatka została usunięta");
   };
 
   const pinNote = async (e: React.MouseEvent<any, MouseEvent>) => {

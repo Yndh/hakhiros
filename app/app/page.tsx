@@ -15,6 +15,7 @@ import QRCode from "react-qr-code";
 import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
 import React from "react";
+import { toast } from "react-toastify";
 
 interface Dutie {
   id: number;
@@ -46,7 +47,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: Members | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           setMembers(data);
@@ -56,7 +57,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: Note[] | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           setNotes(data)
@@ -67,7 +68,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: Dutie[] | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           setDuties(data);
@@ -77,7 +78,7 @@ export default function Dashboard() {
         .then((res) => res.json())
         .then((data: EventList[]) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           const event_data = data.map((event) => ({
@@ -106,7 +107,7 @@ export default function Dashboard() {
         url: getInviteUrl(),
       });
     } catch (err) {
-      alert(`Nie można udostępnić: ${err}`);
+      toast.error(`Wystąpił błąd z udostępnieniem: ${err}`);
     }
   };
 
@@ -121,7 +122,7 @@ export default function Dashboard() {
         return data;
       });
     if ("error" in dutie) {
-      console.log(dutie["error"]);
+      toast.error(`Wystąpił błąd: ${dutie["error"]}`);
       return;
     }
     setDuties((duties) => {
@@ -156,6 +157,17 @@ export default function Dashboard() {
     return port ? `${baseUrl}:${port}/invite/${code}` : `${baseUrl}/invite/${code}`;
 
   }
+  const copyInviteHandler = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    try {
+      await navigator.clipboard.writeText(
+        getInviteUrl()
+      );
+      toast.success('Zaproszenie zostało skopiowane do schowka!');
+    } catch (err: any) {
+      toast.error(`Wystąpił błąd podczas kopiowania zaproszenia ${err.message}`);
+    }
+  };
+
   return (
     <AppLayout
       active="dashboard"
@@ -265,12 +277,7 @@ export default function Dashboard() {
               </button>
             </div>
             <button
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  getInviteUrl()
-                );
-              }}
-            >
+              onClick={copyInviteHandler}>
               <FontAwesomeIcon icon={faCopy} />
               Kopiuj Zaproszenie
             </button>

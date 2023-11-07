@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 import Modal from "@/app/components/modal";
+import { toast } from "react-toastify";
 
 export default function CalendarPage() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -37,7 +38,7 @@ export default function CalendarPage() {
         .then((data: EventList[]) => {
           prev_house_id.current = house_id;
           if ("error" in data) {
-            console.log(data["error"])
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return
           }
           const event_data = data.map((event) => ({
@@ -77,7 +78,8 @@ export default function CalendarPage() {
       res.json()
     );
     if ("error" in event) {
-      console.log(event.error);
+      
+      toast.error(`Wystąpił błąd: ${event.error}`);
       return;
     }
 
@@ -85,6 +87,8 @@ export default function CalendarPage() {
     setEventsList([...eventsList, event]);
     setEventTitle("");
     //console.log(eventsList);
+
+    toast.success("Wydarzenie zostało utworzone");
   };
 
   //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
@@ -104,6 +108,7 @@ export default function CalendarPage() {
 
     //console.log("========");
     //console.log(eventChoosed);
+    toast.success("Wydarzenie zostało usuniętę");
   };
 
   const toggleDropdown = () => {

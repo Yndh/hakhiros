@@ -11,11 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Duties() {
   const [weekDay, setWeekDay] = useState(new Date().getDay());
-  console.log(weekDay);
-  
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState("");
   const [dutyTitle, setDutyTitle] = useState("");
@@ -45,7 +44,7 @@ export default function Duties() {
         .then((res) => res.json())
         .then((data: Members | ErrorRespone) => {
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           setMember(data)
@@ -55,7 +54,7 @@ export default function Duties() {
             .then((data: DutieFetch[] | ErrorRespone) => {
               prev_house_id.current = user_house_id;
               if ("error" in data) {
-                console.log(data["error"]);
+                toast.error(`Wystąpił błąd: ${data["error"]}`);
                 return;
               }
 
@@ -108,7 +107,7 @@ export default function Duties() {
 
   const handleCreateDuty = async () => {
     if (!selectedUser.trim() || !dutyTitle.trim()) {
-      alert("wypelnij wszystkie pola");
+      toast.error("Wypełnij wszystkie pola");
       return;
     }
     const existingUser = duties.find((duty) => duty.profile_id.toString() === selectedUser && duty.weekDay === selectedDay);
@@ -132,7 +131,7 @@ export default function Duties() {
         return datetime_node;
       });
     if ("error" in dutie) {
-      console.log(dutie.error);
+      toast.error(`Wystąpił błąd: ${dutie.error}`);
       return;
     }
     if (existingUser) {
@@ -166,6 +165,7 @@ export default function Duties() {
     setDutyTitle("");
     setSelectedDay(new Date().getDay());
     toggleModal();
+    toast.success("Obowiązek został dodany");
   };
 
   return (

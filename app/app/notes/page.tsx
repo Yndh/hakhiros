@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import DropDown from "@/app/components/dropdown";
 import Modal from "@/app/components/modal";
 import Card from "@/app/components/card";
+import { toast } from "react-toastify";
 
 export default function Notes() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -37,7 +38,7 @@ export default function Notes() {
         .then((data: NoteFetch[]) => {
           prev_house_id.current = house_id;
           if ("error" in data) {
-            console.log(data["error"]);
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
             return;
           }
           const datetime_data = data.map((note) => ({
@@ -97,6 +98,7 @@ export default function Notes() {
 
   const addNote = async () => {
     if (title.trim() === "" && content.trim() === "") {
+      toast.error("Wypełnij wszystkie pola")
       return;
     }
     const newNote = {
@@ -119,7 +121,7 @@ export default function Notes() {
         return datetime_node;
       });
     if ("error" in note) {
-      console.log(note.error);
+      toast.error(`Wystąpił błąd: ${note.error}`);
       return;
     }
     setNotes((notes) => [...notes, note]);
@@ -127,6 +129,8 @@ export default function Notes() {
     setTitle("");
     setContent("");
     toggleModal();
+
+    toast.success("Notatka została utworzona")
   };
 
   const filterToggle = () => {
