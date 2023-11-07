@@ -69,7 +69,6 @@ export async function mGET(req: Request, res: NextApiResponse) {
                 isPinned: true,
             },
             where: {
-                profile_id,
                 house_id: profile.house_id,
             }
         })
