@@ -191,6 +191,7 @@ export default function Recepies() {
         {filteredRecepies.map((recepie: Recepie, index) => (
           <Suspense fallback={<CardLoader />}>
             <div
+              key={`recepie${index}`}
               className="card recepieEl"
               onClick={(e) => {
                 toggleModal(e);
