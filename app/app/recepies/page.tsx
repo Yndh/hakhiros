@@ -137,6 +137,7 @@ export default function Recepies() {
                   handleFilterChange("title");
                 }}
                 className={recepieSort == "title" ? "active" : ""}
+                key={"title"}
               >
                 Po tytule
               </li>
@@ -145,6 +146,7 @@ export default function Recepies() {
                   handleFilterChange("difficulty");
                 }}
                 className={recepieSort == "difficulty" ? "active" : ""}
+                key={"difficulty"}
               >
                 Po Trudności
               </li>
@@ -153,6 +155,7 @@ export default function Recepies() {
                   handleFilterChange("time");
                 }}
                 className={recepieSort == "time" ? "active" : ""}
+                key={"time"}
               >
                 Po czasie wykonania
               </li>
@@ -189,7 +192,7 @@ export default function Recepies() {
 
       <div className="cardRow recepies">
         {filteredRecepies.map((recepie: Recepie, index) => (
-          <Suspense fallback={<CardLoader />}>
+          <Suspense fallback={<CardLoader />} key={`suspense${index}`}>
             <div
               key={`recepie${index}`}
               className="card recepieEl"
