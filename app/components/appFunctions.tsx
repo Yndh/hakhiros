@@ -21,6 +21,8 @@ import {
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+
 
 interface FunctionOption {
   icon: IconDefinition;
@@ -166,8 +168,8 @@ export default function AppFunction() {
           ))}
         </div>
 
-        <img src={functionOptions[selectedFunction].mockup} alt="Desktop Mockup" className="pc" />
-        <img src={functionOptions[selectedFunction].mockupMobile} alt="Mobile Mockup" className="mobile" />
+        <Image src={functionOptions[selectedFunction].mockup} alt="Desktop Mockup" className="pc" />
+        <Image src={functionOptions[selectedFunction].mockupMobile} alt="Mobile Mockup" className="mobile" />
 
         <div className="functionContentColumn">
           {secondHalfContent.map((item, index) => (
