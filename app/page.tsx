@@ -7,14 +7,13 @@ import {
 import AppFunctions from "./components/appFunctions";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import FAQ from "./components/faq";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="landingContainer" id="start">
       <header className="landingHeader">
         <div className="logo">
-          <Image src="/logo.svg" alt="logo" />
+          <img src="/logo.svg" alt="logo" />
           <p>FamiLynk</p>
         </div>
         <ul className="landingNav">
@@ -41,14 +40,14 @@ export default function Home() {
       <div className="heroContainer">
         <h1>Twoje rodzinne centrum organizacji</h1>
         <a href="/login"><button>Sprawdź FamiLynk</button></a>
-        <Image src="/houseBaner.svg" alt="" />
+        <img src="/houseBaner.svg" alt="" />
       </div>
-
+    
       <div className="landingElement" id="about">
         <h1>O nas</h1>
         <div className="aboutUsRow">
           <div className="aboutUsElement">
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faUser}/>
             <h3>O zespole</h3>
             <p>
               Jesteśmy zespołem pasjonatów, którzy wierzą, że harmonia w
@@ -59,7 +58,7 @@ export default function Home() {
           </div>
 
           <div className="aboutUsElement">
-            <FontAwesomeIcon icon={faQuestion} />
+          <FontAwesomeIcon icon={faQuestion}/>
             <h3>Dlaczego FamiLynk?</h3>
             <p>
               Stworzyliśmy FamiLynk z przekonaniem, że każda rodzina zasługuje
@@ -71,7 +70,7 @@ export default function Home() {
           </div>
 
           <div className="aboutUsElement">
-            <FontAwesomeIcon icon={faQuestion} />
+          <FontAwesomeIcon icon={faQuestion}/>
             <h3>Co nas inspiruje?</h3>
             <p>
               Nasza inspiracja płynie z przekonania, że życie rodzinne może być
@@ -90,48 +89,48 @@ export default function Home() {
       <div className="landingElement" id="faq">
         <h1>FAQ</h1>
 
-        <FAQ />
+        <FAQ/>
       </div>
 
       <footer>
-        <div className="footerRow">
-          <div className="logo">
-            <h1>FamiLynk</h1>
-            <p>Twoje centrum organizacji</p>
+          <div className="footerRow">
+              <div className="logo">
+                <h1>FamiLynk</h1>
+                <p>Twoje centrum organizacji</p>
+              </div>
+              
+              <div className="links">
+                <p>Strona Główna</p>
+                <a href="/#start">Start</a>
+                <a href="/#about">O nas</a>
+                <a href="/#functions">Funkcje</a>
+                <a href="/#faq">Funkcje</a>
+                
+              </div>
+
+              <div className="links">
+                <p>Ogólne</p>
+                <a href="/login">Zaloguj się</a>
+                <a href="/register">Zarejestruj się</a>
+              </div>
+            
+              <div className="links">
+                <p>Autorzy</p>
+                <a href="https://github.com/Yndh">Yndh</a>
+                <a href="https://github.com/Qlesuga">Qłesuga</a>
+                <a href="https://github.com/MarcinSzablak">JerzTuptus</a>
+                <a href="https://github.com/IB2R5IMarcinSzablak">IB2R5</a>
+              </div>
+            
+
+
           </div>
-
-          <div className="links">
-            <p>Strona Główna</p>
-            <a href="/#start">Start</a>
-            <a href="/#about">O nas</a>
-            <a href="/#functions">Funkcje</a>
-            <a href="/#faq">Funkcje</a>
-
+          <div className="footerCol">
+              <div className="socialRow">
+              <a href="https://github.com/Yndh/hakhiros" className="social"><FontAwesomeIcon icon={faGithub} /></a>
+              </div>
+              <p>&copy;Copyright All right reserved</p>
           </div>
-
-          <div className="links">
-            <p>Ogólne</p>
-            <a href="/login">Zaloguj się</a>
-            <a href="/register">Zarejestruj się</a>
-          </div>
-
-          <div className="links">
-            <p>Autorzy</p>
-            <a href="https://github.com/Yndh">Yndh</a>
-            <a href="https://github.com/Qlesuga">Qłesuga</a>
-            <a href="https://github.com/MarcinSzablak">JerzTuptus</a>
-            <a href="https://github.com/IB2R5IMarcinSzablak">IB2R5</a>
-          </div>
-
-
-
-        </div>
-        <div className="footerCol">
-          <div className="socialRow">
-            <a href="https://github.com/Yndh/hakhiros" className="social"><FontAwesomeIcon icon={faGithub} /></a>
-          </div>
-          <p>&copy;Copyright All right reserved</p>
-        </div>
       </footer>
     </main>
   );
