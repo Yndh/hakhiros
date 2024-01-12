@@ -15,6 +15,7 @@ import DropDown from "@/app/components/dropdown";
 import Modal from "@/app/components/modal";
 import Card from "@/app/components/card";
 import { toast } from "react-toastify";
+import useUserHouseId from "@/store/useUserHouseId";
 
 export default function Notes() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -29,7 +30,7 @@ export default function Notes() {
   const [notes, setNotes] = useState<Note[]>([]);
   const colors = ["#fff", "#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
-  const house_id = localStorage.getItem("user_house_id") || "-1";
+  const house_id = useUserHouseId()
   let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== house_id) {

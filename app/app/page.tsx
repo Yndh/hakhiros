@@ -16,6 +16,7 @@ import Card from "../components/card";
 import { useEffect, useRef, useState } from "react";
 import React from "react";
 import { toast } from "react-toastify";
+import useUserHouseId from "@/store/useUserHouseId";
 
 interface Dutie {
   id: number;
@@ -35,11 +36,12 @@ export default function Dashboard() {
 
   const [events, setEvents] = useState<Event[]>([]);
 
-  const user_house_id = localStorage.getItem("user_house_id") || "-1";
+  const user_house_id = useUserHouseId()
   let prev_user_house_id = useRef("-1");
   const [members, setMembers] = useState<Members>({});
   const [notes, setNotes] = useState<Note[]>([]);
   const [user, setUser] = useState<User>({ name: "test" });
+
   useEffect(() => {
     if (prev_user_house_id.current !== user_house_id) {
       //members

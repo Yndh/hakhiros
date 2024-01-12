@@ -10,6 +10,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 import Modal from "@/app/components/modal";
 import { toast } from "react-toastify";
+import useUserHouseId from "@/store/useUserHouseId";
 
 export default function CalendarPage() {
   const [triggerRerender, setTriggerRerender] = useState(false);
@@ -29,7 +30,7 @@ export default function CalendarPage() {
   const [eventChoosed, setEventChoosed] = useState<any>({});
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  const house_id = localStorage.getItem("user_house_id") || "-1";
+  const house_id = useUserHouseId()
   let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== house_id) {
@@ -78,7 +79,7 @@ export default function CalendarPage() {
       res.json()
     );
     if ("error" in event) {
-      
+
       toast.error(`Wystąpił błąd: ${event.error}`);
       return;
     }

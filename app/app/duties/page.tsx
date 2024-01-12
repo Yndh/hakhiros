@@ -4,6 +4,7 @@ import { AppLayout } from "@/app/components/appLayout";
 import Card from "@/app/components/card";
 import Duty from "@/app/components/duty";
 import Modal from "@/app/components/modal";
+import useUserHouseId from "@/store/useUserHouseId";
 import {
   faArrowLeft,
   faArrowRight,
@@ -35,7 +36,7 @@ export default function Duties() {
 
   const [members, setMember] = useState<Members>({})
 
-  const user_house_id = localStorage.getItem("user_house_id") || "-1";
+  const user_house_id = useUserHouseId()
   let prev_house_id = useRef("-1");
   useEffect(() => {
     if (prev_house_id.current !== user_house_id) {
