@@ -65,7 +65,7 @@ export const NavBar = (props: NavBarProps) => {
           props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender)
         }
         if (props.setCode) {
-          props.setCode(data[Object.keys(data)[0]]["code"])
+          props.setCode(data[id]["code"])
         }
         return id
       }).then((user_house_id) => {
