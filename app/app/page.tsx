@@ -153,6 +153,9 @@ export default function Dashboard() {
     }
   };
   const getInviteUrl = () => {
+    if (typeof window == 'undefined') {
+      return "http://localhost:3000/invite/${code}"
+    }
     const port = window.location.port;
     const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
