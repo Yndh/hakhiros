@@ -37,55 +37,52 @@ export default function Duties() {
   const [members, setMember] = useState<Members>({})
 
   const user_house_id = useUserHouseId()
-  let prev_house_id = useRef("-1");
   useEffect(() => {
-    if (prev_house_id.current !== user_house_id) {
-      fetch(`/api/members?user_house_id=${user_house_id}`)
-        .then((res) => res.json())
-        .then((data: Members | ErrorRespone) => {
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return;
-          }
-          setMember(data)
-        }).then(() =>
-          fetch(`/api/dutie?user_house_id=${user_house_id}`)
-            .then((res) => res.json())
-            .then((data: DutieFetch[] | ErrorRespone) => {
-              prev_house_id.current = user_house_id;
-              if ("error" in data) {
-                toast.error(`Wystąpił błąd: ${data["error"]}`);
-                return;
-              }
+    fetch(`/api/members?user_house_id=${user_house_id}`)
+      .then((res) => res.json())
+      .then((data: Members | ErrorRespone) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return;
+        }
+        setMember(data)
+      }).then(() =>
+        fetch(`/api/dutie?user_house_id=${user_house_id}`)
+          .then((res) => res.json())
+          .then((data: DutieFetch[] | ErrorRespone) => {
+            if ("error" in data) {
+              toast.error(`Wystąpił błąd: ${data["error"]}`);
+              return;
+            }
 
-              const formated_duties: any[] = []
-              data.forEach(item => {
-                const existingItem = formated_duties.find(outputItem => outputItem.profile_id === item.profile_id && outputItem.weekDay === item.week_day);
-                if (existingItem) {
-                  existingItem.duties.push({
-                    id: item.id,
-                    title: item.title,
-                    isCompleted: item.is_done
-                  });
-                } else {
-                  formated_duties.push({
-                    id: item.id,
-                    user: members[item.profile_id] ? members[item.profile_id]["name"] : "",
-                    profile_id: item.profile_id,
-                    duties: [
-                      {
-                        title: item.title,
-                        isCompleted: item.is_done
-                      }
-                    ],
-                    weekDay: item.week_day,
-                  });
-                }
-              });
-              setDuties(formated_duties)
-            }))
-    }
-  });
+            const formated_duties: any[] = []
+            data.forEach(item => {
+              const existingItem = formated_duties.find(outputItem => outputItem.profile_id === item.profile_id && outputItem.weekDay === item.week_day);
+              if (existingItem) {
+                existingItem.duties.push({
+                  id: item.id,
+                  title: item.title,
+                  isCompleted: item.is_done
+                });
+              } else {
+                formated_duties.push({
+                  id: item.id,
+                  user: members[item.profile_id] ? members[item.profile_id]["name"] : "",
+                  profile_id: item.profile_id,
+                  duties: [
+                    {
+                      title: item.title,
+                      isCompleted: item.is_done
+                    }
+                  ],
+                  weekDay: item.week_day,
+                });
+              }
+            });
+            setDuties(formated_duties)
+          }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user_house_id]);
 
   const getFilteredDuties = () => {
     return duties.filter((duty) => duty.weekDay === weekDay);

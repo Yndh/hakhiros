@@ -30,26 +30,22 @@ export default function Notes() {
   const [notes, setNotes] = useState<Note[]>([]);
   const colors = ["#fff", "#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
-  const house_id = useUserHouseId()
-  let prev_house_id = useRef("-1");
+  const user_house_id = useUserHouseId()
   useEffect(() => {
-    if (prev_house_id.current !== house_id) {
-      fetch(`/api/note?user_house_id=${house_id}`)
-        .then((res) => res.json())
-        .then((data: NoteFetch[]) => {
-          prev_house_id.current = house_id;
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return;
-          }
-          const datetime_data = data.map((note) => ({
-            ...note,
-            createdAt: new Date(note.createdAt),
-          }));
-          setNotes(datetime_data);
-        });
-    }
-  });
+    fetch(`/api/note?user_house_id=${user_house_id}`)
+      .then((res) => res.json())
+      .then((data: NoteFetch[]) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return;
+        }
+        const datetime_data = data.map((note) => ({
+          ...note,
+          createdAt: new Date(note.createdAt),
+        }));
+        setNotes(datetime_data);
+      });
+  }, [user_house_id]);
 
   const getSortedNotes = () => {
     const filteredNotes = searchNotes();
@@ -106,7 +102,7 @@ export default function Notes() {
       title: title,
       description: content,
       color: colorValue,
-      user_house_id: house_id,
+      user_house_id: user_house_id,
     };
     const options = {
       method: "POST",

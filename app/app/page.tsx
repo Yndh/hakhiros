@@ -37,67 +37,62 @@ export default function Dashboard() {
   const [events, setEvents] = useState<Event[]>([]);
 
   const user_house_id = useUserHouseId()
-  let prev_user_house_id = useRef("-1");
   const [members, setMembers] = useState<Members>({});
   const [notes, setNotes] = useState<Note[]>([]);
   const [user, setUser] = useState<User>({ name: "test" });
 
   useEffect(() => {
-    if (prev_user_house_id.current !== user_house_id) {
-      //members
-      fetch(`/api/members?user_house_id=${user_house_id}`)
-        .then((res) => res.json())
-        .then((data: Members | ErrorRespone) => {
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return;
-          }
-          setMembers(data);
-        });
-      //note
-      fetch(`/api/note?user_house_id=${user_house_id}&pinned=true`)
-        .then((res) => res.json())
-        .then((data: Note[] | ErrorRespone) => {
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return;
-          }
-          setNotes(data)
-        })
-      //duties
-      const d = new Date();
-      fetch(`/api/dutie?user_house_id=${user_house_id}&week_day=${d.getDay()}`)
-        .then((res) => res.json())
-        .then((data: Dutie[] | ErrorRespone) => {
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return;
-          }
-          setDuties(data);
-        });
-      //events
-      fetch(`/api/calendar?user_house_id=${user_house_id}&amount=4`)
-        .then((res) => res.json())
-        .then((data: EventList[]) => {
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return;
-          }
-          const event_data = data.map((event) => ({
-            date: new Date(event.start).toLocaleString([], {
-              year: "numeric",
-              month: "numeric",
-              day: "numeric",
-            }),
-            title: event.title,
-          }));
-          setEvents(event_data);
-        });
-
-      //
-      prev_user_house_id.current = user_house_id;
-    }
-  });
+    console.log("aaa")
+    //members
+    fetch(`/api/members?user_house_id=${user_house_id}`)
+      .then((res) => res.json())
+      .then((data: Members | ErrorRespone) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return;
+        }
+        setMembers(data);
+      });
+    //note
+    fetch(`/api/note?user_house_id=${user_house_id}`)
+      .then((res) => res.json())
+      .then((data: Note[] | ErrorRespone) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return;
+        }
+        setNotes(data)
+      })
+    //duties
+    const d = new Date();
+    fetch(`/api/dutie?user_house_id=${user_house_id}&week_day=${d.getDay()}`)
+      .then((res) => res.json())
+      .then((data: Dutie[] | ErrorRespone) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return;
+        }
+        setDuties(data);
+      });
+    //events
+    fetch(`/api/calendar?user_house_id=${user_house_id}&amount=4`)
+      .then((res) => res.json())
+      .then((data: EventList[]) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return;
+        }
+        const event_data = data.map((event) => ({
+          date: new Date(event.start).toLocaleString([], {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          }),
+          title: event.title,
+        }));
+        setEvents(event_data);
+      });
+  }, [user_house_id]);
 
   const shareHandler = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

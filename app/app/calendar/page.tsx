@@ -31,24 +31,20 @@ export default function CalendarPage() {
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
   const house_id = useUserHouseId()
-  let prev_house_id = useRef("-1");
   useEffect(() => {
-    if (prev_house_id.current !== house_id) {
-      fetch(`/api/calendar?user_house_id=${house_id}`)
-        .then((res) => res.json())
-        .then((data: EventList[]) => {
-          prev_house_id.current = house_id;
-          if ("error" in data) {
-            toast.error(`Wystąpił błąd: ${data["error"]}`);
-            return
-          }
-          const event_data = data.map((event) => ({
-            ...event,
-          }));
-          setEventsList(event_data);
-        });
-    }
-  });
+    fetch(`/api/calendar?user_house_id=${house_id}`)
+      .then((res) => res.json())
+      .then((data: EventList[]) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data["error"]}`);
+          return
+        }
+        const event_data = data.map((event) => ({
+          ...event,
+        }));
+        setEventsList(event_data);
+      });
+  }, [house_id]);
 
   const setDate = (info: any) => {
     setSelectedStartDate(info.startStr);
