@@ -63,10 +63,8 @@ export default function Duty({ user, duties, weekDay, setDuties }: DutyProps) {
       toast.error(`Wystąpił błąd: ${dutie.error}`);
       return;
     } */
-    console.log(duties)
     let new_duties = duties.filter((dutie) => dutie.id !== duties[index]["id"])
     setDuties((duties2) => {
-      console.log(duties2[weekDay - 1])
       duties2[weekDay - 1]["duties"] = new_duties
       return { ...duties2 }
     })
