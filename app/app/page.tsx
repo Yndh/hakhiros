@@ -3,20 +3,16 @@
 import "../globals.css";
 import { AppLayout } from "../components/appLayout";
 import Note from "../components/note";
-import Duty from "../components/duty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCopy,
   faCrown,
-  faShare,
-  faThumbTack,
 } from "@fortawesome/free-solid-svg-icons";
-import QRCode from "react-qr-code";
 import Card from "../components/card";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { toast } from "react-toastify";
 import useUserHouseId from "@/store/useUserHouseId";
+import Invate from "../components/invite";
 
 interface Dutie {
   id: number;
@@ -93,20 +89,6 @@ export default function Dashboard() {
       });
   }, [user_house_id]);
 
-  const shareHandler = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    try {
-      await navigator.share({
-        title: "Zaprosznie do domu",
-        text: "Dołącz do mojego domu",
-        url: getInviteUrl(),
-      });
-    } catch (err) {
-      toast.error(`Wystąpił błąd z udostępnieniem: ${err}`);
-    }
-  };
-
   const handleCheckboxChange = async (index: number) => {
     const options = {
       method: "PATCH",
@@ -126,6 +108,7 @@ export default function Dashboard() {
       return [...duties];
     });
   };
+
   const renderPinnedNote = () => {
     {
       const pinnedNote = notes.find((note) => note.isPinned === true);
@@ -144,26 +127,6 @@ export default function Dashboard() {
           <h2>Brak przypiętych notatek</h2>
         </Card>
       );
-    }
-  };
-  const getInviteUrl = () => {
-    if (typeof window == 'undefined') {
-      return "http://localhost:3000/invite/${code}"
-    }
-    const port = window.location.port;
-    const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
-
-    return port ? `${baseUrl}:${port}/invite/${code}` : `${baseUrl}/invite/${code}`;
-
-  }
-  const copyInviteHandler = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    try {
-      await navigator.clipboard.writeText(
-        getInviteUrl()
-      );
-      toast.success('Zaproszenie zostało skopiowane do schowka!');
-    } catch (err: any) {
-      toast.error(`Wystąpił błąd podczas kopiowania zaproszenia ${err.message}`);
     }
   };
 
@@ -262,25 +225,7 @@ export default function Dashboard() {
         </div>
 
         <div className="collumn one">
-          <Card>
-            <h2 className="title">Zaproszenie</h2>
-            <div className="qrCode">
-              <QRCode
-                value={getInviteUrl()}
-                width={256}
-                style={{ height: "auto" }}
-              />
-              <span className="or">lub</span>
-              <button className="box" onClick={shareHandler}>
-                <FontAwesomeIcon icon={faShare} />
-              </button>
-            </div>
-            <button
-              onClick={copyInviteHandler}>
-              <FontAwesomeIcon icon={faCopy} />
-              Kopiuj Zaproszenie
-            </button>
-          </Card>
+          <Invate code={code} />
 
           <Card>
             <h2 className="title">Użytkownicy</h2>
