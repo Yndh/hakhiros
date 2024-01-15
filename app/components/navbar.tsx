@@ -61,33 +61,40 @@ export const NavBar = (props: NavBarProps) => {
         setUserHouseId(id);
         localStorage.setItem("user_house_id", id);
 
-        if (props.setTriggerRerender) {
-          props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender)
-        }
         if (props.setCode) {
           props.setCode(data[id]["code"])
         }
         return id
-      }).then((user_house_id) => {
-        fetch(`/api/user?user_house_id=${user_house_id}`)
-          .then((res) => res.json())
-          .then((data: User | ErrorRespone) => {
-            if ("error" in data) {
-              toast.error(`Wystąpił błąd: ${data["error"]}`);
-              return
-            }
-            setUser(data)
-            if (props.setUser) {
-              props.setUser(data)
-            }
-            setUserHouseName(data["display_name"] || "")
-          })
-      }).then(() => {
-        if (props.setTriggerRerender) {
-          props.setTriggerRerender((triggerRerender) => !triggerRerender)
-        }
       })
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [false]);
+
+  useEffect(() => {
+    console.log("userHouseId")
+    if (userHouseId == "") {
+      return
+    }
+    async function fetchData() {
+      await fetch(`/api/user?user_house_id=${userHouseId}`)
+        .then((res) => res.json())
+        .then((data: User | ErrorRespone) => {
+          if ("error" in data) {
+            toast.error(`Wystąpił błąd: ${data["error"]}`);
+            return
+          }
+          setUser(data)
+          if (props.setUser) {
+            props.setUser(data)
+          }
+          setUserHouseName(data["display_name"] || "")
+        })
+      if (props.setTriggerRerender) {
+        props.setTriggerRerender((triggerRerender) => !triggerRerender)
+      }
+    }
+    fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userHouseId])
 
   const dropdownToggle = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent> | null
