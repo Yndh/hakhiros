@@ -41,7 +41,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     const house = await prisma.house.create({
         data: {
             owner: session.user.id,
-            name: body.house_name,
+            name: body.house_name.trim(),
             code: await generateUniqueCode(HOUSE_CODE_LENGHT),
         }
     })
