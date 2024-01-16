@@ -38,3 +38,5 @@ next-env.d.ts
 *.db
 *.bkp
 *.dtmp
+
+generated
