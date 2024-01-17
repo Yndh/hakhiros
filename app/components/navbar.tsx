@@ -228,7 +228,6 @@ export const NavBar = (props: NavBarProps) => {
   };
 
   const saveUserHandler = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // TODO: zrobić tak żeby na dashboardzie zmieniała się nazwa użytkownika
     if (userHouseName === user.display_name) {
       setUserOpen(false)
       return

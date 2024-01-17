@@ -129,7 +129,6 @@ export default function Dashboard() {
       );
     }
   };
-
   return (
     <AppLayout
       active="dashboard"
@@ -140,7 +139,7 @@ export default function Dashboard() {
       <div className="header">
         <div className="collumn">
           <span>Witaj Ponownie,</span>
-          <h1>{user["name"]}</h1>
+          <h1>{user["display_name"] ? user["display_name"] : user["name"]}</h1>
         </div>
       </div>
 
