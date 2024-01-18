@@ -11,11 +11,12 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 
 USER root
 
-COPY . .
+
+COPY package.json .
 
 RUN npm install --save-exact --save-dev typescript @types/react @types/node
 
-ENV POSTGRES_PRISMA_URL "postgresql://postgres:admin@db:5432/postgres?schema=public"
+COPY . .
 
 RUN npx prisma generate
 

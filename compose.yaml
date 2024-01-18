@@ -19,7 +19,7 @@ services:
       watch:
         - action: sync
           path: .
-          target: .
+          target: /usr/src/app
           ignore:
             - node_modules/
             - package.json
