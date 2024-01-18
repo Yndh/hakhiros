@@ -1,10 +1,20 @@
-# TODO: Add postgresql for development
-
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - db:/var/lib/postgresql/data
+    expose:
+      - 5432
   next:
     build: .
     ports:
       - 3000:3000
+    links:
+      - db
     develop:
       watch:
         - action: sync
@@ -17,3 +27,6 @@ services:
           path: package.json
     env_file:
       - .env
+volumes:
+  db:
+    driver: local

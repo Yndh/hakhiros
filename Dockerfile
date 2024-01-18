@@ -15,8 +15,10 @@ COPY . .
 
 RUN npm install --save-exact --save-dev typescript @types/react @types/node
 
+ENV POSTGRES_PRISMA_URL "postgresql://postgres:admin@db:5432/postgres?schema=public"
+
 RUN npx prisma generate
 
 EXPOSE 3000
 
-CMD npm run dev
+CMD npx prisma db push ; npm run dev
