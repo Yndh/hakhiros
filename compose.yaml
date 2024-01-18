@@ -1,0 +1,19 @@
+# TODO: Add postgresql for development
+
+services:
+  next:
+    build: .
+    ports:
+      - 3000:3000
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: .
+          ignore:
+            - node_modules/
+            - package.json
+        - action: rebuild
+          path: package.json
+    env_file:
+      - .env
