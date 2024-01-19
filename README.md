@@ -33,6 +33,7 @@ Aplikacja FamiLynk została zbudowana przy użyciu kluczowych technologii i bibl
 - [bcrypt](https://github.com/kelektiv/node.bcrypt.js): Służy do haszowania haseł użytkowników.
 - [react-qr-code](https://github.com/zpao/qrcode.react): Umożliwia generowanie kodów QR.
 - [react-toastify](https://fkhadra.github.io/react-toastify): Wyświetla powiadomienia w aplikacji.
+- [dockera](https://docs.docker.com): konteneryzacja aplikacji
 
 
 ## Instalacja
@@ -44,24 +45,16 @@ $ git clone https://github.com/Yndh/hakhiros.git
 $ cd hakhiros
 ```
 
-2. Zainstaluj zależności
+2. Zainstaluj [dockera](https://docs.docker.com/engine/install/) 
+
+3. Uruchom aplikację 
+* bez hot-reload'a
 ```bash
-$ npm install
-$ yarn add
+$ docker compose up --build
 ```
-
-3. Skonfiguruj środowisko
-Ustal odpowiednie zmienne środowiskowe w plikach .env w celu dostosowania konfiguracji aplikacji do swoich potrzeb.
-
-4. Skonfiguruj baze danych
-Wykonaj migrację bazy danych
+* z hot-reload'en
 ```bash
-$ npx prisma db push
-```
-
-5. Uruchom aplikację
-```bash
-$ npm run dev
+docker compose watch
 ```
 
 ## Użycie
@@ -71,10 +64,9 @@ $ npm run dev
 3. Korzystaj z różnych modułów aplikacji, takich jak kalendarz, notatki, obowiązki i przepisy.
 
 ## Autorzy
-[![Yndh](https://github.com/Yndh.png?size=40)](https://github.com/Yndh) 
-
-[![Qlesuga](https://github.com/Qlesuga.png?size=40)](https://github.com/Qlesuga) 
-
-[![MarcinSzablak](https://github.com/MarcinSzablak.png?size=40)](https://github.com/MarcinSzablak) 
-
-[![IB2R5](https://github.com/IB2R5I.png?size=40)](https://github.com/IB2R5I)
+<p align="center">
+<img src="https://github.com/Yndh.png?size=60" alt="Yndh" href="https://github.com/Yndh">
+<img src="https://github.com/Qlesuga.png?size=60" alt="Qlesuga" href="https://github.com/Qlesuga">
+<img src="https://github.com/MarcinSzablak.png?size=60" alt="MarcinSzablak" href="https://github.com/MarcinSzablak">
+<img src="https://github.com/IB2R5I.png?size=60" alt="IB2R5" href="https://github.com/IB2R5I">
+</p>
