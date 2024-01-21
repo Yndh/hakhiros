@@ -1,4 +1,4 @@
-interface House { name: string, code: string }
+interface House { name: string, code: string, isOwner: bool }
 interface Houses { [key: string]: House }
 
 interface Note {

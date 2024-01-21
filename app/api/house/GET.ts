@@ -19,7 +19,8 @@ export async function mGET(req: Request, res: NextApiResponse) {
                 select: {
                     id: true,
                     name: true,
-                    code: true
+                    code: true,
+                    owner: true
                 }
             }
         },
@@ -33,7 +34,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
     const houses: Houses = {};
 
     user_house.forEach(user_house => {
-        houses[user_house.id] = {"name":user_house.house.name,"code":user_house.house.code}
+        houses[user_house.id] = { "name": user_house.house.name, "code": user_house.house.code, "isOwner": user_house.house.owner == session.user.id }
     });
 
     return new NextResponse(JSON.stringify(houses), {
