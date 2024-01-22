@@ -71,6 +71,7 @@ export default function Duties() {
                   profile_id: item.profile_id,
                   duties: [
                     {
+                      id: item.id,
                       title: item.title,
                       isCompleted: item.is_done
                     }
@@ -196,8 +197,6 @@ export default function Duties() {
                 key={duty.id}
                 user={duty.user}
                 duties={duty.duties}
-                weekDay={duty.weekDay}
-                setDuties={setDuties}
               />
             )
           })

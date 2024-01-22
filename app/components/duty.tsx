@@ -9,8 +9,6 @@ import { toast } from "react-toastify";
 interface DutyProps {
   user: string;
   duties: Duty[];
-  weekDay: number;
-  setDuties: Dispatch<SetStateAction<Dutie[]>>
 }
 
 interface Duty {
@@ -19,7 +17,11 @@ interface Duty {
   isCompleted: boolean;
 }
 
-export default function Duty({ user, duties, weekDay, setDuties }: DutyProps) {
+interface DutyDelete extends Duty {
+  error?: string
+}
+
+export default function Duty({ user, duties }: DutyProps) {
   const [dutyList, setDutyList] = useState(duties);
   const [modalOpen, setModalOpen] = useState(false);
   const handleCheckboxChange = async (index: number) => {
@@ -48,28 +50,24 @@ export default function Duty({ user, duties, weekDay, setDuties }: DutyProps) {
   const deleteDutie = async (index: number) => {
     const options = {
       method: "DELETE",
-      body: JSON.stringify({ dutie_id: duties[index]["id"] }),
+      body: JSON.stringify({ dutie_id: dutyList[index]["id"] }),
     };
-    /* const dutie = await fetch("/api/dutie", options)
+    console.log(duties)
+    const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
-      .then((data: NoteFetch) => {
-        const datetime_node: Note = {
-          ...data,
-          createdAt: new Date(data["createdAt"]),
-        };
-        return datetime_node;
+      .then((data: DutyDelete) => {
+        return data;
       });
     if ("error" in dutie) {
       toast.error(`Wystąpił błąd: ${dutie.error}`);
       return;
-    } */
-    let new_duties = duties.filter((dutie) => dutie.id !== duties[index]["id"])
-    setDuties((duties2) => {
-      duties2[weekDay - 1]["duties"] = new_duties
-      return { ...duties2 }
+    }
+    setDutyList((dutyList) => {
+      return dutyList.filter((dutie) => dutie.id != dutyList[index]["id"])
     })
+    console.log(duties)
     toast.success("Pomyślnie usunięto obowiązek");
-  };
+  }
   return (
     <>
       <Card>
