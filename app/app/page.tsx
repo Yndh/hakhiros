@@ -123,6 +123,7 @@ export default function Dashboard() {
           title={pinnedNote.title}
           description={pinnedNote.description}
           setNotes={setNotes}
+          color={pinnedNote.color}
         />
       ) : (
         <Card classes="center">
