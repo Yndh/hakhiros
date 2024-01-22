@@ -13,6 +13,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import useUserHouseId from "@/store/useUserHouseId";
 import Invate from "../components/invite";
+import MemberList from "../components/memberList";
 
 interface Dutie {
   id: number;
@@ -26,6 +27,7 @@ interface Event {
 }
 
 export default function Dashboard() {
+  console.log("aa")
   const [triggerRerender, setTriggerRerender] = useState(false);
   const [code, setCode] = useState<string>("");
   const [duties, setDuties] = useState<Dutie[]>([]);
@@ -226,26 +228,7 @@ export default function Dashboard() {
         <div className="collumn one">
           <Invate code={code} />
 
-          <Card>
-            <h2 className="title">Użytkownicy</h2>
-            <ul className="userList">
-              {Object.keys(members).map((key) => (
-                <li key={key}>
-                  <span className="username">
-                    {members[key]["display_name"]
-                      ? members[key]["display_name"]
-                      : members[key]["name"]}
-                    {members[key]["is_owner"] ? (
-                      <FontAwesomeIcon icon={faCrown} />
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                  <span className="handle">{members[key]["name"]}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
+          <MemberList members={members} />
         </div>
       </div>
     </AppLayout>
