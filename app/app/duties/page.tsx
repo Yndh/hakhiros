@@ -46,7 +46,8 @@ export default function Duties() {
           return;
         }
         setMember(data)
-      }).then(() =>
+        return data
+      }).then((members) =>
         fetch(`/api/dutie?user_house_id=${user_house_id}`)
           .then((res) => res.json())
           .then((data: DutieFetch[] | ErrorRespone) => {
@@ -54,9 +55,13 @@ export default function Duties() {
               toast.error(`Wystąpił błąd: ${data["error"]}`);
               return;
             }
-
+            if (!members) {
+              toast.error(`Wystąpił problem z pobraniem użtykowników`);
+              return;
+            }
             const formated_duties: any[] = []
             data.forEach(item => {
+              console.log()
               const existingItem = formated_duties.find(outputItem => outputItem.profile_id === item.profile_id && outputItem.weekDay === item.week_day);
               if (existingItem) {
                 existingItem.duties.push({
@@ -67,7 +72,7 @@ export default function Duties() {
               } else {
                 formated_duties.push({
                   id: item.id,
-                  user: members[item.profile_id] ? members[item.profile_id]["name"] : "",
+                  user: members[item.profile_id]["name"],
                   profile_id: item.profile_id,
                   duties: [
                     {
@@ -167,7 +172,6 @@ export default function Duties() {
     toggleModal();
     toast.success("Obowiązek został dodany");
   };
-
   return (
     <AppLayout active="duties" setTriggerRerender={setTriggerRerender}>
       <div className="header">
