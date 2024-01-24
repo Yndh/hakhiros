@@ -15,7 +15,6 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Duties() {
-  const [triggerRerender, setTriggerRerender] = useState(false);
   const [weekDay, setWeekDay] = useState(new Date().getUTCDay());
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState("");
@@ -173,7 +172,7 @@ export default function Duties() {
     toast.success("Obowiązek został dodany");
   };
   return (
-    <AppLayout active="duties" setTriggerRerender={setTriggerRerender}>
+    <AppLayout active="duties">
       <div className="header">
         <h1>Obowiązki</h1>
         <div className="row">

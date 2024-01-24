@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 import useUserHouseId from "@/store/useUserHouseId";
 
 export default function Notes() {
-  const [triggerRerender, setTriggerRerender] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -155,7 +154,7 @@ export default function Notes() {
     });
   };
   return (
-    <AppLayout active="notes" setTriggerRerender={setTriggerRerender}>
+    <AppLayout active="notes">
       <div className="header">
         <h1>Notatki</h1>
         <div className="row">

@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 import useUserHouseId from "@/store/useUserHouseId";
 
 export default function CalendarPage() {
-  const [triggerRerender, setTriggerRerender] = useState(false);
   //Popupy wszystkie
   const [selectOpen, setIsSelectOpen] = useState(false);
   const [openColor, setOpenColor] = useState(false);
@@ -120,7 +119,7 @@ export default function CalendarPage() {
   const colors = ["#FFF9DB", "#E5FFDB", "#FFC0C0", "#E5CBFF"];
 
   return (
-    <AppLayout setTriggerRerender={setTriggerRerender} active="calendar">
+    <AppLayout active="calendar">
       <div className="calendarBox">
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}

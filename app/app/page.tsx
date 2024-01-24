@@ -28,7 +28,6 @@ interface Event {
 
 export default function Dashboard() {
   console.log("aa")
-  const [triggerRerender, setTriggerRerender] = useState(false);
   const [code, setCode] = useState<string>("");
   const [duties, setDuties] = useState<Dutie[]>([]);
 
@@ -135,7 +134,6 @@ export default function Dashboard() {
   return (
     <AppLayout
       active="dashboard"
-      setTriggerRerender={setTriggerRerender}
       setCode={setCode}
       setUser={setUser}
     >
