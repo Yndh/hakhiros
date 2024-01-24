@@ -70,7 +70,6 @@ export const NavBar = (props: NavBarProps) => {
   }, [false]);
 
   useEffect(() => {
-    console.log("userHouseId")
     if (userHouseId == "") {
       return
     }

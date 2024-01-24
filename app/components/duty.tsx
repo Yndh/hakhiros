@@ -52,7 +52,6 @@ export default function Duty({ user, duties }: DutyProps) {
       method: "DELETE",
       body: JSON.stringify({ dutie_id: dutyList[index]["id"] }),
     };
-    console.log(duties)
     const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
       .then((data: DutyDelete) => {
@@ -65,7 +64,6 @@ export default function Duty({ user, duties }: DutyProps) {
     setDutyList((dutyList) => {
       return dutyList.filter((dutie) => dutie.id != dutyList[index]["id"])
     })
-    console.log(duties)
     toast.success("Pomyślnie usunięto obowiązek");
   }
   return (

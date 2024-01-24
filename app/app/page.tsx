@@ -27,7 +27,6 @@ interface Event {
 }
 
 export default function Dashboard() {
-  console.log("aa")
   const [code, setCode] = useState<string>("");
   const [duties, setDuties] = useState<Dutie[]>([]);
 

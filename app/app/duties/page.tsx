@@ -60,7 +60,6 @@ export default function Duties() {
             }
             const formated_duties: any[] = []
             data.forEach(item => {
-              console.log()
               const existingItem = formated_duties.find(outputItem => outputItem.profile_id === item.profile_id && outputItem.weekDay === item.week_day);
               if (existingItem) {
                 existingItem.duties.push({
