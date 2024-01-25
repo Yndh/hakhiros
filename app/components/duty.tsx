@@ -27,7 +27,7 @@ export default function Duty({ user, duties }: DutyProps) {
   const handleCheckboxChange = async (index: number) => {
     const options = {
       method: "PATCH",
-      body: JSON.stringify({ dutie_id: duties[index]["id"] }),
+      body: JSON.stringify({ dutie_id: dutyList[index]["id"] }),
     };
     const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())

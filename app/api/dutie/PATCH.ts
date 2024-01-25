@@ -26,13 +26,25 @@ export async function mPATCH(req: Request, res: NextApiResponse) {
     const dutie = await prisma.dutie.findFirst({
         where: {
             id: parseInt(body.dutie_id as string),
+        }
+    })
+    if (!dutie) {
+        return new NextResponse(JSON.stringify({ error: 'nie znaleziono obowiazku' }), {
+            status: 400
+        })
+    }
+
+    const house = await prisma.user_house.findFirst({
+        where: {
+            house_id: dutie.house_id,
             profile: {
                 user_id: session.user.id
             }
         }
     })
-    if (!dutie) {
-        return new NextResponse(JSON.stringify({ error: 'nie znaleziono obowiazku' }), {
+
+    if (!house) {
+        return new NextResponse(JSON.stringify({ error: 'nie należysz do domu' }), {
             status: 400
         })
     }
