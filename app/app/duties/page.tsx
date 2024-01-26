@@ -197,8 +197,10 @@ export default function Duties() {
             return (
               <Duty
                 key={duty.id}
+                id={duty.id}
                 user={duty.user}
                 duties={duty.duties}
+                setDuties={setDuties}
               />
             )
           })

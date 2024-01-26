@@ -7,8 +7,10 @@ import Card from "./card";
 import { toast } from "react-toastify";
 
 interface DutyProps {
+  id: number;
   user: string;
   duties: Duty[];
+  setDuties: Dispatch<SetStateAction<Dutie[]>>;
 }
 
 interface Duty {
@@ -21,7 +23,7 @@ interface DutyDelete extends Duty {
   error?: string
 }
 
-export default function Duty({ user, duties }: DutyProps) {
+export default function Duty({ id, user, duties, setDuties }: DutyProps) {
   const [dutyList, setDutyList] = useState(duties);
   const [modalOpen, setModalOpen] = useState(false);
   const handleCheckboxChange = async (index: number) => {
@@ -42,7 +44,6 @@ export default function Duty({ user, duties }: DutyProps) {
     updatedDutyList[index].isCompleted = !updatedDutyList[index].isCompleted;
     setDutyList(updatedDutyList);
   };
-
   const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
   };
@@ -63,6 +64,15 @@ export default function Duty({ user, duties }: DutyProps) {
     }
     setDutyList((dutyList) => {
       return dutyList.filter((dutie) => dutie.id != dutyList[index]["id"])
+    })
+    setDuties((duties) => {
+      return duties.map((dutie) => {
+        if (dutie.id != id) {
+          return dutie
+        }
+        dutie.duties.splice(index, 1)
+        return dutie
+      })
     })
     toast.success("Pomyślnie usunięto obowiązek");
   }
