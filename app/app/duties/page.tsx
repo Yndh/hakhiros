@@ -89,7 +89,7 @@ export default function Duties() {
   }, [user_house_id]);
 
   const getFilteredDuties = () => {
-    return duties.filter((duty) => duty.weekDay === weekDay);
+    return duties.filter((duty) => duty.weekDay === weekDay && duty.duties.length > 0);
   };
 
   const handlePrevDay = () => {
