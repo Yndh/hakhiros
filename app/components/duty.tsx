@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 interface DutyProps {
   id: number;
   user: string;
-  duties: Duty[];
+  dutys: Duty[];
+  duties: Dutie[]
   setDuties: Dispatch<SetStateAction<Dutie[]>>;
 }
 
@@ -23,13 +24,12 @@ interface DutyDelete extends Duty {
   error?: string
 }
 
-export default function Duty({ id, user, duties, setDuties }: DutyProps) {
-  const [dutyList, setDutyList] = useState(duties);
+export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const handleCheckboxChange = async (index: number) => {
     const options = {
       method: "PATCH",
-      body: JSON.stringify({ dutie_id: dutyList[index]["id"] }),
+      body: JSON.stringify({ dutie_id: duties.find((dutie) => dutie.id == id)?.duties[index].id }),
     };
     const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
@@ -40,9 +40,17 @@ export default function Duty({ id, user, duties, setDuties }: DutyProps) {
       toast.error(`Wystąpił błąd: ${dutie["error"]}`);
       return
     }
-    const updatedDutyList = [...dutyList];
+    const updatedDutyList = [...dutys];
     updatedDutyList[index].isCompleted = !updatedDutyList[index].isCompleted;
-    setDutyList(updatedDutyList);
+    setDuties((duties) => {
+      return duties.map((dutie) => {
+        if (dutie.id != id) {
+          return dutie
+        }
+        dutie.duties = updatedDutyList
+        return dutie
+      })
+    })
   };
   const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
@@ -51,7 +59,7 @@ export default function Duty({ id, user, duties, setDuties }: DutyProps) {
   const deleteDutie = async (index: number) => {
     const options = {
       method: "DELETE",
-      body: JSON.stringify({ dutie_id: dutyList[index]["id"] }),
+      body: JSON.stringify({ dutie_id: duties.find((dutie) => dutie.id == id)?.duties[index].id }),
     };
     const dutie = await fetch("/api/dutie", options)
       .then((res) => res.json())
@@ -62,9 +70,6 @@ export default function Duty({ id, user, duties, setDuties }: DutyProps) {
       toast.error(`Wystąpił błąd: ${dutie.error}`);
       return;
     }
-    setDutyList((dutyList) => {
-      return dutyList.filter((dutie) => dutie.id != dutyList[index]["id"])
-    })
     setDuties((duties) => {
       return duties.map((dutie) => {
         if (dutie.id != id) {
@@ -81,7 +86,7 @@ export default function Duty({ id, user, duties, setDuties }: DutyProps) {
       <Card>
         <h2 className="title">@{user}</h2>
         <ol className="duties">
-          {dutyList.map((duty, index) => (
+          {dutys.map((duty, index) => (
             <li key={index}>
               <label htmlFor={`check${user}${index}`}>
                 <input

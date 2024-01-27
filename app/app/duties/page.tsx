@@ -141,12 +141,10 @@ export default function Duties() {
         title: dutyTitle,
         isCompleted: false,
       });
-
-      const updatedDuties = duties.map((duty) =>
-        duty.user === selectedUser ? { ...duty, duties: newDuties } : duty
-      );
-
-      setDuties(updatedDuties);
+      const updatedDuties = duties.map((duty) => {
+        return duty.profile_id.toString() == selectedUser ? { ...duty, duties: newDuties } : duty
+      });
+      setDuties([...updatedDuties]);
     } else {
       const newDuty: Dutie = {
         id: duties.length + 1,
@@ -199,7 +197,8 @@ export default function Duties() {
                 key={duty.id}
                 id={duty.id}
                 user={duty.user}
-                duties={duty.duties}
+                dutys={duty.duties}
+                duties={duties}
                 setDuties={setDuties}
               />
             )
@@ -210,7 +209,6 @@ export default function Duties() {
           </Card>
         )}
       </div>
-
       <Modal isOpen={modalOpen}>
         <FontAwesomeIcon
           icon={faClose}
@@ -268,6 +266,7 @@ export default function Duties() {
         </div>
 
         <button onClick={handleCreateDuty}>Dodaj</button>
+
       </Modal>
     </AppLayout>
   );
