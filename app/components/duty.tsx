@@ -2,7 +2,7 @@
 
 import { faAdd, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import Card from "./card";
 import { toast } from "react-toastify";
 
@@ -26,6 +26,8 @@ interface DutyDelete extends Duty {
 
 export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const deleteIndex = useRef(0)
+
   const handleCheckboxChange = async (index: number) => {
     const options = {
       method: "PATCH",
@@ -52,7 +54,7 @@ export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) 
       })
     })
   };
-  const toggleModal = (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
+  const toggleModal = (e?: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => {
     setModalOpen(!modalOpen);
   };
 
@@ -79,6 +81,7 @@ export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) 
         return dutie
       })
     })
+    toggleModal()
     toast.success("Pomyślnie usunięto obowiązek");
   }
   return (
@@ -97,7 +100,7 @@ export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) 
                 />
                 <span>{duty.title}</span>
               </label>
-              <FontAwesomeIcon icon={faTrash} onClick={() => deleteDutie(index)} />
+              <FontAwesomeIcon icon={faTrash} onClick={() => { deleteIndex.current = index; toggleModal() }} />
             </li>
           ))}
         </ol>
@@ -105,12 +108,13 @@ export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) 
 
       <div className={`modal ${modalOpen ? "shown" : ""}`}>
         <div className="modalCard">
-          <h2 className="center">Czy napewno chcesz usunąć ten element</h2>
+          <h2 className="center">Czy napewno chcesz usunąć:</h2>
+          <h3 className="center">{dutys[deleteIndex.current].title}</h3>
           <div className="rowContainer">
             <button className="border red" onClick={toggleModal}>
               Anuluj
             </button>
-            <button className="danger" >
+            <button className="danger" onClick={() => deleteDutie(deleteIndex.current)}>
               Usuń
             </button>
           </div>
