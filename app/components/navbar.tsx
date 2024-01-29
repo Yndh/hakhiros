@@ -25,7 +25,7 @@ import { toast } from "react-toastify";
 
 interface NavBarProps {
   active: string;
-  setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined;
+  setTriggerRerender: Dispatch<SetStateAction<boolean>>;
   setCode: Dispatch<SetStateAction<string>> | undefined
   setUser: Dispatch<SetStateAction<User>> | undefined
   isNavBarLoading: MutableRefObject<boolean>
@@ -88,9 +88,7 @@ export const NavBar = (props: NavBarProps) => {
           }
           setUserHouseName(data["display_name"] || "")
         })
-      if (props.setTriggerRerender) {
-        props.setTriggerRerender((triggerRerender) => !triggerRerender)
-      }
+      props.setTriggerRerender((triggerRerender) => !triggerRerender)
     }
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,9 +157,7 @@ export const NavBar = (props: NavBarProps) => {
           props.setUser(data)
         }
       })
-    if (props.setTriggerRerender) {
-      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
-    }
+    props.setTriggerRerender((triggerRerender) => !triggerRerender);
   };
 
   const createHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -187,9 +183,7 @@ export const NavBar = (props: NavBarProps) => {
     localStorage.setItem("user_house_id", houseId);
     toggleModal(e);
     setHouseName("");
-    if (props.setTriggerRerender) {
-      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
-    }
+    props.setTriggerRerender((triggerRerender) => !triggerRerender);
   };
 
   const joinHouse = async (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -214,9 +208,7 @@ export const NavBar = (props: NavBarProps) => {
     localStorage.setItem("user_house_id", houseId);
     toggleModal(e);
     setCode("");
-    if (props.setTriggerRerender) {
-      props.setTriggerRerender((triggerRerender: boolean) => !triggerRerender);
-    }
+    props.setTriggerRerender((triggerRerender) => !triggerRerender);
   };
 
   const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
