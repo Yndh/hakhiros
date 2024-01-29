@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 interface AppLayoutProps {
   active: string;
   children: React.ReactNode;
+  setTriggerRerender: Dispatch<SetStateAction<boolean>>
   setCode?: Dispatch<SetStateAction<string>>
   setUser?: Dispatch<SetStateAction<User>>
 }
@@ -17,9 +18,9 @@ export const AppLayout = ({
   children,
   active,
   setCode,
-  setUser
+  setUser,
+  setTriggerRerender
 }: AppLayoutProps) => {
-  const [triggerRerender, setTriggerRerender] = useState(false);
   const isNavBarLoading = useRef(true)
   return (
     <main className="appContainer">

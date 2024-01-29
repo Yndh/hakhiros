@@ -40,6 +40,7 @@ export default function Recepies() {
   const [selectedRecepie, setSelectedRecepie] = useState<Recepie>();
   const [recepieSort, setRecepieSort] = useState("title");
   const categoryCounts: { [key: string]: number } = {};
+  const [triggerRerender, setTriggerRerender] = useState(false);
 
   recepies.forEach((recepie: Recepie) => {
     recepie.kategorie.forEach((category) => {
@@ -123,7 +124,7 @@ export default function Recepies() {
   };
 
   return (
-    <AppLayout active="recepies">
+    <AppLayout active="recepies" setTriggerRerender={setTriggerRerender}>
       <div className="header">
         <h1>Przepisy</h1>
         <div className="row">
@@ -205,13 +206,12 @@ export default function Recepies() {
               <p className="desc">{recepie.krotki_opis}</p>
               <div className="rowContainer">
                 <div
-                  className={`info ${
-                    recepie.poziom_trudnosci == "Łatwy"
+                  className={`info ${recepie.poziom_trudnosci == "Łatwy"
                       ? "easy"
                       : recepie.poziom_trudnosci === "Średni"
-                      ? "medium"
-                      : "hard"
-                  }`}
+                        ? "medium"
+                        : "hard"
+                    }`}
                 >
                   <FontAwesomeIcon icon={faExclamation} />
                   {recepie.poziom_trudnosci}

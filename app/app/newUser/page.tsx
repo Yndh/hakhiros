@@ -8,6 +8,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function NewUser() {
+  const [triggerRerender, setTriggerRerender] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("join");
   const [houseName, setHouseName] = useState("")

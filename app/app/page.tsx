@@ -29,7 +29,7 @@ interface Event {
 export default function Dashboard() {
   const [code, setCode] = useState<string>("");
   const [duties, setDuties] = useState<Dutie[]>([]);
-
+  const [triggerRerender, setTriggerRerender] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
 
   const user_house_id = useUserHouseId()
@@ -135,6 +135,7 @@ export default function Dashboard() {
       active="dashboard"
       setCode={setCode}
       setUser={setUser}
+      setTriggerRerender={setTriggerRerender}
     >
       <div className="header">
         <div className="collumn">
