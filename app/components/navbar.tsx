@@ -17,7 +17,7 @@ import {
   faUtensils,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from "react";
 import Modal from "./modal";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -28,6 +28,7 @@ interface NavBarProps {
   setTriggerRerender: Dispatch<SetStateAction<boolean>> | undefined;
   setCode: Dispatch<SetStateAction<string>> | undefined
   setUser: Dispatch<SetStateAction<User>> | undefined
+  isNavBarLoading: MutableRefObject<boolean>
 }
 export const NavBar = (props: NavBarProps) => {
   const router = useRouter()
@@ -64,11 +65,11 @@ export const NavBar = (props: NavBarProps) => {
         if (props.setCode) {
           props.setCode(data[id]["code"])
         }
+        props.isNavBarLoading.current = false
         return id
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [false]);
-
   useEffect(() => {
     if (userHouseId == "") {
       return
