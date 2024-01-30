@@ -22,6 +22,7 @@ import Modal from "./modal";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import UserTable from "./userTable";
 
 interface NavBarProps {
   active: string;
@@ -379,32 +380,7 @@ export const NavBar = (props: NavBarProps) => {
 
           {/* Dla ownera */}
           <p className="thin">Użytkownicy</p>
-          <table className="users">
-            <thead>
-              <tr>
-                <th>Użytkownik</th>
-                <th>Data dolączenia</th>
-                <th>Akcje</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>@user2137</td>
-                <td>31.10.2023</td>
-                <td>
-                  <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-                </td>
-              </tr>
-
-              <tr>
-                <td>@user2</td>
-                <td>31.10.2023</td>
-                <td>
-                  <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <UserTable isOwner={true} />
 
           <button className="danger">
             <FontAwesomeIcon icon={faRightFromBracket} />
