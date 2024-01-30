@@ -46,6 +46,6 @@ export async function mPOST(req: Request, res: NextApiResponse) {
         }
     })
     return new NextResponse(JSON.stringify(await joinHouse(session.user.id, house.id)), {
-        status: 200
+        status: 201
     })
 }

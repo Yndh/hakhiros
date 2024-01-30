@@ -65,6 +65,6 @@ export async function mPOST(req: Request, res: NextApiResponse) {
     })
 
     return new NextResponse(JSON.stringify(note), {
-        status: 200
+        status: 201
     })
 }
