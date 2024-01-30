@@ -231,7 +231,7 @@ export const NavBar = (props: NavBarProps) => {
         display_name: userHouseName
       })
     }
-    const new_user = await fetch("/api/user", options)
+    await fetch("/api/user", options)
       .then((res) => res.json())
       .then((data: User | ErrorRespone) => {
         if ("error" in data) {
