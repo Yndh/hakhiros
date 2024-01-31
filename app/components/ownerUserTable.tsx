@@ -2,7 +2,7 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface OwnerUserTableProps {
-    members: Members
+    members: membersResponse
 }
 
 export default function OwnerUserTable({ members }: OwnerUserTableProps) {
@@ -19,7 +19,7 @@ export default function OwnerUserTable({ members }: OwnerUserTableProps) {
                 Object.keys(members).map((key) => {
                     return <tr key={key}>
                         <td>@{members[key].name}</td>
-                        <td>31.10.2023</td>
+                        <td>{new Date(members[key].join_date).toLocaleDateString()}</td>
                         <td>
                             <FontAwesomeIcon icon={faRightFromBracket} className="kick" />
                         </td>

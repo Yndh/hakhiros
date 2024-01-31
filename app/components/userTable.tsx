@@ -8,12 +8,12 @@ interface UserTableProps {
 }
 
 export default function UserTable({ isOwner }: UserTableProps) {
-    const members = useRef<Members>({})
+    const members = useRef<membersResponse>({})
     const user_house_id = useUserHouseId()
     useEffect(() => {
         fetch(`/api/members?user_house_id=${user_house_id}`)
             .then((res) => res.json())
-            .then((data: Members | ErrorRespone) => {
+            .then((data: membersResponse | ErrorRespone) => {
                 if ("error" in data) {
                     toast.error(`Wystąpił błąd: ${data["error"]}`);
                     return;

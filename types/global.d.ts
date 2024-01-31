@@ -69,3 +69,12 @@ interface User {
     name?: string,
     display_name?: string | null
 }
+
+interface membersResponse {
+    [key: string]: {
+        name: string,
+        display_name: string | null
+        is_owner: boolean
+        join_date: string
+    }
+}
