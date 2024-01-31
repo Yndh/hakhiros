@@ -25,6 +25,7 @@ model profile {
   id           Int           @id @default(autoincrement())
   user_id      Int
   display_name String?
+  join_date    DateTime      @default(now())
   duties       dutie[]
   notes        note[]
   user_houses  user_house[]
