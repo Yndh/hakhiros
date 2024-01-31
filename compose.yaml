@@ -23,8 +23,11 @@ services:
           ignore:
             - node_modules/
             - package.json
+            - prisma/schema.prisma
         - action: rebuild
           path: package.json
+        - action: rebuild
+          path: prisma/schema.prisma
     env_file:
       - .env
 volumes:
