@@ -9,12 +9,16 @@ services:
       - db:/var/lib/postgresql/data
     expose:
       - 5432
+    ports:
+      - 5432:5432
   next:
     build: .
     ports:
       - 3000:3000
     links:
       - db
+    environment:
+      - POSTGRES_PRISMA_URL = postgresql://postgres:admin@db:5432/postgres?schema=public
     develop:
       watch:
         - action: sync
@@ -29,7 +33,7 @@ services:
         - action: rebuild
           path: prisma/schema.prisma
     env_file:
-      - .env
+      - .docker.env
 volumes:
   db:
     driver: local
