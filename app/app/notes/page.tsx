@@ -21,8 +21,8 @@ export default function Notes() {
   const [triggerRerender, setTriggerRerender] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const title = useRef<HTMLInputElement>(null);
+  const content = useRef<HTMLTextAreaElement>(null);
   const [selectOpen, setIsSelectOpen] = useState(false);
   const [colorValue, setColorValue] = useState("#FFF9DB");
   const [noteSort, setNoteSort] = useState("title");
@@ -85,22 +85,14 @@ export default function Notes() {
     setModalOpen(!modalOpen);
   };
 
-  const setTitleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const setNoteContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
   const addNote = async () => {
-    if (title.trim() === "" && content.trim() === "") {
+    if (title.current?.value.trim() === "" && content.current?.value.trim() === "") {
       toast.error("Wypełnij wszystkie pola")
       return;
     }
     const newNote = {
-      title: title,
-      description: content,
+      title: title.current?.value || "",
+      description: content.current?.value || "",
       color: colorValue,
       user_house_id: user_house_id,
     };
@@ -122,9 +114,8 @@ export default function Notes() {
       return;
     }
     setNotes((notes) => [...notes, note]);
-
-    setTitle("");
-    setContent("");
+    if (title.current) title.current.value = ""
+    if (content.current) content.current.value = ""
     toggleModal();
 
     toast.success("Notatka została utworzona")
@@ -219,15 +210,13 @@ export default function Notes() {
             <input
               type="text"
               placeholder="Tytuł"
-              value={title}
+              ref={title}
               className="noteInput"
-              onChange={setTitleValue}
             />
           </h3>
           <textarea
             placeholder="Wpisz notatkę..."
-            value={content}
-            onChange={setNoteContent}
+            ref={content}
           />
         </Card>
         <div className="rowContainer">
