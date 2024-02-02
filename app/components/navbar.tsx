@@ -22,7 +22,7 @@ import Modal from "./modal";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import UserTable from "./userTable";
+import UserTable from "./userTable/userTable";
 
 interface NavBarProps {
   active: string;
@@ -45,7 +45,7 @@ export const NavBar = (props: NavBarProps) => {
   const [userHouseName, setUserHouseName] = useState<string | null>("");
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [user, setUser] = useState<User>({})
-
+  const isOwner = () => houses[userHouseId] ? houses[userHouseId].isOwner : false
   useEffect(() => {
     fetch("/api/house")
       .then((res) => res.json())
@@ -378,13 +378,12 @@ export const NavBar = (props: NavBarProps) => {
             onClick={toggleSettings}
           />
 
-          {/* Dla ownera */}
           <p className="thin">Użytkownicy</p>
-          <UserTable isOwner={true} />
+          <UserTable isOwner={isOwner()} />
 
           <button className="danger">
             <FontAwesomeIcon icon={faRightFromBracket} />
-            Opuść dom
+            {isOwner() ? "Usuń dom" : "Opuść dom"}
           </button>
         </Modal>
 

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import OwnerUserTable from "./ownerUserTable"
 import useUserHouseId from "@/store/useUserHouseId";
 import { toast } from "react-toastify";
+import MemberUserTable from "./memberUserTable";
 
 interface UserTableProps {
     isOwner: boolean
@@ -22,6 +23,6 @@ export default function UserTable({ isOwner }: UserTableProps) {
             });
     }, [user_house_id])
     return <>{
-        isOwner ? <OwnerUserTable members={members.current} /> : <p>WIP</p>
-    }</>
+        isOwner ? <OwnerUserTable members={members.current} /> : <MemberUserTable members={members.current} />}
+    </>
 }
