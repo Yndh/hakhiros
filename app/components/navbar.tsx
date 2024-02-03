@@ -35,6 +35,7 @@ export const NavBar = (props: NavBarProps) => {
   const router = useRouter()
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const [modalType, setModalType] = useState("join");
   const [code, setCode] = useState("");
   const [houseName, setHouseName] = useState("");
@@ -220,6 +221,10 @@ export const NavBar = (props: NavBarProps) => {
     setNavbarOpen(!navbarOpen);
   };
 
+  const toggleDeleteModal = () => {
+    setDeleteModalOpen((isModalOpen) => !isModalOpen)
+  }
+
   const saveUserHandler = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (userHouseName === user.display_name) {
       setUserOpen(false)
@@ -381,24 +386,23 @@ export const NavBar = (props: NavBarProps) => {
           <p className="thin">Użytkownicy</p>
           <UserTable isOwner={isOwner()} />
 
-          <button className="danger">
+          <button className="danger" onClick={toggleDeleteModal}>
             <FontAwesomeIcon icon={faRightFromBracket} />
             {isOwner() ? "Usuń dom" : "Opuść dom"}
           </button>
         </Modal>
 
-        {/* Do opuszczenia potwierdzenie to napiszcie */}
-        {/* <Modal isOpen={"zmienna"}>
-        <h2 className="center">Czy napewno chcesz opuścić ten dom</h2>
-        <div className="rowContainer">
-          <button className="border red" onClick={toggleModal}>
-            Anuluj
-          </button>
-          <button className="danger" onClick={toggleModal}>
-            Opuść dom
-          </button>
-        </div>
-      </Modal> */}
+        <Modal isOpen={deleteModalOpen}>
+          <h2 className="center">Czy napewno chcesz {isOwner() ? "usunąć" : "opuścić"} ten dom</h2>
+          <div className="rowContainer">
+            <button className="border red" onClick={toggleDeleteModal}>
+              Anuluj
+            </button>
+            <button className="danger" onClick={toggleDeleteModal}>
+              {isOwner() ? "usuń" : "opuść"} dom
+            </button>
+          </div>
+        </Modal>
 
         <Modal isOpen={userOpen}>
           <h2 className="title">Użytkownik</h2>
