@@ -30,7 +30,7 @@ model profile {
   user_houses  user_house[]
   plan_of_day  plan_of_day[]
   calendars    calendar[]
-  user         user          @relation(fields: [user_id], references: [id])
+  user         user          @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model house {
@@ -44,7 +44,7 @@ model house {
   user_houses user_house[]
   plan_of_day plan_of_day[]
   calendars   calendar[]
-  user        user          @relation(fields: [owner], references: [id])
+  user        user          @relation(fields: [owner], references: [id], onDelete: Cascade)
 }
 
 model dutie {
@@ -55,8 +55,8 @@ model dutie {
   is_done    Boolean
   week_day   Int
   created_at DateTime @default(now())
-  profile    profile  @relation(fields: [profile_id], references: [id])
-  house      house    @relation(fields: [house_id], references: [id])
+  profile    profile  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  house      house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
 model note {
@@ -68,8 +68,8 @@ model note {
   createdAt   DateTime @default(now())
   isPinned    Boolean  @default(false)
   color       String
-  profile     profile  @relation(fields: [profile_id], references: [id])
-  house       house    @relation(fields: [house_id], references: [id])
+  profile     profile  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  house       house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
 model user_house {
@@ -77,7 +77,7 @@ model user_house {
   profile_id Int
   house_id   Int
   join_date  DateTime @default(now())
-  profile    profile  @relation(fields: [profile_id], references: [id])
+  profile    profile  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
   house      house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
@@ -88,8 +88,8 @@ model plan_of_day {
   title      String
   start      String
   end        String
-  profile    profile @relation(fields: [profile_id], references: [id])
-  house      house   @relation(fields: [house_id], references: [id])
+  profile    profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  house      house   @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
 
 model calendar {
@@ -101,6 +101,6 @@ model calendar {
   end        DateTime
   color      String
   createdAt  DateTime @default(now())
-  profile    profile  @relation(fields: [profile_id], references: [id])
-  house      house    @relation(fields: [house_id], references: [id])
+  profile    profile  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  house      house    @relation(fields: [house_id], references: [id], onDelete: Cascade)
 }
