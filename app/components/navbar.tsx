@@ -6,7 +6,6 @@ import {
   faCalendarDays,
   faPenToSquare,
   faBell,
-  faCalendarPlus,
   faRightFromBracket,
   faCog,
   faUser,
@@ -22,7 +21,7 @@ import Modal from "./modal";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import UserTable from "./userTable/userTable";
+import UserTable from "./userTable/userTable"
 
 interface NavBarProps {
   active: string;
@@ -47,7 +46,8 @@ export const NavBar = (props: NavBarProps) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [user, setUser] = useState<User>({})
   const isOwner = () => houses[userHouseId] ? houses[userHouseId].isOwner : false
-  useEffect(() => {
+
+  const fetchHouseData = () => {
     fetch("/api/house")
       .then((res) => res.json())
       .then((data: Houses) => {
@@ -56,10 +56,13 @@ export const NavBar = (props: NavBarProps) => {
           return
         }
         setHouses(data);
-        const id = parseInt(localStorage.getItem("user_house_id") as string || "0") > 0 ? localStorage.getItem("user_house_id") : Object.keys(data)[0];
+        let id = parseInt(localStorage.getItem("user_house_id") as string || "0") > 0 ? localStorage.getItem("user_house_id") : Object.keys(data)[0];
         if (!id) {
           toast.error(`Wystąpił błąd z id podczas pobierania danych domu`);
           return
+        }
+        if (!(id in Object.keys(data))) {
+          id = Object.keys(data)[0]
         }
         setUserHouseId(id);
         localStorage.setItem("user_house_id", id);
@@ -70,8 +73,13 @@ export const NavBar = (props: NavBarProps) => {
         props.isNavBarLoading.current = false
         return id
       })
+  }
+
+  useEffect(() => {
+    fetchHouseData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [false]);
+
   useEffect(() => {
     if (userHouseId == "") {
       return
@@ -128,7 +136,6 @@ export const NavBar = (props: NavBarProps) => {
       | React.MouseEvent<HTMLAnchorElement, MouseEvent>
       | React.MouseEvent<HTMLOrSVGElement, MouseEvent>
   ) => {
-    toast.error("Ta funkcja nie jest zaimplementowana")
     setSettingsOpen(!settingsOpen);
   };
 
@@ -252,6 +259,27 @@ export const NavBar = (props: NavBarProps) => {
     setUserOpen(false)
 
     toast.success("Pomyślnie zmieniono pseudonim");
+  }
+
+  const deleteHouse = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const options = {
+      method: "DELETE",
+      body: JSON.stringify({
+        user_house_id: userHouseId
+      })
+    }
+    await fetch("/api/house", options)
+      .then((res) => res.json())
+      .then((data: User | ErrorRespone) => {
+        if ("error" in data) {
+          toast.error(`Wystąpił błąd: ${data.error}`);
+          return
+        }
+      });
+    fetchHouseData()
+    setDeleteModalOpen(false)
+
+    toast.success(`Pomyślnie ${isOwner() ? "usunąłeś" : "opuściłeś"} dom`);
   }
 
   return (
@@ -398,7 +426,7 @@ export const NavBar = (props: NavBarProps) => {
             <button className="border red" onClick={toggleDeleteModal}>
               Anuluj
             </button>
-            <button className="danger" onClick={toggleDeleteModal}>
+            <button className="danger" onClick={deleteHouse}>
               {isOwner() ? "usuń" : "opuść"} dom
             </button>
           </div>

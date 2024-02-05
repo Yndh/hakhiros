@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]/route'
 
 interface req_body {
-    house_id: number
+    user_house_id: number | string
 }
 
 export async function mDELETE(req: Request, res: NextApiResponse) {
@@ -15,43 +15,43 @@ export async function mDELETE(req: Request, res: NextApiResponse) {
             status: 401
         })
     }
-    const { house_id }: req_body = await req.json()
-    const house = await prisma.house.findUnique({
+    const { user_house_id }: req_body = await req.json()
+    const user_house = await prisma.user_house.findFirst({
         where: {
-            id: house_id
+            id: parseInt(user_house_id.toString()),
+            profile: {
+                user_id: session.user.id
+            }
         }
     })
-    if (!house) {
-        return new NextResponse(JSON.stringify({ error: 'not in house' }), {
+
+    if (!user_house) {
+        return new NextResponse(JSON.stringify({ error: 'nie znaleziono domu' }), {
             status: 403
         })
     }
+    const house = await prisma.house.findFirst({
+        where: {
+            id: user_house.house_id
+        }
+    })
+    if (!house) {
+        return new NextResponse(JSON.stringify({ error: 'nie znaleziono domu' }), {
+            status: 403
+        })
+    }
+
     if (house.owner === session.user.id) {
         await prisma.house.deleteMany({
             where: {
-                id: house_id
+                id: house.id
             }
         })
         return new NextResponse(JSON.stringify({ name: house.name }), {
             status: 200
         })
     }
-    const user_house = await prisma.user_house.findFirst({
-        select: {
-            profile: {
-                select: {
-                    id: true
-                }
-            },
-            id: true
-        },
-        where: {
-            house_id,
-            profile: {
-                id: session.user.id
-            }
-        }
-    })
+
     if (!user_house) {
         return new NextResponse(JSON.stringify({ error: 'not in house' }), {
             status: 403
