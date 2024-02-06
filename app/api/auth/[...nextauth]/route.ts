@@ -2,6 +2,7 @@ import NextAuth, { type NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import { hash, compare } from 'bcrypt'
+import isValidEmail from "@/lib/isValidEmail";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -57,7 +58,9 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials?.username || !credentials?.email || !credentials?.password) {
                     return null
                 }
-
+                if (!isValidEmail(credentials.email)) {
+                    throw new Error("wprowadź poprawny email");
+                }
                 const emailExists = await prisma.user.findUnique({
                     where: {
                         email: credentials.email.toLowerCase()

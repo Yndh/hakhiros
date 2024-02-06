@@ -6,6 +6,8 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import isValidEmail from "@/lib/isValidEmail";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -16,6 +18,10 @@ export default function RegisterPage() {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!isValidEmail(email)) {
+      setError("Wprowadź poprawny Email");
+      return
+    }
     const result = await signIn("register", {
       username,
       email,
