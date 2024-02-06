@@ -26,23 +26,21 @@ export const AppLayout = ({
     <main className="appContainer">
       <Suspense fallback={<AppLoader />}>
         {
-          isNavBarLoading.current ? <>
-            <AppLoader />
-            <div style={{ visibility: "hidden" }}>
-              <NavBar setUser={setUser} setCode={setCode} active={active} setTriggerRerender={setTriggerRerender} isNavBarLoading={isNavBarLoading} />
-            </div>
-          </> :
-            <>
-              <NavBar setUser={setUser} setCode={setCode} active={active} setTriggerRerender={setTriggerRerender} isNavBarLoading={isNavBarLoading} />
-              <div className="mainContainer">{children}</div>
-              <ToastContainer
-                position="bottom-right"
-                autoClose={3000}
-                pauseOnHover
-                draggable
-              />
-            </>
+          isNavBarLoading.current && <AppLoader />
         }
+        <NavBar
+          setUser={setUser}
+          setCode={setCode}
+          active={active}
+          setTriggerRerender={setTriggerRerender}
+          isNavBarLoading={isNavBarLoading} />
+        <div className="mainContainer">{children}</div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          pauseOnHover
+          draggable
+        />
       </Suspense>
     </main>
   );
