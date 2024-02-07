@@ -38,6 +38,9 @@ export default function Dashboard() {
   const [user, setUser] = useState<User>({ name: "test" });
 
   useEffect(() => {
+    if (user_house_id == "" || user_house_id == "-1") {
+      return
+    }
     //members
     fetch(`/api/members?user_house_id=${user_house_id}`)
       .then((res) => res.json())

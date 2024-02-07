@@ -30,9 +30,12 @@ export default function CalendarPage() {
   const [eventChoosed, setEventChoosed] = useState<any>({});
   const [colorValue, setColorValue] = useState("#FFF9DB");
 
-  const house_id = useUserHouseId()
+  const user_house_id = useUserHouseId()
   useEffect(() => {
-    fetch(`/api/calendar?user_house_id=${house_id}`)
+    if (user_house_id == "" || user_house_id == "-1") {
+      return
+    }
+    fetch(`/api/calendar?user_house_id=${user_house_id}`)
       .then((res) => res.json())
       .then((data: EventList[]) => {
         if ("error" in data) {
@@ -44,7 +47,7 @@ export default function CalendarPage() {
         }));
         setEventsList(event_data);
       });
-  }, [house_id]);
+  }, [user_house_id]);
 
   const setDate = (info: any) => {
     setSelectedStartDate(info.startStr);
@@ -60,7 +63,7 @@ export default function CalendarPage() {
 
     //tu tworzymy nowy event
     const newEvent = {
-      user_house_id: house_id,
+      user_house_id: user_house_id,
       title: eventTitle,
       start: selectedStartDate,
       end: selectedEndDate,

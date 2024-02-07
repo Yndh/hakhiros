@@ -38,6 +38,9 @@ export default function Duties() {
 
   const user_house_id = useUserHouseId()
   useEffect(() => {
+    if (user_house_id == "" || user_house_id == "-1") {
+      return
+    }
     fetch(`/api/members?user_house_id=${user_house_id}`)
       .then((res) => res.json())
       .then((data: Members | ErrorRespone) => {

@@ -81,7 +81,7 @@ export const NavBar = (props: NavBarProps) => {
   }, [false]);
 
   useEffect(() => {
-    if (userHouseId == "") {
+    if (userHouseId == "" || userHouseId == "-1") {
       return
     }
     async function fetchData() {

@@ -32,6 +32,9 @@ export default function Notes() {
 
   const user_house_id = useUserHouseId()
   useEffect(() => {
+    if (user_house_id == "" || user_house_id == "-1") {
+      return
+    }
     fetch(`/api/note?user_house_id=${user_house_id}`)
       .then((res) => res.json())
       .then((data: NoteFetch[]) => {
