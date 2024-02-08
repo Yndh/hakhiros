@@ -5,12 +5,6 @@ import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
 export async function mGET(req: Request, res: NextApiResponse) {
-    const session = await getServerSession(authOptions)
-    if (!session) {
-        return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {
-            status: 401
-        })
-    }
     const code = res.params.code
     if (!code) {
         return new NextResponse(JSON.stringify({ error: 'nie podano kodu' }), {
