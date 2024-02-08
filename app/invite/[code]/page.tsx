@@ -32,6 +32,9 @@ export default function Invite({ params }: { params: { code: string } }) {
     const house = await fetch(`/api/house/${code}`, options)
       .then((res) => res.json())
       .then((data) => {
+        if (data.status == 307) {
+          router.push("/app");
+        }
         return data;
       });
     if ("error" in house) {
