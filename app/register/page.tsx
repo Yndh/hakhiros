@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import isValidEmail from "@/lib/isValidEmail";
-import { toast } from "react-toastify";
+import useCallbackUrl from "@/hooks/useCallbackUrl";
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -15,11 +15,19 @@ export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const callbackurl = useCallbackUrl()
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isValidEmail(email)) {
       setError("Wprowadź poprawny Email");
+      return
+    }
+    if (callbackurl) {
+      await signIn("login", {
+        email,
+        password,
+        callbackUrl: callbackurl
+      });
       return
     }
     const result = await signIn("register", {

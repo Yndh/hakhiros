@@ -6,15 +6,24 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useCallbackUrl from "@/hooks/useCallbackUrl";
 
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const callbackurl = useCallbackUrl()
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (callbackurl) {
+      await signIn("login", {
+        email,
+        password,
+        callbackUrl: callbackurl
+      });
+      return
+    }
     const result = await signIn("login", {
       email,
       password,
@@ -26,13 +35,6 @@ export default function LoginPage() {
       router.push("/app");
     }
   };
-
-  const googleButtonHandler = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    throw new Error("Function not implemented.");
-  };
-
   return (
     <div className="loginContainer">
       <div className="absoluteCircle"></div>
