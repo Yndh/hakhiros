@@ -1,55 +1,12 @@
-'use client'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../../components/card";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"
-import { toast } from "react-toastify";
+import JoinHouseButton from "@/app/components/joinHouseButton";
 
-export default function Invite({ params }: { params: { code: string } }) {
-  const router = useRouter()
+export default async function Invite({ params }: { params: { code: string } }) {
   const code = params.code
-  const [house, setHouse] = useState<{ name: string; amount: number } | null>(null);
-
-  useEffect(() => {
-    const fetchHouse = async () => {
-      const response = await fetch(`/api/house/${params.code}`);
-      const data = await response.json();
-      if ("error" in data) {
-        toast.error(`Wystąpił błąd z udostępnieniem: ${data.error}`);
-      }
-      setHouse(data);
-    };
-
-    fetchHouse();
-  }, [params.code]);
-
-  const joinHouse = async () => {
-    const options = {
-      method: "POST",
-    };
-    const house = await fetch(`/api/house/${code}`, options)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status == 307) {
-          router.push("/app");
-        }
-        return data;
-      });
-    if ("error" in house) {
-      if (house.error === "nie mozesz byc 2 razy w tym samym domu") {
-        router.push("/app");
-      }
-      toast.error(`Wystąpił błąd z udostępnieniem: ${house.error}`);
-      return;
-    }
-    router.push("/app");
-  }
-
-  if (!house) {
-    return <div>Loading...</div>;
-  }
+  const response = await fetch(`http://localhost:3000/api/house/${params.code}`);
+  const house = await response.json();
 
   return (
     <div className="fullContainer">
@@ -62,7 +19,7 @@ export default function Invite({ params }: { params: { code: string } }) {
           <FontAwesomeIcon icon={faUser} />
           <span>{house.amount} użytkowników</span>
         </p>
-        <button onClick={joinHouse}>Dołącz</button>
+        <JoinHouseButton code={code} />
       </Card>
     </div>
   );
