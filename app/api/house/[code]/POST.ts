@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma'
 import { joinHouse } from '@/lib/joinHouse'
 import { NextResponse } from 'next/server'
 import { redirect } from "next/navigation";
+import isMember from "@/lib/isMember";
 
 export async function mPOST(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
@@ -31,18 +32,7 @@ export async function mPOST(req: Request, res: NextApiResponse) {
         })
     }
 
-    const isUserLogin = await prisma.user_house.aggregate({
-        _count: {
-            profile_id: true
-        },
-        where: {
-            house_id: house.id,
-            profile: {
-                user_id: session.user.id
-            }
-        }
-    })
-    if (isUserLogin._count.profile_id == 1) {
+    if (await isMember(code)) {
         return new NextResponse(JSON.stringify({ error: "nie mozesz byc 2 razy w tym samym domu" }), {
             status: 400
         })
