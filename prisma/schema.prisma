@@ -11,7 +11,7 @@ datasource db {
 }
 
 model user {
-  id           Int       @id @default(autoincrement())
+  id           String    @id @default(cuid())
   name         String    @unique
   email        String    @unique
   password     String
@@ -22,7 +22,7 @@ model user {
 
 model profile {
   id           Int           @id @default(autoincrement())
-  user_id      Int
+  user_id      String
   display_name String?
   join_date    DateTime      @default(now())
   duties       dutie[]
@@ -35,7 +35,7 @@ model profile {
 
 model house {
   id          Int           @id @default(autoincrement())
-  owner       Int
+  owner       String
   name        String
   created_at  DateTime      @default(now())
   code        String        @unique

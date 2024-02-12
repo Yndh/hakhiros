@@ -1,6 +1,6 @@
 import { prisma } from "./prisma";
 
-export async function createProfile(user_id: number) {
+export async function createProfile(user_id: string) {
 
     const user_profile = await prisma.profile.create({
         data: {

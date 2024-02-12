@@ -1,7 +1,7 @@
 import { createProfile } from "./createProfile";
 import { prisma } from "./prisma";
 
-export async function joinHouse(user_id: number, house_id: number) {
+export async function joinHouse(user_id: string, house_id: number) {
     const house = await prisma.house.findFirst({
         select: {
             name: true,

@@ -1,8 +1,9 @@
-import NextAuth, { type NextAuthOptions, User } from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import { hash, compare } from 'bcrypt'
 import isValidEmail from "@/lib/isValidEmail";
+import { IUser } from "@/types/next-auth";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -13,7 +14,7 @@ export const authOptions: NextAuthOptions = {
                 email: { label: "Email", type: "email", placeholder: "sigma@basedeparment.com" },
                 password: { label: "Hasło", type: "password" }
             },
-            async authorize(credentials) {
+            async authorize(credentials): Promise<IUser | null> {
                 if (!credentials?.email || !credentials.password) {
                     return null
                 }
@@ -38,7 +39,7 @@ export const authOptions: NextAuthOptions = {
                 }
 
                 return {
-                    id: user.id.toString(),
+                    id: user.id,
                     user_id: user.id,
                     name: user.name,
                     email: user.email.toLowerCase(),
@@ -54,7 +55,7 @@ export const authOptions: NextAuthOptions = {
                 email: { label: "Email", type: "email", placeholder: "sigma@basedeparment.com" },
                 password: { label: "Hasło", type: "password" }
             },
-            async authorize(credentials, req) {
+            async authorize(credentials): Promise<IUser | null> {
                 if (!credentials?.username || !credentials?.email || !credentials?.password) {
                     return null
                 }
@@ -84,11 +85,11 @@ export const authOptions: NextAuthOptions = {
                     data: {
                         name: credentials.username,
                         email: credentials.email.toLowerCase(),
-                        password
+                        password: password
                     },
                 });
 
-                return { id: user.id.toString(), username: user.name, email: user.email }
+                return { id: user.id, user_id: user.id, name: user.name, email: user.email }
             }
         }),
     ],
@@ -98,7 +99,7 @@ export const authOptions: NextAuthOptions = {
                 ...session,
                 user: {
                     ...session.user,
-                    id: parseInt(token.id)
+                    id: token.id
                 }
             }
         },
