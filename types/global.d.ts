@@ -33,7 +33,6 @@ interface EventList {
     title: string;
     start: string;
     end: string;
-    allDay: boolean;
     color: string;
 }
 

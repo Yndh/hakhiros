@@ -6,7 +6,7 @@ import type { NextApiResponse } from 'next'
 import { getQuerryParameters } from '@/lib/getQuerryParameters'
 
 
-export async function mGET(req: Request, res: NextApiResponse) {
+export async function mGET(req: Request, res: NextApiResponse): Promise<NextResponse<calendarGetResponse>> {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'nie zautoryzowany' }), {

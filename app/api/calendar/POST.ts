@@ -6,22 +6,14 @@ import type { NextApiResponse } from 'next'
 import { isValidColor } from '@/lib/isValidColor'
 import { dateIsValid } from '@/lib/isDateValid'
 
-interface req_body {
-    user_house_id: number | string
-    title: string
-    start: string
-    end: string
-    color: string
-}
-
-export async function mPOST(req: Request, res: NextApiResponse) {
+export async function mPOST(req: Request, res: NextApiResponse): Promise<NextResponse<calendarPostResponse>> {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'nie zautoryzowany' }), {
             status: 401
         })
     }
-    const body: req_body = await req.json()
+    const body: calendarPostReqBody = await req.json()
     const { title, start, end, color } = body
     if (!body.user_house_id || !(typeof body.user_house_id === 'string' || typeof body.user_house_id === 'number')) {
         return new NextResponse(JSON.stringify({ error: 'zły typ danych lub nie podane user_house_id' }), {

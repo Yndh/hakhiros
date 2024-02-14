@@ -37,13 +37,13 @@ export default function CalendarPage() {
     }
     fetch(`/api/calendar?user_house_id=${user_house_id}`)
       .then((res) => res.json())
-      .then((data: EventList[]) => {
+      .then((data: calendarGetResponse) => {
         if ("error" in data) {
           toast.error(`Wystąpił błąd: ${data["error"]}`);
           return
         }
         const event_data = data.map((event) => ({
-          ...event,
+          ...event
         }));
         setEventsList(event_data);
       });
@@ -93,11 +93,12 @@ export default function CalendarPage() {
 
   //tu usuwamy event poprzez wyszukanie elementu w całej liście poprzez id i wyrzucenie go z listy, później poprostu wrzucamy cała liste bez eventu
   const deleteEvent = async () => {
+    const body: calendarDeleteReqBody = {
+      calendar_event_id: eventChoosed.el.fcSeg.eventRange.def.publicId
+    }
     const options = {
       method: "DELETE",
-      body: JSON.stringify({
-        calendar_event_id: eventChoosed.el.fcSeg.eventRange.def.publicId,
-      }),
+      body: JSON.stringify(body)
     };
 
     await fetch("/api/calendar", options);

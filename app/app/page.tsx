@@ -75,7 +75,7 @@ export default function Dashboard() {
     //events
     fetch(`/api/calendar?user_house_id=${user_house_id}&amount=4`)
       .then((res) => res.json())
-      .then((data: EventList[]) => {
+      .then((data: calendarGetResponse) => {
         if ("error" in data) {
           toast.error(`Wystąpił błąd: ${data["error"]}`);
           return;

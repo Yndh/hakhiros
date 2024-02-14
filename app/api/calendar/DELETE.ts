@@ -4,18 +4,14 @@ import { authOptions } from '../auth/[...nextauth]/route'
 import { NextResponse } from 'next/server'
 import type { NextApiResponse } from 'next'
 
-interface req_body {
-    calendar_event_id: string | number
-}
-
-export async function mDELETE(req: Request, res: NextApiResponse) {
+export async function mDELETE(req: Request, res: NextApiResponse): Promise<NextResponse<calendarDeleteResponse>> {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'nie zautoryzowano' }), {
             status: 401
         })
     }
-    const body: req_body = await req.json()
+    const body: calendarDeleteReqBody = await req.json()
     if (!body || !body.calendar_event_id) {
         return new NextResponse(JSON.stringify({ error: 'nie podano id wydarzenia w kalendarzu' }), {
             status: 400
