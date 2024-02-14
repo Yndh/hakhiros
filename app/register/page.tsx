@@ -115,7 +115,11 @@ export default function RegisterPage() {
       </form>
       <span className="loginOption">
         <span>Masz konto? </span>
-        <Link href={"/login"} className="coloredLink">
+        <Link href={{
+          pathname: '/login',
+          query: { callbackUrl: callbackurl },
+        }}
+          className="coloredLink">
           Zaloguj się
         </Link>
       </span>

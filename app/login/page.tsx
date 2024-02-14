@@ -89,7 +89,11 @@ export default function LoginPage() {
       </form>
       <span className="loginOption">
         <span>Nie masz konta? </span>
-        <Link href={"/register"} className="coloredLink">
+        <Link href={{
+          pathname: '/register',
+          query: { callbackUrl: callbackurl },
+        }}
+          className="coloredLink">
           Zarejestruj się
         </Link>
       </span>
