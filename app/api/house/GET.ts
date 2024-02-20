@@ -7,7 +7,7 @@ import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function mGET(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
-    if (!session) {
+    if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {
             status: 401
         })

@@ -1,9 +1,10 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { Session, type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import { hash, compare } from 'bcrypt'
 import isValidEmail from "@/lib/isValidEmail";
 import { IUser } from "@/types/next-auth";
+import { signOut } from "next-auth/react";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -94,7 +95,18 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        session: ({ session, token }) => {
+        session: async ({ session, token }): Promise<Session> => {
+            const user = await prisma.user.findUnique({
+                where: {
+                    id: token.id
+                }
+            })
+            if (!user || !session.user) {
+                return {
+                    ...session,
+                    user: null
+                }
+            }
             return {
                 ...session,
                 user: {

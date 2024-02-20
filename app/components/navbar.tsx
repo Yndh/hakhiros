@@ -49,8 +49,15 @@ export const NavBar = (props: NavBarProps) => {
 
   const fetchHouseData = () => {
     fetch("/api/house")
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status == 401) {
+          signOut()
+          router.push("/app/login")
+        }
+        return res.json()
+      })
       .then((data: Houses) => {
+
         if (Object.keys(data).length === 0) {
           router.push("/app/newUser")
           return
