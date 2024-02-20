@@ -23,7 +23,8 @@ export default function RegisterPage() {
       return
     }
     if (callbackurl) {
-      await signIn("login", {
+      await signIn("register", {
+        username,
         email,
         password,
         callbackUrl: callbackurl
