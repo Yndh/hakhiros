@@ -5,8 +5,10 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]/route'
 
 interface req_body {
+    profile_id: number | string
     user_house_id: number | string
 }
+
 
 export async function mDELETE(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
@@ -15,13 +17,31 @@ export async function mDELETE(req: Request, res: NextApiResponse) {
             status: 401
         })
     }
-    const { user_house_id }: req_body = await req.json()
+
+    const { profile_id, user_house_id }: req_body = await req.json()
+    if (!profile_id || isNaN(parseInt(profile_id.toString())) || !user_house_id || isNaN(parseInt(user_house_id.toString()))) {
+        return new NextResponse(JSON.stringify({ error: 'nie poprawne parametry' }), {
+            status: 400
+        })
+    }
+
+    const profile = await prisma.profile.findFirst({
+        where: {
+            id: parseInt(profile_id.toString())
+        },
+        select: {
+            user: true
+        }
+    })
+    if (profile?.user.id == session.user.id) {
+        return new NextResponse(JSON.stringify({ error: 'nie możesz wyrzucić samego siebie' }), {
+            status: 400
+        })
+    }
     const user_house = await prisma.user_house.findFirst({
         where: {
             id: parseInt(user_house_id.toString()),
-            profile: {
-                user_id: session.user.id
-            }
+            profile_id: parseInt(profile_id.toString())
         }
     })
 
@@ -30,39 +50,32 @@ export async function mDELETE(req: Request, res: NextApiResponse) {
             status: 403
         })
     }
+
     const house = await prisma.house.findFirst({
         where: {
             id: user_house.house_id
         }
     })
+
     if (!house) {
         return new NextResponse(JSON.stringify({ error: 'nie znaleziono domu' }), {
             status: 403
         })
     }
 
-    if (house.owner === session.user.id) {
-        await prisma.house.deleteMany({
-            where: {
-                id: house.id
-            }
-        })
-        return new NextResponse(JSON.stringify({ name: house.name }), {
-            status: 200
+    if (house.owner != session.user.id) {
+        return new NextResponse(JSON.stringify({ error: "nie jesteś właścicielem domu" }), {
+            status: 400
         })
     }
 
-    if (!user_house) {
-        return new NextResponse(JSON.stringify({ error: 'not in house' }), {
-            status: 403
-        })
-    }
     await prisma.user_house.delete({
         where: {
             id: user_house.id
         }
     })
-    return new NextResponse(JSON.stringify({ name: house.name }), {
+
+    return new NextResponse(JSON.stringify({ name: profile?.user.name }), {
         status: 200
     })
 }
