@@ -4,12 +4,6 @@ import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]/route'
 
-interface req_body {
-    profile_id: number | string
-    user_house_id: number | string
-}
-
-
 export async function mDELETE(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
@@ -18,7 +12,7 @@ export async function mDELETE(req: Request, res: NextApiResponse) {
         })
     }
 
-    const { profile_id, user_house_id }: req_body = await req.json()
+    const { profile_id, user_house_id }: membersDeleteReqBody = await req.json()
     if (!profile_id || isNaN(parseInt(profile_id.toString())) || !user_house_id || isNaN(parseInt(user_house_id.toString()))) {
         return new NextResponse(JSON.stringify({ error: 'nie poprawne parametry' }), {
             status: 400
@@ -40,13 +34,12 @@ export async function mDELETE(req: Request, res: NextApiResponse) {
     }
     const user_house = await prisma.user_house.findFirst({
         where: {
-            id: parseInt(user_house_id.toString()),
-            profile_id: parseInt(profile_id.toString())
+            id: parseInt(user_house_id.toString())
         }
     })
 
     if (!user_house) {
-        return new NextResponse(JSON.stringify({ error: 'nie znaleziono domu' }), {
+        return new NextResponse(JSON.stringify({ error: 'nie znaleziono domu użytkownika' }), {
             status: 403
         })
     }
@@ -69,9 +62,16 @@ export async function mDELETE(req: Request, res: NextApiResponse) {
         })
     }
 
+    const member_user_house = await prisma.user_house.findFirst({
+        where: {
+            house_id: house.id,
+            profile_id: parseInt(profile_id.toString())
+        }
+    })
+
     await prisma.user_house.delete({
         where: {
-            id: user_house.id
+            id: member_user_house?.id
         }
     })
 

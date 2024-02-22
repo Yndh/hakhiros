@@ -26,6 +26,9 @@ export default function UserTable({ isOwner }: UserTableProps) {
             });
     }, [user_house_id])
     return <>{
-        isOwner ? <OwnerUserTable members={members.current} /> : <MemberUserTable members={members.current} />}
+        Object.keys(members.current).length > 0 ?
+            isOwner ? <OwnerUserTable members={members.current} /> : <MemberUserTable members={members.current} />
+            : <div>Loading</div>}
+
     </>
 }
