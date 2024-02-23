@@ -4,7 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
 export default async function isMember(code: string): Promise<boolean> {
     const session = await getServerSession(authOptions)
-    if (!session) {
+    if (!session || !session.user) {
         return false
     }
     const isMember = await prisma.user_house.findFirst({
