@@ -2,6 +2,8 @@
 
 FamiLynk to aplikacja webowa stworzona w Next.js z TypeScript, która pomaga w organizacji życia rodzinnego. Aplikacja pozwala na dzielenie się z innymi członkami rodziny różnymi informacjami, takimi jak kalendarz, notatki, obowiązki i przepisy.
 
+strona: https://hakhiros.vercel.app
+
 ## Spis Treści
 
 - [Funkcje](#funkcje)
