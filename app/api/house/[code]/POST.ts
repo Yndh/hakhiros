@@ -9,7 +9,7 @@ import isMember from "@/lib/isMember";
 
 export async function mPOST(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
-    if (!session) {
+    if (!session || !session.user) {
         return new NextResponse(JSON.stringify({ path: '/register/' }), {
             status: 307
         })
