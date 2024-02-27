@@ -12,7 +12,7 @@ export default async function Invite({ params }: { params: { code: string } }) {
     redirect("/app")
   }
 
-  const response = await fetch(`http://localhost:3000/api/house/${params.code}`);
+  const response = await fetch(`/api/house/${params.code}`);
   const house = await response.json();
 
   return (
