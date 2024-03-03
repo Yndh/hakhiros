@@ -7,7 +7,7 @@ import JoinHouseButton from "@/app/components/joinHouseButton";
 import { useEffect, useRef, useState } from "react";
 import AppLoader from "@/app/components/appLoader";
 import { useRouter } from "next/navigation";
-import HouseCard from "@/app/components/houseCard";
+import HouseCard from "@/app/components/houseCard/houseCard";
 
 export default function Invite({ params }: { params: { code: string } }) {
   const router = useRouter()
@@ -34,7 +34,6 @@ export default function Invite({ params }: { params: { code: string } }) {
       {
         !isFetching ? <HouseCard house={house.current} code={code} /> : <AppLoader />
       }
-
     </div>
   );
 }

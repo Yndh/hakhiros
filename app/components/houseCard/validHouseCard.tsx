@@ -1,10 +1,10 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import JoinHouseButton from "./joinHouseButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Card from "./card";
+import Card from "../card";
+import JoinHouseButton from "../joinHouseButton";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-export default function HouseCard({ house, code }) {
-    return house ? <Card classes="invite">
+export default function ValidHouseCard({ house, code }) {
+    return <Card classes="invite">
         <p className="thin" style={{ opacity: 0.5 }}>
             Zostałeś zaproszony do domu
         </p>
@@ -14,5 +14,5 @@ export default function HouseCard({ house, code }) {
             <span>{house.amount} użytkowników</span>
         </p>
         <JoinHouseButton code={code} />
-    </Card> : <div>zły dom</div>
+    </Card>
 }
