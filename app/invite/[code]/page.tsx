@@ -10,9 +10,8 @@ import { useRouter } from "next/navigation";
 import HouseCard from "@/app/components/houseCard/houseCard";
 
 export default function Invite({ params }: { params: { code: string } }) {
-  const router = useRouter()
   const [isFetching, setIsFetching] = useState(true)
-  const house = useRef()
+  const house = useRef<houseCode | null>(null)
   const code = params.code
 
   useEffect(() => {

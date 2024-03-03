@@ -3,7 +3,12 @@ import Card from "../card";
 import JoinHouseButton from "../joinHouseButton";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-export default function ValidHouseCard({ house, code }) {
+interface ValidHouseCardProps {
+    house: houseCode,
+    code: string
+}
+
+export default function ValidHouseCard({ house, code }: ValidHouseCardProps) {
     return <Card classes="invite">
         <p className="thin" style={{ opacity: 0.5 }}>
             Zostałeś zaproszony do domu

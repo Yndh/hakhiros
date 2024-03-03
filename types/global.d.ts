@@ -77,3 +77,8 @@ interface membersResponse {
         join_date: string
     }
 }
+
+interface houseCode {
+    name: string
+    amount: number
+}
