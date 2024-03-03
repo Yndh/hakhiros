@@ -1,33 +1,40 @@
+"use client"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../../components/card";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import JoinHouseButton from "@/app/components/joinHouseButton";
-import isMember from "@/lib/isMember";
-import { redirect } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import AppLoader from "@/app/components/appLoader";
+import { useRouter } from "next/navigation";
+import HouseCard from "@/app/components/houseCard";
 
-export default async function Invite({ params }: { params: { code: string } }) {
+export default function Invite({ params }: { params: { code: string } }) {
+  const router = useRouter()
+  const [isFetching, setIsFetching] = useState(true)
+  const house = useRef()
   const code = params.code
 
-  if (await isMember(code)) {
-    redirect("/app")
-  }
+  useEffect(() => {
+    fetch(`/api/house/${code}`).then(res => {
+      if (res.status == 404) {
+        return
+      }
+      return res.json()
+    }).then(data => {
+      house.current = data
+      setIsFetching(false)
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  const response = await fetch(`/api/house/${params.code}`);
-  const house = await response.json();
 
   return (
     <div className="fullContainer">
-      <Card classes="invite">
-        <p className="thin" style={{ opacity: 0.5 }}>
-          Zostałeś zaproszony do domu
-        </p>
-        <h1>{house.name}</h1>
-        <p className="thin">
-          <FontAwesomeIcon icon={faUser} />
-          <span>{house.amount} użytkowników</span>
-        </p>
-        <JoinHouseButton code={code} />
-      </Card>
+      {
+        !isFetching ? <HouseCard house={house.current} code={code} /> : <AppLoader />
+      }
+
     </div>
   );
 }

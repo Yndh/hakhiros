@@ -19,7 +19,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
 
     if (!house) {
         return new NextResponse(JSON.stringify({ error: 'zły kod' }), {
-            status: 400
+            status: 404
         })
     }
     const count_member = await prisma.user_house.aggregate({
