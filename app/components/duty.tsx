@@ -74,10 +74,11 @@ export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) 
     }
     setDuties((duties) => {
       return duties.map((dutie) => {
-        if (dutie.id != id) {
+        if (dutie.id != id || deleteIndex.current == -1) {
           return dutie
         }
         dutie.duties.splice(index, 1)
+        deleteIndex.current = -1
         return dutie
       })
     })
@@ -109,7 +110,7 @@ export default function Duty({ id, user, dutys, duties, setDuties }: DutyProps) 
       <div className={`modal ${modalOpen ? "shown" : ""}`}>
         <div className="modalCard">
           <h2 className="center">Czy napewno chcesz usunąć:</h2>
-          <h3 className="center">{dutys[deleteIndex.current].title}</h3>
+          <h3 className="center">{dutys[deleteIndex.current]?.title}</h3>
           <div className="rowContainer">
             <button className="border red" onClick={toggleModal}>
               Anuluj
