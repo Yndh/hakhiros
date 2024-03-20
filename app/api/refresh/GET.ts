@@ -15,12 +15,16 @@ export async function mGET(req: Request, res: NextApiResponse) {
         status: 401,
         });
     }
-
-    prisma.user.findFirst({
-        select:{
-            id: true
-        }
-    })
+    try{
+        await prisma.user.findFirstOrThrow({
+            select:{
+                id: true
+            }
+        })
+    }
+    catch{
+        console.error("REFRESH QUERY ERROR")
+    }
     console.info("REFRESH DONE")
     return new NextResponse(JSON.stringify(true), {
         status: 200
