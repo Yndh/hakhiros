@@ -10,7 +10,7 @@ export async function mGET(req: Request, res: NextApiResponse) {
     console.info("REFRESH START")
     const authHeader = req.headers.get('authorization');
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-        console.error("REFRESH ERROR")
+        console.error("REFRESH ERROR UNAUTHORIZED")
         return new Response('Unauthorized', {
         status: 401,
         });
